@@ -18,7 +18,7 @@ const Common = ({ events }: { events: Event[] }) => {
           {events.map((event, idx) => (
             <div
               key={idx}
-              className="relative w-72 hover:shadow-slate-950 rounded-2xl overflow-hidden shadow-lg border"
+              className="relative w-72 hover:shadow-2xl rounded-2xl overflow-hidden shadow-lg border"
             >
               <div className="relative w-full h-96">
                 <Image
