@@ -20,14 +20,14 @@ const page = () => {
       <Advertisement />
 
       {/* categories */}
-      <div className="grid md:grid-cols-6 sm:grid-cols-3 grid-cols-2 mx-auto max-w-7xl">
+      <div className="grid  md:grid-cols-6 sm:grid-cols-3 grid-cols-2 mx-auto max-w-7xl">
         {categories.map((item, idx) => (
           <Link
             key={idx}
             href="/"
             className="flex hover:text-[#D942D6] group  items-center justify-center flex-col space-y-2"
           >
-            <div className="flex items-center hover:bg-[#D942D6] border  border-purple-400-100 rounded-full p-10 justify-center">
+            <div className="flex group items-center hover:bg-[#D942D6] border  border-purple-400-100 rounded-full p-10 justify-center">
               <Image src={item.icon} alt={item.Label} width={40} height={40} className="group-hover:invert group-hover:brightness-0 group-hover:filter" />
             </div>
             <h3 className="text-sm">{item.Label}</h3>
