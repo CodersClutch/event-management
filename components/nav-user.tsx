@@ -46,12 +46,11 @@ export function NavUser({
     window.location.assign(routes.defaultLogoutRedirect);
   };
 
+  const { data: session } = useSession({ required: true });
+  console.log("session", session?.user);
 
-  const {data:session} = useSession({required:true})
-  console.log("session",session?.user);
-  
   return (
-    <SidebarMenu>
+    <SidebarMenu className="text-white text-2xl">
       <SidebarMenuItem>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -64,7 +63,9 @@ export function NavUser({
                 <AvatarFallback className="rounded-lg">CN</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-semibold">{session?.user.name}</span>
+                <span className="truncate font-semibold">
+                  {session?.user.name}
+                </span>
                 <span className="truncate text-xs">{session?.user?.email}</span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" />
@@ -83,21 +84,24 @@ export function NavUser({
                   <AvatarFallback className="rounded-lg">CN</AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">{session?.user.firstName}</span>
-                  <span className="truncate text-xs">{session?.user?.email}</span>
+                  <span className="truncate font-semibold">
+                    {session?.user.firstName}
+                  </span>
+                  <span className="truncate text-xs">
+                    {session?.user?.email}
+                  </span>
                 </div>
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-            </DropdownMenuGroup>
+            <DropdownMenuGroup></DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-            <Link href="/profile">
-              <DropdownMenuItem>
-                <BadgeCheck />
-                Account
-              </DropdownMenuItem>
+              <Link href="/profile">
+                <DropdownMenuItem>
+                  <BadgeCheck />
+                  Account
+                </DropdownMenuItem>
               </Link>
 
               <DropdownMenuItem>
@@ -108,7 +112,13 @@ export function NavUser({
             <DropdownMenuSeparator />
             <DropdownMenuItem>
               <LogOut />
-              <Button variant={"destructive"} className="w-full" onClick={handleClick}>Log Out</Button>
+              <Button
+                variant={"destructive"}
+                className="w-full"
+                onClick={handleClick}
+              >
+                Log Out
+              </Button>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
