@@ -1,14 +1,13 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Link from 'next/link';
-import { Avatar, AvatarImage } from '../ui/avatar';
-import Image from 'next/image';
+import { useState } from "react";
+import Link from "next/link";
+import { Avatar, AvatarImage } from "../ui/avatar";
+import Image from "next/image";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [location, setLocation] = useState('North Bank');
-
+  const [location, setLocation] = useState("North Bank");
 
   return (
     <nav className="fixed mt-4 z-20 w-full">
@@ -17,8 +16,12 @@ export default function Navbar() {
         <div className="hidden md:flex items-center justify-between py-3">
           {/* Left Navigation Items */}
           <div className="flex-1 flex items-center space-x-5">
-            {['Contact Sales', 'Create Events', 'Help Center'].map((item) => (
-              <Link key={item} href="#" className="text-black font-medium text-sm hover:text-[#D942D6]">
+            {["Contact Sales", "Create Events", "Help Center", "Parenting Tips"].map((item) => (
+              <Link
+                key={item}
+                href="#"
+                className="text-black font-medium text-sm hover:text-[#D942D6]"
+              >
                 {item}
               </Link>
             ))}
@@ -26,11 +29,11 @@ export default function Navbar() {
 
           {/* Centered Logo */}
           <Link href="/" className="flex-shrink-0 mx-8">
-            <Image 
-              src='https://cdn.prod.website-files.com/66b50719acb232f6e3081f63/66d2a8417f39672a5117ed01_logoo.png'
+            <Image
+              src="https://cdn.prod.website-files.com/66b50719acb232f6e3081f63/66d2a8417f39672a5117ed01_logoo.png"
               height={100}
               width={100}
-              alt='Event Management' 
+              alt="Event Management"
             />
           </Link>
 
@@ -52,9 +55,17 @@ export default function Navbar() {
                   className="w-48 py-2 pl-4 pr-10 border-none focus:ring-0 bg-transparent"
                   placeholder="Location"
                 />
-                <button className="absolute right-1 top-1/2  -translate-y-1/2 bg-[#D942D6] text-white rounded-full p-2 hover:bg-[#D942D6]">
-                  <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M12.9 14.32a8 8 0 111.414-1.414l4.387 4.387a1 1 0 01-1.414 1.414l-4.387-4.387zM8 14a6 6 0 100-12 6 6 0 000 12z" clipRule="evenodd" />
+                <button className="absolute right-1 top-1/2  -translate-y-1/2 bg-gradient-to-b hover:bg-gradient-to-t from-[#A22D9E] hover:from-[#A22D9E] hover:to-[#F34CF1] to-[#F34CF1]  shadow-md transition text-white rounded-full p-2 hover:bg-[#D942D6]">
+                  <svg
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M12.9 14.32a8 8 0 111.414-1.414l4.387 4.387a1 1 0 01-1.414 1.414l-4.387-4.387zM8 14a6 6 0 100-12 6 6 0 000 12z"
+                      clipRule="evenodd"
+                    />
                   </svg>
                 </button>
               </div>
@@ -62,10 +73,16 @@ export default function Navbar() {
 
             {/* Auth Links */}
             <div className="flex items-center space-x-5">
-              <Link href="#" className="text-black font-medium px-4 py-3 border-2 border-[#a927a7] rounded-full text-sm hover:text-[#D942D6]">
+              <Link
+                href="#"
+                className="text-black font-medium px-4 py-3 border-2 border-[#a927a7] rounded-full text-sm hover:text-[#D942D6]"
+              >
                 Log In
               </Link>
-              <Link href="#" className="px-2 py-2 text-lg bg-gradient-to-b hover:bg-gradient-to-t from-[#A22D9E] hover:from-[#A22D9E] hover:to-[#F34CF1] to-[#F34CF1] rounded-full shadow-md transition">
+              <Link
+                href="#"
+                className="px-2 py-2 text-lg bg-gradient-to-b hover:bg-gradient-to-t from-[#A22D9E] hover:from-[#A22D9E] hover:to-[#F34CF1] to-[#F34CF1] rounded-full shadow-md transition"
+              >
                 Sign Up
               </Link>
             </div>
@@ -76,18 +93,33 @@ export default function Navbar() {
         <div className="md:hidden flex justify-between items-center py-3">
           {/* Logo on left */}
           <Link href="/">
-            <Image 
-              src='https://cdn.prod.website-files.com/66b50719acb232f6e3081f63/66d2a8417f39672a5117ed01_logoo.png'
+            <Image
+              src="https://cdn.prod.website-files.com/66b50719acb232f6e3081f63/66d2a8417f39672a5117ed01_logoo.png"
               height={100}
               width={100}
-              alt='Event Management' 
+              alt="Event Management"
             />
           </Link>
 
           {/* Burger menu */}
-          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-black focus:outline-none">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16m-7 6h7"} />
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="text-black focus:outline-none"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d={
+                  isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16m-7 6h7"
+                }
+              />
             </svg>
           </button>
         </div>
@@ -95,12 +127,21 @@ export default function Navbar() {
         {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="md:hidden mt-4 space-y-4 py-4 border-t border-gray-200">
-            {['Contact Sales', 'Create Events', 'Help Center', 'Log In'].map((item) => (
-              <Link key={item} href="#" className="block text-black font-medium text-sm hover:text-[#D942D6]">
-                {item}
-              </Link>
-            ))}
-            <Link href="#" className="block px-4 py-2 bg-[#D942D6] text-white rounded-full hover:bg-[#D942D6] text-center">
+            {["Contact Sales", "Create Events", "Help Center", "Log In", "Parenting Tips"].map(
+              (item) => (
+                <Link
+                  key={item}
+                  href="#"
+                  className="block text-black font-medium text-sm hover:text-[#D942D6]"
+                >
+                  {item}
+                </Link>
+              )
+            )}
+            <Link
+              href="#"
+              className="block px-4 py-2 bg-gradient-to-b hover:bg-gradient-to-t from-[#A22D9E] hover:from-[#A22D9E] hover:to-[#F34CF1] to-[#F34CF1]  shadow-md transition text-white rounded-full hover:bg-[#D942D6] text-center"
+            >
               Sign Up
             </Link>
           </div>
