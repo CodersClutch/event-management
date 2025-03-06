@@ -33,7 +33,7 @@ export default function Tabs() {
             key={tab}
             onClick={() => setActiveTab(tab)}
             className={`text-[16px] font-medium whitespace-nowrap pb-2 ${
-              activeTab === tab ? 'text-blue-600 border-b-2 border-blue-600 font-semibold' : 'text-gray-600 hover:border-b-2 hover:border-black '
+              activeTab === tab ? 'text-[#D942D6] border-b-2 border-[#D942D6] font-semibold' : 'text-gray-600 hover:border-b-2 hover:border-black '
             }`}
           >
             {tab}

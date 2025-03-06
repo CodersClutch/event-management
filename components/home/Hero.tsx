@@ -24,7 +24,7 @@ export default function Hero() {
         <h1 className="text-6xl font-bold mb-4">Connecting Families with <br /> Engaging Activities</h1>
         <Link href="/get-started">
         <button className="px-6 py-3 text-lg bg-gradient-to-b hover:bg-gradient-to-t from-[#A22D9E] hover:from-[#A22D9E] hover:to-[#F34CF1] to-[#F34CF1] rounded-full shadow-md transition">
-  Find Your Next Adventure
+        Find my tickets
 </button>
         </Link>
       </div>

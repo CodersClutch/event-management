@@ -104,7 +104,7 @@ const TopDestine = () => {
                   </div>
                 </div>
                 {/* Border bottom effect */}
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-[#F05537] transition-all duration-300 group-hover:h-3" />
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-[#D942D6] transition-all duration-300 group-hover:h-3" />
               </div>
             </div>
           ))}
