@@ -36,6 +36,7 @@ import { DialogClose } from "@radix-ui/react-dialog";
 import { EventHook } from "@/hooks/EventHook";
 import { useSession } from "next-auth/react";
 import FileUpload from "../common/ImageUpload"; // Updated FileUpload component
+import config from "@/lib/config";
 
 const AddEvent = () => {
   const { HandleAddEvent, isLoading } = EventHook();
@@ -126,8 +127,8 @@ const AddEvent = () => {
             <DialogHeader>
               <DialogTitle>Add Event</DialogTitle>
               <DialogDescription>
-                Make changes to your event details here. Click save when you're
-                done.
+                Make changes to your event details here. Click save when
+                you&apos;re done.
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-4 py-4">
