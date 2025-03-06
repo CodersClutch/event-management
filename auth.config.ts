@@ -4,7 +4,7 @@ import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
 
 import { UserProvider, IUser, RoleTypes } from "@/lib/types";
-import { UserRole } from "@/lib/models/types";
+// import { UserRole } from "@/lib/models/types";
 import { SignInValidation } from "./lib/validation/auth";
 import { fetchUserByEmail, signInWithOauth } from "@/lib/api-handler/user";
 export default {

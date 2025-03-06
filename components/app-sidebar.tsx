@@ -18,21 +18,56 @@ import { RoleTypes } from "@/lib/types";
 
 // Sample data
 const navItems = [
-  { title: "Dashboard", url: "/", icon: LayoutGrid, permission: "view_dashboard" },
-  { title: "Attendies", url: "/users", icon: Users, permission: "manage_users" },
-  { title: "Host", url: "/hosts", icon: Users, permission: "manage_staffs" },
-  { title: "Events", url: "/event", icon: CalendarSync, permission: "manage_events" },
-  { title: "Staffs", url: "/staffs", icon: Users, permission: "manage_staffs" },
-  { title: "Settings", url: "/settings", icon: Settings2, permission: "manage_settings" },
+  {
+    title: "Dashboard",
+    url: "/dashboard",
+    icon: LayoutGrid,
+    permission: "view_dashboard",
+  },
+  {
+    title: "Attendies",
+    url: "/dashboard/users",
+    icon: Users,
+    permission: "manage_users",
+  },
+  {
+    title: "Host",
+    url: "/dashboard/hosts",
+    icon: Users,
+    permission: "manage_staffs",
+  },
+  {
+    title: "Events",
+    url: "/dashboard/event",
+    icon: CalendarSync,
+    permission: "manage_events",
+  },
+  {
+    title: "Staffs",
+    url: "/dashboard/staffs",
+    icon: Users,
+    permission: "manage_staffs",
+  },
+  {
+    title: "Settings",
+    url: "/dashboard/settings",
+    icon: Settings2,
+    permission: "manage_settings",
+  },
 ];
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { data: session } = useSession();
-  const permissions: Record<string, string> | undefined = session?.user?.role?.permissions as unknown as Record<string, string> || {};
+  const permissions: Record<string, string> | undefined =
+    (session?.user?.role?.permissions as unknown as Record<string, string>) ||
+    {};
 
   // Filter navigation based on permissions
   const filteredNav = navItems.filter((item) => {
-    return (permissions?.[item.permission] ?? "") === "full" || (permissions?.[item.permission] ?? "") === "view";
+    return (
+      (permissions?.[item.permission] ?? "") === "full" ||
+      (permissions?.[item.permission] ?? "") === "view"
+    );
   });
 
   return (
@@ -44,7 +79,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavMain items={filteredNav} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={{ name: session?.user?.name || "Guest", email: session?.user?.email || "", avatar: session?.user?.image || "" }} />
+        <NavUser
+          user={{
+            name: session?.user?.name || "Guest",
+            email: session?.user?.email || "",
+            avatar: session?.user?.image || "",
+          }}
+        />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

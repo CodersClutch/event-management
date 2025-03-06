@@ -3,7 +3,6 @@ import { Heart, Share } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 import { BiDislike, BiLike, BiShare } from "react-icons/bi";
-import { FcLike } from "react-icons/fc";
 
 const AllEvents = () => {
   return (
@@ -53,9 +52,7 @@ const AllEvents = () => {
                 {event.organizer}
               </p>
               <p className="text-[14px] text-gray-500">
-                <span className="font-semibold text-black">
-                  {event.likes}
-                </span>{" "}
+                <span className="font-semibold text-black">{event.likes}</span>{" "}
                 likes
               </p>
               <div className="mt-2">
