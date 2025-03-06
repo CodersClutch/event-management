@@ -53,81 +53,51 @@ export const tabs = [
   'All', 'For you', 'Online', 'Today', 'This weekend',
 ];
 
- export const eventData = [
+
+
+export const eventsAll = [
   {
-    id: 1,
-    title: 'Emotional Abuse Support Group',
-    date: 'Tue, Mar 18 11:00 PM GMT+1',
-    price: 'Free',
-    organizer: 'Share Well',
-    likes: '4.5k',
-    imageSrc: 'https://img.freepik.com/free-psd/kitschy-colors-youtube-cover-template_23-2150544102.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid',
-    promoted: true,
-    age: '12'
+    image: "https://img.freepik.com/free-psd/kitschy-colors-youtube-cover-template_23-2150544102.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid",
+    title: "Andante & Allegro Event",
+    date: "Aug 1, 2025 at 8:00 AM",
+    location: "1 American Dream Wy, East Rutherford, NJ",
   },
   {
-    id: 2,
-    title: 'March LIVESTREAM 3-Day Asset Protection & Wealth...',
-    date: 'Mon, Mar 17 4:00 PM GMT+1',
-    price: 'Free',
-    organizer: 'Protect Wealth Academy',
-    likes: '83.1k',
-    imageSrc: 'https://img.freepik.com/premium-photo/happy-kids-with-balloons_13339-174411.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid',
-    promoted: true,
-    age: '12'
-
+    image: "https://img.freepik.com/premium-photo/happy-kids-with-balloons_13339-174411.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid",
+    title: "Triple Time Event",
+    date: "Aug 15, 2025 at 8:00 AM",
+    location: "999 Canada Pl, Vancouver, BC",
   },
   {
-    id: 3,
-    title: 'Evening Harmony ~ ONLINE Healing Hearts Christian Soun...',
-    date: 'Fri, May 16 4:30 AM GMT+2',
-    price: 'From $25.00',
-    organizer: 'Dr. Tselane',
-    likes: '270',
-    imageSrc: 'https://img.freepik.com/premium-photo/cute-girl-posing-balloon-birthday-party_107420-33162.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid',
-    promoted: true,
-    promptedTypo: true, // Flag for the typo in "Promoted" as "Prompted" in the original image
-    age: '12'
-
+    image: "https://img.freepik.com/premium-photo/cute-girl-posing-balloon-birthday-party_107420-33162.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid",
+    title: "Sterling Forest Event Planners",
+    date: "Sep 1, 2025 at 8:00 AM",
+    location: "42 Marine Parade, Southport QLD",
   },
   {
-    id: 4,
-    title: 'Hooked! Learn the 3 podcast hooks that will attract your ide...',
-    date: 'Saturday 1:00 AM GMT+1',
-    price: 'Free',
-    organizer: 'Dr. Stephanie Dean',
-    likes: '2139',
-    imageSrc: 'https://img.freepik.com/premium-photo/portrait-smiling-friends-standing-against-sky_1048944-20758704.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid',
-    promoted: true,
-    age: '12'
-
+    image: "https://img.freepik.com/premium-photo/portrait-smiling-friends-standing-against-sky_1048944-20758704.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid",
+    title: "Highwood Terrace Event",
+    date: "Sep 19, 2025 at 8:00 AM",
+    location: "14900 Beck Rd, Plymouth, MI",
   },
 ];
 
 
 
+
+
 export const Foryou = [
   {
-    id: 1,
-    title: 'Emotional Abuse Support Group',
-    date: 'Tue, Mar 18 11:00 PM GMT+1',
-    price: 'Free',
-     likes: '4.5k',
-    imageSrc: 'https://img.freepik.com/premium-photo/happy-group-kids-inflatable-bounce-house_1029679-107364.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid',
-    promoted: true,
-    age: '12'
+    image: "https://img.freepik.com/free-psd/kitschy-colors-youtube-cover-template_23-2150544102.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid",
+    title: "Andante & Allegro Event",
+    date: "Aug 1, 2025 at 8:00 AM",
+    location: "1 American Dream Wy, East Rutherford, NJ",
   },
   {
-    id: 2,
-    title: 'March LIVESTREAM 3-Day Asset Protection & Wealth...',
-    date: 'Mon, Mar 17 4:00 PM GMT+1',
-    price: 'Free',
-    organizer: 'Protect Wealth Academy',
-    likes: '83.1k',
-    imageSrc: 'https://img.freepik.com/free-psd/party-entertainment-facebook-template_23-2150381751.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid',
-    promoted: true,
-    age: '12'
-
+    image: "https://img.freepik.com/premium-photo/happy-kids-with-balloons_13339-174411.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid",
+    title: "Triple Time Event",
+    date: "Aug 15, 2025 at 8:00 AM",
+    location: "999 Canada Pl, Vancouver, BC",
   },
 ];
 
@@ -135,26 +105,16 @@ export const Foryou = [
 
 export const Online = [
   {
-    id: 1,
-    title: 'Emotional Abuse Support Group',
-    date: 'Tue, Mar 18 11:00 PM GMT+1',
-    price: 'Free',
-     likes: '4.5k',
-    imageSrc: 'https://img.freepik.com/free-psd/psd-template-banner-editable-children-s-day-feliz-dia-das-criancas-brazil_314999-2494.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid',
-    promoted: true,
-    age: '12'
+    image: "https://img.freepik.com/premium-photo/cute-girl-posing-balloon-birthday-party_107420-33162.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid",
+    title: "Sterling Forest Event Planners",
+    date: "Sep 1, 2025 at 8:00 AM",
+    location: "42 Marine Parade, Southport QLD",
   },
   {
-    id: 2,
-    title: 'March LIVESTREAM 3-Day Asset Protection & Wealth...',
-    date: 'Mon, Mar 17 4:00 PM GMT+1',
-    price: 'Free',
-    organizer: 'Protect Wealth Academy',
-    likes: '83.1k',
-    imageSrc: 'https://img.freepik.com/premium-photo/diverse-group-happy-children-celebrating-easter-against-bright-yellow-background-studio_236854-37533.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid',
-    promoted: true,
-    age: '12'
-
+    image: "https://img.freepik.com/premium-photo/portrait-smiling-friends-standing-against-sky_1048944-20758704.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid",
+    title: "Highwood Terrace Event",
+    date: "Sep 19, 2025 at 8:00 AM",
+    location: "14900 Beck Rd, Plymouth, MI",
   },
 ];
 
@@ -162,26 +122,10 @@ export const Online = [
 
 export const Today = [
   {
-    id: 1,
-    title: 'Emotional Abuse Support Group',
-    date: 'Tue, Mar 18 11:00 PM GMT+1',
-    price: 'Free',
-     likes: '4.5k',
-    imageSrc: 'https://img.freepik.com/premium-photo/boy-girl-children-studio-with-shock-surprise-wow-hands-omg-emoji-excited-scream-kids-white-background-portrait-with-open-mouth-crazy-shout-amazing-news-announcement_590464-415205.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid',
-    promoted: true,
-    age: '12'
-  },
-  {
-    id: 2,
-    title: 'March LIVESTREAM 3-Day Asset Protection & Wealth...',
-    date: 'Mon, Mar 17 4:00 PM GMT+1',
-    price: 'Free',
-    organizer: 'Protect Wealth Academy',
-    likes: '83.1k',
-    imageSrc: 'https://img.freepik.com/free-photo/children-playing-grass_1098-504.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid',
-    promoted: true,
-    age: '12'
-
+    image: "https://img.freepik.com/premium-photo/happy-kids-with-balloons_13339-174411.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid",
+    title: "Triple Time Event",
+    date: "Aug 15, 2025 at 8:00 AM",
+    location: "999 Canada Pl, Vancouver, BC",
   },
 ];
 
