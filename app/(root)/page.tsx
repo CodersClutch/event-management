@@ -25,10 +25,10 @@ const page = () => {
           <Link
             key={idx}
             href="/"
-            className="flex  items-center justify-center flex-col space-y-2"
+            className="flex hover:text-[#D942D6] group  items-center justify-center flex-col space-y-2"
           >
-            <div className="flex items-center hover:bg-[#feffde] border  border-blue-100 rounded-full p-10 justify-center">
-              <Image src={item.icon} alt={item.Label} width={40} height={40} />
+            <div className="flex items-center hover:bg-[#D942D6] border  border-purple-400-100 rounded-full p-10 justify-center">
+              <Image src={item.icon} alt={item.Label} width={40} height={40} className="hover:invert hover:brightness-0 hover:filter" />
             </div>
             <h3 className="text-sm">{item.Label}</h3>
           </Link>
