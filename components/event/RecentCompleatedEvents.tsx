@@ -21,7 +21,7 @@ const RecentCompleatedEvents = async () => {
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 h-full">
           <ClipboardCheck className="w-3=5 h-5 text-green-600" />
-          <CardTitle>Recently Completed Events</CardTitle>
+          <CardTitle className="text-2xl">Recently Completed Events</CardTitle>
           <Button className="text-green-60" variant={"link"}>
             View all
           </Button>
