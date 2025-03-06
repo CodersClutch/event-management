@@ -19,6 +19,7 @@ import {
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
+import { Separator } from "./ui/separator";
 
 export function NavMain({
   items,
@@ -36,7 +37,7 @@ export function NavMain({
   const pathname = usePathname(); // Get current route
 
   return (
-    <SidebarGroup className="text-white  font-bold text-2xl">
+    <SidebarGroup className="text-white">
       {/* <SidebarGroupLabel>Platform</SidebarGroupLabel> */}
       <SidebarMenu>
         {items.map((item) => {
@@ -90,12 +91,13 @@ export function NavMain({
               key={item.title}
               className={` ${isActive ? "bg-primary text-white " : ""}`}
             >
-              <SidebarMenuButton size={"lg"} asChild>
-                <Link className="text-2xl" href={item.url}>
+              <SidebarMenuButton className="text-2xl" size={"lg"} asChild>
+                <Link className="" href={item.url}>
                   {item.icon && <item.icon />}
                   <span>{item.title}</span>
                 </Link>
               </SidebarMenuButton>
+              <Separator className="bg-muted-foreground" />
             </SidebarMenuItem>
           );
         })}
