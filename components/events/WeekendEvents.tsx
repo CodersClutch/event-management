@@ -2,7 +2,17 @@ import { Weekend } from "@/constants";
 import React from "react";
 import Image from "next/image";
 import { BiDislike, BiLike, BiShare } from "react-icons/bi";
-
+type Event = {
+  id: number;
+  title: string;
+  date: string;
+  price: string;
+  organizer: string;
+  likes: string;
+  imageSrc: string;
+  promoted: boolean;
+  age: string;
+};
 const WeekendEvents = () => {
   return (
     <div>
@@ -34,8 +44,8 @@ const WeekendEvents = () => {
             No Events Found
           </h3>
           <p className="text-gray-500 max-w-md mb-4">
-            It looks like there are no upcoming events in  right now.
-            Check back later or explore events in other tabs
+            It looks like there are no upcoming events in right now. Check back
+            later or explore events in other tabs
           </p>
           <button className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
             Explore Nearby Events
@@ -45,7 +55,7 @@ const WeekendEvents = () => {
         <div className="bg-white max-w-7xl mx-auto p-4 font-sans">
           <h2 className="text-2xl font-semibold mb-4">Events in North Bank</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {Weekend.map((event) => (
+            {Weekend.map((event: Event) => (
               <div
                 key={event.id}
                 className="group relative rounded-lg overflow-hidden"
@@ -53,15 +63,15 @@ const WeekendEvents = () => {
                 {/* Image Container with Hover Effects */}
                 <div className="relative aspect-video">
                   <Image
-                    src={event.imageSrc}
-                    alt={`${event.title} Event Image`}
+                    src={event?.imageSrc}
+                    alt={`${event?.title} Event Image`}
                     fill
                     className="object-cover"
                   />
 
                   {/* Age Badge */}
                   <div className="absolute top-2 left-2 bg-black/80 text-white text-xs px-2 py-1 rounded">
-                    {event.age}+
+                    {event?.age}+
                   </div>
 
                   {/* Hover Overlay */}
@@ -81,21 +91,23 @@ const WeekendEvents = () => {
                 {/* Event Info */}
                 <div className="p-3">
                   <div className="flex justify-between items-start mb-1">
-                    <h3 className="text-[16px] font-semibold">{event.title}</h3>
+                    <h3 className="text-[16px] font-semibold">
+                      {event?.title}
+                    </h3>
                   </div>
                   <p className="text-[14px] text-gray-500 mb-1">{event.date}</p>
                   <p className="text-[16px] font-semibold mb-2">
-                    {event.price}
+                    {event?.price}
                   </p>
                   <p className="text-[14px] text-gray-700 mb-1">
-                    {event.organizer}
+                    {event?.organizer}
                   </p>
-                  <p className="text-[14px] text-gray-500">
+                  {/* <p className="text-[14px] text-gray-500">
                     <span className="font-semibold text-black">
-                      {event.followers}
+                      {event?.f}
                     </span>{" "}
                     followers
-                  </p>
+                  </p> */}
                   <div className="mt-2">
                     <p className="text-[14px] text-gray-500 font-semibold uppercase">
                       Promoted
