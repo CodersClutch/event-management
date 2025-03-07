@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import { Share } from 'lucide-react';
 
 const EventCards = () => {
     return (
@@ -67,12 +68,12 @@ const EventCards = () => {
                                     {['https://img.freepik.com/free-photo/confident-business-woman-portrait-smiling-face_53876-137693.jpg',
                                         'https://img.freepik.com/free-photo/casual-young-african-man-smiling-isolated-white_93675-128895.jpg',
                                         'https://img.freepik.com/free-photo/medium-shot-woman-relaxing-home_23-2150307065.jpg',
-                                        ''
+                                        'https://img.freepik.com/free-photo/confident-african-businesswoman-mockup-psd-smiling-closeup-portr_53876-143279.jpg?t=st=1741357796~exp=1741361396~hmac=ee58447796be161f5232ca9646986f7597a6d41d8ad75a0f5b8e3d37e1cf4b40&w=1380'
                                     ].map((src, index) => (
-                                            <div key={index} className="relative w-8 h-8 rounded-full border-2 border-white overflow-hidden first:ml-0">
-                                                <Image src={src} alt={`Sponsor ${index + 1}`} fill className="object-cover rounded-full" />
-                                            </div>
-                                        ))}
+                                        <div key={index} className="relative w-8 h-8 rounded-full border-2 border-white overflow-hidden first:ml-0">
+                                            <Image src={src} alt={`Sponsor ${index + 1}`} fill className="object-cover rounded-full" />
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                             <p className='text-[#E63632]'>Free</p>
@@ -81,19 +82,21 @@ const EventCards = () => {
 
                     {/* Footer: Likes, Comments, Insights */}
                     <div className="px-4 py-3 mt-1 flex items-center justify-between text-sm text-gray-500">
-                        <div className="flex items-center space-x-4">
-                            <div className="flex items-center space-x-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 fill-current text-gray-400 hover:text-red-500" viewBox="0 0 20 20">
-                                    <path d="M3.172 5.172a4.004 4.004 0 015.656 0L10 6.343l1.172-1.171a4.004 4.004 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" />
-                                </svg>
-                                <span>126</span>
-                            </div>
-                            <div className="flex items-center space-x-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 fill-current text-gray-400 hover:text-blue-500" viewBox="0 0 20 20">
-                                    <path d="M18 10c0 3.866-3.582 7-8 7-1.15 0-2.256-.216-3.253-.6L3.814 17l1.125-2.996C4.342 13.089 4 11.58 4 10c0-3.866 3.134-7 7-7s7 3.134 7 7z" />
-                                </svg>
-                                <span>03</span>
-                            </div>
+                        <div className="flex items-center space-x-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 fill-current text-gray-400 hover:text-red-500" viewBox="0 0 20 20">
+                                <path d="M3.172 5.172a4.004 4.004 0 015.656 0L10 6.343l1.172-1.171a4.004 4.004 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" />
+                            </svg>
+                            <span>126</span>
+                        </div>
+                        <div className="flex items-center space-x-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 fill-current text-gray-400 hover:text-blue-500" viewBox="0 0 20 20">
+                                <path d="M18 10c0 3.866-3.582 7-8 7-1.15 0-2.256-.216-3.253-.6L3.814 17l1.125-2.996C4.342 13.089 4 11.58 4 10c0-3.866 3.134-7 7-7s7 3.134 7 7z" />
+                            </svg>
+                            <span>03</span>
+                        </div>
+                        <div className="flex items-center space-x-1">
+                            <Share className="h-4 w-4 fill-current text-gray-400 hover:text-blue-500"/>
+                            <span>03</span>
                         </div>
                         <button className="hover:text-gray-700">Insights</button>
                     </div>
