@@ -35,20 +35,16 @@ import { Textarea } from "../ui/textarea";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { EventHook } from "@/hooks/EventHook";
 import { useSession } from "next-auth/react";
-import FileUpload from "../common/ImageUpload"; // Updated FileUpload component
-import config from "@/lib/config";
 
 const AddEvent = () => {
   const { HandleAddEvent, isLoading } = EventHook();
-  const [open, setOpen] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>();
   const { data: session } = useSession({ required: true });
-  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
-
   const form = useForm({
     resolver: zodResolver(eventSchema),
     defaultValues: {
       title: "",
-      createdBy: session?.user?.id,
+      createdBy: session?.user?._id,
       schedule: {
         start: new Date(),
         end: new Date(),
@@ -57,62 +53,21 @@ const AddEvent = () => {
       maxParticipants: 0,
       description: "",
       location: "",
-      images: [] as string[], // This will store the uploaded image URLs
     },
   });
 
-  const handleFilesChange = (files: File[]) => {
-    setSelectedFiles(files); // Store the selected files
-  };
-
-  const uploadImages = async (files: File[]) => {
-    const uploadedUrls: string[] = [];
-    for (const file of files) {
-      const formData = new FormData();
-      formData.append("file", file);
-
-      try {
-        const response = await fetch(`${config.env.apiEndpoint}/api/upload`, {
-          method: "POST",
-          body: formData,
-        });
-
-        if (!response.ok) {
-          throw new Error("Image upload failed");
-        }
-
-        const data = await response.json();
-        uploadedUrls.push(data.filePath); // Store the uploaded image URL
-      } catch (error) {
-        console.error("Error uploading image:", error);
-        throw error;
-      }
+  // 2. Define a submit handler.
+  async function onSubmit() {
+    const status = await HandleAddEvent(form.getValues());
+    console.log("sesso", session?.user?._id);
+    // close the dialog when the status is 200
+    if (status?.status === 200) {
+      setOpen(false);
+      form.reset();
     }
-    return uploadedUrls;
-  };
+  }
 
-  const onSubmit = async (data: any) => {
-    try {
-      let imageUrls: string[] = [];
-      if (selectedFiles.length > 0) {
-        imageUrls = await uploadImages(selectedFiles); // Upload the selected files
-      }
-
-      // Add the uploaded image URLs to the form data
-      const formData = {
-        ...data,
-        images: imageUrls,
-      };
-
-      const status = await HandleAddEvent(formData);
-      if (status?.status === 200) {
-        setOpen(false);
-        form.reset();
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error);
-    }
-  };
+  console.log("errors", form.getValues());
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -121,53 +76,228 @@ const AddEvent = () => {
           Add Event <Plus className="h-3.5 w-3.5" />
         </Button>
       </DialogTrigger>
-      <DialogContent className="overflow-hidden">
+      <DialogContent className="overflow-x-auto">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="">
             <DialogHeader>
               <DialogTitle>Add Event</DialogTitle>
               <DialogDescription>
-                Make changes to your event details here. Click save when
-                you&apos;re done.
+                Make changes to your profile here. Click save when youre done.
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-4 py-4">
-              {/* Other form fields */}
-
-              {/* FileUpload field for event images */}
               <FormField
                 control={form.control}
-                name="images"
+                name="title"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Event Images</FormLabel>
+                    <FormLabel>Event Title</FormLabel>
                     <FormControl>
-                      <FileUpload
-                        type="image"
-                        accept="image/*"
-                        placeholder="Upload images (max 6)"
-                        folder="eventImages"
-                        variant="dark"
-                        onFilesChange={handleFilesChange} // Pass the selected files to the parent
+                      <Input placeholder="Enter event title" {...field} />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <div className="grid grid-cols-2 gap-2">
+                <FormField
+                  control={form.control}
+                  name="schedule.start"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-col">
+                      <FormLabel> Start Date</FormLabel>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button
+                              variant={"outline"}
+                              className={cn(
+                                "w-full pl-3 text-left font-normal",
+                                !field.value && "text-muted-foreground"
+                              )}
+                            >
+                              {field.value ? (
+                                format(field.value, "PPP")
+                              ) : (
+                                <span>Pick a date</span>
+                              )}
+                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="start">
+                          <Calendar
+                            mode="single"
+                            selected={field.value}
+                            onSelect={field.onChange}
+                            // disabled={(date) =>
+                            //   date > new Date() || date < new Date("1900-01-01")
+                            // }
+                            initialFocus
+                          />
+                        </PopoverContent>
+                      </Popover>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="schedule.end"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-col">
+                      <FormLabel> End Date</FormLabel>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button
+                              variant={"outline"}
+                              className={cn(
+                                "w-full pl-3 text-left font-normal",
+                                !field.value && "text-muted-foreground"
+                              )}
+                            >
+                              {field.value ? (
+                                format(field.value, "PPP")
+                              ) : (
+                                <span>Pick a date</span>
+                              )}
+                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="start">
+                          <Calendar
+                            mode="single"
+                            selected={field.value}
+                            onSelect={field.onChange}
+                            // disabled={(date) =>
+                            //   date > new Date() || date < new Date("1900-01-01")
+                            // }
+                            initialFocus
+                          />
+                        </PopoverContent>
+                      </Popover>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-2 items-center">
+                <FormField
+                  control={form.control}
+                  name="registrationDeadline"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-col">
+                      <FormLabel>Registration Deadline</FormLabel>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button
+                              variant={"outline"}
+                              className={cn(
+                                "w-full pl-3 text-left font-normal",
+                                !field.value && "text-muted-foreground"
+                              )}
+                            >
+                              {field.value ? (
+                                format(field.value, "PPP")
+                              ) : (
+                                <span>Pick a deadline</span>
+                              )}
+                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="start">
+                          <Calendar
+                            mode="single"
+                            selected={field.value}
+                            onSelect={field.onChange}
+                            // disabled={(date) =>
+                            //   date > new Date() || date < new Date("1900-01-01")
+                            // }
+                            initialFocus
+                          />
+                        </PopoverContent>
+                      </Popover>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="maxParticipants"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Max Participants</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="number"
+                          placeholder="Enter event title"
+                          {...field}
+                        />
+                      </FormControl>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+
+              <FormField
+                control={form.control}
+                name="location"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Event Location</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Enter event location" {...field} />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="description"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Event Description</FormLabel>
+                    <FormControl>
+                      <Textarea
+                        placeholder="Enter description about this event "
+                        className="resize-none"
+                        {...field}
                       />
                     </FormControl>
+
                     <FormMessage />
                   </FormItem>
                 )}
               />
             </div>
             <DialogFooter>
-              <DialogClose asChild>
-                <Button variant="outline" type="button">
-                  Cancel
+              <DialogClose type="button">
+                <Button variant={"outline"} type="button">
+                  {" "}
+                  cancel
                 </Button>
               </DialogClose>
+
               <Button disabled={isLoading} type="submit">
-                {isLoading ? "Saving event" : "Save event"}
+                {isLoading ? "Saving  events" : "Save event"}
                 {isLoading ? (
                   <Loader className="animate-spin" />
                 ) : (
-                  <Plus className="h-3.5 w-3.5 ml-2" />
+                  <Plus className="h-3.5 w-3.5 ml-2 " />
                 )}
               </Button>
             </DialogFooter>
