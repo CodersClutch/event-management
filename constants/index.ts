@@ -80,9 +80,33 @@ export const eventsAll = [
 
     Designed by Juilliard-trained educators, this event features special zones for different age groups while encouraging cross-generational participation. Evening culminates with a digital light show synchronized to live orchestral performance.`,
     moreEvents: [
-      { title: "Family Symphony Night", date: "2025-11-05 18:30", price: 55 },
-      { title: "Rhythm Discovery Camp", date: "2025-12-10 10:00", price: 40 }
-    ]
+      {
+        title: "Family Symphony Night",
+    
+        date: "2025-11-05 18:30",
+    
+        price: 55,
+    
+        organizer: "Go Daddy Group First", // Replace with actual organizer name
+    
+        imageUrl:
+          "https://img.freepik.com/premium-photo/business-executives-interacting-with-each-other-while-having-coffee_107420-73037.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid", // Replace with actual image URL or path in public directory
+      },
+    
+      {
+        title: "Rhythm Discovery Camp",
+    
+        date: "2025-12-10 10:00",
+    
+        price: 40,
+    
+        organizer: "Go Daddy Group First", // Replace with actual organizer name
+    
+        imageUrl:
+          "https://img.freepik.com/premium-photo/business-people-interacting-with-each-other-table-seminar_13339-347003.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid", // Replace with actual image URL or path in public directory
+      },
+    ],
+    mode: 'Online'
   },
   {
     id: "TTE-002",
@@ -108,9 +132,34 @@ export const eventsAll = [
 
     Certified child development specialists monitor progress while maintaining fun-first atmosphere. Includes hydration stations, first aid coverage, and photo service for parents. Rain date scheduled for following weekend.`,
     moreEvents: [
-      { title: "Junior Ninja Challenge", date: "2025-09-20 09:00", price: 30 },
-      { title: "Creative Movement Class", date: "2025-10-15 15:30", price: 25 }
-    ]
+      {
+        title: "Family Symphony Night",
+    
+        date: "2025-11-05 18:30",
+    
+        price: 55,
+    
+        organizer: "Go Daddy Group First", // Replace with actual organizer name
+    
+        imageUrl:
+          "https://img.freepik.com/premium-photo/business-executives-interacting-with-each-other-while-having-coffee_107420-73037.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid", // Replace with actual image URL or path in public directory
+      },
+    
+      {
+        title: "Rhythm Discovery Camp",
+    
+        date: "2025-12-10 10:00",
+    
+        price: 40,
+    
+        organizer: "Go Daddy Group First", // Replace with actual organizer name
+    
+        imageUrl:
+          "https://img.freepik.com/premium-photo/business-people-interacting-with-each-other-table-seminar_13339-347003.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid", // Replace with actual image URL or path in public directory
+      },
+    ],
+    mode: 'In Person'
+
   },
   {
     id: "SFE-003",
@@ -136,9 +185,33 @@ export const eventsAll = [
 
     Certified child development specialists monitor progress while maintaining fun-first atmosphere. Includes hydration stations, first aid coverage, and photo service for parents. Rain date scheduled for following weekend.`,
     moreEvents: [
-      { title: "Junior Ninja Challenge", date: "2025-09-20 09:00", price: 30 },
-      { title: "Creative Movement Class", date: "2025-10-15 15:30", price: 25 }
-    ]
+      {
+        title: "Family Symphony Night",
+    
+        date: "2025-11-05 18:30",
+    
+        price: 55,
+    
+        organizer: "Go Daddy Group First", // Replace with actual organizer name
+    
+        imageUrl:
+          "https://img.freepik.com/premium-photo/business-executives-interacting-with-each-other-while-having-coffee_107420-73037.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid", // Replace with actual image URL or path in public directory
+      },
+    
+      {
+        title: "Rhythm Discovery Camp",
+    
+        date: "2025-12-10 10:00",
+    
+        price: 40,
+    
+        organizer: "Go Daddy Group First", // Replace with actual organizer name
+    
+        imageUrl:
+          "https://img.freepik.com/premium-photo/business-people-interacting-with-each-other-table-seminar_13339-347003.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid", // Replace with actual image URL or path in public directory
+      },
+    ],
+    mode: 'Online'
   },
   {
     id: "HTE-004",
@@ -164,9 +237,33 @@ export const eventsAll = [
 
     Certified child development specialists monitor progress while maintaining fun-first atmosphere. Includes hydration stations, first aid coverage, and photo service for parents. Rain date scheduled for following weekend.`,
     moreEvents: [
-      { title: "Junior Ninja Challenge", date: "2025-09-20 09:00", price: 30 },
-      { title: "Creative Movement Class", date: "2025-10-15 15:30", price: 25 }
-    ]
+      {
+        title: "Family Symphony Night",
+    
+        date: "2025-11-05 18:30",
+    
+        price: 55,
+    
+        organizer: "Go Daddy Group First", // Replace with actual organizer name
+    
+        imageUrl:
+          "https://img.freepik.com/premium-photo/business-executives-interacting-with-each-other-while-having-coffee_107420-73037.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid", // Replace with actual image URL or path in public directory
+      },
+    
+      {
+        title: "Rhythm Discovery Camp",
+    
+        date: "2025-12-10 10:00",
+    
+        price: 40,
+    
+        organizer: "Go Daddy Group First", // Replace with actual organizer name
+    
+        imageUrl:
+          "https://img.freepik.com/premium-photo/business-people-interacting-with-each-other-table-seminar_13339-347003.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid", // Replace with actual image URL or path in public directory
+      },
+    ],
+    mode: 'In Person'
   }
 ];
 
@@ -198,9 +295,34 @@ export const Foryou = [
 
     Developmental experts present latest research on early auditory processing. Includes take-home sensory kit with textured toys and curated playlist. Nursing stations and stroller parking available throughout venue.`,
     moreEvents: [
-      { title: "Baby Maestro Workshop", date: "2025-12-01 10:30", price: 20 },
-      { title: "Toddler Drum Circle", date: "2026-01-12 09:45", price: 18 }
-    ]
+      {
+        title: "Family Symphony Night",
+    
+        date: "2025-11-05 18:30",
+    
+        price: 55,
+    
+        organizer: "Go Daddy Group First", // Replace with actual organizer name
+    
+        imageUrl:
+          "https://img.freepik.com/premium-photo/business-executives-interacting-with-each-other-while-having-coffee_107420-73037.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid", // Replace with actual image URL or path in public directory
+      },
+    
+      {
+        title: "Rhythm Discovery Camp",
+    
+        date: "2025-12-10 10:00",
+    
+        price: 40,
+    
+        organizer: "Go Daddy Group First", // Replace with actual organizer name
+    
+        imageUrl:
+          "https://img.freepik.com/premium-photo/business-people-interacting-with-each-other-table-seminar_13339-347003.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid", // Replace with actual image URL or path in public directory
+      },
+    ],
+    mode: 'Online'
+
   },
   {
     id: "FY-101",
@@ -226,9 +348,34 @@ export const Foryou = [
 
     Features guest lectures from NASA engineers and Silicon Valley developers. Final day showcase allows families to view student projects and attend career Q&A panel.`,
     moreEvents: [
-      { title: "Robotics Olympics", date: "2026-02-15 13:00", price: 85 },
-      { title: "App Development Bootcamp", date: "2026-03-10 10:00", price: 120 }
-    ]
+      {
+        title: "Family Symphony Night",
+    
+        date: "2025-11-05 18:30",
+    
+        price: 55,
+    
+        organizer: "Go Daddy Group First", // Replace with actual organizer name
+    
+        imageUrl:
+          "https://img.freepik.com/premium-photo/business-executives-interacting-with-each-other-while-having-coffee_107420-73037.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid", // Replace with actual image URL or path in public directory
+      },
+    
+      {
+        title: "Rhythm Discovery Camp",
+    
+        date: "2025-12-10 10:00",
+    
+        price: 40,
+    
+        organizer: "Go Daddy Group First", // Replace with actual organizer name
+    
+        imageUrl:
+          "https://img.freepik.com/premium-photo/business-people-interacting-with-each-other-table-seminar_13339-347003.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid", // Replace with actual image URL or path in public directory
+      },
+    ],
+    mode: 'Online'
+
   }
 ];
 
@@ -252,9 +399,34 @@ export const Online = [
 
     Package includes mailed art supplies for hybrid learning. Final projects displayed in online gallery with printing/shipping options. Parent dashboard tracks progress and skill development metrics.`,
     moreEvents: [
-      { title: "Digital Sculpting 101", date: "2025-11-28 16:00", price: 35 },
-      { title: "Animation Basics", date: "2025-12-05 14:30", price: 45 }
-    ]
+      {
+        title: "Family Symphony Night",
+    
+        date: "2025-11-05 18:30",
+    
+        price: 55,
+    
+        organizer: "Go Daddy Group First", // Replace with actual organizer name
+    
+        imageUrl:
+          "https://img.freepik.com/premium-photo/business-executives-interacting-with-each-other-while-having-coffee_107420-73037.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid", // Replace with actual image URL or path in public directory
+      },
+    
+      {
+        title: "Rhythm Discovery Camp",
+    
+        date: "2025-12-10 10:00",
+    
+        price: 40,
+    
+        organizer: "Go Daddy Group First", // Replace with actual organizer name
+    
+        imageUrl:
+          "https://img.freepik.com/premium-photo/business-people-interacting-with-each-other-table-seminar_13339-347003.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid", // Replace with actual image URL or path in public directory
+      },
+    ],
+    mode: 'Online'
+
   },
   {
     id: "OL-201",
@@ -274,9 +446,34 @@ export const Online = [
 
     Winners receive scholarships and internship opportunities. Multi-language support available. Requires basic Python/JavaScript knowledge. Practice materials provided post-registration.`,
     moreEvents: [
-      { title: "AI Ethics Seminar", date: "2026-01-20 12:00", price: 60 },
-      { title: "Cybersecurity Workshop", date: "2026-02-10 09:00", price: 75 }
-    ]
+      {
+        title: "Family Symphony Night",
+    
+        date: "2025-11-05 18:30",
+    
+        price: 55,
+    
+        organizer: "Go Daddy Group First", // Replace with actual organizer name
+    
+        imageUrl:
+          "https://img.freepik.com/premium-photo/business-executives-interacting-with-each-other-while-having-coffee_107420-73037.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid", // Replace with actual image URL or path in public directory
+      },
+    
+      {
+        title: "Rhythm Discovery Camp",
+    
+        date: "2025-12-10 10:00",
+    
+        price: 40,
+    
+        organizer: "Go Daddy Group First", // Replace with actual organizer name
+    
+        imageUrl:
+          "https://img.freepik.com/premium-photo/business-people-interacting-with-each-other-table-seminar_13339-347003.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid", // Replace with actual image URL or path in public directory
+      },
+    ],
+    mode: 'Online'
+
   }
 ];
 
@@ -306,9 +503,34 @@ export const Today = [
 
     Judging categories for different age groups with prizes from local tech companies. Safety-certified staff at all experiment stations. Parent lounge features live stream of activities and science café talks.`,
     moreEvents: [
-      { title: "Junior Robotics Expo", date: "2025-11-15 10:00", price: 45 },
-      { title: "Young Inventors Summit", date: "2025-12-05 13:30", price: 60 }
-    ]
+      {
+        title: "Family Symphony Night",
+    
+        date: "2025-11-05 18:30",
+    
+        price: 55,
+    
+        organizer: "Go Daddy Group First", // Replace with actual organizer name
+    
+        imageUrl:
+          "https://img.freepik.com/premium-photo/business-executives-interacting-with-each-other-while-having-coffee_107420-73037.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid", // Replace with actual image URL or path in public directory
+      },
+    
+      {
+        title: "Rhythm Discovery Camp",
+    
+        date: "2025-12-10 10:00",
+    
+        price: 40,
+    
+        organizer: "Go Daddy Group First", // Replace with actual organizer name
+    
+        imageUrl:
+          "https://img.freepik.com/premium-photo/business-people-interacting-with-each-other-table-seminar_13339-347003.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid", // Replace with actual image URL or path in public directory
+      },
+    ],
+    mode: 'Online'
+
   }
 ];
 

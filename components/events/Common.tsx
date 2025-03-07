@@ -15,7 +15,7 @@ interface Event {
 const Common = ({ events }: { events: Event[] }) => {
   return (
     <>
-      <div className="bg-white max-w-7xl mx-auto p-4 font-sans">
+      <div className="bg-transparent max-w-7xl mx-auto p-4 font-sans">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {events.map((event, idx) => (
             <Link href={`/events/${event.id}`}

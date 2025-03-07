@@ -15,14 +15,19 @@ export interface Event {
   };
   description: string;
   organizer: string;
+  mode: string;
+  duration: string;
   price: number;
   refundPolicy: string;
+  registrationDeadline: string;
   capacity: number;
   ageRange: { min: number; max: number };
   moreEvents: {
     title: string;
     date: string;
     price: number;
+    organizer: string;
+    imageUrl: string;
   }[];
 }
 
