@@ -1,13 +1,37 @@
+"use client";
 import { ReactNode } from "react";
-import { HomeIcon, CalendarIcon, CogIcon, ChartBarIcon } from "lucide-react"; // Import icons from Heroicons
+import {
+  HomeIcon,
+  CalendarIcon,
+  CogIcon,
+  ChartBarIcon,
+  User2,
+  Bell,
+} from "lucide-react"; // Import icons from Heroicons
+import { useSession } from "next-auth/react";
 
 export default function ProfileLayout({ children }: { children: ReactNode }) {
+  const { data: session } = useSession();
+
   // Navigation links with icons
   const navigationLinks = [
     { label: "Dashboard", href: "#", icon: <HomeIcon className="w-5 h-5" /> },
-    { label: "Events", href: "#", icon: <CalendarIcon className="w-5 h-5" /> },
-    { label: "Settings", href: "#", icon: <CogIcon className="w-5 h-5" /> },
+    {
+      label: "Events",
+      href: "/profile/host-events",
+      icon: <CalendarIcon className="w-5 h-5" />,
+    },
     { label: "Report", href: "#", icon: <ChartBarIcon className="w-5 h-5" /> },
+    {
+      label: "Notifications",
+      href: `/profile/notifications`,
+      icon: <Bell className="w-5 h-5" />,
+    },
+    {
+      label: "Info",
+      href: `/profile/${session?.user._id}`,
+      icon: <User2 className="w-5 h" />,
+    },
   ];
 
   return (
