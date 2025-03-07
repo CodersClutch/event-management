@@ -31,7 +31,7 @@ const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
           <CardDescription className="flex items-center justify-between">
             <p>This is the permission page for {roleName}</p>
             <Link
-              href={`/settings/roles-permissions/${roleName}/edit-permission-${roleName}`}
+              href={`/dashboard/settings/roles-permissions/${roleName}/edit-permission-${roleName}`}
             >
               <Button variant="link">Edit Permissions</Button>
             </Link>
@@ -66,11 +66,11 @@ const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
         </Suspense>
 
         <CardFooter className="flex items-center justify-between flex-wrap">
-          <Link href={`/settings/roles-permissions`}>
+          <Link href={`/dashboard/settings/roles-permissions`}>
             <Button variant="link">Go Back</Button>
           </Link>
           <Link
-            href={`/settings/roles-permissions/${roleName}/edit-permission-${roleName}`}
+            href={`/dashboard/settings/roles-permissions/${roleName}/edit-permission-${roleName}`}
           >
             <Button variant="link">Edit Permissions</Button>
           </Link>

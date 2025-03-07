@@ -27,7 +27,7 @@ const EventAction = ({ event }: { event: EventInterfaceType }) => {
         <DropdownMenuGroup>
           <EditEvent event={event} />
 
-          <Link href={`/event/${event._id}`}>
+          <Link href={`/dashboard/event/${event._id}`}>
             <Button
               variant={"outline"}
               className="w-full flex items-center justify-between mt-1 mb-1"

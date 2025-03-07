@@ -7,13 +7,13 @@ export const settingSidebarData = [
   {
     id: 1,
     title: "General Settings",
-    href: "/settings",
+    href: "/dashboard/settings",
   },
 
   {
     id: 5,
     title: "Role & Permissions",
-    href: "/settings/roles-permissions",
+    href: "/dashboard/settings/roles-permissions",
   },
 ];
 const SettingLink = () => {
