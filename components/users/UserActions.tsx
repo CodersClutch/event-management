@@ -26,8 +26,8 @@ const UserAction = ({ user }: { user: IUser }) => {
         <DropdownMenuLabel>User Actions</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-        <EditUser user={user} />
-          <Link href={`/users/${user._id}`}>
+          <EditUser user={user} />
+          <Link href={`/dashboard/users/${user._id}`}>
             <Button
               variant={"outline"}
               className="w-full flex items-center justify-between mt-1 mb-1"
