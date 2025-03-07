@@ -4,7 +4,7 @@ import { Share, BarChart } from 'lucide-react';
 
 const EventCards = () => {
     return (
-        <div className="min-h-screen bg-gray-100 py-8 px-4">
+        <div className="min-h-screen py-8 px-4">
             <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-y-8">
                 {/* -- Card 1 -- */}
                 <div className="bg-white rounded-lg shadow overflow-hidden w-[350px] mx-auto">
@@ -27,12 +27,12 @@ const EventCards = () => {
                     </div>
 
                     {/* Card Image with Event Name Overlay */}
-                    <div className="relative w-full h-48">
+                    <div className="relative w-full h-48 overflow-hidden group">
                         <Image
                             src="https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/event-main.jpg"
                             alt="Concert"
                             fill
-                            className="object-cover"
+                            className="object-cover cursor-pointer transition-transform duration-300 ease-in-out transform group-hover:scale-110"
                             sizes="(max-width: 768px) 100vw, 50vw"
                             priority
                         />
@@ -122,12 +122,12 @@ const EventCards = () => {
                     </div>
 
                     {/* Card Image with Event Name Overlay */}
-                    <div className="relative w-full h-48">
+                    <div className="relative w-full h-48 overflow-hidden group">
                         <Image
                             src="https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/event-main2.jpg"
                             alt="Concert"
                             fill
-                            className="object-cover"
+                            className="object-cover cursor-pointer transition-transform duration-300 ease-in-out transform group-hover:scale-110"
                             sizes="(max-width: 768px) 100vw, 50vw"
                             priority
                         />
@@ -217,12 +217,12 @@ const EventCards = () => {
                     </div>
 
                     {/* Card Image with Event Name Overlay */}
-                    <div className="relative w-full h-48">
+                    <div className="relative w-full h-48 overflow-hidden group">
                         <Image
                             src="https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/event-main3.jpg"
                             alt="Concert"
                             fill
-                            className="object-cover"
+                            className="object-cover cursor-pointer transition-transform duration-300 ease-in-out transform group-hover:scale-110"
                             sizes="(max-width: 768px) 100vw, 50vw"
                             priority
                         />
@@ -312,12 +312,12 @@ const EventCards = () => {
                     </div>
 
                     {/* Card Image with Event Name Overlay */}
-                    <div className="relative w-full h-48">
+                    <div className="relative w-full h-48 overflow-hidden group">
                         <Image
                             src="https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/event-main4.jpg"
                             alt="Concert"
                             fill
-                            className="object-cover"
+                            className="object-cover cursor-pointer transition-transform duration-300 ease-in-out transform group-hover:scale-110"
                             sizes="(max-width: 768px) 100vw, 50vw"
                             priority
                         />
