@@ -535,3 +535,98 @@ export const Today = [
 ];
 
 export const Weekend = []
+
+export const sponsors = [
+  'https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/tp-spncr.png',
+  'https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/tp-spncr2.png',
+  'https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/tp-spncr3.png',
+  'https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/tp-spncr4.png'
+];
+
+export  const categories2 = [
+  'All Categories', 'Art', 'Books', 'Food', 'Sports', 'Films', 'Awards', 'Men',
+  'Parties', 'Technology', 'Science', 'Women', 'Music', 'Comedy', 'Show'
+];
+
+export const eventList = [
+  {
+    id: 1,
+    author: "John Doe",
+    time: "5 min ago",
+    profileImage: "https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/event-head.png",
+    eventImage: "https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/event-main.jpg",
+    eventName: "Tech Conference 2025",
+    date: "June 16, 2025",
+    location: "New York",
+    tickets: "Available 26/100",
+    sponsors: [
+      "https://img.freepik.com/free-photo/confident-business-woman-portrait-smiling-face_53876-137693.jpg",
+      "https://img.freepik.com/free-photo/casual-young-african-man-smiling-isolated-white_93675-128895.jpg",
+      "https://img.freepik.com/free-photo/medium-shot-woman-relaxing-home_23-2150307065.jpg",
+      "https://img.freepik.com/free-photo/confident-african-businesswoman-mockup-psd-smiling-closeup-portr_53876-143279.jpg"
+    ],
+    price: "Free",
+    likes: 126,
+    comments: 3
+  },
+  {
+    id: 2,
+    author: "Jane Smith",
+    time: "1 hour ago",
+    profileImage: "https://randomuser.me/api/portraits/women/44.jpg",
+    eventImage: "https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/event-main2.jpg",
+    eventName: "Music Festival",
+    date: "July 22, 2025",
+    location: "Los Angeles",
+    tickets: "Available 50/200",
+    sponsors: [
+      "https://randomuser.me/api/portraits/men/22.jpg",
+      "https://randomuser.me/api/portraits/women/30.jpg",
+      "https://randomuser.me/api/portraits/men/45.jpg",
+      "https://randomuser.me/api/portraits/women/58.jpg"
+    ],
+    price: "$20",
+    likes: 250,
+    comments: 10
+  },
+  {
+    id: 3,
+    author: "Alex Johnson",
+    time: "3 days ago",
+    profileImage: "https://randomuser.me/api/portraits/men/47.jpg",
+    eventImage: "https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/event-main3.jpg",
+    eventName: "Startup Meetup",
+    date: "August 5, 2025",
+    location: "San Francisco",
+    tickets: "Available 10/50",
+    sponsors: [
+      "https://randomuser.me/api/portraits/women/15.jpg",
+      "https://randomuser.me/api/portraits/men/20.jpg",
+      "https://randomuser.me/api/portraits/women/33.jpg",
+      "https://randomuser.me/api/portraits/men/60.jpg"
+    ],
+    price: "Free",
+    likes: 85,
+    comments: 5
+  },
+  {
+    id: 4,
+    author: "Emily Davis",
+    time: "2 hours ago",
+    profileImage: "https://randomuser.me/api/portraits/women/29.jpg",
+    eventImage: "https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/event-main4.jpg",
+    eventName: "Art Exhibition",
+    date: "Sept 12, 2025",
+    location: "Paris",
+    tickets: "Sold Out",
+    sponsors: [
+      "https://randomuser.me/api/portraits/men/40.jpg",
+      "https://randomuser.me/api/portraits/women/50.jpg",
+      "https://randomuser.me/api/portraits/men/35.jpg",
+      "https://randomuser.me/api/portraits/women/61.jpg"
+    ],
+    price: "$15",
+    likes: 340,
+    comments: 20
+  },
+];
