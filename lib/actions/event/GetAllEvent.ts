@@ -126,11 +126,14 @@ export const GetTotalUpcomingEvent = async () => {
 };
 
 // get 5 lates upcomming event
-export const GetLatestUpcomingEvent = async () => {
+export const GetLatestUpcomingEvent = async (
+  status: string,
+  length: number
+) => {
   try {
-    const events = await Event.find({ status: "upcoming" })
+    const events = await Event.find({ status: status })
       .sort({ createdAt: -1 })
-      .limit(6);
+      .limit(length);
     return { status: 200, data: deepConvertToPlainObject(events) };
   } catch {
     return { status: 500, message: "Error getting latest upcoming event" };
