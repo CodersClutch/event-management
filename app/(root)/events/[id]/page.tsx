@@ -91,7 +91,6 @@ export default function EventPage({ params }: PageProps) {
               </div>
             </div>
             {/* Ticket and Pricing */}
-            {/* Ticket and Pricing */}
             <div className="lg:sticky lg:top-[150px] mt-8 lg:mt-0 w-full lg:w-64 self-start">
               <div className="flex flex-col items-end w-full transition-transform duration-300">
                 <div className="bg-[#d942d678] p-1 rounded-t-xl font-medium w-full text-center">

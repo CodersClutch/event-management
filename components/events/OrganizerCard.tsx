@@ -17,7 +17,7 @@ const OrganizerCard = ({ organizer }: { organizer: string }) => {
       <div className="bg-gray-100 p-6 rounded-lg flex items-center justify-between w-full max-w-2xl">
         <div>
           <p className="text-lg font-semibold text-gray-900">
-            Voice Coaches CVDG
+           {organizer}
           </p>
         </div>
         <div className="flex space-x-4 items-center">
