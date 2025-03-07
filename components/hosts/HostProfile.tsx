@@ -100,7 +100,7 @@ const HostProfileComponent = () => {
 
       {/* Upcoming Events Section */}
       <Card className="p-6">
-        <h3 className="text-lg font-semibold mb-4">Upcoming Events</h3>
+        <h3 className="text-lg font-semibold mb-4">Events Created</h3>
         <div className="space-y-4">
           {events.map((event, index) => (
             <div
