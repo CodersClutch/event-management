@@ -2,8 +2,10 @@
 
 import Image from "next/image";
 import { Bookmark } from "lucide-react";
+import Link from "next/link";
 
 interface Event {
+  id: string;
   image: string;
   title: string;
   date: string;
@@ -16,7 +18,7 @@ const Common = ({ events }: { events: Event[] }) => {
       <div className="bg-white max-w-7xl mx-auto p-4 font-sans">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {events.map((event, idx) => (
-            <div
+            <Link href={`/events/${event.id}`}
               key={idx}
               className="relative w-72 hover:shadow-2xl rounded-2xl overflow-hidden shadow-lg border"
             >
@@ -44,7 +46,7 @@ const Common = ({ events }: { events: Event[] }) => {
                   </button>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
