@@ -72,7 +72,7 @@ const AddEvent = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline">
+        <Button variant="outline" className="w-full">
           Add Event <Plus className="h-3.5 w-3.5" />
         </Button>
       </DialogTrigger>
