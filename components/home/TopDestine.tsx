@@ -5,10 +5,10 @@ import "keen-slider/keen-slider.min.css";
 import Image from "next/image";
 
 const destinations = [
-  { city: "New York", image: "https://img.freepik.com/free-photo/high-angle-shot-city-buildings-new-york-manhattan_181624-24684.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid" },
-  { city: "Los Angeles", image: "https://img.freepik.com/premium-photo/city-skyline-with-view-city-chicago_1082211-17093.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid" },
-  { city: "Chicago", image: "https://img.freepik.com/premium-photo/hudson-river-by-modern-buildings-newyork-city_1048944-12131759.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid" },
-  { city: "Washington", image: "https://img.freepik.com/free-photo/new-york-city-midtown-manhattan_649448-3520.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid" },
+  { city: "Activities & Attractions", image: "https://img.freepik.com/premium-photo/low-angle-view-young-woman-holding-umbrella_1048944-9869597.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid" },
+  { city: "Classes & Workshops", image: "https://img.freepik.com/premium-photo/team-young-african-people-office-table-with-laptop_219728-4557.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid" },
+  { city: "Birthday & Party Venues", image: "https://img.freepik.com/premium-photo/excited-kids-enjoying-birthday-party_13339-225340.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid" },
+  { city: "Special Deals & Discounts", image: "https://img.freepik.com/free-photo/sale-concept-with-copy-space_23-2148313080.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid" },
 ];
 
 const TopDestine = () => {
@@ -34,10 +34,10 @@ const TopDestine = () => {
       <div className="flex justify-between items-center mb-8 lg:mb-12">
           <div className="text-center md:text-left">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-              Top destinations in United States
+              Main Categories
             </h2>
             <p className="mt-2 text-gray-500">
-              Explore our most popular destinations
+              Explore our most popular Categories
             </p>
           </div>
 
