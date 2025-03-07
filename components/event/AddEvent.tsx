@@ -67,8 +67,6 @@ const AddEvent = () => {
     }
   }
 
-  console.log("errors", form.getValues());
-
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
