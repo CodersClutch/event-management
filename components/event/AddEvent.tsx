@@ -58,7 +58,7 @@ const AddEvent = () => {
 
   // 2. Define a submit handler.
   async function onSubmit() {
-    console.log(form.getValues());
+    console.log("form values", form.getValues());
 
     const status = await HandleAddEvent(form.getValues());
     console.log("sesso", session?.user?.id);
