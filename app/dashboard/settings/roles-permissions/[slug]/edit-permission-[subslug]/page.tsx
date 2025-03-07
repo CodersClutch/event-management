@@ -38,7 +38,7 @@ const Page = async ({ params }: { params: Promise<{ subslug: string }> }) => {
           </CardDescription>
         </CardHeader>
         <CardFooter>
-          <Link href={`/settings/roles-permissions`}>
+          <Link href={`/dashboard/settings/roles-permissions`}>
             <Button variant="link">Go Back</Button>
           </Link>
         </CardFooter>
@@ -84,11 +84,11 @@ const Page = async ({ params }: { params: Promise<{ subslug: string }> }) => {
       </CardContent>
 
       <CardFooter className="flex items-center justify-between">
-        <Link href={`/settings/roles-permissions`}>
+        <Link href={`/dashboard/settings/roles-permissions`}>
           <Button variant="link">Go Back</Button>
         </Link>
         <Link
-          href={`/settings/roles-permissions/${roleName}/edit-permission-${roleName}`}
+          href={`/dashboard/settings/roles-permissions/${roleName}/edit-permission-${roleName}`}
         >
           <Button variant="link">Edit Permissions</Button>
         </Link>
