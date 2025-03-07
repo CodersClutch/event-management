@@ -33,8 +33,8 @@ import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { Textarea } from "../ui/textarea";
 import { DialogClose } from "@radix-ui/react-dialog";
-import { EventHook } from "@/hooks/EventHook";
 import { useSession } from "next-auth/react";
+import { EventHook } from "@/hooks/EventHook";
 
 const AddEvent = () => {
   const { HandleAddEvent, isLoading } = EventHook();
@@ -44,7 +44,7 @@ const AddEvent = () => {
     resolver: zodResolver(eventSchema),
     defaultValues: {
       title: "",
-      createdBy: session?.user?._id,
+      createdBy: session?.user?.id,
       schedule: {
         start: new Date(),
         end: new Date(),
@@ -58,15 +58,17 @@ const AddEvent = () => {
 
   // 2. Define a submit handler.
   async function onSubmit() {
+    console.log(form.getValues());
+
     const status = await HandleAddEvent(form.getValues());
-    console.log("sesso", session?.user?._id);
+    console.log("sesso", session?.user?.id);
     // close the dialog when the status is 200
     if (status?.status === 200) {
       setOpen(false);
       form.reset();
     }
   }
-
+  // ousainou trying to piss me of
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
@@ -74,7 +76,7 @@ const AddEvent = () => {
           Add Event <Plus className="h-3.5 w-3.5" />
         </Button>
       </DialogTrigger>
-      <DialogContent className="overflow-x-auto">
+      <DialogContent className=" overflow-x-auto">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="">
             <DialogHeader>
