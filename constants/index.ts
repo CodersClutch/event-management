@@ -42,15 +42,15 @@ export const categories = [
     link: "/",
   },
   {
-    icon: "https://cdn-icons-png.flaticon.com/128/18320/18320701.png",
-    Label: "For Kids",
+    icon: "https://cdn-icons-png.flaticon.com/128/12650/12650217.png",
+    Label: "Education",
     link: "/",
   },
 ];
 
 
 export const tabs = [
-  'All', 'For you', 'Online', 'Today', 'This weekend',
+  'All', 'Activities & Attraction', 'Online', 'Today', 'This weekend',
 ];
 
 
