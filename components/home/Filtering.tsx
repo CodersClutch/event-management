@@ -7,16 +7,22 @@ import OnlineEvents from '../events/OnlineEvents';
 import ForYouEvents from '../events/ForYouEvents';
 import TodayEvents from '../events/TodayEvents';
 import WeekendEvents from '../events/WeekendEvents';
+import VisualArt from '../events/VisualArt';
+import Food from '../events/Food';
+import Fitness from '../events/Fitness';
 
-const tabNames = ['All', 'For you', 'Online', 'Today', 'This weekend'] as const;
+const tabNames = ['All', 'Activities & Attraction', 'Classes & Workshops', 'Birthday & Party Venues', 'Special Deals & Discounts','Food & Drink','Performing & Visual Arts', 'Sports & Fitness'] as const;
 type TabName = (typeof tabNames)[number];
 
 const tabComponents: Record<TabName, React.FC> = {
   'All': AllEvents,
-  'For you': ForYouEvents,
-  'Online': OnlineEvents,
-  'Today': TodayEvents,
-  'This weekend': WeekendEvents,
+  'Activities & Attraction': ForYouEvents,
+  'Classes & Workshops': OnlineEvents,
+  'Birthday & Party Venues': TodayEvents,
+  'Special Deals & Discounts': WeekendEvents,
+  'Food & Drink': Food,
+  'Performing & Visual Arts': VisualArt,
+  'Sports & Fitness': Fitness,
 };
 
 export default function Tabs() {
