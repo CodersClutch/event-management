@@ -68,7 +68,7 @@ const AddEvent = () => {
       form.reset();
     }
   }
-
+  // ousainou trying to piss me of
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
