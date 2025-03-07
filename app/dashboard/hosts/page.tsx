@@ -1,8 +1,7 @@
+import HostContainer from "@/components/hosts/HostContainer";
 import UserContainer from "@/components/users/UserContainer";
-import React from "react";
 import { getAllUsers } from "@/lib/actions/user/getAllUser";
-import { IUser } from "@/lib/types";
-
+import { IUser } from "@/lib/models/types";
 const page = async ({
   searchParams,
 }: {
@@ -31,8 +30,9 @@ const page = async ({
     page: page,
     limit: limit,
     query: search,
+    UserRole: "Hosts"
   });
-
+ console.log(data);
   return (
     <div>
       <UserContainer
@@ -41,7 +41,7 @@ const page = async ({
         isNextPage={isNextPage}
         totalCount={totalCount}
         search={search}
-        users={data as IUser[]}
+        users={data}
       />
     </div>
   );

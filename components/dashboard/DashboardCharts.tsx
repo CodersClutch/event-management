@@ -50,10 +50,12 @@ const chartConfig = {
 const DashboardCharts = () => {
   return (
     <Card>
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 flex-wrap space-y-2">
         <div>
-          <CardTitle>Line Chart - Label</CardTitle>
-          <CardDescription>January - June 2024</CardDescription>
+          <CardTitle className="text-2xl">Event Analysis </CardTitle>
+          <CardDescription className="text-2xl">
+            January - June 2024
+          </CardDescription>
         </div>
         <div>
           <Select>

@@ -1,13 +1,12 @@
 import UserContainer from "@/components/users/UserContainer";
-import React from "react";
 import { getAllUsers } from "@/lib/actions/user/getAllUser";
-
 const page = async ({
   searchParams,
 }: {
   searchParams: Promise<{ page: string; limit: string; search: string }>;
 }) => {
   const searchParamsData = await searchParams;
+  console.log(searchParamsData);
 
   const page =
     typeof searchParamsData.page === "string"
@@ -25,17 +24,12 @@ const page = async ({
       : undefined;
 
   // get the events
-  const {
-    isNextPage,
-    totalCount,
-    isPreviousPage,
-    data = [],
-  } = await getAllUsers({
+  const { isNextPage, totalCount, isPreviousPage, data } = await getAllUsers({
     page: page,
     limit: limit,
     query: search,
+    UserRole: "Staff"
   });
-
   return (
     <div>
       <UserContainer
@@ -45,6 +39,7 @@ const page = async ({
         totalCount={totalCount}
         search={search}
         users={data}
+        userRole= "Staff"
       />
     </div>
   );

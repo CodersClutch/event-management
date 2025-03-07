@@ -1,51 +1,53 @@
-import DashboardCharts from "@/components/dashboard/DashboardCharts";
-import UpcommingEvents from "@/components/event/UpcommingEvents";
-import StatsCard from "@/components/StatsCard"; // import the new StatsCard component
-import { Timer, TimerResetIcon } from "lucide-react";
+import Advertisement from "@/components/home/Advertisement";
+import Filtering from "@/components/home/Filtering";
+import Hero from "@/components/home/Hero";
+import HowItworks from "@/components/home/HowItworks";
+import PopularEvents from "@/components/home/PopularEvents";
+import Testimonials from "@/components/home/Testimonials";
+import TopDestine from "@/components/home/TopDestine";
+import { categories } from "@/constants";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 
-const Home = () => {
-  const cardData = [
-    {
-      icon: <Timer className="w-3.5 h-5 text-yellow-600" />,
-      title: "Upcoming Events",
-      value: "$45,231.89",
-      percentage: "+20.1% from last month",
-    },
-    {
-      icon: <Timer className="text-lime-500 w-5 h-5" />,
-      title: "Ongoing Events",
-      value: "+2350",
-      percentage: "+180.1% from last month",
-    },
-    {
-      icon: <TimerResetIcon className="text-green-600 w-5 h-5" />,
-      title: "Completed Events",
-      value: "+12,234",
-      percentage: "+19% from last month",
-    },
-  ];
-
+const page = () => {
   return (
-    <div className="flex justify-between gap-5">
-      <div className="w-full pb-10">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-10">
-          {cardData.map((card, index) => (
-            <StatsCard
-              key={index}
-              icon={card.icon}
-              title={card.title}
-              value={card.value}
-              percentage={card.percentage}
-            />
-          ))}
-        </div>
-        <DashboardCharts />
+    <div>
+      {/* hero */}
+
+      <Hero />
+
+      <Advertisement />
+
+      {/* categories */}
+      <div className="grid  md:grid-cols-6 sm:grid-cols-3 grid-cols-2 mx-auto max-w-7xl">
+        {categories.map((item, idx) => (
+          <Link
+            key={idx}
+            href="/"
+            className="flex hover:text-[#D942D6] group  items-center justify-center flex-col space-y-2"
+          >
+            <div className="flex group items-center bg-gradient-to-b hover:bg-gradient-to-t from-[#A22D9E] hover:from-[#A22D9E] hover:to-[#F34CF1] to-[#F34CF1]  shadow-md transition-all duration-1000 ease-in-out border  border-purple-400-100 rounded-full p-10 justify-center">
+              <Image src={item.icon} alt={item.Label} width={40} height={40} className="group-hover:invert group-hover:brightness-0 transition-all duration-500 ease-in-out group-hover:filter" />
+            </div>
+            <h3 className="text-sm">{item.Label}</h3>
+          </Link>
+        ))}
       </div>
-      <div>
-        <UpcommingEvents />
+
+      {/* tabs */}
+      <Filtering />
+
+      <div className="bg-[#F8F7FA]">
+        <TopDestine />
+
+        <PopularEvents />
+
+        <HowItworks />
+        <Testimonials />
       </div>
     </div>
   );
 };
 
-export default Home;
+export default page;
