@@ -24,15 +24,14 @@ import { Locate, MapPinCheck } from "lucide-react";
 import { MdOutlineLocationOn, MdLocationCity } from "react-icons/md";
 import { FaGlobeAmericas } from "react-icons/fa";
 import { GiPositionMarker } from "react-icons/gi";
-import { BiCurrentLocation } from "react-icons/bi";
 interface PageProps {
   params: {
     id: string;
   };
 }
 
-export default function EventPage({ params }: PageProps) {
-  const event = allEvents.find((e) => e.id === params.id);
+const EventPage = () => {
+  const event = allEvents.find((e) => e.id === "AAE-001");
 
   if (!event) {
     notFound();
@@ -99,7 +98,9 @@ export default function EventPage({ params }: PageProps) {
                   </p>
                 </div>
                 <div className="bg-gray-100 p-4 md:p-6 rounded-lg text-center w-full">
-                  <p className="text-xl md:text-2xl font-semibold whitespace-nowrap">Price Starts at ${event.price}</p>
+                  <p className="text-xl md:text-2xl font-semibold whitespace-nowrap">
+                    Price Starts at ${event.price}
+                  </p>
                   <button className="mt-3 bg-[#D942D6] text-white px-4 md:px-10 py-2 rounded-lg hover:bg-red-700 w-full">
                     Get tickets
                   </button>
@@ -287,4 +288,6 @@ export default function EventPage({ params }: PageProps) {
       <OtherEvents />
     </>
   );
-}
+};
+
+export default EventPage;
