@@ -19,32 +19,32 @@ export const categories = [
   {
     icon: "https://cdn-icons-png.flaticon.com/128/4994/4994482.png",
     Label: "All Ages",
-    link: "/",
+    link: "/events/all-ages",
   },
   {
     icon: "https://cdn-icons-png.flaticon.com/128/15359/15359414.png",
     Label: "For Babies",
-    link: "/",
+    link: "/events/babies",
   },
   {
     icon: "https://cdn-icons-png.flaticon.com/128/919/919482.png",
     Label: "Main Arena",
-    link: "/",
+    link: "/events/arena",
   },
   {
     icon: "https://cdn-icons-png.flaticon.com/128/4416/4416815.png",
     Label: "Toddler Zone",
-    link: "/",
+    link: "/events/toddler",
   },
   {
     icon: "https://cdn-icons-png.flaticon.com/128/756/756648.png",
     Label: "Teen Hangouts",
-    link: "/",
+    link: "/events/teen-hangouts",
   },
   {
     icon: "https://cdn-icons-png.flaticon.com/128/12650/12650217.png",
     Label: "Education",
-    link: "/",
+    link: "/events/education",
   },
 ];
 
@@ -56,6 +56,58 @@ export const tabs = [
 
 
 export const eventsAll = [
+  {
+    id: "AAE-001",
+    image: "https://img.freepik.com/free-psd/kitschy-colors-youtube-cover-template_23-2150544102.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid",
+    title: "Andante & Allegro Event",
+    date: "Aug 1, 2025 at 8:00 AM",
+    location: "1 American Dream Wy, East Rutherford, NJ",
+    geolocation: {
+      address: "1 American Dream Wy",
+      city: "East Rutherford",
+      state: "NJ",
+      country: "USA",
+      coordinates: "40.8198° N, 74.0743° W"
+    },
+    registrationDeadline: "2025-07-25",
+    capacity: 5000,
+    ageRange: { min: 6, max: 99 },
+    price: 45,
+    refundPolicy: "Full refund up to 7 days before event",
+    duration: "6 hours",
+    organizer: "Metro Events Group",
+    description: `Experience a musical journey through time at our flagship family event. The Andante & Allegro Festival combines classical music education with modern interactive experiences. Professional musicians will guide participants through instrument petting zoos, rhythm workshops, and collaborative performances.
+
+    Designed by Juilliard-trained educators, this event features special zones for different age groups while encouraging cross-generational participation. Evening culminates with a digital light show synchronized to live orchestral performance.`,
+    moreEvents: [
+      {
+        title: "Family Symphony Night",
+    
+        date: "2025-11-05 18:30",
+    
+        price: 55,
+    
+        organizer: "Go Daddy Group First", // Replace with actual organizer name
+    
+        imageUrl:
+          "https://img.freepik.com/premium-photo/business-executives-interacting-with-each-other-while-having-coffee_107420-73037.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid", // Replace with actual image URL or path in public directory
+      },
+    
+      {
+        title: "Rhythm Discovery Camp",
+    
+        date: "2025-12-10 10:00",
+    
+        price: 40,
+    
+        organizer: "Go Daddy Group First", // Replace with actual organizer name
+    
+        imageUrl:
+          "https://img.freepik.com/premium-photo/business-people-interacting-with-each-other-table-seminar_13339-347003.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid", // Replace with actual image URL or path in public directory
+      },
+    ],
+    mode: 'Online'
+  },
   {
     id: "AAE-001",
     image: "https://img.freepik.com/free-psd/kitschy-colors-youtube-cover-template_23-2150544102.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid",
@@ -262,6 +314,7 @@ export const eventsAll = [
         imageUrl:
           "https://img.freepik.com/premium-photo/business-people-interacting-with-each-other-table-seminar_13339-347003.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid", // Replace with actual image URL or path in public directory
       },
+
     ],
     mode: 'In Person'
   }
@@ -551,6 +604,8 @@ export  const categories2 = [
 export const eventList = [
   {
     id: 1,
+    ticketId: "TICKET-001",
+    ticketCatagory: "All Age & Family",
     author: "John Doe",
     time: "5 min ago",
     profileImage: "https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/event-head.png",
@@ -567,7 +622,7 @@ export const eventList = [
     ],
     price: "Free",
     likes: 126,
-    comments: 3
+    comments: 3,
   },
   {
     id: 2,
@@ -608,6 +663,106 @@ export const eventList = [
     price: "Free",
     likes: 85,
     comments: 5
+  },
+  {
+    id: 4,
+    author: "Emily Davis",
+    time: "2 hours ago",
+    profileImage: "https://randomuser.me/api/portraits/women/29.jpg",
+    eventImage: "https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/event-main4.jpg",
+    eventName: "Art Exhibition",
+    date: "Sept 12, 2025",
+    location: "Paris",
+    tickets: "Sold Out",
+    sponsors: [
+      "https://randomuser.me/api/portraits/men/40.jpg",
+      "https://randomuser.me/api/portraits/women/50.jpg",
+      "https://randomuser.me/api/portraits/men/35.jpg",
+      "https://randomuser.me/api/portraits/women/61.jpg"
+    ],
+    price: "$15",
+    likes: 340,
+    comments: 20
+  },
+  {
+    id: 4,
+    author: "Emily Davis",
+    time: "2 hours ago",
+    profileImage: "https://randomuser.me/api/portraits/women/29.jpg",
+    eventImage: "https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/event-main4.jpg",
+    eventName: "Art Exhibition",
+    date: "Sept 12, 2025",
+    location: "Paris",
+    tickets: "Sold Out",
+    sponsors: [
+      "https://randomuser.me/api/portraits/men/40.jpg",
+      "https://randomuser.me/api/portraits/women/50.jpg",
+      "https://randomuser.me/api/portraits/men/35.jpg",
+      "https://randomuser.me/api/portraits/women/61.jpg"
+    ],
+    price: "$15",
+    likes: 340,
+    comments: 20
+  },
+  {
+    id: 4,
+    author: "Emily Davis",
+    time: "2 hours ago",
+    profileImage: "https://randomuser.me/api/portraits/women/29.jpg",
+    eventImage: "https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/event-main4.jpg",
+    eventName: "Art Exhibition",
+    date: "Sept 12, 2025",
+    location: "Paris",
+    tickets: "Sold Out",
+    sponsors: [
+      "https://randomuser.me/api/portraits/men/40.jpg",
+      "https://randomuser.me/api/portraits/women/50.jpg",
+      "https://randomuser.me/api/portraits/men/35.jpg",
+      "https://randomuser.me/api/portraits/women/61.jpg"
+    ],
+    price: "$15",
+    likes: 340,
+    comments: 20
+  },
+  {
+    id: 4,
+    author: "Emily Davis",
+    time: "2 hours ago",
+    profileImage: "https://randomuser.me/api/portraits/women/29.jpg",
+    eventImage: "https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/event-main4.jpg",
+    eventName: "Art Exhibition",
+    date: "Sept 12, 2025",
+    location: "Paris",
+    tickets: "Sold Out",
+    sponsors: [
+      "https://randomuser.me/api/portraits/men/40.jpg",
+      "https://randomuser.me/api/portraits/women/50.jpg",
+      "https://randomuser.me/api/portraits/men/35.jpg",
+      "https://randomuser.me/api/portraits/women/61.jpg"
+    ],
+    price: "$15",
+    likes: 340,
+    comments: 20
+  },
+  {
+    id: 4,
+    author: "Emily Davis",
+    time: "2 hours ago",
+    profileImage: "https://randomuser.me/api/portraits/women/29.jpg",
+    eventImage: "https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/event-main4.jpg",
+    eventName: "Art Exhibition",
+    date: "Sept 12, 2025",
+    location: "Paris",
+    tickets: "Sold Out",
+    sponsors: [
+      "https://randomuser.me/api/portraits/men/40.jpg",
+      "https://randomuser.me/api/portraits/women/50.jpg",
+      "https://randomuser.me/api/portraits/men/35.jpg",
+      "https://randomuser.me/api/portraits/women/61.jpg"
+    ],
+    price: "$15",
+    likes: 340,
+    comments: 20
   },
   {
     id: 4,

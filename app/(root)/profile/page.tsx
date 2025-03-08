@@ -3,9 +3,13 @@ import TicketsCard from "@/components/dashboard-v2/TicketsCard";
 import TotalSeat from "@/components/dashboard-v2/TotalSeat";
 import CancelledEventsLength from "@/components/event/CancelledEventsLength";
 import CompletedEventLength from "@/components/event/CompletedEventLength";
+import MyCancelledEvents from "@/components/event/MyCancelledEvents";
+import MyCompleatedEvents from "@/components/event/MyCompleatedEvents";
+import MyRecentCompleatedEvents from "@/components/event/MyRecentCompleatedEvents";
+import MyRecentUpcommingEvents from "@/components/event/MyRecentUpcommingEvents";
+import MyUpcommingEvent from "@/components/event/MyUpcommingEvent";
 import RecentCompleatedEvents from "@/components/event/RecentCompleatedEvents";
 import UpcommingEvents from "@/components/event/UpcommingEvents";
-import UpcommingEventsLength from "@/components/event/UpcommingEventsLength";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Suspense } from "react";
 
@@ -33,9 +37,9 @@ const Home = async () => {
             {/* Event Stats Grid */}
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               <Suspense fallback={<SkeletonLoader count={3} />}>
-                <UpcommingEventsLength />
-                <CancelledEventsLength />
-                <CompletedEventLength />
+                <MyCompleatedEvents />
+                <MyCancelledEvents />
+                <MyUpcommingEvent />
               </Suspense>
             </div>
 
@@ -62,8 +66,8 @@ const Home = async () => {
           {/* Right Column */}
           <div className="w-full lg:w-1/2 space-y-3">
             <Suspense fallback={<SkeletonLoader count={7} />}>
-              <UpcommingEvents />
-              <RecentCompleatedEvents />
+              <MyRecentUpcommingEvents />
+              <MyRecentCompleatedEvents />
             </Suspense>
           </div>
         </div>
