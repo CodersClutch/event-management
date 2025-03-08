@@ -1,4 +1,4 @@
-export const eventsAll = [
+export const events = [
     {
       id: "AAE-001",
       image: "https://img.freepik.com/free-psd/kitschy-colors-youtube-cover-template_23-2150544102.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid",
@@ -550,5 +550,234 @@ export const eventsAll = [
         ],
         mode: 'In Person',
         category: ["main arena", "attraction", "all ages", "sports"]
+      },
+      {
+        id: "FFR-015",
+        image: "https://img.freepik.com/premium-photo/family-running-park_23-2151155300.jpg",
+        title: "Family 5K Fun Run for Literacy",
+        date: "Apr 18, 2026 at 7:30 AM",
+        location: "Central Park, New York, NY",
+        geolocation: {
+          address: "59th to 110th Street",
+          city: "New York",
+          state: "NY",
+          country: "USA",
+          coordinates: "40.7829° N, 73.9654° W"
+        },
+        registrationDeadline: "2026-04-10",
+        capacity: 5000,
+        ageRange: { min: 5, max: 99 },
+        price: 30,
+        refundPolicy: "Registration fees non-refundable (charity donation)",
+        duration: "4 hours",
+        organizer: "Read Across Nations",
+        description: `Charity run/walk supporting children's literacy programs. Costume-themed stations along route with book character meet-and-greets. Includes post-race festival with author readings and free book giveaways. Stroller-friendly course with accessible paths.`,
+        moreEvents: [
+          {
+            title: "Storybook Costume Ball",
+            date: "2026-10-30 18:00",
+            price: 45,
+            organizer: "Read Across Nations",
+            imageUrl: "https://img.freepik.com/premium-photo/kids-book-costumes_23-2151155305.jpg"
+          }
+        ],
+        mode: 'In Person',
+        category: ["charity & causes", "sports", "all ages", "education"]
+      },
+    
+      {
+        id: "TCC-016",
+        image: "https://img.freepik.com/premium-photo/teen-cooking-class_23-2151155310.jpg",
+        title: "Teen Chef Challenge",
+        date: "Jun 7, 2026 at 4:00 PM",
+        location: "Culinary Arts Institute, Dubai",
+        geolocation: {
+          address: "Sheikh Zayed Rd",
+          city: "Dubai",
+          state: "",
+          country: "UAE",
+          coordinates: "25.2048° N, 55.2708° E"
+        },
+        registrationDeadline: "2026-05-30",
+        capacity: 20,
+        ageRange: { min: 13, max: 18 },
+        price: 150,
+        refundPolicy: "Full refund up to 1 week prior",
+        duration: "3 hours",
+        organizer: "Global Kitchen Academy",
+        description: `Professional cooking competition where teens create restaurant-quality dishes. Includes knife skills workshop, flavor pairing seminar, and plating techniques. Winners receive internship opportunities. Dietary restrictions accommodated.`,
+        moreEvents: [
+          {
+            title: "Junior Masterchef Bootcamp",
+            date: "2026-07-12 09:00",
+            price: 499,
+            organizer: "Global Kitchen Academy",
+            imageUrl: "https://img.freepik.com/premium-photo/kids-cooking-class_23-2151155315.jpg"
+          }
+        ],
+        mode: 'In Person',
+        category: ["food and drink", "teen", "classes and workshops", "hobbies"]
+      },
+    
+      {
+        id: "LHR-017",
+        image: "https://img.freepik.com/premium-photo/family-historical-reenactment_23-2151155320.jpg",
+        title: "Living History Renaissance Fair",
+        date: "May 23, 2026 at 10:00 AM",
+        location: "Edinburgh Castle Esplanade",
+        geolocation: {
+          address: "Castlehill",
+          city: "Edinburgh",
+          state: "",
+          country: "Scotland",
+          coordinates: "55.9486° N, 3.2008° W"
+        },
+        registrationDeadline: "2026-05-15",
+        capacity: 10000,
+        ageRange: { min: 0, max: 99 },
+        price: 25,
+        refundPolicy: "Rain or shine event",
+        duration: "3 days",
+        organizer: "Time Travel Events Ltd",
+        description: `Immersive historical experience with jousting tournaments, artisan craft markets, and period-accurate workshops. Interactive learning stations teach blacksmithing, calligraphy, and herbal medicine. Costume rentals available.`,
+        moreEvents: [
+          {
+            title: "Viking Age Encampment",
+            date: "2026-08-20 10:00",
+            price: 35,
+            organizer: "Time Travel Events Ltd",
+            imageUrl: "https://img.freepik.com/premium-photo/viking-reenactment_23-2151155325.jpg"
+          }
+        ],
+        mode: 'In Person',
+        category: ["education", "arts", "attraction", "all ages"]
+      },
+    
+      {
+        id: "DCB-018",
+        image: "https://img.freepik.com/premium-photo/kids-making-crafts_23-2151155330.jpg",
+        title: "DIY Craft Bonanza",
+        date: "Sep 5, 2026 at 1:00 PM",
+        location: "Community Arts Center, Cape Town",
+        geolocation: {
+          address: "11 Buitenkant St",
+          city: "Cape Town",
+          state: "",
+          country: "South Africa",
+          coordinates: "33.9249° S, 18.4241° E"
+        },
+        registrationDeadline: "2026-08-29",
+        capacity: 75,
+        ageRange: { min: 8, max: 99 },
+        price: 45,
+        refundPolicy: "Materials fee non-refundable",
+        duration: "5 hours",
+        organizer: "Creative Hands Collective",
+        description: `Rotating craft stations teaching macramé, resin art, and upcycling techniques. Includes take-home project kits and access to online tutorial library. Adult/child team discounts available.`,
+        moreEvents: [
+          {
+            title: "Advanced Woodworking Workshop",
+            date: "2026-10-17 10:00",
+            price: 85,
+            organizer: "Creative Hands Collective",
+            imageUrl: "https://img.freepik.com/premium-photo/woodworking-class_23-2151155335.jpg"
+          }
+        ],
+        mode: 'In Person',
+        category: ["hobbies", "arts", "all ages", "classes and workshops"]
+      },
+    
+      {
+        id: "SBP-019",
+        image: "https://img.freepik.com/premium-photo/sensory-friendly-birthday_23-2151155340.jpg",
+        title: "Sensory-Friendly Birthday Package",
+        date: "Ongoing bookings available",
+        location: "Special Needs Recreation Center, Singapore",
+        geolocation: {
+          address: "15 Therapy Rd",
+          city: "Singapore",
+          state: "",
+          country: "Singapore",
+          coordinates: "1.3521° N, 103.8198° E"
+        },
+        registrationDeadline: "7 days before event",
+        capacity: 15,
+        ageRange: { min: 3, max: 12 },
+        price: 299,
+        refundPolicy: "Rescheduling only",
+        duration: "3 hours",
+        organizer: "Inclusive Celebrations Co.",
+        description: `Customizable birthday parties with adjustable lighting, noise-canceling headphones, and tactile activity stations. Trained staff manages crowd flow and sensory inputs. Includes allergy-friendly catering options and quiet room access.`,
+        moreEvents: [
+          {
+            title: "Autism-Friendly Movie Nights",
+            date: "Monthly events",
+            price: 15,
+            organizer: "Inclusive Celebrations Co.",
+            imageUrl: "https://img.freepik.com/premium-photo/sensory-movie-theater_23-2151155345.jpg"
+          }
+        ],
+        mode: 'In Person',
+        category: ["birthday", "specialneeds", "toddler", "food and drink"]
+      },
+            {
+        id: "SBP-019",
+        image: "https://img.freepik.com/premium-photo/sensory-friendly-birthday_23-2151155340.jpg",
+        title: "Sensory-Friendly Birthday Package",
+        date: "Ongoing bookings available",
+        location: "Special Needs Recreation Center, Singapore",
+        geolocation: {
+          address: "15 Therapy Rd",
+          city: "Singapore",
+          state: "",
+          country: "Singapore",
+          coordinates: "1.3521° N, 103.8198° E"
+        },
+        registrationDeadline: "7 days before event",
+        capacity: 15,
+        ageRange: { min: 3, max: 12 },
+        price: 299,
+        refundPolicy: "Rescheduling only",
+        duration: "3 hours",
+        organizer: "Inclusive Celebrations Co.",
+        description: `Customizable birthday parties with adjustable lighting, noise-canceling headphones, and tactile activity stations. Trained staff manages crowd flow and sensory inputs. Includes allergy-friendly catering options and quiet room access.`,
+        moreEvents: [
+          {
+            title: "Autism-Friendly Movie Nights",
+            date: "Monthly events",
+            price: 15,
+            organizer: "Inclusive Celebrations Co.",
+            imageUrl: "https://img.freepik.com/premium-photo/sensory-movie-theater_23-2151155345.jpg"
+          }
+        ],
+        mode: 'In Person',
+        category: ["birthday", "specialneeds", "toddler", "food and drink"]
       }
   ];
+
+
+
+
+
+//   export const EVENT_CATEGORIES = [
+//     "all ages",
+//     "for babies",
+//     "main arena",
+//     "toddler",
+//     "teen",
+//     "education",
+//     "attraction",
+//     "classes and workshops",
+//     "birthday",
+//     "food and drink",
+//     "arts",
+//     "sports",
+//     "charity & causes",
+//     "hobbies",
+//     "holiday",
+//     "stem&coding",
+//     "academic",
+//     "homeschoolfriendly",
+//     "tutoring",
+//     "specialneeds"
+//   ] as const;

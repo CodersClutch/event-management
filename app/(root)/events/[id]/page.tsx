@@ -2,7 +2,6 @@
 import { CiHeart } from "react-icons/ci";
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { allEvents, Event } from "@/lib/events";
 import { MdShare, MdTimerOff } from "react-icons/md";
 import { BsBookmarksFill, BsPeople } from "react-icons/bs";
 import { FaCalendarCheck } from "react-icons/fa6";
@@ -17,14 +16,15 @@ import {
   AlertDialogHeader,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import OrganizerCard from "@/components/events/OrganizerCard";
-import MoreEventsFromOrganizer from "@/components/events/MoreEventsFromOrganizer";
-import OtherEvents from "@/components/events/OtherEvents";
+import OrganizerCard from "@/components/TabsCategory/OrganizerCard";
+import MoreEventsFromOrganizer from "@/components/TabsCategory/MoreEventsFromOrganizer";
+import OtherEvents from "@/components/TabsCategory/OtherEvents";
 import { Locate, MapPinCheck } from "lucide-react";
 import { MdOutlineLocationOn, MdLocationCity } from "react-icons/md";
 import { FaGlobeAmericas } from "react-icons/fa";
 import { GiPositionMarker } from "react-icons/gi";
 import { BiCurrentLocation } from "react-icons/bi";
+import { events } from "@/constants/events";
 interface PageProps {
   params: {
     id: string;
@@ -32,7 +32,7 @@ interface PageProps {
 }
 
 export default function EventPage({ params }: PageProps) {
-  const event = allEvents.find((e) => e.id === params.id);
+  const event = events.find((e) => e.id === params.id);
 
   if (!event) {
     notFound();
@@ -99,7 +99,9 @@ export default function EventPage({ params }: PageProps) {
                   </p>
                 </div>
                 <div className="bg-gray-100 p-4 md:p-6 rounded-lg text-center w-full">
-                  <p className="text-xl md:text-2xl font-semibold whitespace-nowrap">Price Starts at ${event.price}</p>
+                  <p className="text-xl md:text-2xl font-semibold whitespace-nowrap">
+                    Price Starts at ${event.price}
+                  </p>
                   <button className="mt-3 bg-[#D942D6] text-white px-4 md:px-10 py-2 rounded-lg hover:bg-red-700 w-full">
                     Get tickets
                   </button>

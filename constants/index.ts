@@ -19,7 +19,7 @@ export const categories = [
   {
     icon: "https://cdn-icons-png.flaticon.com/128/4994/4994482.png",
     Label: "All Ages",
-    link: "/",
+    link: "/events/all-ages",
   },
   {
     icon: "https://cdn-icons-png.flaticon.com/128/15359/15359414.png",
