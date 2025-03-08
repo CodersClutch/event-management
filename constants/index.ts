@@ -604,6 +604,8 @@ export  const categories2 = [
 export const eventList = [
   {
     id: 1,
+    ticketId: "TICKET-001",
+    ticketCatagory: "All Age & Family",
     author: "John Doe",
     time: "5 min ago",
     profileImage: "https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/event-head.png",
@@ -620,7 +622,7 @@ export const eventList = [
     ],
     price: "Free",
     likes: 126,
-    comments: 3
+    comments: 3,
   },
   {
     id: 2,
