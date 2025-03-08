@@ -150,7 +150,7 @@ const EventCards = () => {
                         ))}
                       </div>
                       <span className="ml-auto text-[#E63632] text-sm md:text-base px-2 py-1">
-                        Free
+                      {event.price}
                       </span>
                     </div>
 
