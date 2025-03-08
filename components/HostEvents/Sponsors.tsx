@@ -24,7 +24,7 @@ const Sponsors = () => {
             {/* Categories Section */}
             <h2 className="text-[1.18rem] text-[#18212C] font-bold mb-4 uppercase">Categories</h2>
             {categories2.map((category, index) => (
-                <p key={index} className="text-[#847577] hover:text-[#B936B6] mb-1 cursor-pointer transition-all duration-500  ease-in-out">{category}</p>
+                <p key={index} className="text-[#847577] hover:text-[#FFBD1E] mb-1 cursor-pointer transition-all duration-700  ease-in-out">{category}</p>
             ))}
         </div>
     );

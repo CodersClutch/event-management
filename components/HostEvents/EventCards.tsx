@@ -6,12 +6,12 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 const EventCards = () => {
   return (
-    <div className="min-h-screen py-8 px-4">
-      <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-y-8">
+    <div className="min-h-screen py-8">
+      <div className="mx-auto grid grid-cols-2 gap-y-8">
         {eventList.map((event) => (
           <div
             key={event.id}
-            className="bg-white rounded-lg shadow overflow-hidden w-full lg:w-[350px] mx-auto"
+            className="bg-white rounded-lg shadow-lg overflow-hidden w-full lg:w-[370px] mx-auto"
           >
             {/* Top row: Author profile, name, and time below */}
             <div className="p-4 text-sm text-gray-500">
@@ -28,7 +28,7 @@ const EventCards = () => {
                   <span className="font-semibold text-[#18212C] text-[1rem]">
                     By {event.author}
                   </span>
-                  <span className="block text-xs">{event.time}</span>
+                  <span className="block text-[.95rem]">{event.time}</span>
                 </div>
               </div>
             </div>
@@ -36,7 +36,7 @@ const EventCards = () => {
             {/* Card Image with Event Name Overlay */}
             <Dialog>
               <DialogTrigger asChild>
-                <div className="relative w-full h-48 overflow-hidden group cursor-pointer">
+                <div className="relative w-full h-52 overflow-hidden group cursor-pointer">
                   <Image
                     src={event.eventImage}
                     alt={event.eventName}
@@ -267,18 +267,18 @@ const EventCards = () => {
               {/* Date, Location, Tickets in a single row */}
               <div className="grid grid-cols-3 gap-2 mb-2 px-4 mt-1">
                 <div className="flex flex-col space-y-2">
-                  <span className="font-semibold text-[#18212C]">Date</span>
-                  <span className="text-xs text-[#84759E]">{event.date}</span>
+                  <span className="font-semibold text-[#18212C] text-[1.08rem]">Date</span>
+                  <span className="text-[.9rem] text-[#84759E]">{event.date}</span>
                 </div>
                 <div className="flex flex-col space-y-2">
-                  <span className="font-semibold text-[#18212C]">Location</span>
-                  <span className="text-xs text-[#84759E]">
+                  <span className="font-semibold text-[#18212C] text-[1.08rem]">Location</span>
+                  <span className="text-[.9rem] text-[#84759E]">
                     {event.location}
                   </span>
                 </div>
                 <div className="flex flex-col space-y-2">
-                  <span className="font-semibold text-[#18212C]">Tickets</span>
-                  <span className="text-xs text-[#84759E]">
+                  <span className="font-semibold text-[#18212C] text-[1.08rem]">Tickets</span>
+                  <span className="text-[.9rem] text-[#84759E]">
                     {event.tickets}
                   </span>
                 </div>
@@ -287,14 +287,14 @@ const EventCards = () => {
               {/* Sponsor */}
               <div className="flex items-center justify-between mt-5 text-sm bg-[#F9F9F9] px-4 py-4">
                 <div className="flex flex-row items-center justify-center gap-3">
-                  <span className="text-[#212529] font-semibold">
+                  <span className="text-[#212529] text-[1.08rem] font-semibold">
                     Sponsor by
                   </span>
                   <div className="flex">
                     {event.sponsors.map((src, index) => (
                       <div
                         key={index}
-                        className="relative w-8 h-8 rounded-full border-2 border-white overflow-hidden first:ml-0"
+                        className="relative w-10 h-10 rounded-full border-2 border-white overflow-hidden first:ml-0"
                       >
                         <Image
                           src={src}
@@ -306,7 +306,7 @@ const EventCards = () => {
                     ))}
                   </div>
                 </div>
-                <p className="text-[#E63632]">{event.price}</p>
+                <p className="text-[#E63632] text-[1.04rem] ">{event.price}</p>
               </div>
             </div>
 
@@ -315,29 +315,29 @@ const EventCards = () => {
               <div className="flex items-center space-x-1">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 fill-current text-gray-400 hover:text-red-500"
+                  className="h-5 w-5 fill-current text-gray-400 hover:text-red-500"
                   viewBox="0 0 20 20"
                 >
                   <path d="M3.172 5.172a4.004 4.004 0 015.656 0L10 6.343l1.172-1.171a4.004 4.004 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" />
                 </svg>
-                <span>{event.likes}</span>
+                <span className="text-[.9rem] text-gray-800">{event.likes}</span>
               </div>
               <div className="flex items-center space-x-1">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 fill-current text-gray-400 hover:text-blue-500"
+                  className="h-5 w-5 fill-current text-gray-400 hover:text-blue-500"
                   viewBox="0 0 20 20"
                 >
                   <path d="M18 10c0 3.866-3.582 7-8 7-1.15 0-2.256-.216-3.253-.6L3.814 17l1.125-2.996C4.342 13.089 4 11.58 4 10c0-3.866 3.134-7 7-7s7 3.134 7 7z" />
                 </svg>
-                <span>{event.comments}</span>
+                <span className="text-[.9rem] text-gray-800">{event.comments}</span>
               </div>
               <div className="flex items-center space-x-1">
-                <Share className="h-4 w-4 fill-current text-gray-400 hover:text-blue-500" />
+                <Share className="h-5 w-5 fill-current text-gray-400 hover:text-blue-500" />
               </div>
               <button className="flex flex-row hover:text-gray-700">
-                <BarChart className="h-4 w-4 fill-current text-gray-400 hover:text-blue-500" />
-                <span> Insights</span>
+                <BarChart className="h-4 w-4 fill-current text-gray-400 text-[.9rem]  hover:text-blue-500" />
+                <span className="text-gray-800"> Insights</span>
               </button>
             </div>
           </div>
