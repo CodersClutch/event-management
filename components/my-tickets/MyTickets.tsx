@@ -156,9 +156,9 @@ const MyTickets = () => {
                   <Image
                     src={"/QrCodeScanner.png"}
                     height={200}
-                    width={100}
+                    width={200}
                     alt="Music Awards"
-                    className="rounded-lg w-full h-40 mb-2"
+                    className="rounded-lg w-full h-56 mb-2"
                     priority
                   />
                   {/* Footer */}
