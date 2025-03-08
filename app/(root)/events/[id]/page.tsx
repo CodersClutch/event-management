@@ -3,9 +3,7 @@ import { CiHeart } from "react-icons/ci";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 // <<<<<<< feature/web-event
-<!-- ======= -->
-import { allEvents } from "@/lib/events";
-<!-- >>>>>>> feature/web -->
+// import { allEvents } from "@/lib/events";
 import { MdShare, MdTimerOff } from "react-icons/md";
 import { BsBookmarksFill, BsPeople } from "react-icons/bs";
 import { FaCalendarCheck } from "react-icons/fa6";
@@ -20,7 +18,6 @@ import {
   AlertDialogHeader,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-<!-- <<<<<<< feature/web-event -->
 import OrganizerCard from "@/components/TabsCategory/OrganizerCard";
 import MoreEventsFromOrganizer from "@/components/TabsCategory/MoreEventsFromOrganizer";
 import OtherEvents from "@/components/TabsCategory/OtherEvents";
@@ -37,9 +34,8 @@ interface PageProps {
   };
 }
 
-
 const EventPage = () => {
-  const event = allEvents.find((e) => e.id === "AAE-001");
+  const event = events.find((e) => e.id === "AAE-001");
 
   if (!event) {
     notFound();

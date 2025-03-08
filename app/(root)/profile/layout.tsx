@@ -17,7 +17,11 @@ export default function ProfileLayout({ children }: { children: ReactNode }) {
 
   // Navigation links with icons
   const navigationLinks = [
-    { label: "Dashboard", href: "#", icon: <HomeIcon className="w-5 h-5" /> },
+    {
+      label: "Dashboard",
+      href: "/profile",
+      icon: <HomeIcon className="w-5 h-5" />,
+    },
     {
       label: "Events",
       href: "/profile/host-events",
@@ -49,8 +53,9 @@ export default function ProfileLayout({ children }: { children: ReactNode }) {
                 <a
                   key={index}
                   href={link.href}
-                  className={`flex flex-col items-center text-white font-medium text-sm transition-all duration-700 ease-in-out ${isActive ? "text-[#FFBD1E]" : "hover:text-[#FFBD1E]"
-                    }`}
+                  className={`flex flex-col items-center text-white font-medium text-sm transition-all duration-700 ease-in-out ${
+                    isActive ? "text-[#FFBD1E]" : "hover:text-[#FFBD1E]"
+                  }`}
                 >
                   <span className="mb-1">{link.icon}</span> {/* Icon */}
                   <span>{link.label}</span> {/* Label */}
