@@ -1,7 +1,6 @@
 import HostContainer from "@/components/hosts/HostContainer";
 import UserContainer from "@/components/users/UserContainer";
 import { getAllUsers } from "@/lib/actions/user/getAllUser";
-import { IUser } from "@/lib/models/types";
 const page = async ({
   searchParams,
 }: {
