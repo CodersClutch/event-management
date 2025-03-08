@@ -7,7 +7,7 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 const EventCards = () => {
   return (
     <div className="min-h-screen py-8 px-4">
-      <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-y-8">
+      <div className="mx-auto grid grid-cols-2 gap-y-8">
         {eventList.map((event) => (
           <div
             key={event.id}
