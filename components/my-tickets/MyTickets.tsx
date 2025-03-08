@@ -94,9 +94,11 @@ const MyTickets = () => {
                     sizes="(max-width: 768px) 100vw, 50vw"
                     priority
                   />
-                  <div className="absolute bottom-0 left-0 pl-5 pb-4 w-full text-white text-lg font-semibold p-2 text-left bg-gradient-to-t from-black/70 to-transparent">
+                  <div className="absolute flex flex-col gap-2 bottom-0 left-0 pl-5 pb-4 w-full text-white text-lg font-semibold p-2 text-left bg-gradient-to-t from-black/70 to-transparent">
                     {event.eventName}
+                    <Button className="font-bold text-white">View Ticket</Button>
                   </div>
+                  
                 </div>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[25%] p-0 rounded-lg overflow-hidden">
