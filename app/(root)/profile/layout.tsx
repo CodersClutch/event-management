@@ -35,7 +35,7 @@ export default function ProfileLayout({ children }: { children: ReactNode }) {
   ];
 
   return (
-    <div className="p-4 mx-[5%] pt-20 md:px-12">
+    <div className="p-4 mx-[4.5%] pt-[6%] ">
       {/* Navigation Bar */}
       <div className="bg-gradient-to-r from-pink-900 to-purple-900 w-full rounded-lg shadow-lg sticky top-0 z-10">
         <div className="flex justify-center items-center py-4 px-6">
@@ -45,7 +45,7 @@ export default function ProfileLayout({ children }: { children: ReactNode }) {
               <a
                 key={index}
                 href={link.href}
-                className="flex flex-col items-center text-white font-medium text-sm hover:text-[#D942D6] transition-colors duration-200"
+                className="flex flex-col items-center text-white font-medium text-sm hover:text-[#FFBD1E] transition-all duration-700 ease-in-out"
               >
                 <span className="mb-1">{link.icon}</span> {/* Icon */}
                 <span>{link.label}</span> {/* Label */}
