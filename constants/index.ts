@@ -19,32 +19,32 @@ export const categories = [
   {
     icon: "https://cdn-icons-png.flaticon.com/128/4994/4994482.png",
     Label: "All Ages",
-    link: "/",
+    link: "/events/all-ages",
   },
   {
     icon: "https://cdn-icons-png.flaticon.com/128/15359/15359414.png",
     Label: "For Babies",
-    link: "/",
+    link: "/events/babies",
   },
   {
     icon: "https://cdn-icons-png.flaticon.com/128/919/919482.png",
     Label: "Main Arena",
-    link: "/",
+    link: "/events/arena",
   },
   {
     icon: "https://cdn-icons-png.flaticon.com/128/4416/4416815.png",
     Label: "Toddler Zone",
-    link: "/",
+    link: "/events/toddler",
   },
   {
     icon: "https://cdn-icons-png.flaticon.com/128/756/756648.png",
     Label: "Teen Hangouts",
-    link: "/",
+    link: "/events/teen-hangouts",
   },
   {
     icon: "https://cdn-icons-png.flaticon.com/128/12650/12650217.png",
     Label: "Education",
-    link: "/",
+    link: "/events/education",
   },
 ];
 

@@ -1,4 +1,3 @@
-import { eventsAll, Foryou, Online, Today } from '@/constants';
 
 export interface Event {
   id: string;
@@ -29,15 +28,6 @@ export interface Event {
     organizer: string;
     imageUrl: string;
   }[];
+  category: string[];
 }
 
-export const allEvents: Event[] = [
-  ...eventsAll,
-  ...Foryou,
-  ...Online,
-  ...Today
-].map(event => ({
-  ...event,
-  geolocation: event.geolocation || undefined,
-  moreEvents: event.moreEvents || []
-}));
