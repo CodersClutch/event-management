@@ -2,11 +2,15 @@
 import { CiHeart } from "react-icons/ci";
 import { notFound } from "next/navigation";
 import Image from "next/image";
+// <<<<<<< feature/web-event
+<!-- ======= -->
+import { allEvents } from "@/lib/events";
+<!-- >>>>>>> feature/web -->
 import { MdShare, MdTimerOff } from "react-icons/md";
 import { BsBookmarksFill, BsPeople } from "react-icons/bs";
 import { FaCalendarCheck } from "react-icons/fa6";
 import { BsCollectionPlayFill } from "react-icons/bs";
-import { BiChevronRight, BiCloset, BiX } from "react-icons/bi";
+import { BiChevronRight, BiX } from "react-icons/bi";
 import { MdOutlineTimer } from "react-icons/md";
 import { IoGlobeSharp } from "react-icons/io5";
 import {
@@ -16,6 +20,7 @@ import {
   AlertDialogHeader,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+<!-- <<<<<<< feature/web-event -->
 import OrganizerCard from "@/components/TabsCategory/OrganizerCard";
 import MoreEventsFromOrganizer from "@/components/TabsCategory/MoreEventsFromOrganizer";
 import OtherEvents from "@/components/TabsCategory/OtherEvents";
@@ -25,14 +30,16 @@ import { FaGlobeAmericas } from "react-icons/fa";
 import { GiPositionMarker } from "react-icons/gi";
 import { BiCurrentLocation } from "react-icons/bi";
 import { events } from "@/constants/events";
+
 interface PageProps {
   params: {
     id: string;
   };
 }
 
-export default function EventPage({ params }: PageProps) {
-  const event = events.find((e) => e.id === params.id);
+
+const EventPage = () => {
+  const event = allEvents.find((e) => e.id === "AAE-001");
 
   if (!event) {
     notFound();
@@ -289,4 +296,6 @@ export default function EventPage({ params }: PageProps) {
       <OtherEvents />
     </>
   );
-}
+};
+
+export default EventPage;
