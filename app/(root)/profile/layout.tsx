@@ -8,6 +8,7 @@ import {
   ChartBarIcon,
   User2,
   Bell,
+  TicketIcon,
 } from "lucide-react"; // Import icons from Heroicons
 import { useSession } from "next-auth/react";
 
@@ -37,6 +38,12 @@ export default function ProfileLayout({ children }: { children: ReactNode }) {
       label: "Info",
       href: `/profile/${session?.user._id}`,
       icon: <User2 className="w-5 h" />,
+    },
+    // my-tickets
+    {
+      label: "My Tickets",
+      href: "/profile/my-tickets",
+      icon: <TicketIcon className="w-5 h-5" />,
     },
   ];
 

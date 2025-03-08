@@ -9,7 +9,7 @@ import { Check } from "lucide-react";
 
 const MyTickets = () => {
   const [scanResult, setScanResult] = useState(""); // State to store the scanned result
-  const ticketRef = useRef(null); // Ref for the ticket element
+  const ticketRef = useRef<HTMLDivElement>(null); // Ref for the ticket element
 
   const handleDownloadTicket = () => {
     if (ticketRef.current) {
@@ -25,7 +25,8 @@ const MyTickets = () => {
   const handlePrintTicket = () => {
     if (ticketRef.current) {
       const printWindow = window.open("", "_blank");
-      printWindow.document.write(`
+      if (printWindow) {
+        printWindow.document.write(`
         <html>
           <head>
             <title>Print Ticket</title>
@@ -46,8 +47,10 @@ const MyTickets = () => {
           </body>
         </html>
       `);
-      printWindow.document.close();
-      printWindow.print();
+        if (printWindow) {
+          printWindow.print();
+        }
+      }
     }
   };
 
@@ -96,9 +99,10 @@ const MyTickets = () => {
                   />
                   <div className="absolute flex flex-col gap-2 bottom-0 left-0 pl-5 pb-4 w-full text-white text-lg font-semibold p-2 text-left bg-gradient-to-t from-black/70 to-transparent">
                     {event.eventName}
-                    <Button className="font-bold text-white">View Ticket</Button>
+                    <Button className="font-bold text-white">
+                      View Ticket
+                    </Button>
                   </div>
-                  
                 </div>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[25%] p-0 rounded-lg overflow-hidden">
@@ -164,8 +168,8 @@ const MyTickets = () => {
                   {/* Footer */}
                   <div className="ticket-footer">
                     <div className="flex items-center gap-1 font-bold">
-                    <Check className="text-sm h-4 w-4 font-bold" />
-                    <p>Terms and Conditions apply.</p>
+                      <Check className="text-sm h-4 w-4 font-bold" />
+                      <p>Terms and Conditions apply.</p>
                     </div>
                     <p>No refunds or exchanges.</p>
                     <p>Present this ticket at the entrance.</p>
