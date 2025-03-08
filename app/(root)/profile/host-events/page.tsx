@@ -4,9 +4,9 @@ import React from "react";
 
 const page = () => {
   return (
-    <div className=" px-4 ">
-      <div className="grid grid-cols-1 lg:grid-cols-3">
-        <div className="col-span-2 md:border-r">
+    <div className="">
+      <div className="grid grid-cols-1 xl:grid-cols-3">
+        <div className="col-span-2 xl:border-r">
           {/* image listing */}
           <EventCards />
         </div>

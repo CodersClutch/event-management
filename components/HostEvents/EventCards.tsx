@@ -7,11 +7,11 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 const EventCards = () => {
   return (
     <div className="min-h-screen py-8">
-      <div className="mx-auto grid grid-cols-2 gap-y-8">
+      <div className="mx-auto grid grid-cols-1 lg:grid-cols-2 gap-y-8">
         {eventList.map((event) => (
           <div
             key={event.id}
-            className="bg-white rounded-lg shadow-lg overflow-hidden w-full lg:w-[370px] mx-auto"
+            className="bg-white rounded-lg border border-gray-100 shadow-md overflow-hidden w-full lg:w-[370px] mx-auto"
           >
             {/* Top row: Author profile, name, and time below */}
             <div className="p-4 text-sm text-gray-500">

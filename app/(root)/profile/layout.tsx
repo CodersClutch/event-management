@@ -35,10 +35,10 @@ export default function ProfileLayout({ children }: { children: ReactNode }) {
   ];
 
   return (
-    <div className="p-4 mx-[4.5%] pt-[6%] ">
+    <div className="p-4 md:mx-[4.5%] pt-[6%] ">
       {/* Navigation Bar */}
       <div className="bg-gradient-to-r from-pink-900 to-purple-900 w-full rounded-lg shadow-lg sticky top-0 z-10">
-        <div className="flex justify-center items-center py-4 px-6">
+        <div className="flex justify-center items-center py-4 ">
           {/* Navigation Links with Icons */}
           <nav className="flex items-center space-x-8">
             {navigationLinks.map((link, index) => (
@@ -56,7 +56,7 @@ export default function ProfileLayout({ children }: { children: ReactNode }) {
       </div>
 
       {/* Main Content Area */}
-      <div className="mt-6 h-[80vh] overflow-y-auto rounded-lg bg-white shadow-sm p-6">
+      <div className="mt-6 h-[80vh] overflow-y-auto rounded-lg bg-white shadow-sm">
         {children}
       </div>
     </div>
