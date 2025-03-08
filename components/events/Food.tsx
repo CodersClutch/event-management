@@ -1,12 +1,13 @@
+import React from "react";
 import { eventsAll } from "@/constants";
 import Common from "./Common";
 
-const EventCard = () => {
+const Food = () => {
   return (
-    <>
+    <div>
       <Common events={eventsAll} />
-    </>
+    </div>
   );
 };
 
-export default EventCard;
+export default Food;
