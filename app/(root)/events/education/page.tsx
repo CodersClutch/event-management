@@ -2,22 +2,25 @@ import React from "react";
 import Image from "next/image";
 import { categories } from "@/constants";
 import Link from "next/link";
-import AllAges from "@/components/TopCategories/AllAges";
+import Teen from "@/components/TopCategories/Teen";
+import Education from "@/components/TopCategories/Edcation";
 
-const imageUrl ="https://img.freepik.com/premium-photo/happy-multiracial-multigeneration-family-spending-leisure-time-yard-sunny-day_13339-309501.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid";
+const imageUrl =
+  "https://img.freepik.com/premium-photo/education-school-knowledge-people-concept-happy-smiling-african-american-student-girl-bachelor-cap-with-books-sitting-table-dreaming-home_380164-109403.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid";
 const Page = () => {
   return (
-    <div className="bg-[#0D0029] space-y-50">
+    <div className="bg-[#0d2e2a] space-y-50">
       {/* mini hero */}
       <div className="pt-[170px] p-4 flex text-white flex-row justify-between px-[120px] items-center">
         <div className="space-y-4">
           <h1 className="text-5xl uppercase font-semibold leading-tight">
-            all ages
+            Education
           </h1>
           <p className="text-sm font-semibold max-w-sm">
-            Discover events suitable for all age groups. Whether you&apos;re
-            looking for family-friendly activities, educational workshops, or
-            fun outings, we have something for everyone to enjoy.
+            Dive into the realm of education with our comprehensive resources
+            and engaging activities. From interactive lessons and workshops to
+            insightful lectures and hands-on experiences, our education section
+            is designed to inspire and empower learners of all ages.
           </p>
         </div>
         <div className="relative w-[500px] h-[300px] rounded-lg overflow-hidden">
@@ -61,7 +64,7 @@ const Page = () => {
       </div>
 
       <div className="pt-16 pb-16">
-        <AllAges />
+        <Education />
       </div>
     </div>
   );

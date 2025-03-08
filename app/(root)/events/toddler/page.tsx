@@ -2,22 +2,24 @@ import React from "react";
 import Image from "next/image";
 import { categories } from "@/constants";
 import Link from "next/link";
-import AllAges from "@/components/TopCategories/AllAges";
+import Arena from "@/components/TopCategories/Arena";
+import Toddler from "@/components/TopCategories/Toddler";
 
-const imageUrl ="https://img.freepik.com/premium-photo/happy-multiracial-multigeneration-family-spending-leisure-time-yard-sunny-day_13339-309501.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid";
+const imageUrl = "https://img.freepik.com/free-photo/kid-playing-with-colorful-wooden-abacus_53876-137649.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid"
 const Page = () => {
   return (
-    <div className="bg-[#0D0029] space-y-50">
+    <div className="bg-[#861c8a] space-y-50">
       {/* mini hero */}
       <div className="pt-[170px] p-4 flex text-white flex-row justify-between px-[120px] items-center">
         <div className="space-y-4">
           <h1 className="text-5xl uppercase font-semibold leading-tight">
-            all ages
+           Toddler Zone
           </h1>
           <p className="text-sm font-semibold max-w-sm">
-            Discover events suitable for all age groups. Whether you&apos;re
-            looking for family-friendly activities, educational workshops, or
-            fun outings, we have something for everyone to enjoy.
+            Discover a world of fun and learning at the Toddler Zone! From
+            interactive play areas and educational activities to engaging
+            performances and delightful experiences, the Toddler Zone is the
+            perfect place for your little ones to explore and grow.{" "}
           </p>
         </div>
         <div className="relative w-[500px] h-[300px] rounded-lg overflow-hidden">
@@ -61,7 +63,7 @@ const Page = () => {
       </div>
 
       <div className="pt-16 pb-16">
-        <AllAges />
+        <Toddler />
       </div>
     </div>
   );

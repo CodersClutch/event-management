@@ -3,8 +3,8 @@ import { events } from "@/constants/events";
 import { BiSad } from "react-icons/bi";
 import Common from "../TabsCategory/Common";
 
-const AllAges = () => {
-  const allowedCategories = ["all ages"];
+const Toddler = () => {
+  const allowedCategories = ["toddler"];
 
   const filteredEvents = events.filter((event) =>
     event.category.some((cat) => allowedCategories.includes(cat))
@@ -13,7 +13,7 @@ const AllAges = () => {
   return (
     <div className="max-w-7xl mx-auto p-6 text-center">
       <p className="uppercase text-6xl font-bold text-start text-white ml-3 pb-4">
-        All Ages
+       toddler Zone
       </p>
       {filteredEvents.length > 0 ? (
         <Common events={filteredEvents} />
@@ -33,4 +33,4 @@ const AllAges = () => {
   );
 };
 
-export default AllAges;
+export default Toddler;

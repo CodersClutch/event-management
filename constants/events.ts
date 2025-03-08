@@ -214,7 +214,7 @@ export const events = [
     },
     {
         id: "BSP-005",
-        image: "https://img.freepik.com/premium-photo/baby-playing-with-sensory-toys_23-2151155123.jpg",
+        image: "https://img.freepik.com/free-photo/portrait-adorable-newborn-babies-from-different-ethnicities_23-2151055094.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid",
         title: "Baby Sensory Playdate",
         date: "Oct 5, 2025 at 9:30 AM",
         location: "88 Playcare Lane, Toronto, ON",
