@@ -1,5 +1,6 @@
 "use client";
 import { ReactNode } from "react";
+import { usePathname } from "next/navigation";
 import {
   HomeIcon,
   CalendarIcon,
@@ -12,6 +13,7 @@ import { useSession } from "next-auth/react";
 
 export default function ProfileLayout({ children }: { children: ReactNode }) {
   const { data: session } = useSession();
+  const pathname = usePathname();
 
   // Navigation links with icons
   const navigationLinks = [
@@ -41,16 +43,20 @@ export default function ProfileLayout({ children }: { children: ReactNode }) {
         <div className="flex justify-center items-center py-4 ">
           {/* Navigation Links with Icons */}
           <nav className="flex items-center space-x-8">
-            {navigationLinks.map((link, index) => (
-              <a
-                key={index}
-                href={link.href}
-                className="flex flex-col items-center text-white font-medium text-sm hover:text-[#FFBD1E] transition-all duration-700 ease-in-out"
-              >
-                <span className="mb-1">{link.icon}</span> {/* Icon */}
-                <span>{link.label}</span> {/* Label */}
-              </a>
-            ))}
+            {navigationLinks.map((link, index) => {
+              const isActive = pathname === link.href;
+              return (
+                <a
+                  key={index}
+                  href={link.href}
+                  className={`flex flex-col items-center text-white font-medium text-sm transition-all duration-700 ease-in-out ${isActive ? "text-[#FFBD1E]" : "hover:text-[#FFBD1E]"
+                    }`}
+                >
+                  <span className="mb-1">{link.icon}</span> {/* Icon */}
+                  <span>{link.label}</span> {/* Label */}
+                </a>
+              );
+            })}
           </nav>
         </div>
       </div>
