@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
 import { eventList } from "@/constants";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
@@ -8,7 +8,6 @@ import { Button } from "../ui/button";
 import { Check } from "lucide-react";
 
 const MyTickets = () => {
-  const [scanResult, setScanResult] = useState(""); // State to store the scanned result
   const ticketRef = useRef(null); // Ref for the ticket element
 
   const handleDownloadTicket = () => {
