@@ -1,6 +1,13 @@
 import React from "react";
 import Image from "next/image";
-import { BarChart, Pencil, Share2, Heart, AlarmClockCheck, Ticket } from "lucide-react";
+import {
+  BarChart,
+  Pencil,
+  Share2,
+  Heart,
+  AlarmClockCheck,
+  Ticket,
+} from "lucide-react";
 import { eventList } from "@/constants";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import Link from "next/link";
@@ -11,7 +18,7 @@ const EventCards = () => {
       <div className="mx-auto grid grid-cols-1 lg:grid-cols-2 gap-y-8">
         {eventList.map((event) => (
           <div
-            key={event.id}
+            key={event?.id}
             className="bg-white rounded-lg border border-gray-100 shadow-md overflow-hidden w-full lg:w-[370px] mx-auto"
           >
             {/* Top row: Author profile, name, and time below */}
@@ -19,7 +26,7 @@ const EventCards = () => {
               <div className="flex items-center space-x-2">
                 <div className="relative w-9 h-9 rounded-full overflow-hidden">
                   <Image
-                    src={event.profileImage}
+                    src={event?.profileImage}
                     alt="User Profile"
                     fill
                     className="object-cover"
@@ -29,11 +36,11 @@ const EventCards = () => {
                   <span className="font-semibold text-[#18212C] text-[1rem]">
                     By You
                   </span>
-                  <span className="block text-[.95rem]">{event.time}</span>
+                  <span className="block text-[.95rem]">{event?.time}</span>
                 </div>
               </div>
               <div>
-                <Link href="#" >
+                <Link href="#">
                   <Pencil className="w-[20px] h-[20px] hover:text-[#FCC628] transition-all duration-500 ease-in-out" />
                 </Link>
               </div>
@@ -44,15 +51,15 @@ const EventCards = () => {
               <DialogTrigger asChild>
                 <div className="relative w-full h-52 overflow-hidden group cursor-pointer">
                   <Image
-                    src={event.eventImage}
-                    alt={event.eventName}
+                    src={event?.eventImage}
+                    alt={event?.eventName}
                     fill
                     className="object-cover cursor-pointer transition-transform duration-300 ease-in-out transform group-hover:scale-110"
                     sizes="(max-width: 768px) 100vw, 50vw"
                     priority
                   />
                   <div className="absolute bottom-0 left-0 pl-5 pb-4 w-full text-white text-lg font-semibold p-2 text-left">
-                    {event.eventName}
+                    {event?.eventName}
                   </div>
                 </div>
               </DialogTrigger>
@@ -60,17 +67,17 @@ const EventCards = () => {
                 <div className="flex flex-col lg:flex-row h-full">
                   <div className="w-full lg:w-3/5 relative h-64 lg:h-[660px]">
                     <Image
-                      src={event.eventImage}
+                      src={event?.eventImage}
                       alt="Music Awards"
                       fill
                       className="object-cover"
                     />
                     <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent flex justify-between items-center">
                       <span className="text-white text-lg md:text-xl font-semibold">
-                        {event.eventName}
+                        {event?.eventName}
                       </span>
                       <button className="bg-yellow-300 text-[#631B72] px-3  md:px-4  rounded-xl py-1 text-sm md:text-base">
-                        {event.category}
+                        {/* {event?.category} */}
                       </button>
                     </div>
                   </div>
@@ -79,7 +86,7 @@ const EventCards = () => {
                     <div className="px-4 md:px-6 pt-4 md:pt-6 border-b">
                       <div className="flex items-center mb-3 md:mb-4">
                         <Image
-                          src={event.profileImage}
+                          src={event?.profileImage}
                           alt="John Doe"
                           width={40}
                           height={40}
@@ -90,17 +97,17 @@ const EventCards = () => {
                             By You
                           </span>
                           <p className="text-xs md:text-sm text-gray-500">
-                            {event.time}
+                            {event?.time}
                           </p>
                         </div>
                         <button className="ml-auto text-gray-500">
-                          <Link href="#" >
+                          <Link href="#">
                             <Pencil className="w-[20px] h-[20px]" />
                           </Link>
                         </button>
                       </div>
                       <p className="text-sm md:text-[1.06rem] text-gray-500 mb-3 md:mb-4">
-                        {event.description}
+                        {event?.description}
                       </p>
                     </div>
 
@@ -109,14 +116,16 @@ const EventCards = () => {
                         <span className="text-base md:text-lg text-[#050305] font-semibold">
                           Date
                         </span>
-                        <p className="text-xs md:text-sm text-gray-500">{event.date}</p>
+                        <p className="text-xs md:text-sm text-gray-500">
+                          {event?.date}
+                        </p>
                       </div>
                       <div>
                         <span className="text-base md:text-lg text-[#050305] font-semibold">
                           Location
                         </span>
                         <p className="text-xs md:text-sm text-gray-500">
-                          {event.location}
+                          {event?.location}
                         </p>
                       </div>
                       <div>
@@ -124,7 +133,7 @@ const EventCards = () => {
                           Tickets
                         </span>
                         <p className="text-xs md:text-sm text-gray-500">
-                          {event.tickets}
+                          {event?.tickets}
                         </p>
                       </div>
                     </div>
@@ -133,13 +142,17 @@ const EventCards = () => {
                       <div className="flex flex-row items-center justify-center gap-3">
                         <AlarmClockCheck className="w-5 h-5 text-gray-800 cursor-pointer hover:text-[#FCC628] transition-all duration-500 ease-in-out" />
                         <div className="flex">
-                          <span className="text-[#E63632]">{event.eventTime}</span>
+                          <span className="text-[#E63632]">
+                            {event?.eventTime}
+                          </span>
                         </div>
                       </div>
                       <div className="flex flex-row items-center justify-center gap-3">
                         <Ticket className="w-5 h-5 text-gray-800 cursor-pointer hover:text-[#FCC628] transition-all duration-500 ease-in-out" />
                         <div className="flex">
-                          <p className="text-[#E63632] text-[1rem] ">{event.price}</p>
+                          <p className="text-[#E63632] text-[1rem] ">
+                            {event?.price}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -147,7 +160,9 @@ const EventCards = () => {
                     <div className="flex flex-wrap justify-between px-4 md:px-6 py-3 md:py-6 items-center gap-2">
                       <div className="flex items-center space-x-1">
                         <Heart className="h-5 w-5  cursor-pointer text-gray-800 hover:text-[#FCC628] transition-all duration-500 ease-in-out" />
-                        <span className="text-[.9rem] text-gray-800">{event.likes}</span>
+                        <span className="text-[.9rem] text-gray-800">
+                          {event?.likes}
+                        </span>
                       </div>
                       <div className="flex items-center space-x-1">
                         <Share2 className="h-5 w-5 cursor-pointer text-gray-800 hover:text-[#FCC628] transition-all duration-500 ease-in-out" />
@@ -166,16 +181,21 @@ const EventCards = () => {
                           </div>
                           <div className="flex items-center justify-between">
                             <span className="text-2xl font-bold text-[#050305]">
-                              {event.ticketsSold}
+                              {event?.ticketsSold}
                             </span>
                             <span className="text-sm md:text-base text-gray-500">
-                              out of {event.totalTickets}
+                              out of {event?.totalTickets}
                             </span>
                           </div>
                           <div className="w-full bg-gray-200 rounded-full h-2.5">
                             <div
                               className="bg-[#FCC628] h-2.5 rounded-full"
-                              style={{ width: `${(event.ticketsSold / event.totalTickets) * 100}%` }}
+                              style={{
+                                width: `${
+                                  (event?.ticketsSold / event?.totalTickets) *
+                                  100
+                                }%`,
+                              }}
                             ></div>
                           </div>
                         </div>
@@ -189,7 +209,7 @@ const EventCards = () => {
                           </div>
                           <div className="flex items-center justify-between">
                             <span className="text-2xl font-bold text-[#050305]">
-                              ${event.revenue.toLocaleString()}
+                              ${event?.revenue.toLocaleString()}
                             </span>
                             <span className="text-sm md:text-base text-gray-500">
                               from ticket sales
@@ -208,19 +228,27 @@ const EventCards = () => {
               {/* Date, Location, Tickets in a single row */}
               <div className="grid grid-cols-3 gap-2 mb-2 px-4 mt-1">
                 <div className="flex flex-col space-y-2">
-                  <span className="font-semibold text-[#18212C] text-[1.08rem]">Date</span>
-                  <span className="text-[.9rem] text-[#84759E]">{event.date}</span>
-                </div>
-                <div className="flex flex-col space-y-2">
-                  <span className="font-semibold text-[#18212C] text-[1.08rem]">Location</span>
+                  <span className="font-semibold text-[#18212C] text-[1.08rem]">
+                    Date
+                  </span>
                   <span className="text-[.9rem] text-[#84759E]">
-                    {event.location}
+                    {event?.date}
                   </span>
                 </div>
                 <div className="flex flex-col space-y-2">
-                  <span className="font-semibold text-[#18212C] text-[1.08rem]">Tickets</span>
+                  <span className="font-semibold text-[#18212C] text-[1.08rem]">
+                    Location
+                  </span>
                   <span className="text-[.9rem] text-[#84759E]">
-                    {event.tickets}
+                    {event?.location}
+                  </span>
+                </div>
+                <div className="flex flex-col space-y-2">
+                  <span className="font-semibold text-[#18212C] text-[1.08rem]">
+                    Tickets
+                  </span>
+                  <span className="text-[.9rem] text-[#84759E]">
+                    {event?.tickets}
                   </span>
                 </div>
               </div>
@@ -230,13 +258,15 @@ const EventCards = () => {
                 <div className="flex flex-row items-center justify-center gap-3">
                   <AlarmClockCheck className="w-5 h-5 text-gray-800 cursor-pointer hover:text-[#FCC628] transition-all duration-500 ease-in-out" />
                   <div className="flex">
-                    <span className="text-[#E63632]">{event.eventTime}</span>
+                    <span className="text-[#E63632]">{event?.eventTime}</span>
                   </div>
                 </div>
                 <div className="flex flex-row items-center justify-center gap-3">
                   <Ticket className="w-5 h-5 text-gray-800 cursor-pointer hover:text-[#FCC628] transition-all duration-500 ease-in-out" />
                   <div className="flex">
-                    <p className="text-[#E63632] text-[1rem] ">{event.price}</p>
+                    <p className="text-[#E63632] text-[1rem] ">
+                      {event?.price}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -246,7 +276,9 @@ const EventCards = () => {
             <div className="px-4 py-3 mt-1 mb-2 flex items-center justify-between text-sm text-gray-500">
               <div className="flex items-center space-x-1">
                 <Heart className="h-5 w-5  cursor-pointer text-gray-800 hover:text-[#FCC628] transition-all duration-500 ease-in-out" />
-                <span className="text-[.9rem] text-gray-800">{event.likes}</span>
+                <span className="text-[.9rem] text-gray-800">
+                  {event?.likes}
+                </span>
               </div>
               <div className="flex items-center space-x-1">
                 <Share2 className="h-5 w-5 cursor-pointer text-gray-800 hover:text-[#FCC628] transition-all duration-500 ease-in-out" />

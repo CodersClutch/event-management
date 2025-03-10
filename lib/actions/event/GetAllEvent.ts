@@ -1,5 +1,7 @@
 "use server";
+import { auth } from "@/auth";
 import { connectDB } from "@/lib/db";
+import { User } from "@/lib/models/auth.model";
 import Event from "@/lib/models/event.model";
 import { EventInterfaceType } from "@/lib/types";
 import { deepConvertToPlainObject } from "@/lib/utils";

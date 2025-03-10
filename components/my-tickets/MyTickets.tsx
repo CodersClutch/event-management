@@ -62,7 +62,7 @@ const MyTickets = () => {
       <div className="mx-auto grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
         {eventList.map((event) => (
           <div
-            key={event.id}
+            key={event?.id}
             className="bg-white rounded-lg border border-gray-100 shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
           >
             {/* Top row: Author profile, name, and time below */}
@@ -70,17 +70,17 @@ const MyTickets = () => {
               <div className="flex items-center space-x-2">
                 <div className="relative w-9 h-9 rounded-full overflow-hidden">
                   <Image
-                    src={event.profileImage || "/default-profile.png"} // Fallback image
-                    alt={`${event.author}'s profile`}
+                    src={event?.profileImage || "/default-profile.png"} // Fallback image
+                    alt={`${event?.author}'s profile`}
                     fill
                     className="object-cover"
                   />
                 </div>
                 <div className="flex flex-col">
                   <span className="font-semibold text-[#18212C] text-[1rem]">
-                    By {event.author}
+                    By {event?.author}
                   </span>
-                  <span className="block text-[.95rem]">{event.time}</span>
+                  <span className="block text-[.95rem]">{event?.time}</span>
                 </div>
               </div>
             </div>
@@ -90,15 +90,15 @@ const MyTickets = () => {
               <DialogTrigger asChild>
                 <div className="relative w-full h-52 overflow-hidden group cursor-pointer">
                   <Image
-                    src={event.eventImage || "/default-event.png"} // Fallback image
-                    alt={event.eventName}
+                    src={event?.eventImage || "/default-event?.png"} // Fallback image
+                    alt={event?.eventName}
                     fill
                     className="object-cover cursor-pointer transition-transform duration-300 ease-in-out transform group-hover:scale-110"
                     sizes="(max-width: 768px) 100vw, 50vw"
                     priority
                   />
                   <div className="absolute flex flex-col gap-2 bottom-0 left-0  w-full text-white text-lg font-semibold p-2 text-left bg-gradient-to-t from-black/70 to-transparent">
-                    {event.eventName}
+                    {event?.eventName}
                     <Button className="font-bold text-white">
                       View Ticket
                     </Button>
@@ -110,7 +110,7 @@ const MyTickets = () => {
                   {/* Ticket Header */}
                   <div className="ticket-header">
                     <h2 className="text-lg pb-2 font-extrabold text-[#18212C]">
-                      {event.eventName}
+                      {event?.eventName}
                     </h2>
                   </div>
 
@@ -120,39 +120,39 @@ const MyTickets = () => {
                       <span className="font-bold text-[#18212C] w-24">
                         Date:
                       </span>
-                      <span className="text-gray-700">{event.date}</span>
+                      <span className="text-gray-700">{event?.date}</span>
                     </div>
                     <div className="flex items-center mb-1">
                       <span className="font-bold text-[#18212C] w-24">
                         Time:
                       </span>
-                      <span className="text-gray-700">{event.time}</span>
+                      <span className="text-gray-700">{event?.time}</span>
                     </div>
                     <div className="flex items-center mb-2">
                       <span className="font-bold text-[#18212C] w-24">
                         Price:
                       </span>
-                      <span className="text-gray-700">{event.price}</span>
+                      <span className="text-gray-700">{event?.price}</span>
                     </div>
                     <div className="flex items-center mb-1">
                       <span className="font-bold text-[#18212C] w-24">
                         Location:
                       </span>
-                      <span className="text-gray-700">{event.location}</span>
+                      <span className="text-gray-700">{event?.location}</span>
                     </div>
                     <div className="flex items-center mb-2">
                       <span className="font-bold text-[#18212C] w-24">
                         Ticket ID:
                       </span>
-                      <span className="text-gray-700">{event.ticketId}</span>
+                      <span className="text-gray-700">{event?.ticketId}</span>
                     </div>
                     <div className="flex items-center mb-1">
                       <span className="font-bold text-[#18212C] w-24">
                         Ticket Type:
                       </span>
-                      <span className="text-gray-700">
-                        {event.ticketCatagory}
-                      </span>
+                      {/* <span className="text-gray-700">
+                        {event?.ticketCatagory}
+                      </span> */}
                     </div>
                   </div>
 
@@ -202,7 +202,7 @@ const MyTickets = () => {
                     Date
                   </span>
                   <span className="text-[.9rem] text-[#84759E]">
-                    {event.date}
+                    {event?.date}
                   </span>
                 </div>
                 <div className="flex flex-col space-y-2">
@@ -210,7 +210,7 @@ const MyTickets = () => {
                     Location
                   </span>
                   <span className="text-[.9rem] text-[#84759E]">
-                    {event.location}
+                    {event?.location}
                   </span>
                 </div>
                 <div className="flex flex-col space-y-2">
@@ -218,7 +218,7 @@ const MyTickets = () => {
                     Tickets
                   </span>
                   <span className="text-[.9rem] text-[#84759E]">
-                    {event.tickets}
+                    {event?.tickets}
                   </span>
                 </div>
               </div>
