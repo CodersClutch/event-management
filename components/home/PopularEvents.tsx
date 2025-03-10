@@ -4,18 +4,16 @@ import { ArrowUpRight } from 'lucide-react';
 
 const PopularEvents = () => {
   const categories = [
-    'Charity & Causes',
-    'Hobbies & Interests',
-    'Educational Events',
-    'Seasonal & Holiday',
-    'STEM & Coding',
-    'Academic Support',
-    'Homeschool-Friendly',
-    'Tutoring & Test Prep',
-    'STEM & Coding',
-    'Special Needs & Inclusive Learning'
-
+    { name: 'Charity & Causes', url: '/vibrant/charity-causes' },
+    { name: 'Hobbies & Interests', url: '/vibrant/hobbies-interests' },
+    { name: 'Educational Events', url: '/vibrant/educational' },
+    { name: 'Seasonal & Holiday', url: '/vibrant/seasonal-holiday' },
+    { name: 'STEM & Coding', url: '/vibrant/stem-coding' },
+    { name: 'Homeschool-Friendly', url: '/vibrant/homeschool-friendly' },
+    { name: 'Tutoring & Test Prep', url: '/vibrant/tutoring-test-prep' },
+    { name: 'Special Needs & Inclusive Learning', url: '/vibrant/special-needs' }
   ];
+
 
   return (
     <section className="bg-gradient-to-b from-gray-50/50 to-white py-16 md:py-24 px-4 sm:px-6 lg:px-8">
@@ -30,15 +28,15 @@ const PopularEvents = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
-          {categories.map((category) => (
+          {categories.map(({ name, url }) => (
             <Link
-              key={category}
-              href="#"
+              key={name}
+              href={url}
               className="group relative bg-white hover:bg-gradient-to-b from-[#A22D9E]  hover:bg-gradient-to-t hover:from-[#A22D9E] hover:to-[#F34CF1] p-4 rounded-xl border border-gray-200 hover:border-transparent transition-all duration-300 ease-out hover:shadow-lg hover:-translate-y-1"
             >
               <div className="flex items-center justify-between">
                 <span className="font-medium text-gray-800 truncate whitespace-nowrap group-hover:text-white transition-colors">
-                  {category}
+                  {name}
                 </span>
                 <ArrowUpRight className="w-5 h-5 text-gray-400 group-hover:text-white group-hover:rotate-45 transition-all" />
               </div>

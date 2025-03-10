@@ -10,6 +10,7 @@ interface Event {
   title: string;
   date: string;
   location: string;
+  price: number;
 }
 
 const Common = ({ events }: { events: Event[] }) => {
@@ -40,7 +41,7 @@ const Common = ({ events }: { events: Event[] }) => {
                   {event.location}
                 </p>
                 <div className="flex justify-between items-center bg-blue-200 rounded-lg p-4 mt-4">
-                  <span className="text-[#D942D6] font-bold">Free</span>
+                  <span className="text-[#D942D6] font-bold">${event.price}</span>
                   <button className="text-[#D942D6] font-bold border-l-2 pl-2 border-[#D942D6]">
                     Buy Now
                   </button>

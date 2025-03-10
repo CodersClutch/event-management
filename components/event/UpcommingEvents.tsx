@@ -22,7 +22,7 @@ const UpcommingEvents = async () => {
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 h-full">
           <Timer className="w-3=5 h-5 text-yellow-600" />
-          <CardTitle>Upcomming Deadline</CardTitle>
+          <CardTitle className="text-2xl">Upcomming Deadline</CardTitle>
           <Button variant={"link"}>View all</Button>
         </CardHeader>
         <Separator />

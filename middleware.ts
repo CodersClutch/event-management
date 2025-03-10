@@ -14,7 +14,6 @@ export default withAuthMiddleware((req) => {
     nextUrl.pathname.startsWith(route)
   );
   const isHomePage = nextUrl.pathname === "/";
-  const isProfileRoute = nextUrl.pathname.startsWith("/profile");
 
   if (isApiAuthRoute) {
     return undefined; // Allow API auth routes to proceed
