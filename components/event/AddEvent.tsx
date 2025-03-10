@@ -76,7 +76,7 @@ const AddEvent = () => {
           Add Event <Plus className="h-3.5 w-3.5" />
         </Button>
       </DialogTrigger>
-      <DialogContent className=" overflow-x-auto">
+      <DialogContent className="overflow-visible">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="">
             <DialogHeader>
@@ -122,11 +122,11 @@ const AddEvent = () => {
                               ) : (
                                 <span>Pick a date</span>
                               )}
-                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                              <CalendarIcon className="ml-auto h-4 w-4 z-[9999]" />
                             </Button>
                           </FormControl>
                         </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0" align="start">
+                        <PopoverContent>
                           <Calendar
                             mode="single"
                             selected={field.value}

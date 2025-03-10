@@ -282,3 +282,26 @@ export const StatiEventByUser = async (status: string, limit: number) => {
     return { status: 500, message: "Error getting data" };
   }
 };
+
+// if i am login in as hosts fetch event i created else if am login as an Attendies fetch event i am register to
+
+export const getEventsByUserId = async () => {
+  const session = await auth();
+
+  try {
+    const events = await Event.find({ createdBy: session?.user._id });
+    // .limit(limit)
+    // .sort({ createdAt: -1 }); // Sort by newest first
+
+    if (!events) {
+      return { status: 404, message: "No events found" };
+    }
+
+    // console.log(events.length);
+
+    return { status: 200, data: events };
+  } catch (error) {
+    console.error("Error fetching events:", error);
+    return { status: 500, message: "Error getting data" };
+  }
+};
