@@ -25,7 +25,7 @@ const StatsCard: React.FC<StatsCardProps> = ({
       <Separator />
       <CardContent>
         <div className="text-xl font-bold pt-2">{value}</div>
-        <p className="text-2xl text-muted-foreground">{percentage}</p>
+        <p className="text text-muted-foreground">{percentage}</p>
       </CardContent>
     </Card>
   );
