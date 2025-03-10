@@ -10,14 +10,15 @@ export default withAuthMiddleware((req) => {
 
   const isApiAuthRoute = nextUrl.pathname.startsWith(routes.apiAuthPrefix);
   const isAuthRoute = routes.auth.includes(nextUrl.pathname);
-  const isPublicRoute = routes.public.includes(nextUrl.pathname);
+  const isPublicRoute = routes.public.some((route) =>
+    nextUrl.pathname.startsWith(route)
+  );
   const isHomePage = nextUrl.pathname === "/";
   const isProfileRoute = nextUrl.pathname.startsWith("/profile");
 
   if (isApiAuthRoute) {
     return undefined; // Allow API auth routes to proceed
   }
-
   if (isAuthRoute) {
     // Redirect logged-in users away from auth routes to the homepage
     if (isLoggedIn) {
@@ -26,19 +27,21 @@ export default withAuthMiddleware((req) => {
     return undefined; // Allow non-logged-in users to access auth routes
   }
 
+  // Allow public routes without authentication
+  if (isPublicRoute) {
+    return undefined;
+  }
   // Protect /profile and its sub-routes
   if (isProfileRoute && !isLoggedIn) {
-    // Redirect non-logged-in users to the homepage if they try to access /profile
     return Response.redirect(new URL(routes.defaultLoginRedirect, nextUrl));
   }
 
-  if (!isPublicRoute && !isLoggedIn && !isHomePage) {
-    // Redirect non-logged-in users to the homepage if they try to access a non-public route
+  // Redirect non-logged-in users to the homepage if they try to access a protected route
+  if (!isLoggedIn && !isHomePage) {
     return Response.redirect(new URL(routes.defaultLoginRedirect, nextUrl));
   }
 
-  // Allow the request to proceed if the user is on the homepage or accessing a public route
-  return undefined;
+  return undefined; // Allow the request to proceed
 });
 
 export const config = {

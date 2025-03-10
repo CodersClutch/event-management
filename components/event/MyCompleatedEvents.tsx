@@ -12,7 +12,7 @@ const MyCompleatedEvents = async () => {
         icon={<Timer className="w-7 h-7 text-primary" />}
         title={"Compleated Events"}
         value={response?.data?.completedEvents?.length ?? 0}
-        percentage={"+20.1% from last month"}
+        percentage={" from all time"}
       />
     </div>
   );
