@@ -1,8 +1,9 @@
 import React from "react";
 import Image from "next/image";
-import { Share, BarChart } from "lucide-react";
+import { Share, BarChart, Pencil, Share2, Heart, AlarmClockCheck, Ticket } from "lucide-react";
 import { eventList } from "@/constants";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import Link from "next/link";
 
 const EventCards = () => {
   return (
@@ -14,7 +15,7 @@ const EventCards = () => {
             className="bg-white rounded-lg border border-gray-100 shadow-md overflow-hidden w-full lg:w-[370px] mx-auto"
           >
             {/* Top row: Author profile, name, and time below */}
-            <div className="p-4 text-sm text-gray-500">
+            <div className="p-4 flex justify-between items-center text-sm text-gray-500">
               <div className="flex items-center space-x-2">
                 <div className="relative w-9 h-9 rounded-full overflow-hidden">
                   <Image
@@ -26,10 +27,15 @@ const EventCards = () => {
                 </div>
                 <div className="flex flex-col">
                   <span className="font-semibold text-[#18212C] text-[1rem]">
-                    By {event.author}
+                    By You
                   </span>
                   <span className="block text-[.95rem]">{event.time}</span>
                 </div>
+              </div>
+              <div>
+                <Link href="#" >
+                  <Pencil className="w-[20px] h-[20px] hover:text-[#FCC628] transition-all duration-500 ease-in-out" />
+                </Link>
               </div>
             </div>
 
@@ -81,31 +87,24 @@ const EventCards = () => {
                         />
                         <div>
                           <span className="text-base md:text-[1.08rem] font-semibold text-[#050305]">
-                            By {event.author}
+                            By You
                           </span>
                           <p className="text-xs md:text-sm text-gray-500">
                             {event.time}
                           </p>
                         </div>
                         <button className="ml-auto text-gray-500">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                          >
-                            <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
-                          </svg>
+                          <Link href="#" >
+                            <Pencil className="w-[20px] h-[20px]" />
+                          </Link>
                         </button>
                       </div>
                       <p className="text-sm md:text-[1.06rem] text-gray-500 mb-3 md:mb-4">
-                        Sed egestas mauris sit amet orci dignissim, vel
-                        pulvinar nisi faucibus. Duis gravida sem eu magna
-                        ornare, quis elementum lacus accumsan.
+                        {event.description}
                       </p>
                     </div>
 
-                    <div className="px-4 md:px-6 py-2 md:py-3 border-b grid grid-cols-3 gap-2">
+                    <div className="px-4 md:px-6 py-2 md:py-4 border-b grid grid-cols-3 gap-2">
                       <div>
                         <span className="text-base md:text-lg text-[#050305] font-semibold">
                           Date
@@ -130,120 +129,73 @@ const EventCards = () => {
                       </div>
                     </div>
 
-                    <div className="flex items-center px-4 md:px-6 py-2 md:py-4 border-b bg-[#F9F9F9]">
-                      <span className="text-base md:text-lg font-semibold mr-2">
-                        Sponsor by
-                      </span>
-                      <div className="flex gap-1 overflow-x-auto">
-                        {event.sponsors.map((src, index) => (
-                          <div
-                            key={index}
-                            className="relative w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-white shrink-0"
-                          >
-                            <Image
-                              src={src}
-                              alt={`Sponsor ${index + 1}`}
-                              fill
-                              className="object-cover rounded-full"
-                            />
-                          </div>
-                        ))}
+                    <div className="flex items-center justify-between px-4 md:px-6 py-2 md:py-5 border-b bg-[#F9F9F9]">
+                      <div className="flex flex-row items-center justify-center gap-3">
+                        <AlarmClockCheck className="w-5 h-5 text-gray-800 cursor-pointer hover:text-[#FCC628] transition-all duration-500 ease-in-out" />
+                        <div className="flex">
+                          <span className="text-[#E63632]">{event.eventTime}</span>
+                        </div>
                       </div>
-                      <span className="ml-auto text-[#E63632] text-sm md:text-base px-2 py-1">
-                      {event.price}
-                      </span>
+                      <div className="flex flex-row items-center justify-center gap-3">
+                        <Ticket className="w-5 h-5 text-gray-800 cursor-pointer hover:text-[#FCC628] transition-all duration-500 ease-in-out" />
+                        <div className="flex">
+                          <p className="text-[#E63632] text-[1rem] ">{event.price}</p>
+                        </div>
+                      </div>
                     </div>
 
-                    <div className="flex flex-wrap justify-between px-4 md:px-6 py-3 md:py-4 items-center gap-2">
+                    <div className="flex flex-wrap justify-between px-4 md:px-6 py-3 md:py-6 items-center gap-2">
                       <div className="flex items-center space-x-1">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-5 w-5 fill-current text-gray-400 hover:text-red-500"
-                          viewBox="0 0 20 20"
-                        >
-                          <path d="M3.172 5.172a4.004 4.004 0 015.656 0L10 6.343l1.172-1.171a4.004 4.004 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" />
-                        </svg>
-                        <span>126</span>
+                        <Heart className="h-5 w-5  cursor-pointer text-gray-800 hover:text-[#FCC628] transition-all duration-500 ease-in-out" />
+                        <span className="text-[.9rem] text-gray-800">{event.likes}</span>
                       </div>
                       <div className="flex items-center space-x-1">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-5 w-5 fill-current text-gray-400 hover:text-blue-500"
-                          viewBox="0 0 20 20"
-                        >
-                          <path d="M18 10c0 3.866-3.582 7-8 7-1.15 0-2.256-.216-3.253-.6L3.814 17l1.125-2.996C4.342 13.089 4 11.58 4 10c0-3.866 3.134-7 7-7s7 3.134 7 7z" />
-                        </svg>
-                        <span>03</span>
+                        <Share2 className="h-5 w-5 cursor-pointer text-gray-800 hover:text-[#FCC628] transition-all duration-500 ease-in-out" />
                       </div>
-                      <div className="flex items-center space-x-1">
-                        <Share className="h-5 w-5 fill-current text-gray-400 hover:text-blue-500" />
-                      </div>
-                      <button className="flex items-center space-x-1 hover:text-gray-700">
-                        <BarChart className="h-5 w-5 fill-current text-gray-400 hover:text-blue-500" />
-                        <span className="text-sm md:text-base">Insights</span>
-                      </button>
                     </div>
 
-                    <div className="container overflow-y-auto">
-                      <div className="border-b px-4 md:px-6">
-                        <div className="flex items-center mb-3 md:mb-4">
-                          <Image
-                            src="https://tyovent-html.tortoizthemes.com/tyovent/assets/images/modal/author1.png"
-                            alt="John Doe"
-                            width={40}
-                            height={40}
-                            className="rounded-full mr-3"
-                          />
-                          <div>
-                            <span className="text-base md:text-[1.08rem] font-semibold">
-                              By John Doe
+                    <div className="container overflow-y-auto bg-[#F9F9F9] px-4 md:px-6 py-7">
+                      {/* analytics of total tickets sold for the particular event */}
+                      <div className="">
+                        <div className="flex flex-col space-y-4">
+                          <div className="flex items-center justify-between">
+                            <span className="text-lg font-semibold text-[#18212C]">
+                              Tickets Sold
                             </span>
-                            <p className="text-xs md:text-sm text-gray-500">5 min ago</p>
+                            <BarChart className="w-6 h-6 text-[#FCC628]" />
                           </div>
-                          <button className="ml-auto text-gray-500">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5"
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                            >
-                              <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
-                            </svg>
-                          </button>
-                        </div>
-                        <p className="text-xs md:text-sm text-gray-500 mb-3 md:mb-4">
-                          Integer id elementum tortor. Mauris quis. I don&apos;t know what this means.
-                        </p>
-                      </div>
-                      <div className="border-b px-4 md:px-6 pt-2 md:pt-3">
-                        <div className="flex items-center mb-3 md:mb-4">
-                          <Image
-                            src="https://tyovent-html.tortoizthemes.com/tyovent/assets/images/modal/author1.png"
-                            alt="John Doe"
-                            width={40}
-                            height={40}
-                            className="rounded-full mr-3"
-                          />
-                          <div>
-                            <span className="text-base md:text-[1.08rem] font-semibold">
-                              By John Doe
+                          <div className="flex items-center justify-between">
+                            <span className="text-2xl font-bold text-[#050305]">
+                              {event.ticketsSold}
                             </span>
-                            <p className="text-xs md:text-sm text-gray-500">5 min ago</p>
+                            <span className="text-sm md:text-base text-gray-500">
+                              out of {event.totalTickets}
+                            </span>
                           </div>
-                          <button className="ml-auto text-gray-500">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5"
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                            >
-                              <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
-                            </svg>
-                          </button>
+                          <div className="w-full bg-gray-200 rounded-full h-2.5">
+                            <div
+                              className="bg-[#FCC628] h-2.5 rounded-full"
+                              style={{ width: `${(event.ticketsSold / event.totalTickets) * 100}%` }}
+                            ></div>
+                          </div>
                         </div>
-                        <p className="text-xs md:text-sm text-gray-500 mb-3 md:mb-4">
-                          I don&apos;t know what this means. Integer id elementum tortor. Mauris quis.
-                        </p>
+
+                        <div className="flex flex-col space-y-4 mt-6">
+                          <div className="flex items-center justify-between">
+                            <span className="text-lg font-semibold text-[#18212C]">
+                              Revenue Generated
+                            </span>
+                            <BarChart className="w-6 h-6 text-[#FCC628]" />
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <span className="text-2xl font-bold text-[#050305]">
+                              ${event.revenue.toLocaleString()}
+                            </span>
+                            <span className="text-sm md:text-base text-gray-500">
+                              from ticket sales
+                            </span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -276,58 +228,29 @@ const EventCards = () => {
               {/* Sponsor */}
               <div className="flex items-center justify-between mt-5 text-sm bg-[#F9F9F9] px-4 py-4">
                 <div className="flex flex-row items-center justify-center gap-3">
-                  <span className="text-[#212529] text-[1.08rem] font-semibold">
-                    Sponsor by
-                  </span>
+                  <AlarmClockCheck className="w-5 h-5 text-gray-800 cursor-pointer hover:text-[#FCC628] transition-all duration-500 ease-in-out" />
                   <div className="flex">
-                    {event.sponsors.map((src, index) => (
-                      <div
-                        key={index}
-                        className="relative w-10 h-10 rounded-full border-2 border-white overflow-hidden first:ml-0"
-                      >
-                        <Image
-                          src={src}
-                          alt={`Sponsor ${index + 1}`}
-                          fill
-                          className="object-cover rounded-full"
-                        />
-                      </div>
-                    ))}
+                    <span className="text-[#E63632]">{event.eventTime}</span>
                   </div>
                 </div>
-                <p className="text-[#E63632] text-[1.04rem] ">{event.price}</p>
+                <div className="flex flex-row items-center justify-center gap-3">
+                  <Ticket className="w-5 h-5 text-gray-800 cursor-pointer hover:text-[#FCC628] transition-all duration-500 ease-in-out" />
+                  <div className="flex">
+                    <p className="text-[#E63632] text-[1rem] ">{event.price}</p>
+                  </div>
+                </div>
               </div>
             </div>
 
             {/* Footer: Likes, Comments, Insights */}
             <div className="px-4 py-3 mt-1 mb-2 flex items-center justify-between text-sm text-gray-500">
               <div className="flex items-center space-x-1">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 fill-current text-gray-400 hover:text-red-500"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M3.172 5.172a4.004 4.004 0 015.656 0L10 6.343l1.172-1.171a4.004 4.004 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" />
-                </svg>
+                <Heart className="h-5 w-5  cursor-pointer text-gray-800 hover:text-[#FCC628] transition-all duration-500 ease-in-out" />
                 <span className="text-[.9rem] text-gray-800">{event.likes}</span>
               </div>
               <div className="flex items-center space-x-1">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 fill-current text-gray-400 hover:text-blue-500"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M18 10c0 3.866-3.582 7-8 7-1.15 0-2.256-.216-3.253-.6L3.814 17l1.125-2.996C4.342 13.089 4 11.58 4 10c0-3.866 3.134-7 7-7s7 3.134 7 7z" />
-                </svg>
-                <span className="text-[.9rem] text-gray-800">{event.comments}</span>
+                <Share2 className="h-5 w-5 cursor-pointer text-gray-800 hover:text-[#FCC628] transition-all duration-500 ease-in-out" />
               </div>
-              <div className="flex items-center space-x-1">
-                <Share className="h-5 w-5 fill-current text-gray-400 hover:text-blue-500" />
-              </div>
-              <button className="flex flex-row hover:text-gray-700">
-                <BarChart className="h-4 w-4 fill-current text-gray-400 text-[.9rem]  hover:text-blue-500" />
-                <span className="text-gray-800"> Insights</span>
-              </button>
             </div>
           </div>
         ))}

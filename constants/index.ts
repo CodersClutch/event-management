@@ -608,12 +608,16 @@ export const eventList = [
     ticketCatagory: "All Age & Family",
     author: "John Doe",
     time: "5 min ago",
+    eventTime: "3:00 PM",
     profileImage: "https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/event-head.png",
     eventImage: "https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/event-main.jpg",
     eventName: "Tech Conference 2025",
     date: "June 16, 2025",
     location: "New York",
     tickets: "Available 26/100",
+    ticketsSold: 26,
+    totalTickets: 100,
+    revenue: 0, // Free event, so revenue is 0
     sponsors: [
       "https://img.freepik.com/free-photo/confident-business-woman-portrait-smiling-face_53876-137693.jpg",
       "https://img.freepik.com/free-photo/casual-young-african-man-smiling-isolated-white_93675-128895.jpg",
@@ -623,17 +627,22 @@ export const eventList = [
     price: "Free",
     likes: 126,
     comments: 3,
+    description: "Join industry leaders and innovators at Tech Conference 2025, where cutting-edge technologies, AI advancements, and networking opportunities await. Stay ahead in the world of technology!"
   },
   {
     id: 2,
     author: "Jane Smith",
     time: "1 hour ago",
-    profileImage: "https://randomuser.me/api/portraits/women/44.jpg",
+    eventTime: "9:00 PM",
+    profileImage: "https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/event-head.png",
     eventImage: "https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/event-main2.jpg",
     eventName: "Music Festival",
     date: "July 22, 2025",
     location: "Los Angeles",
     tickets: "Available 50/200",
+    ticketsSold: 50,
+    totalTickets: 200,
+    revenue: 1000, // Assuming $20 per ticket
     sponsors: [
       "https://randomuser.me/api/portraits/men/22.jpg",
       "https://randomuser.me/api/portraits/women/30.jpg",
@@ -642,18 +651,23 @@ export const eventList = [
     ],
     price: "$20",
     likes: 250,
-    comments: 10
+    comments: 10,
+    description: "Experience an electrifying night of live music, featuring top artists and bands from around the world. Dance, sing, and enjoy the ultimate summer music festival in Los Angeles!"
   },
   {
     id: 3,
     author: "Alex Johnson",
     time: "3 days ago",
-    profileImage: "https://randomuser.me/api/portraits/men/47.jpg",
+    eventTime: "12:00 PM",
+    profileImage: "https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/event-head.png",
     eventImage: "https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/event-main3.jpg",
     eventName: "Startup Meetup",
     date: "August 5, 2025",
     location: "San Francisco",
     tickets: "Available 10/50",
+    ticketsSold: 10,
+    totalTickets: 50,
+    revenue: 0, // Free event, so revenue is 0
     sponsors: [
       "https://randomuser.me/api/portraits/women/15.jpg",
       "https://randomuser.me/api/portraits/men/20.jpg",
@@ -662,18 +676,23 @@ export const eventList = [
     ],
     price: "Free",
     likes: 85,
-    comments: 5
+    comments: 5,
+    description: "Connect with startup founders, investors, and mentors in an inspiring environment. Discover the latest trends, pitch your ideas, and network with like-minded entrepreneurs."
   },
   {
     id: 4,
     author: "Emily Davis",
     time: "2 hours ago",
-    profileImage: "https://randomuser.me/api/portraits/women/29.jpg",
+    eventTime: "8:00 AM",
+    profileImage: "https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/event-head.png",
     eventImage: "https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/event-main4.jpg",
     eventName: "Art Exhibition",
     date: "Sept 12, 2025",
     location: "Paris",
     tickets: "Sold Out",
+    ticketsSold: 100, // Assuming all tickets are sold
+    totalTickets: 100,
+    revenue: 1500, // Assuming $15 per ticket
     sponsors: [
       "https://randomuser.me/api/portraits/men/40.jpg",
       "https://randomuser.me/api/portraits/women/50.jpg",
@@ -682,106 +701,7 @@ export const eventList = [
     ],
     price: "$15",
     likes: 340,
-    comments: 20
-  },
-  {
-    id: 4,
-    author: "Emily Davis",
-    time: "2 hours ago",
-    profileImage: "https://randomuser.me/api/portraits/women/29.jpg",
-    eventImage: "https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/event-main4.jpg",
-    eventName: "Art Exhibition",
-    date: "Sept 12, 2025",
-    location: "Paris",
-    tickets: "Sold Out",
-    sponsors: [
-      "https://randomuser.me/api/portraits/men/40.jpg",
-      "https://randomuser.me/api/portraits/women/50.jpg",
-      "https://randomuser.me/api/portraits/men/35.jpg",
-      "https://randomuser.me/api/portraits/women/61.jpg"
-    ],
-    price: "$15",
-    likes: 340,
-    comments: 20
-  },
-  {
-    id: 4,
-    author: "Emily Davis",
-    time: "2 hours ago",
-    profileImage: "https://randomuser.me/api/portraits/women/29.jpg",
-    eventImage: "https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/event-main4.jpg",
-    eventName: "Art Exhibition",
-    date: "Sept 12, 2025",
-    location: "Paris",
-    tickets: "Sold Out",
-    sponsors: [
-      "https://randomuser.me/api/portraits/men/40.jpg",
-      "https://randomuser.me/api/portraits/women/50.jpg",
-      "https://randomuser.me/api/portraits/men/35.jpg",
-      "https://randomuser.me/api/portraits/women/61.jpg"
-    ],
-    price: "$15",
-    likes: 340,
-    comments: 20
-  },
-  {
-    id: 4,
-    author: "Emily Davis",
-    time: "2 hours ago",
-    profileImage: "https://randomuser.me/api/portraits/women/29.jpg",
-    eventImage: "https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/event-main4.jpg",
-    eventName: "Art Exhibition",
-    date: "Sept 12, 2025",
-    location: "Paris",
-    tickets: "Sold Out",
-    sponsors: [
-      "https://randomuser.me/api/portraits/men/40.jpg",
-      "https://randomuser.me/api/portraits/women/50.jpg",
-      "https://randomuser.me/api/portraits/men/35.jpg",
-      "https://randomuser.me/api/portraits/women/61.jpg"
-    ],
-    price: "$15",
-    likes: 340,
-    comments: 20
-  },
-  {
-    id: 4,
-    author: "Emily Davis",
-    time: "2 hours ago",
-    profileImage: "https://randomuser.me/api/portraits/women/29.jpg",
-    eventImage: "https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/event-main4.jpg",
-    eventName: "Art Exhibition",
-    date: "Sept 12, 2025",
-    location: "Paris",
-    tickets: "Sold Out",
-    sponsors: [
-      "https://randomuser.me/api/portraits/men/40.jpg",
-      "https://randomuser.me/api/portraits/women/50.jpg",
-      "https://randomuser.me/api/portraits/men/35.jpg",
-      "https://randomuser.me/api/portraits/women/61.jpg"
-    ],
-    price: "$15",
-    likes: 340,
-    comments: 20
-  },
-  {
-    id: 4,
-    author: "Emily Davis",
-    time: "2 hours ago",
-    profileImage: "https://randomuser.me/api/portraits/women/29.jpg",
-    eventImage: "https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/event-main4.jpg",
-    eventName: "Art Exhibition",
-    date: "Sept 12, 2025",
-    location: "Paris",
-    tickets: "Sold Out",
-    sponsors: [
-      "https://randomuser.me/api/portraits/men/40.jpg",
-      "https://randomuser.me/api/portraits/women/50.jpg",
-      "https://randomuser.me/api/portraits/men/35.jpg",
-      "https://randomuser.me/api/portraits/women/61.jpg"
-    ],
-    price: "$15",
-    likes: 340,
-    comments: 20
+    comments: 20,
+    description: "Immerse yourself in a world of creativity and artistic expression. This exhibition showcases works from renowned and emerging artists, bringing together a diverse range of styles and mediums."
   },
 ];
