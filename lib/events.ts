@@ -29,5 +29,6 @@ export interface Event {
     imageUrl: string;
   }[];
   category: string[];
+  specialDeal: boolean;
 }
 
