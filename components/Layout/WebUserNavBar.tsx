@@ -11,18 +11,19 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { logout } from "@/lib/actions/auth/Signout";
-import { routes } from "@/routes";
+// import { routes } from "@/routes";
 import AddEvent from "../event/AddEvent";
+import { useSession } from "next-auth/react";
 
 const WebUserNavBar = () => {
-  const { data: session } = useSession();
+  const { data: session } = useSession({ required: true });
   const handleClick = async () => {
     await logout();
     window.location.assign("/");
   };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -41,15 +42,15 @@ const WebUserNavBar = () => {
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium leading-none">
-              {session?.user?.firstName +
+              {session?.user.name +
                 " " +
                 " " +
-                session?.user?.initial +
+                session?.user.initial +
                 " " +
-                session?.user?.lastName}
+                session?.user.lastName}
             </p>
             <p className="text-xs leading-none text-muted-foreground">
-              {session?.user?.email}
+              {session?.user.email}
             </p>
           </div>
         </DropdownMenuLabel>
