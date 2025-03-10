@@ -1,15 +1,12 @@
+import { auth } from "@/auth";
 import HostNetSale from "@/components/dashboard-v2/HostNetSale";
 import TicketsCard from "@/components/dashboard-v2/TicketsCard";
 import TotalSeat from "@/components/dashboard-v2/TotalSeat";
 import CancelledEventsLength from "@/components/event/CancelledEventsLength";
 import CompletedEventLength from "@/components/event/CompletedEventLength";
-import MyCancelledEvents from "@/components/event/MyCancelledEvents";
-import MyCompleatedEvents from "@/components/event/MyCompleatedEvents";
-import MyRecentCompleatedEvents from "@/components/event/MyRecentCompleatedEvents";
-import MyRecentUpcommingEvents from "@/components/event/MyRecentUpcommingEvents";
-import MyUpcommingEvent from "@/components/event/MyUpcommingEvent";
 import RecentCompleatedEvents from "@/components/event/RecentCompleatedEvents";
 import UpcommingEvents from "@/components/event/UpcommingEvents";
+import UpcommingEventsLength from "@/components/event/UpcommingEventsLength";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Suspense } from "react";
 
@@ -24,6 +21,8 @@ const SkeletonLoader = ({
 };
 
 const Home = async () => {
+  const session = await auth();
+
   return (
     <div className="p-4 flex justify-center">
       {/* Main Container with Centered Content */}
@@ -37,37 +36,43 @@ const Home = async () => {
             {/* Event Stats Grid */}
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               <Suspense fallback={<SkeletonLoader count={3} />}>
-                <MyCompleatedEvents />
-                <MyCancelledEvents />
-                <MyUpcommingEvent />
+                <UpcommingEventsLength />
+                <CancelledEventsLength />
+                <CompletedEventLength />
               </Suspense>
             </div>
 
             {/* Host Net Sale Grid */}
-            <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-2">
-              {[1, 2].map((_, index) => (
-                <Suspense key={index} fallback={<SkeletonLoader />}>
-                  <HostNetSale />
-                </Suspense>
-              ))}
-            </div>
+
+            {session?.user.role.name === "Attendees" ? null : (
+              <>
+                <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-2">
+                  {[1, 2].map((_, index) => (
+                    <Suspense key={index} fallback={<SkeletonLoader />}>
+                      <HostNetSale />
+                    </Suspense>
+                  ))}
+                </div>
+
+                <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-2">
+                  <Suspense fallback={<SkeletonLoader />}>
+                    <TicketsCard />
+                  </Suspense>
+                  <Suspense fallback={<SkeletonLoader />}>
+                    <TotalSeat />
+                  </Suspense>
+                </div>
+              </>
+            )}
 
             {/* Tickets and Seats Grid */}
-            <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-2">
-              <Suspense fallback={<SkeletonLoader />}>
-                <TicketsCard />
-              </Suspense>
-              <Suspense fallback={<SkeletonLoader />}>
-                <TotalSeat />
-              </Suspense>
-            </div>
           </div>
 
           {/* Right Column */}
           <div className="w-full lg:w-1/2 space-y-3">
             <Suspense fallback={<SkeletonLoader count={7} />}>
-              <MyRecentUpcommingEvents />
-              <MyRecentCompleatedEvents />
+              <UpcommingEvents />
+              <RecentCompleatedEvents />
             </Suspense>
           </div>
         </div>

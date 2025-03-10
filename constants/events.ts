@@ -12,6 +12,7 @@ export const events = [
         country: "USA",
         coordinates: "40.8198° N, 74.0743° W"
       },
+      specialDeal: true,
       registrationDeadline: "2025-07-25",
       capacity: 5000,
       ageRange: { min: 6, max: 99 },
@@ -779,5 +780,6 @@ export const events = [
 //     "academic",
 //     "homeschoolfriendly",
 //     "tutoring",
-//     "specialneeds"
+//     "specialneeds",
+//      "special deals"
 //   ] as const;

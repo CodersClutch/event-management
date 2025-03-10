@@ -8,7 +8,7 @@ import { MdShare, MdTimerOff } from "react-icons/md";
 import { BsBookmarksFill, BsPeople } from "react-icons/bs";
 import { FaCalendarCheck } from "react-icons/fa6";
 import { BsCollectionPlayFill } from "react-icons/bs";
-import { BiChevronRight, BiX } from "react-icons/bi";
+import { BiChevronRight, BiCloset, BiX } from "react-icons/bi";
 import { MdOutlineTimer } from "react-icons/md";
 import { IoGlobeSharp } from "react-icons/io5";
 import {
@@ -27,7 +27,6 @@ import { FaGlobeAmericas } from "react-icons/fa";
 import { GiPositionMarker } from "react-icons/gi";
 import { BiCurrentLocation } from "react-icons/bi";
 import { events } from "@/constants/events";
-
 interface PageProps {
   params: {
     id: string;

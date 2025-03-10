@@ -8,21 +8,27 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { logout } from "@/lib/actions/auth/Signout";
-// import { routes } from "@/routes";
 import AddEvent from "../event/AddEvent";
-import { useSession } from "next-auth/react";
+import { useEffect } from "react";
 
 const WebUserNavBar = () => {
-  const { data: session } = useSession({ required: true });
+  const { data: session } = useSession();
   const handleClick = async () => {
     await logout();
     window.location.assign("/");
   };
+
+  // whenever the login user is an Administrator always authomatically redirect them to the dashboard
+  useEffect(() => {
+    if (session?.user.role.name === "Administrator") {
+      window.location.assign("/dashboard");
+    }
+  }, []);
 
   return (
     <DropdownMenu>
@@ -42,32 +48,62 @@ const WebUserNavBar = () => {
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium leading-none">
-              {session?.user.name +
+              {session?.user?.firstName +
                 " " +
                 " " +
-                session?.user.initial +
+                session?.user?.initial +
                 " " +
-                session?.user.lastName}
+                session?.user?.lastName}
             </p>
             <p className="text-xs leading-none text-muted-foreground">
-              {session?.user.email}
+              {session?.user?.email}
             </p>
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <Link href={"/profile"} className=" cursor-pointer">
-            <DropdownMenuItem>Profile</DropdownMenuItem>
+          <Link
+            href={
+              session?.user.role.name === "Administrator"
+                ? "/dashboard"
+                : `/profile`
+            }
+            className=" cursor-pointer"
+          >
+            <DropdownMenuItem>
+              {session?.user.role.name === "Administrator"
+                ? "Dashboard"
+                : "Profile"}
+            </DropdownMenuItem>
+          </Link>
+          <Link
+            href={
+              session?.user.role.name === "Administrator"
+                ? "/dashboard/transaction"
+                : "/transaction"
+            }
+          >
+            <DropdownMenuItem>
+              {session?.user.role.name === "Administrator"
+                ? "Transactions"
+                : "Transactions"}
+            </DropdownMenuItem>
           </Link>
 
-          <DropdownMenuItem>
-            Billing
-            <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            Settings
-            <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-          </DropdownMenuItem>
+          <Link
+            href={
+              session?.user.role.name === "Administrator"
+                ? "/dashboard/settings"
+                : `/profile/${session?.user.id}`
+            }
+          >
+            <DropdownMenuItem>
+              {session?.user.role.name === "Administrator"
+                ? "Settings"
+                : "Info"}
+            </DropdownMenuItem>
+          </Link>
+
           <AddEvent />
         </DropdownMenuGroup>
         <DropdownMenuSeparator />

@@ -28,7 +28,6 @@ export default function ProfileLayout({ children }: { children: ReactNode }) {
       href: "/profile/host-events",
       icon: <CalendarIcon className="w-5 h-5" />,
     },
-    { label: "Report", href: "#", icon: <ChartBarIcon className="w-5 h-5" /> },
     {
       label: "Notifications",
       href: `/profile/notifications`,
@@ -40,12 +39,14 @@ export default function ProfileLayout({ children }: { children: ReactNode }) {
       icon: <User2 className="w-5 h" />,
     },
     // my-tickets
-    {
-      label: "My Tickets",
-      href: "/profile/my-tickets",
-      icon: <TicketIcon className="w-5 h-5" />,
-    },
-  ];
+    session?.user.role.name === "Hosts"
+      ? null
+      : {
+          label: "My Tickets",
+          href: "/profile/my-tickets",
+          icon: <TicketIcon className="w-5 h-5" />,
+        },
+  ].filter(Boolean);
 
   return (
     <div className="p-4 md:mx-[4.5%] pt-[6%] ">
@@ -55,6 +56,7 @@ export default function ProfileLayout({ children }: { children: ReactNode }) {
           {/* Navigation Links with Icons */}
           <nav className="flex items-center space-x-8">
             {navigationLinks.map((link, index) => {
+              if (!link) return null;
               const isActive = pathname === link.href;
               return (
                 <a
