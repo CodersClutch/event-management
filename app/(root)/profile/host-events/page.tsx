@@ -1,5 +1,6 @@
 import EventCards from "@/components/HostEvents/EventCards";
 import Sponsors from "@/components/HostEvents/Sponsors";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import React from "react";
 
 const page = () => {
@@ -7,8 +8,15 @@ const page = () => {
     <div className="">
       <div className="grid grid-cols-1 xl:grid-cols-3">
         <div className="col-span-2 xl:border-r">
+          <Card>
+            <CardHeader>
+              <CardTitle>My Event List</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <EventCards />
+            </CardContent>
+          </Card>
           {/* image listing */}
-          <EventCards />
         </div>
 
         <div className="col-span-1">
