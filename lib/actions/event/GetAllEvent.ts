@@ -1,7 +1,5 @@
 "use server";
-import { auth } from "@/auth";
 import { connectDB } from "@/lib/db";
-import { User } from "@/lib/models/auth.model";
 import Event from "@/lib/models/event.model";
 import { EventInterfaceType } from "@/lib/types";
 import { deepConvertToPlainObject } from "@/lib/utils";
@@ -195,90 +193,6 @@ export const upcomingEventLength = async () => {
     const upcomingEvent = await Event.countDocuments({ status: "upcoming" });
     return { status: 200, upcomingEvent };
   } catch {
-    return { status: 500, message: "Error getting data" };
-  }
-};
-
-// upcommingEvent by user id
-
-// completedEvent by user id
-export const completedEventByUser = async (status: string, limit: number) => {
-  const session = await auth();
-
-  try {
-    await connectDB();
-
-    // Find the user and populate all registered event details
-    const user = await User.findById(session?.user._id).populate({
-      path: "registeredEvents.eventId",
-      model: "Event", // Ensure this matches your Event model name
-    });
-
-    if (!user) {
-      return { status: 404, message: "User not found" };
-    }
-
-    if (!user.registeredEvents.length) {
-      return {
-        status: 200,
-        data: { completedEvents: [], message: "No registered events" },
-      };
-    }
-
-    // Filter only completed events from the user's registered events
-    const completedEvents = user.registeredEvents
-      .map((event: any) => event.eventId) // Extract event objects
-      .filter((event: any) => event.status === status); // Keep only completed ones
-
-    return {
-      status: 200,
-      data: {
-        completedEvents,
-      },
-    };
-  } catch (error) {
-    console.error(error);
-    return { status: 500, message: "Error getting data" };
-  }
-};
-
-export const StatiEventByUser = async (status: string, limit: number) => {
-  const session = await auth();
-
-  try {
-    await connectDB();
-
-    // Find the user and populate all registered event details
-    const user = await User.findById(session?.user._id).populate({
-      path: "registeredEvents.eventId",
-      model: "Event", // Ensure this matches your Event model name
-    });
-
-    if (!user) {
-      return { status: 404, message: "User not found" };
-    }
-
-    if (!user.registeredEvents.length) {
-      return {
-        status: 200,
-        data: { completedEvents: [], message: "No registered events" },
-      };
-    }
-
-    // Filter only completed events from the user's registered events
-    const completedEvents = user.registeredEvents
-      .map((event: any) => event.eventId) // Extract event objects
-      .filter((event: any) => event.status === status) // Keep only completed ones
-      .slice(0, limit); // Get only the most recent 5
-
-    return {
-      status: 200,
-      data: {
-        completedEvents,
-      },
-    };
-  } catch (error) {
-    console.error(error);
     return { status: 500, message: "Error getting data" };
   }
 };
