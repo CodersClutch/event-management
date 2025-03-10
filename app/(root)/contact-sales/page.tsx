@@ -4,7 +4,11 @@ import React from 'react'
 const page = () => {
   return (
     <div className='px-4 lg:px-16'>
+
+      {/* Contact Ticket Sales */}
       <ContactTicketsSales />
+
+      {/* Adverties */}
       <div className='flex justify-center items-center flex-row pb-16 gap-10'>
         <div className='flex bg-yellow-500 rounded-lg shadow-lg p-5 text-center flex-col justify-center items-center flex-1'>
           <h1 className='font font-extrabold text-5xl'>200M+</h1>
@@ -18,6 +22,11 @@ const page = () => {
           <h1 className='font font-extrabold text-5xl'>2X</h1>
           <p className='text-lg mt-2'>more the consumer reach of our closest competitor</p>
         </div>
+      </div>
+
+      {/* Sponsor */}
+      <div>
+
       </div>
     </div>
   )
