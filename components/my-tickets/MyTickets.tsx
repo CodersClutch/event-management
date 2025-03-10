@@ -59,11 +59,11 @@ const MyTickets = () => {
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-[#18212C]">My Tickets</h1>
       </div>
-      <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div className="mx-auto grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
         {eventList.map((event) => (
           <div
             key={event.id}
-            className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+            className="bg-white rounded-lg border border-gray-100 shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
           >
             {/* Top row: Author profile, name, and time below */}
             <div className="p-4 text-sm text-gray-500">
@@ -97,7 +97,7 @@ const MyTickets = () => {
                     sizes="(max-width: 768px) 100vw, 50vw"
                     priority
                   />
-                  <div className="absolute flex flex-col gap-2 bottom-0 left-0 pl-5 pb-4 w-full text-white text-lg font-semibold p-2 text-left bg-gradient-to-t from-black/70 to-transparent">
+                  <div className="absolute flex flex-col gap-2 bottom-0 left-0  w-full text-white text-lg font-semibold p-2 text-left bg-gradient-to-t from-black/70 to-transparent">
                     {event.eventName}
                     <Button className="font-bold text-white">
                       View Ticket

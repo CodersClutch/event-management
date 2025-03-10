@@ -617,7 +617,6 @@ export const eventList = [
   {
     id: 1,
     ticketId: "TICKET-001",
-    ticketCatagory: "All Age & Family",
     author: "John Doe",
     time: "5 min ago",
     eventTime: "3:00 PM",
@@ -713,7 +712,7 @@ export const eventList = [
     date: "Sept 12, 2025",
     location: "Paris",
     tickets: "Sold Out",
-    ticketsSold: 100, // Assuming all tickets are sold
+    ticketsSold: 100,
     totalTickets: 100,
     revenue: 1500, // Assuming $15 per ticket
     sponsors: [
