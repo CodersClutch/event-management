@@ -8,15 +8,12 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { logout } from "@/lib/actions/auth/Signout";
-import { routes } from "@/routes";
 import AddEvent from "../event/AddEvent";
-import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 
 const WebUserNavBar = () => {

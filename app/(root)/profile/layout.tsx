@@ -10,8 +10,15 @@ import {
   TicketIcon,
 } from "lucide-react"; // Import icons from Heroicons
 import { useSession } from "next-auth/react";
+import { auth } from "@/auth";
 
-export default function ProfileLayout({ children }: { children: ReactNode }) {
+export default async function ProfileLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  const session = await auth();
+  const pathname = usePathname();
   // Navigation links with icons
   const navigationLinks = [
     {
