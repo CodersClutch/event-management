@@ -589,16 +589,28 @@ export const Today = [
 
 export const Weekend = []
 
-export const sponsors = [
-  'https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/tp-spncr.png',
-  'https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/tp-spncr2.png',
-  'https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/tp-spncr3.png',
-  'https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/tp-spncr4.png'
-];
-
 export  const categories2 = [
-  'All Categories', 'Art', 'Books', 'Food', 'Sports', 'Films', 'Awards', 'Men',
-  'Parties', 'Technology', 'Science', 'Women', 'Music', 'Comedy', 'Show'
+  "all ages",
+  "for babies",
+  "main arena",
+  "toddler",
+  "teen",
+  "education",
+  "attraction",
+  "classes and workshops",
+  "birthday",
+  "food and drink",
+  "arts",
+  "sports",
+  "charity & causes",
+  "hobbies",
+  "holiday",
+  "stem&coding",
+  "academic",
+  "homeschoolfriendly",
+  "tutoring",
+  "specialneeds",
+  "special deals"
 ];
 
 export const eventList = [
@@ -617,15 +629,8 @@ export const eventList = [
     ticketsSold: 26,
     totalTickets: 100,
     revenue: 0,
-    sponsors: [
-      "https://img.freepik.com/free-photo/confident-business-woman-portrait-smiling-face_53876-137693.jpg",
-      "https://img.freepik.com/free-photo/casual-young-african-man-smiling-isolated-white_93675-128895.jpg",
-      "https://img.freepik.com/free-photo/medium-shot-woman-relaxing-home_23-2150307065.jpg",
-      "https://img.freepik.com/free-photo/confident-african-businesswoman-mockup-psd-smiling-closeup-portr_53876-143279.jpg"
-    ],
     price: "Free",
     likes: 126,
-    comments: 3,
     description: "Join industry leaders and innovators at Tech Conference 2025, where cutting-edge technologies, AI advancements, and networking opportunities await. Stay ahead in the world of technology!",
     category: "Technology"
   },
@@ -643,15 +648,8 @@ export const eventList = [
     ticketsSold: 50,
     totalTickets: 200,
     revenue: 1000,
-    sponsors: [
-      "https://randomuser.me/api/portraits/men/22.jpg",
-      "https://randomuser.me/api/portraits/women/30.jpg",
-      "https://randomuser.me/api/portraits/men/45.jpg",
-      "https://randomuser.me/api/portraits/women/58.jpg"
-    ],
     price: "$20",
     likes: 250,
-    comments: 10,
     description: "Experience an electrifying night of live music, featuring top artists and bands from around the world. Dance, sing, and enjoy the ultimate summer music festival in Los Angeles!",
     category: "Music"
   },
@@ -669,15 +667,8 @@ export const eventList = [
     ticketsSold: 10,
     totalTickets: 50,
     revenue: 0,
-    sponsors: [
-      "https://randomuser.me/api/portraits/women/15.jpg",
-      "https://randomuser.me/api/portraits/men/20.jpg",
-      "https://randomuser.me/api/portraits/women/33.jpg",
-      "https://randomuser.me/api/portraits/men/60.jpg"
-    ],
     price: "Free",
     likes: 85,
-    comments: 5,
     description: "Connect with startup founders, investors, and mentors in an inspiring environment. Discover the latest trends, pitch your ideas, and network with like-minded entrepreneurs.",
     category: "Business"
   },
@@ -695,15 +686,8 @@ export const eventList = [
     ticketsSold: 100,
     totalTickets: 100,
     revenue: 1500,
-    sponsors: [
-      "https://randomuser.me/api/portraits/men/40.jpg",
-      "https://randomuser.me/api/portraits/women/50.jpg",
-      "https://randomuser.me/api/portraits/men/35.jpg",
-      "https://randomuser.me/api/portraits/women/61.jpg"
-    ],
     price: "$15",
     likes: 340,
-    comments: 20,
     description: "Immerse yourself in a world of creativity and artistic expression. This exhibition showcases works from renowned and emerging artists, bringing together a diverse range of styles and mediums.",
     category: "Art"
   },

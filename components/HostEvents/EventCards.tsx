@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { Share, BarChart, Pencil, Share2, Heart, AlarmClockCheck, Ticket } from "lucide-react";
+import { BarChart, Pencil, Share2, Heart, AlarmClockCheck, Ticket } from "lucide-react";
 import { eventList } from "@/constants";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import Link from "next/link";
@@ -69,8 +69,8 @@ const EventCards = () => {
                       <span className="text-white text-lg md:text-xl font-semibold">
                         {event.eventName}
                       </span>
-                      <button className="bg-red-600 text-white px-3 py-1.5 md:px-4 md:py-2 rounded-full text-sm md:text-base">
-                        CREATE
+                      <button className="bg-yellow-300 text-[#631B72] px-3  md:px-4  rounded-xl py-1 text-sm md:text-base">
+                        {event.category}
                       </button>
                     </div>
                   </div>

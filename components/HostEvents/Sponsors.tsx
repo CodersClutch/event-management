@@ -1,5 +1,5 @@
 import React from 'react';
-import { categories2, sponsors } from '@/constants';
+import { categories2} from '@/constants';
 
 const Sponsors = () => {
     return (
