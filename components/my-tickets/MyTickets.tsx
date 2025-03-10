@@ -8,7 +8,7 @@ import { Button } from "../ui/button";
 import { Check } from "lucide-react";
 
 const MyTickets = () => {
-  const ticketRef = useRef(null); // Ref for the ticket element
+  const ticketRef = useRef<HTMLDivElement>(null); // Ref for the ticket element
 
   const handleDownloadTicket = () => {
     if (ticketRef.current) {
@@ -24,7 +24,8 @@ const MyTickets = () => {
   const handlePrintTicket = () => {
     if (ticketRef.current) {
       const printWindow = window.open("", "_blank");
-      printWindow.document.write(`
+      if (printWindow) {
+        printWindow.document.write(`
         <html>
           <head>
             <title>Print Ticket</title>
@@ -45,7 +46,10 @@ const MyTickets = () => {
           </body>
         </html>
       `);
-      printWindow.document.close();
+        if (printWindow) {
+          printWindow.print();
+        }
+      }
       printWindow.print();
     }
   };

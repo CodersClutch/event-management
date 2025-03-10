@@ -14,7 +14,6 @@ const page = () => {
   return (
     <div>
       {/* hero */}
-
       <Hero />
 
       <Advertisement />
