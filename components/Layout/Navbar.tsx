@@ -8,6 +8,25 @@ import WebUserNavBar from "./WebUserNavBar";
 import { useSession } from "next-auth/react";
 import AddEvent from "../event/AddEvent";
 
+const navLink = [
+  {
+    title: "Contact Sales",
+    href: "/contact-sales",
+  },
+  {
+    title: "Create Events",
+    href: "/create-events",
+  },
+  {
+    title: "Help Center",
+    href: "/help-center",
+  },
+  {
+    title: "Parenting Tips",
+    href: "/parenting-tips",
+  },
+]
+
 const Navbar = () => {
   const { data: session } = useSession();
 
@@ -21,18 +40,13 @@ const Navbar = () => {
         <div className="hidden md:flex items-center justify-between py-3">
           {/* Left Navigation Items */}
           <div className="flex-1 flex items-center space-x-5">
-            {[
-              "Contact Sales",
-              "Create Events",
-              "Help Center",
-              "Parenting Tips",
-            ].map((item) => (
+            {navLink.map((navLinks) => (
               <Link
-                key={item}
-                href="#"
+                key={navLinks.title}
+                href={navLinks.href}
                 className="text-black font-medium text-sm hover:text-[#D942D6]"
               >
-                {item}
+                {navLinks.title}
               </Link>
             ))}
           </div>
