@@ -93,6 +93,61 @@ interface EventNotifications {
   reminderTimes: string[]; // Array of ISO date strings
 }
 
+// ADDITIONAL TYPE DEF ==================================
+type AgeRange = {
+  min: number;
+  max: number;
+};
+
+
+type MoreEvent = {
+  title: string;
+  date: string; // ISO 8601 format recommended
+  price: number;
+  organizer: string;
+  imageUrl: string;
+};
+
+
+type Geolocation = {
+  address: string;
+  city: string;
+  state: string;
+  country: string;
+  coordinates: string; // Assuming [latitude, longitude]
+};
+
+
+
+
+
+
+type Categories =
+  | "all ages"
+  | "for babies"
+  | "main arena"
+  | "toddler"
+  | "teen"
+  | "education"
+  | "attraction"
+  | "classes and workshops"
+  | "birthday"
+  | "food and drink"
+  | "arts"
+  | "sports"
+  | "charity & causes"
+  | "hobbies"
+  | "holiday"
+  | "stem&coding"
+  | "academic"
+  | "homeschoolfriendly"
+  | "tutoring"
+  | "specialneeds"
+  | "special deals";
+
+// ADDITIONAL TYPE DEF ==================================
+
+
 export interface EventInterfaceType {
   map(
     arg0: (item: IUser, index: number) => import("react").JSX.Element
@@ -111,6 +166,19 @@ export interface EventInterfaceType {
   waitlist: IUser[]; // Array of IUser references
   createdAt: string; // ISO date string
   eventId: string;
+  image: string;
+  geolocation: Geolocation;
+  specialDeal?: boolean;
+  capacity?: number;
+  ageRange?: AgeRange;
+  price: number;
+  refundPolicy?: string;
+  duration?: string; // e.g., "2 hours", "3 days"
+  organizer: string;
+  moreEvents: MoreEvent[];
+  mode: "online" | "offline" | "hybrid";
+  category: Categories;
+
 }
 
 export interface SystemSettingsTypes {
