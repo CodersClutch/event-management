@@ -8,14 +8,13 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { logout } from "@/lib/actions/auth/Signout";
-import { routes } from "@/routes";
 import AddEvent from "../event/AddEvent";
+import { useEffect } from "react";
 
 const WebUserNavBar = () => {
   const { data: session } = useSession();
@@ -23,6 +22,14 @@ const WebUserNavBar = () => {
     await logout();
     window.location.assign("/");
   };
+
+  // whenever the login user is an Administrator always authomatically redirect them to the dashboard
+  useEffect(() => {
+    if (session?.user.role.name === "Administrator") {
+      window.location.assign("/dashboard");
+    }
+  }, []);
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -55,18 +62,48 @@ const WebUserNavBar = () => {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <Link href={"/profile"} className=" cursor-pointer">
-            <DropdownMenuItem>Profile</DropdownMenuItem>
+          <Link
+            href={
+              session?.user.role.name === "Administrator"
+                ? "/dashboard"
+                : `/profile`
+            }
+            className=" cursor-pointer"
+          >
+            <DropdownMenuItem>
+              {session?.user.role.name === "Administrator"
+                ? "Dashboard"
+                : "Profile"}
+            </DropdownMenuItem>
+          </Link>
+          <Link
+            href={
+              session?.user.role.name === "Administrator"
+                ? "/dashboard/transaction"
+                : "/transaction"
+            }
+          >
+            <DropdownMenuItem>
+              {session?.user.role.name === "Administrator"
+                ? "Transactions"
+                : "Transactions"}
+            </DropdownMenuItem>
           </Link>
 
-          <DropdownMenuItem>
-            Billing
-            <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            Settings
-            <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-          </DropdownMenuItem>
+          <Link
+            href={
+              session?.user.role.name === "Administrator"
+                ? "/dashboard/settings"
+                : `/profile/${session?.user.id}`
+            }
+          >
+            <DropdownMenuItem>
+              {session?.user.role.name === "Administrator"
+                ? "Settings"
+                : "Info"}
+            </DropdownMenuItem>
+          </Link>
+
           <AddEvent />
         </DropdownMenuGroup>
         <DropdownMenuSeparator />

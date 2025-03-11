@@ -1,3 +1,4 @@
+import { auth } from "@/auth";
 import HostNetSale from "@/components/dashboard-v2/HostNetSale";
 import TicketsCard from "@/components/dashboard-v2/TicketsCard";
 import TotalSeat from "@/components/dashboard-v2/TotalSeat";
@@ -20,6 +21,8 @@ const SkeletonLoader = ({
 };
 
 const Home = async () => {
+  const session = await auth();
+
   return (
     <div className="p-4 flex justify-center">
       {/* Main Container with Centered Content */}
@@ -40,23 +43,29 @@ const Home = async () => {
             </div>
 
             {/* Host Net Sale Grid */}
-            <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-2">
-              {[1, 2].map((_, index) => (
-                <Suspense key={index} fallback={<SkeletonLoader />}>
-                  <HostNetSale />
-                </Suspense>
-              ))}
-            </div>
+
+            {session?.user.role.name === "Attendees" ? null : (
+              <>
+                <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-2">
+                  {[1, 2].map((_, index) => (
+                    <Suspense key={index} fallback={<SkeletonLoader />}>
+                      <HostNetSale />
+                    </Suspense>
+                  ))}
+                </div>
+
+                <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-2">
+                  <Suspense fallback={<SkeletonLoader />}>
+                    <TicketsCard />
+                  </Suspense>
+                  <Suspense fallback={<SkeletonLoader />}>
+                    <TotalSeat />
+                  </Suspense>
+                </div>
+              </>
+            )}
 
             {/* Tickets and Seats Grid */}
-            <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-2">
-              <Suspense fallback={<SkeletonLoader />}>
-                <TicketsCard />
-              </Suspense>
-              <Suspense fallback={<SkeletonLoader />}>
-                <TotalSeat />
-              </Suspense>
-            </div>
           </div>
 
           {/* Right Column */}
