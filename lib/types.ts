@@ -111,6 +111,7 @@ export interface EventInterfaceType {
   waitlist: IUser[]; // Array of IUser references
   createdAt: string; // ISO date string
   eventId: string;
+  createdBy: string;
 }
 
 export interface SystemSettingsTypes {
