@@ -16,6 +16,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
+import EditEvent from "../event/EditEvent";
 const EventCards = async () => {
   // Fetch events from the server
   const response = await getEventsByUserId();
@@ -59,8 +60,7 @@ const EventCards = async () => {
                   {event?.location}
                 </p>
                 <div className="flex justify-between items-center bg-blue-200 rounded-lg p-4 mt-4">
-                  <span className="text-[#D942D6] font-bold">Edit</span>
-
+                  <EditEvent event={event} />
                   {/* Delete Button */}
                   <AlertDialog>
                     <AlertDialogTrigger asChild>
