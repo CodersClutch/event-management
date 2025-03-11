@@ -20,7 +20,14 @@ import {
 import OrganizerCard from "@/components/TabsCategory/OrganizerCard";
 import MoreEventsFromOrganizer from "@/components/TabsCategory/MoreEventsFromOrganizer";
 import OtherEvents from "@/components/TabsCategory/OtherEvents";
-import { ListStart, Locate, MapPinCheck, Timer, Underline } from "lucide-react";
+import {
+  Divide,
+  ListStart,
+  Locate,
+  MapPinCheck,
+  Timer,
+  Underline,
+} from "lucide-react";
 import { MdOutlineLocationOn, MdLocationCity } from "react-icons/md";
 import { FaGlobeAmericas } from "react-icons/fa";
 import { GiPositionMarker } from "react-icons/gi";
@@ -29,6 +36,7 @@ import { events } from "@/constants/events";
 import { GetSingleEvent } from "@/lib/actions/event/GetAllEvent";
 import { formatReadableDate } from "@/lib/utils";
 import CountDown from "@/components/common/CountDown";
+import ProfileComponent from "@/components/common/ProfileComponent";
 
 const EventPage = async ({ params }: { params: { id: string } }) => {
   const { id } = await params;
@@ -116,15 +124,18 @@ const EventPage = async ({ params }: { params: { id: string } }) => {
               </p>
 
               {/* Organizer Section */}
-              <div className="flex items-center bg-gray-100 p-4 rounded-lg mt-4 md:mt-6 w-full md:w-96">
-                <div className="w-12 h-12 bg-green-200 rounded-full flex items-center justify-center">
-                  <span className="text-green-700 font-bold text-2xl">V</span>
+              <div className=" bg-gray-100 p-4 rounded-lg mt-4 md:mt-6 w-full md:w-96 border-primary">
+                <div className="flex items-center gap-3">
+                  <IoGlobeSharp className="text-2xl" />
+
+                  <h1> Organizer By </h1>
                 </div>
-                <div className="ml-3">
-                  <p className="font-semibold text-base md:text-lg">
-                    By <span className="text-[#D942D6]">{data?.organizer}</span>
-                  </p>
-                </div>
+                <ProfileComponent
+                  firstName={data?.createdBy.firstName}
+                  middleName={data?.createdBy.initial}
+                  lastName={data?.createdBy.lastName}
+                  email={data?.createdBy.email}
+                />
               </div>
             </div>
             {/* Ticket and Pricing */}
@@ -318,12 +329,12 @@ const EventPage = async ({ params }: { params: { id: string } }) => {
               </p>
             </div>
 
-            {/* <OrganizerCard organizer={data?.organizer} />
-            <MoreEventsFromOrganizer events={data?.moreEvents} /> */}
+            {/* <OrganizerCard organizer={data?.organizer} /> */}
+            <MoreEventsFromOrganizer organizer={data?.createdBy.firstName} />
           </div>
         </div>
       </div>
-      <OtherEvents />
+      {/* <OtherEvents /> */}
     </>
   );
 };
