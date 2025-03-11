@@ -288,11 +288,13 @@ export const StatiEventByUser = async (status: string, limit: number) => {
 
 // if i am login in as hosts fetch event i created else if am login as an Attendies fetch event i am register to
 
-export const getEventsByUserId = async () => {
+export const getEventsByUserId = async (organizer?: string) => {
   const session = await auth();
 
   try {
-    const events = await Event.find({ createdBy: session?.user._id });
+    const events = await Event.find({
+      createdBy: session?.user._id || organizer,
+    });
     // .limit(limit)
     // .sort({ createdAt: -1 }); // Sort by newest first
 
