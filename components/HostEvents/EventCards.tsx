@@ -30,13 +30,15 @@ const EventCards = async () => {
     <div className="min-h-screen py-8">
       <div className="bg-transparent max-w-7xl mx-auto p-4 font-sans">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-          {events?.map((event) => (
-            <Link
-              href={`/events/${event._id}`}
-              key={event?._id}
+          {events?.map((event, idx) => (
+            <div
+              key={idx}
               className="relative w-72 hover:shadow-2xl rounded-2xl overflow-hidden shadow-lg border"
             >
-              <div className="relative w-full h-96">
+              <Link
+                href={`/events/${event._id}`}
+                className="relative w-full h-96 block"
+              >
                 <Image
                   src={
                     event?.image ||
@@ -46,10 +48,8 @@ const EventCards = async () => {
                   layout="fill"
                   objectFit="cover"
                 />
-              </div>
-              {/* <button className="absolute top-3 right-3 bg-white p-2 rounded-full shadow-md">
-                <Bookmark className="h-5 w-5 text-gray-600" />
-              </button> */}
+              </Link>
+
               <div className="absolute bottom-0 left-0 right-0 bg-white m-2 p-4 rounded-lg shadow-md">
                 <h3 className="text-lg font-bold truncate">{event?.title}</h3>
                 <p className="text-gray-500 font-medium text-sm">
@@ -60,6 +60,8 @@ const EventCards = async () => {
                 </p>
                 <div className="flex justify-between items-center bg-blue-200 rounded-lg p-4 mt-4">
                   <span className="text-[#D942D6] font-bold">Edit</span>
+
+                  {/* Delete Button */}
                   <AlertDialog>
                     <AlertDialogTrigger asChild>
                       <Button variant={"destructive"}>Delete Event</Button>
@@ -71,8 +73,7 @@ const EventCards = async () => {
                         </AlertDialogTitle>
                         <AlertDialogDescription>
                           This action cannot be undone. This will permanently
-                          delete your account and remove your data from our
-                          servers.
+                          delete your event.
                         </AlertDialogDescription>
                       </AlertDialogHeader>
                       <AlertDialogFooter>
@@ -83,7 +84,7 @@ const EventCards = async () => {
                   </AlertDialog>
                 </div>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </div>
