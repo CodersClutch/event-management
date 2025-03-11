@@ -1,25 +1,15 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { getEventsByUserId } from "@/lib/actions/event/GetAllEvent";
 import { formatDate } from "@/lib/utils";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
 import EditEvent from "../event/EditEvent";
+import DeleteEvent from "../event/DeleteEvent";
+import { auth } from "@/auth";
 const EventCards = async () => {
   // Fetch events from the server
   const response = await getEventsByUserId();
+  const session = await auth();
 
   if (!response || response.status !== 200) {
     return <p className="text-center py-10 text-gray-500">No events found.</p>;
@@ -59,30 +49,14 @@ const EventCards = async () => {
                 <p className="text-gray-500 font-medium text-sm truncate">
                   {event?.location}
                 </p>
-                <div className="flex justify-between items-center bg-blue-200 rounded-lg p-4 mt-4">
-                  <EditEvent event={event} />
-                  {/* Delete Button */}
-                  <AlertDialog>
-                    <AlertDialogTrigger asChild>
-                      <Button variant={"destructive"}>Delete Event</Button>
-                    </AlertDialogTrigger>
-                    <AlertDialogContent>
-                      <AlertDialogHeader>
-                        <AlertDialogTitle>
-                          Are you absolutely sure?
-                        </AlertDialogTitle>
-                        <AlertDialogDescription>
-                          This action cannot be undone. This will permanently
-                          delete your event.
-                        </AlertDialogDescription>
-                      </AlertDialogHeader>
-                      <AlertDialogFooter>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
-                        <AlertDialogAction>Continue</AlertDialogAction>
-                      </AlertDialogFooter>
-                    </AlertDialogContent>
-                  </AlertDialog>
-                </div>
+
+                {session?.user.role.name === "Hosts" ? (
+                  <div className="flex justify-between items-center bg-blue-200 rounded-lg p-4 mt-4">
+                    <EditEvent event={event} />
+                    {/* Delete Button */}
+                    <DeleteEvent event={event} />
+                  </div>
+                ) : null}
               </div>
             </div>
           ))}
