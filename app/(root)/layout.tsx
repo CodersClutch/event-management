@@ -22,6 +22,7 @@ export const metadata: Metadata = {
 import { ReactNode } from "react";
 import { auth } from "@/auth";
 import { SessionProvider } from "next-auth/react";
+import { Toaster } from "sonner";
 
 export default async function RootLayout({
   children,
@@ -52,6 +53,7 @@ export default async function RootLayout({
 
           {/* ✅ Footer is always visible & responsive */}
           <Footer />
+          <Toaster richColors />
         </body>
       </html>
     </SessionProvider>

@@ -1,5 +1,6 @@
 "use server";
 
+import { User } from "@/lib/models/auth.model";
 import Event from "@/lib/models/event.model";
 import { EventInterfaceType } from "@/lib/types";
 import { revalidatePath } from "next/cache";
@@ -13,6 +14,20 @@ export const addEventServerAction = async (eventData: EventInterfaceType) => {
         message: "Schedule must have both start and end dates",
       };
     }
+
+    console.log(eventData.createdBy);
+
+    // check if user adding the event exist
+    // and that the user is authorized to add events
+    // const user = await User.findById(eventData.createdBy).populate("role");
+    // console.log(user);
+
+    // if (!user || user.role.permissions.manage_events.level === "off") {
+    //   return {
+    //     status: 403,
+    //     message: "User not authorized to add events",
+    //   };
+    // }
 
     // Ensure start date is before end date
     if (

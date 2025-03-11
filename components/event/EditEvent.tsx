@@ -1,14 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+
 import { Input } from "@/components/ui/input";
 import { CalendarIcon, Edit, Loader, Save } from "lucide-react";
 import {
@@ -32,10 +24,19 @@ import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { Textarea } from "../ui/textarea";
-import { DialogClose } from "@radix-ui/react-dialog";
 import { EventHook } from "@/hooks/EventHook";
 import { useSession } from "next-auth/react";
 import { EventInterfaceType } from "@/lib/types";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 const EditEvent = ({ event }: { event: EventInterfaceType }) => {
   const { handleUpdateEvent, isLoading } = EventHook();
@@ -98,22 +99,22 @@ const EditEvent = ({ event }: { event: EventInterfaceType }) => {
   }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
+    <Sheet open={open} onOpenChange={setOpen}>
+      <SheetTrigger asChild>
         <Button className="w-full flex justify-between" variant="outline">
           Edit
           <Edit />
         </Button>
-      </DialogTrigger>
-      <DialogContent>
+      </SheetTrigger>
+      <SheetContent>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
-            <DialogHeader>
-              <DialogTitle>Edit Event</DialogTitle>
-              <DialogDescription>
+            <SheetHeader>
+              <SheetTitle>Edit Event</SheetTitle>
+              <SheetDescription>
                 Modify the event details and save changes.
-              </DialogDescription>
-            </DialogHeader>
+              </SheetDescription>
+            </SheetHeader>
             <div className="grid gap-4 py-4">
               <FormField
                 control={form.control}
@@ -136,7 +137,17 @@ const EditEvent = ({ event }: { event: EventInterfaceType }) => {
                   render={({ field }) => (
                     <FormItem className="flex flex-col">
                       <FormLabel> Start Date</FormLabel>
-                      <Popover>
+                      <Input
+                        {...field}
+                        type="date"
+                        value={
+                          field.value ? format(field.value, "yyyy-MM-dd") : ""
+                        }
+                        onChange={(e) =>
+                          field.onChange(new Date(e.target.value))
+                        }
+                      />
+                      {/* <Popover>
                         <PopoverTrigger asChild>
                           <FormControl>
                             <Button
@@ -166,7 +177,7 @@ const EditEvent = ({ event }: { event: EventInterfaceType }) => {
                             initialFocus
                           />
                         </PopoverContent>
-                      </Popover>
+                      </Popover> */}
 
                       <FormMessage />
                     </FormItem>
@@ -178,7 +189,17 @@ const EditEvent = ({ event }: { event: EventInterfaceType }) => {
                   render={({ field }) => (
                     <FormItem className="flex flex-col">
                       <FormLabel> End Date</FormLabel>
-                      <Popover>
+                      <Input
+                        {...field}
+                        type="date"
+                        value={
+                          field.value ? format(field.value, "yyyy-MM-dd") : ""
+                        }
+                        onChange={(e) =>
+                          field.onChange(new Date(e.target.value))
+                        }
+                      />
+                      {/* <Popover>
                         <PopoverTrigger asChild>
                           <FormControl>
                             <Button
@@ -208,7 +229,7 @@ const EditEvent = ({ event }: { event: EventInterfaceType }) => {
                             initialFocus
                           />
                         </PopoverContent>
-                      </Popover>
+                      </Popover> */}
 
                       <FormMessage />
                     </FormItem>
@@ -223,7 +244,14 @@ const EditEvent = ({ event }: { event: EventInterfaceType }) => {
                   render={({ field }) => (
                     <FormItem className="flex flex-col">
                       <FormLabel>Registration Deadline</FormLabel>
-                      <Popover>
+                      <Input
+                        {...field}
+                        type="date"
+                        value={
+                          field.value ? format(field.value, "yyyy-MM-dd") : ""
+                        }
+                      />
+                      {/* <Popover>
                         <PopoverTrigger asChild>
                           <FormControl>
                             <Button
@@ -253,7 +281,7 @@ const EditEvent = ({ event }: { event: EventInterfaceType }) => {
                             initialFocus
                           />
                         </PopoverContent>
-                      </Popover>
+                      </Popover> */}
 
                       <FormMessage />
                     </FormItem>
@@ -313,10 +341,10 @@ const EditEvent = ({ event }: { event: EventInterfaceType }) => {
                 )}
               />
             </div>
-            <DialogFooter>
-              <DialogClose type="button">
+            <SheetFooter>
+              <SheetClose type="button">
                 <Button variant="outline">Cancel</Button>
-              </DialogClose>
+              </SheetClose>
               <Button disabled={isLoading} type="submit">
                 {isLoading ? "Saving changes..." : "Save changes"}
                 {isLoading ? (
@@ -325,11 +353,11 @@ const EditEvent = ({ event }: { event: EventInterfaceType }) => {
                   <Save className="ml-2" />
                 )}
               </Button>
-            </DialogFooter>
+            </SheetFooter>
           </form>
         </Form>
-      </DialogContent>
-    </Dialog>
+      </SheetContent>
+    </Sheet>
   );
 };
 

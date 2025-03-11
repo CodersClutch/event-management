@@ -44,7 +44,7 @@ const AddEvent = () => {
     resolver: zodResolver(eventSchema),
     defaultValues: {
       title: "",
-      createdBy: session?.user?.id,
+      createdBy: session?.user?._id,
       schedule: {
         start: new Date(),
         end: new Date(),
@@ -107,7 +107,17 @@ const AddEvent = () => {
                   render={({ field }) => (
                     <FormItem className="flex flex-col">
                       <FormLabel> Start Date</FormLabel>
-                      <Popover>
+                      <Input
+                        {...field}
+                        type="date"
+                        value={
+                          field.value ? format(field.value, "yyyy-MM-dd") : ""
+                        }
+                        onChange={(e) =>
+                          field.onChange(new Date(e.target.value))
+                        }
+                      />
+                      {/* <Popover>
                         <PopoverTrigger asChild>
                           <FormControl>
                             <Button
@@ -137,7 +147,7 @@ const AddEvent = () => {
                             initialFocus
                           />
                         </PopoverContent>
-                      </Popover>
+                      </Popover> */}
 
                       <FormMessage />
                     </FormItem>
@@ -149,7 +159,17 @@ const AddEvent = () => {
                   render={({ field }) => (
                     <FormItem className="flex flex-col">
                       <FormLabel> End Date</FormLabel>
-                      <Popover>
+                      <Input
+                        {...field}
+                        type="date"
+                        value={
+                          field.value ? format(field.value, "yyyy-MM-dd") : ""
+                        }
+                        onChange={(e) =>
+                          field.onChange(new Date(e.target.value))
+                        }
+                      />
+                      {/* <Popover>
                         <PopoverTrigger asChild>
                           <FormControl>
                             <Button
@@ -179,7 +199,7 @@ const AddEvent = () => {
                             initialFocus
                           />
                         </PopoverContent>
-                      </Popover>
+                      </Popover> */}
 
                       <FormMessage />
                     </FormItem>
@@ -194,7 +214,17 @@ const AddEvent = () => {
                   render={({ field }) => (
                     <FormItem className="flex flex-col">
                       <FormLabel>Registration Deadline</FormLabel>
-                      <Popover>
+                      <Input
+                        {...field}
+                        type="date"
+                        value={
+                          field.value ? format(field.value, "yyyy-MM-dd") : ""
+                        }
+                        onChange={(e) =>
+                          field.onChange(new Date(e.target.value))
+                        }
+                      />
+                      {/* <Popover>
                         <PopoverTrigger asChild>
                           <FormControl>
                             <Button
@@ -224,7 +254,7 @@ const AddEvent = () => {
                             initialFocus
                           />
                         </PopoverContent>
-                      </Popover>
+                      </Popover> */}
 
                       <FormMessage />
                     </FormItem>
