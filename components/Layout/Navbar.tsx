@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Avatar, AvatarImage } from "../ui/avatar";
 import Image from "next/image";
 import { NavUser } from "../nav-user";
 import WebUserNavBar from "./WebUserNavBar";
