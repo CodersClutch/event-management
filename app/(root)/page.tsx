@@ -28,7 +28,13 @@ const page = () => {
             className="flex hover:text-[#D942D6] group  items-center justify-center flex-col space-y-2"
           >
             <div className="flex group items-center bg-gradient-to-b hover:bg-gradient-to-t from-[#A22D9E] hover:from-[#A22D9E] hover:to-[#F34CF1] to-[#F34CF1]  shadow-md transition-all duration-1000 ease-in-out border  border-purple-400-100 rounded-full p-10 justify-center">
-              <Image src={item.icon} alt={item.Label} width={40} height={40} className="group-hover:invert group-hover:brightness-0 transition-all duration-500 ease-in-out group-hover:filter" />
+              <Image
+                src={item.icon}
+                alt={item.Label}
+                width={40}
+                height={40}
+                className="group-hover:invert group-hover:brightness-0 transition-all duration-500 ease-in-out group-hover:filter"
+              />
             </div>
             <h3 className="text-sm">{item.Label}</h3>
           </Link>
