@@ -20,12 +20,12 @@ const StatsCard: React.FC<StatsCardProps> = ({
     <Card>
       <CardHeader className="flex flex-row space-x-2 items-center md:justify-between space-y-0 pb-2 ">
         {icon}
-        <CardTitle className=" text-2xl font-extrabold">{title}</CardTitle>
+        <CardTitle className="text-xl font-extrabold">{title}</CardTitle>
       </CardHeader>
       <Separator />
       <CardContent>
-        <div className="text-2xl font-bold pt-2">{value}</div>
-        <p className="text-2xl text-muted-foreground">{percentage}</p>
+        <div className="text-xl font-bold pt-2">{value}</div>
+        <p className="text text-muted-foreground">{percentage}</p>
       </CardContent>
     </Card>
   );

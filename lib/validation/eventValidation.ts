@@ -5,14 +5,14 @@ export const eventSchema = z
     title: z.string().trim().min(3, "Title must be at least 3 characters long"),
 
     // event images
-    images: z.array(
-      z.object({
-        url: z.string().url(),
-        caption: z
-          .string()
-          .min(3, "Caption must be at least 3 characters long"),
-      })
-    ),
+    // images: z.array(
+    //   z.object({
+    //     url: z.string().url(),
+    //     caption: z
+    //       .string()
+    //       .min(3, "Caption must be at least 3 characters long"),
+    //   })
+    // ),
 
     // event organizer
     description: z

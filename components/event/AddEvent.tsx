@@ -33,8 +33,8 @@ import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { Textarea } from "../ui/textarea";
 import { DialogClose } from "@radix-ui/react-dialog";
-import { EventHook } from "@/hooks/EventHook";
 import { useSession } from "next-auth/react";
+import { EventHook } from "@/hooks/EventHook";
 
 const AddEvent = () => {
   const { HandleAddEvent, isLoading } = EventHook();
@@ -58,23 +58,25 @@ const AddEvent = () => {
 
   // 2. Define a submit handler.
   async function onSubmit() {
+    console.log("form values", form.getValues());
+
     const status = await HandleAddEvent(form.getValues());
-    console.log("sesso", session?.user?._id);
+    console.log("sesso", session?.user?.id);
     // close the dialog when the status is 200
     if (status?.status === 200) {
       setOpen(false);
       form.reset();
     }
   }
-
+  // ousainou trying to piss me of
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline">
+        <Button variant="outline" className="w-full">
           Add Event <Plus className="h-3.5 w-3.5" />
         </Button>
       </DialogTrigger>
-      <DialogContent className="overflow-x-auto">
+      <DialogContent className="overflow-visible">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="">
             <DialogHeader>
@@ -105,7 +107,17 @@ const AddEvent = () => {
                   render={({ field }) => (
                     <FormItem className="flex flex-col">
                       <FormLabel> Start Date</FormLabel>
-                      <Popover>
+                      <Input
+                        {...field}
+                        type="date"
+                        value={
+                          field.value ? format(field.value, "yyyy-MM-dd") : ""
+                        }
+                        onChange={(e) =>
+                          field.onChange(new Date(e.target.value))
+                        }
+                      />
+                      {/* <Popover>
                         <PopoverTrigger asChild>
                           <FormControl>
                             <Button
@@ -120,11 +132,11 @@ const AddEvent = () => {
                               ) : (
                                 <span>Pick a date</span>
                               )}
-                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                              <CalendarIcon className="ml-auto h-4 w-4 z-[9999]" />
                             </Button>
                           </FormControl>
                         </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0" align="start">
+                        <PopoverContent>
                           <Calendar
                             mode="single"
                             selected={field.value}
@@ -135,7 +147,7 @@ const AddEvent = () => {
                             initialFocus
                           />
                         </PopoverContent>
-                      </Popover>
+                      </Popover> */}
 
                       <FormMessage />
                     </FormItem>
@@ -147,7 +159,17 @@ const AddEvent = () => {
                   render={({ field }) => (
                     <FormItem className="flex flex-col">
                       <FormLabel> End Date</FormLabel>
-                      <Popover>
+                      <Input
+                        {...field}
+                        type="date"
+                        value={
+                          field.value ? format(field.value, "yyyy-MM-dd") : ""
+                        }
+                        onChange={(e) =>
+                          field.onChange(new Date(e.target.value))
+                        }
+                      />
+                      {/* <Popover>
                         <PopoverTrigger asChild>
                           <FormControl>
                             <Button
@@ -177,7 +199,7 @@ const AddEvent = () => {
                             initialFocus
                           />
                         </PopoverContent>
-                      </Popover>
+                      </Popover> */}
 
                       <FormMessage />
                     </FormItem>
@@ -192,7 +214,17 @@ const AddEvent = () => {
                   render={({ field }) => (
                     <FormItem className="flex flex-col">
                       <FormLabel>Registration Deadline</FormLabel>
-                      <Popover>
+                      <Input
+                        {...field}
+                        type="date"
+                        value={
+                          field.value ? format(field.value, "yyyy-MM-dd") : ""
+                        }
+                        onChange={(e) =>
+                          field.onChange(new Date(e.target.value))
+                        }
+                      />
+                      {/* <Popover>
                         <PopoverTrigger asChild>
                           <FormControl>
                             <Button
@@ -222,7 +254,7 @@ const AddEvent = () => {
                             initialFocus
                           />
                         </PopoverContent>
-                      </Popover>
+                      </Popover> */}
 
                       <FormMessage />
                     </FormItem>

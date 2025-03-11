@@ -1,5 +1,4 @@
 import NextAuth from "next-auth";
-
 import { routes } from "@/routes";
 import authConfig from "@/auth.config";
 
@@ -8,36 +7,41 @@ const { auth: withAuthMiddleware } = NextAuth(authConfig);
 export default withAuthMiddleware((req) => {
   const isLoggedIn = !!req.auth;
   const { nextUrl } = req;
-  // console.log({nextUrl})
 
   const isApiAuthRoute = nextUrl.pathname.startsWith(routes.apiAuthPrefix);
   const isAuthRoute = routes.auth.includes(nextUrl.pathname);
-  const isPublicRoute = routes.public.includes(nextUrl.pathname);
-  const defaultUrl = new URL(routes.defaultLoginRedirect, nextUrl);
+  const isPublicRoute = routes.public.some((route) =>
+    nextUrl.pathname.startsWith(route)
+  );
+  const isHomePage = nextUrl.pathname === "/";
+  const isProfileRoute = nextUrl.pathname.startsWith("/profile");
 
   if (isApiAuthRoute) {
-    return undefined;
+    return undefined; // Allow API auth routes to proceed
   }
-
   if (isAuthRoute) {
+    // Redirect logged-in users away from auth routes to the homepage
     if (isLoggedIn) {
-      return Response.redirect(defaultUrl);
+      return Response.redirect(new URL(routes.defaultLoginRedirect, nextUrl));
     }
+    return undefined; // Allow non-logged-in users to access auth routes
+  }
+
+  // Allow public routes without authentication
+  if (isPublicRoute) {
     return undefined;
   }
-
-  if (!isPublicRoute && !isLoggedIn) {
-    let callbackUrl = nextUrl.pathname;
-    if (nextUrl.search) callbackUrl += nextUrl.search;
-
-    const encodedCallbackUrl = encodeURIComponent(callbackUrl);
-    return Response.redirect(
-      new URL(`/auth?callbackUrl=${encodedCallbackUrl}`, nextUrl)
-      // new URL(`/auth/`, nextUrl)
-    );
+  // Protect /profile and its sub-routes
+  if (isProfileRoute && !isLoggedIn) {
+    return Response.redirect(new URL(routes.defaultLoginRedirect, nextUrl));
   }
 
-  return undefined;
+  // Redirect non-logged-in users to the homepage if they try to access a protected route
+  if (!isLoggedIn && !isHomePage) {
+    return Response.redirect(new URL(routes.defaultLoginRedirect, nextUrl));
+  }
+
+  return undefined; // Allow the request to proceed
 });
 
 export const config = {

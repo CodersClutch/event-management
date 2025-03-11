@@ -1,5 +1,5 @@
 export const routes = {
-  public: [, "/new-verification"],
+  public: ["/", "/new-verification", " /events/*"],
   auth: [
     "/auth",
     "/auth/signup",

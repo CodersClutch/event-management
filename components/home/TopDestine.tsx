@@ -3,12 +3,13 @@ import React from "react";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import Image from "next/image";
+import Link from "next/link";
 
 const destinations = [
-  { city: "New York", image: "https://img.freepik.com/free-photo/high-angle-shot-city-buildings-new-york-manhattan_181624-24684.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid" },
-  { city: "Los Angeles", image: "https://img.freepik.com/premium-photo/city-skyline-with-view-city-chicago_1082211-17093.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid" },
-  { city: "Chicago", image: "https://img.freepik.com/premium-photo/hudson-river-by-modern-buildings-newyork-city_1048944-12131759.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid" },
-  { city: "Washington", image: "https://img.freepik.com/free-photo/new-york-city-midtown-manhattan_649448-3520.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid" },
+  { city: "Activities & Attractions", image: "https://img.freepik.com/premium-photo/low-angle-view-young-woman-holding-umbrella_1048944-9869597.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid", linkUrl: '/events/attractions' },
+  { city: "Classes & Workshops", image: "https://img.freepik.com/premium-photo/team-young-african-people-office-table-with-laptop_219728-4557.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid", linkUrl: '/events/workshops-classes' },
+  { city: "Birthday & Party Venues", image: "https://img.freepik.com/premium-photo/excited-kids-enjoying-birthday-party_13339-225340.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid", linkUrl: '/events/birthdays' },
+  { city: "Special Deals & Discounts", image: "https://img.freepik.com/free-photo/sale-concept-with-copy-space_23-2148313080.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid", linkUrl: '/events/deals' },
 ];
 
 const TopDestine = () => {
@@ -34,10 +35,10 @@ const TopDestine = () => {
       <div className="flex justify-between items-center mb-8 lg:mb-12">
           <div className="text-center md:text-left">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-              Top destinations in United States
+              Main Categories
             </h2>
             <p className="mt-2 text-gray-500">
-              Explore our most popular destinations
+              Explore our most popular Categories
             </p>
           </div>
 
@@ -91,6 +92,7 @@ const TopDestine = () => {
               className="keen-slider__slide group relative"
             >
               <div className="flex flex-col h-full rounded-t-[4rem] overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 bg-white border border-gray-100 relative">
+                <Link href={destination.linkUrl}>
                 <div className="relative h-64 md:h-60 flex-shrink-0">
                   <Image
                     src={destination.image}
@@ -103,6 +105,7 @@ const TopDestine = () => {
                     <h3 className="text-2xl font-bold">{destination.city}</h3>
                   </div>
                 </div>
+                </Link>
                 {/* Border bottom effect */}
                 <div className="absolute bottom-0 left-0 right-0 h-1 bg-[#D942D6] transition-all duration-300 group-hover:h-3" />
               </div>

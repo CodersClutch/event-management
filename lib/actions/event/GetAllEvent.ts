@@ -1,5 +1,7 @@
 "use server";
+import { auth } from "@/auth";
 import { connectDB } from "@/lib/db";
+import { User } from "@/lib/models/auth.model";
 import Event from "@/lib/models/event.model";
 import { EventInterfaceType } from "@/lib/types";
 import { deepConvertToPlainObject } from "@/lib/utils";
@@ -105,7 +107,10 @@ export const GetAllEvent = async ({
 // get single event by id
 export const GetSingleEvent = async (eventId: string) => {
   try {
-    const event = await Event.findById(eventId);
+    const event = await Event.findById(eventId).populate({
+      path: "createdBy",
+      select: "firstName lastName email initial",
+    });
     if (!event) {
       return { status: 404, message: "Event not found" };
     }
@@ -194,5 +199,154 @@ export const upcomingEventLength = async () => {
     return { status: 200, upcomingEvent };
   } catch {
     return { status: 500, message: "Error getting data" };
+  }
+};
+
+// upcommingEvent by user id
+
+// completedEvent by user id
+export const completedEventByUser = async (status: string, limit: number) => {
+  const session = await auth();
+
+  try {
+    await connectDB();
+
+    // Find the user and populate all registered event details
+    const user = await User.findById(session?.user._id).populate({
+      path: "registeredEvents.eventId",
+      model: "Event", // Ensure this matches your Event model name
+    });
+
+    if (!user) {
+      return { status: 404, message: "User not found" };
+    }
+
+    if (!user.registeredEvents.length) {
+      return {
+        status: 200,
+        data: { completedEvents: [], message: "No registered events" },
+      };
+    }
+
+    // Filter only completed events from the user's registered events
+    const completedEvents = user.registeredEvents
+      .map((event: any) => event.eventId) // Extract event objects
+      .filter((event: any) => event.status === status); // Keep only completed ones
+
+    return {
+      status: 200,
+      data: {
+        completedEvents,
+      },
+    };
+  } catch (error) {
+    console.error(error);
+    return { status: 500, message: "Error getting data" };
+  }
+};
+
+export const StatiEventByUser = async (status: string, limit: number) => {
+  const session = await auth();
+
+  try {
+    await connectDB();
+
+    // Find the user and populate all registered event details
+    const user = await User.findById(session?.user._id).populate({
+      path: "registeredEvents.eventId",
+      model: "Event", // Ensure this matches your Event model name
+    });
+
+    if (!user) {
+      return { status: 404, message: "User not found" };
+    }
+
+    if (!user.registeredEvents.length) {
+      return {
+        status: 200,
+        data: { completedEvents: [], message: "No registered events" },
+      };
+    }
+
+    // Filter only completed events from the user's registered events
+    const completedEvents = user.registeredEvents
+      .map((event: any) => event.eventId) // Extract event objects
+      .filter((event: any) => event.status === status) // Keep only completed ones
+      .slice(0, limit); // Get only the most recent 5
+
+    return {
+      status: 200,
+      data: {
+        completedEvents,
+      },
+    };
+  } catch (error) {
+    console.error(error);
+    return { status: 500, message: "Error getting data" };
+  }
+};
+
+// if i am login in as hosts fetch event i created else if am login as an Attendies fetch event i am register to
+
+export const getEventsByUserId = async (organizer?: string) => {
+  const session = await auth();
+
+  try {
+    const events = await Event.find({
+      createdBy: session?.user._id || organizer,
+    });
+    // .limit(limit)
+    // .sort({ createdAt: -1 }); // Sort by newest first
+
+    if (!events) {
+      return { status: 404, message: "No events found" };
+    }
+
+    // console.log(events.length);
+
+    return { status: 200, data: events };
+  } catch (error) {
+    console.error("Error fetching events:", error);
+    return { status: 500, message: "Error getting data" };
+  }
+};
+
+export const GetAllEventForWeb = async ({
+  query,
+  page = 1,
+  limit = 10,
+}: {
+  query?: string;
+  page?: number;
+  limit?: number;
+}) => {
+  try {
+    const skip = (page - 1) * limit;
+
+    // Build query object
+    const filter: any = {};
+    if (query) {
+      filter.title = { $regex: query, $options: "i" }; // Case-insensitive search
+    }
+
+    // Fetch events using find()
+    const events = await Event.find(filter)
+      .populate("createdBy", "firstName lastName email") // Populating creator details
+      .sort({ createdAt: -1 }) // Sorting by latest
+      .skip(skip)
+      .limit(limit)
+      .lean(); // Converts Mongoose documents to plain objects
+
+    const totalCount = await Event.countDocuments(filter);
+
+    return {
+      status: 200,
+      data: events,
+      isPreviousPage: page > 1,
+      isNextPage: totalCount > skip + events.length,
+      totalCount,
+    };
+  } catch (error) {
+    return { status: 500, message: "Failed to get events" };
   }
 };
