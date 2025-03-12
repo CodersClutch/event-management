@@ -77,7 +77,6 @@ const SignUpForm = () => {
       confirmPassword: "",
       countryCode: "",
       phoneNumber: "",
-      accountType: "individual", // ✅ fix here
       address: "",
       avatar: undefined,
     },
@@ -486,7 +485,7 @@ const SignUpForm = () => {
                     )}
                   />
                 </div>
-                <FormField
+                {/* <FormField
                   control={hostForm.control}
                   name="accountType"
                   render={({ field }) => (
@@ -511,7 +510,7 @@ const SignUpForm = () => {
                       <FormMessage />
                     </FormItem>
                   )}
-                />
+                /> */}
                 <FormField
                   control={hostForm.control}
                   name="password"
