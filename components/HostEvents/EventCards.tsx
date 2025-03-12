@@ -18,9 +18,9 @@ const EventCards = async () => {
   const events = response.data;
 
   return (
-    <div className="min-h-screen py-8">
-      <div className="bg-transparent max-w-7xl mx-auto p-4 font-sans">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+    <div className=" py-8">
+      <div className="mx-auto p-4 font-sans">
+        <div className="flex items-center gap-5 flex-wrap">
           {events?.map((event, idx) => (
             <div
               key={idx}

@@ -6,7 +6,7 @@ const SpecialNeedsLanding = () => {
 
 
     <>
-    <div className="relative h-[80vh] min-h-[400px] flex flex-col md:flex-row border-b border-pink-800">
+    <div className="relative h-[80vh] min-h-[400px] flex flex-col md:filex-row border-b border-pink-800">
       {/* Content Section */}
       <div className="md:w-1/2 p-6 md:p-12 bg-pink-900 flex items-center">
         <div className="max-w-2xl space-y-6 animate-in fade-in slide-in-from-left-8 duration-700">
