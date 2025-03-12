@@ -1,4 +1,4 @@
-import { Dot } from 'lucide-react'
+import { Dot, User } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 
@@ -9,9 +9,17 @@ const TicketInfo = () => {
                 <div className='col-span-2'>
                     <p className='text-[#585163] text-[0.9rem]'>When you order tickets on Eventbrite, an account is created using the email address you enter during checkout. To access your tickets, log in to the Eventbrite app or website using the email on your order. Then, go to Tickets.</p>
                 </div>
-                <div className='col-span-1'>
-
+                <div className='col-span-1 flex justify-center'>
+                    <div className='border border-gray-200 rounded-md shadow-sm pr-3 py-4 grid grid-cols-3 gap-1'>
+                        <div className="col-span-1 flex justify-center"><User className='w-11 h-11 text-blue-600' /></div>
+                        <div className="col-span-2">
+                            <h2 className='text-xl font-semibold text-[#1E0A3C]'>Get help faster</h2>
+                            <p className='text-[#585163] text-[0.9rem] mt-5'>Log in for resources tailored to <br /> your account, tickets, and events.</p>
+                            <button><Link href="#" className='mt-3 inline-block px-8 py-2 bg-[#FEBE20] text-white rounded-md hover:bg-[#fedd20] transition'>Log in</Link></button>
+                        </div>
+                    </div>
                 </div>
+
             </div>
             <div className='mt-5'>
                 <h2 className='font-semibold text-2xl'>In this article</h2>
