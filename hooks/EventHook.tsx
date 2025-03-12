@@ -100,5 +100,6 @@ export const EventHook = () => {
     handleDeleteEvent,
     HandleAddEvent,
     isLoading,
+    setIsLoading,
   };
 };

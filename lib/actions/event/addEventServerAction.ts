@@ -15,8 +15,6 @@ export const addEventServerAction = async (eventData: EventInterfaceType) => {
       };
     }
 
-    console.log(eventData.createdBy);
-
     // check if user adding the event exist
     // and that the user is authorized to add events
     // const user = await User.findById(eventData.createdBy).populate("role");
@@ -53,6 +51,7 @@ export const addEventServerAction = async (eventData: EventInterfaceType) => {
     // Ensure maxParticipants is a positive number
     if (
       eventData.maxParticipants !== undefined &&
+      typeof eventData.maxParticipants === "number" &&
       eventData.maxParticipants <= 0
     ) {
       return {

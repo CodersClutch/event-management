@@ -103,7 +103,7 @@ export interface EventInterfaceType {
   location: string;
   schedule: EventSchedule;
   registrationDeadline: string; // ISO date string
-  maxParticipants: number;
+  maxParticipants: number | string;
   status: "upcoming" | "ongoing" | "completed" | "cancelled";
   isPublished: boolean;
   notifications: EventNotifications;
@@ -112,6 +112,10 @@ export interface EventInterfaceType {
   createdAt: string; // ISO date string
   eventId: string;
   createdBy: string;
+  category: string;
+  price: string;
+  ageRange: string;
+  images: string;
 }
 
 export interface SystemSettingsTypes {

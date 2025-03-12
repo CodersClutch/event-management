@@ -47,6 +47,7 @@ const EventSchema = new mongoose.Schema({
   category: { type: String },
   specialDeal: { type: Boolean, default: false },
   ageRange: { type: String, required: true },
+  image: { type: String, required: true },
   geolocation: {
     address: { type: String, required: false },
     city: { type: String, required: false },

@@ -4,7 +4,7 @@ export const eventSchema = z
   .object({
     title: z.string().trim().min(3, "Title must be at least 3 characters long"),
 
-    images: z.string().trim().optional(),
+    image: z.string().trim().optional(),
     category: z
       .string()
       .trim()

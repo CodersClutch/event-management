@@ -1,5 +1,4 @@
 import { CiHeart } from "react-icons/ci";
-import { notFound } from "next/navigation";
 import Image from "next/image";
 // <<<<<<< feature/web-event
 // import { allEvents } from "@/lib/events";
@@ -31,17 +30,14 @@ import {
 import { MdOutlineLocationOn, MdLocationCity } from "react-icons/md";
 import { FaGlobeAmericas } from "react-icons/fa";
 import { GiPositionMarker } from "react-icons/gi";
-import { BiCurrentLocation } from "react-icons/bi";
-import { events } from "@/constants/events";
 import { GetSingleEvent } from "@/lib/actions/event/GetAllEvent";
 import { formatReadableDate } from "@/lib/utils";
 import CountDown from "@/components/common/CountDown";
 import ProfileComponent from "@/components/common/ProfileComponent";
 
-const EventPage = async ({ params }: { params: { id: string } }) => {
-  const { id } = await params;
-  const { data, status, message } = await GetSingleEvent(id);
-  console.log(data);
+const EventPage = async ({ params }: { params: { slug: string } }) => {
+  const { slug } = await params;
+  const { data, status, message } = await GetSingleEvent(slug);
 
   // const event = events.find((e) => e.id === "AAE-001");
 
