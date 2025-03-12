@@ -312,11 +312,11 @@ export const getEventsByUserId = async (organizer?: string) => {
 };
 
 export const GetAllEventForWeb = async ({
-  query,
+  // query,
   page = 1,
   limit = 10,
 }: {
-  query?: string;
+  // query?: string;
   page?: number;
   limit?: number;
 }) => {
@@ -324,20 +324,25 @@ export const GetAllEventForWeb = async ({
     const skip = (page - 1) * limit;
 
     // Build query object
-    const filter: any = {};
-    if (query) {
-      filter.title = { $regex: query, $options: "i" }; // Case-insensitive search
-    }
+    // const filter: any = {};
+    // if (query) {
+    //   filter.title = { $regex: query, $options: "i" }; // Case-insensitive search
+    // }
 
     // Fetch events using find()
-    const events = await Event.find(filter)
-      .populate("createdBy", "firstName lastName email") // Populating creator details
+    const events = await Event.find({})
+      .populate({
+        path: "createdBy",
+        select: "firstName lastName email",
+        model: "User",
+        options: { strictPopulate: false }, // Ensures no error if createdBy is missing
+      })
       .sort({ createdAt: -1 }) // Sorting by latest
       .skip(skip)
       .limit(limit)
       .lean(); // Converts Mongoose documents to plain objects
 
-    const totalCount = await Event.countDocuments(filter);
+    const totalCount = await Event.countDocuments();
 
     return {
       status: 200,

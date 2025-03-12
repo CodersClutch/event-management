@@ -32,3 +32,18 @@ export interface Event {
   specialDeal: boolean;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -8,10 +8,8 @@ import { Button } from "../ui/button";
 import { Check } from "lucide-react";
 
 const MyTickets = () => {
-<<<<<<< HEAD
-=======
+
   const [scanResult, setScanResult] = useState(""); // State to store the scanned result
->>>>>>> 2c29599d8db071746508d10f751349f722538c75
   const ticketRef = useRef<HTMLDivElement>(null); // Ref for the ticket element
 
   const handleDownloadTicket = () => {
@@ -54,10 +52,9 @@ const MyTickets = () => {
           printWindow.print();
         }
       }
-<<<<<<< HEAD
-      printWindow.print();
-=======
->>>>>>> 2c29599d8db071746508d10f751349f722538c75
+      printWindow?.print();
+
+
     }
   };
 

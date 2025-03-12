@@ -23,6 +23,7 @@ import { ReactNode } from "react";
 import { auth } from "@/auth";
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from "sonner";
+import { EdgeStoreProvider } from "@/components/provider/edgestore";
 
 export default async function RootLayout({
   children,
@@ -44,16 +45,18 @@ export default async function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased `}
         >
-          {/* ✅ Navbar with a responsive container */}
-          <Navbar />
+          <EdgeStoreProvider>
+            {/* ✅ Navbar with a responsive container */}
+            <Navbar />
 
-          {/* ✅ Main content container with proper padding */}
-          {/* <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">{children}</main> */}
-          <main>{children}</main>
+            {/* ✅ Main content container with proper padding */}
+            {/* <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">{children}</main> */}
+            <main>{children}</main>
 
-          {/* ✅ Footer is always visible & responsive */}
-          <Footer />
-          <Toaster richColors />
+            {/* ✅ Footer is always visible & responsive */}
+            <Footer />
+            <Toaster richColors />
+          </EdgeStoreProvider>
         </body>
       </html>
     </SessionProvider>
