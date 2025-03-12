@@ -99,7 +99,6 @@ type AgeRange = {
   max: number;
 };
 
-
 type MoreEvent = {
   title: string;
   date: string; // ISO 8601 format recommended
@@ -108,7 +107,6 @@ type MoreEvent = {
   imageUrl: string;
 };
 
-
 type Geolocation = {
   address: string;
   city: string;
@@ -116,11 +114,6 @@ type Geolocation = {
   country: string;
   coordinates: string; // Assuming [latitude, longitude]
 };
-
-
-
-
-
 
 type Categories =
   | "all ages"
@@ -146,7 +139,6 @@ type Categories =
   | "special deals";
 
 // ADDITIONAL TYPE DEF ==================================
-
 
 export interface EventInterfaceType {
   map(

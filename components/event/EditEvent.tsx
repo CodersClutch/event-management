@@ -236,7 +236,7 @@ const EditEvent = ({ event }: { event: EventInterfaceType }) => {
 
                       <Select
                         onValueChange={field.onChange}
-                        defaultValue={field.value}
+                        defaultValue={field.value as string}
                       >
                         <SelectTrigger className="w-full">
                           <SelectValue placeholder="Select a Category" />
@@ -289,7 +289,7 @@ const EditEvent = ({ event }: { event: EventInterfaceType }) => {
                     <FormLabel>Age Range</FormLabel>
                     <Select
                       onValueChange={field.onChange}
-                      defaultValue={field.value}
+                      defaultValue={field.value as string}
                     >
                       <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select Age Range" />
