@@ -178,7 +178,6 @@ export interface EventInterfaceType {
   moreEvents: MoreEvent[];
   mode: "online" | "offline" | "hybrid";
   category: Categories;
-
 }
 
 export interface SystemSettingsTypes {
