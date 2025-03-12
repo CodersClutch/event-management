@@ -107,7 +107,10 @@ export const GetAllEvent = async ({
 // get single event by id
 export const GetSingleEvent = async (eventId: string) => {
   try {
-    const event = await Event.findById(eventId);
+    const event = await Event.findById(eventId).populate({
+      path: "createdBy",
+      select: "firstName lastName email initial",
+    });
     if (!event) {
       return { status: 404, message: "Event not found" };
     }
@@ -285,11 +288,13 @@ export const StatiEventByUser = async (status: string, limit: number) => {
 
 // if i am login in as hosts fetch event i created else if am login as an Attendies fetch event i am register to
 
-export const getEventsByUserId = async () => {
+export const getEventsByUserId = async (organizer?: string) => {
   const session = await auth();
 
   try {
-    const events = await Event.find({ createdBy: session?.user._id });
+    const events = await Event.find({
+      createdBy: session?.user._id || organizer,
+    });
     // .limit(limit)
     // .sort({ createdAt: -1 }); // Sort by newest first
 
@@ -303,5 +308,50 @@ export const getEventsByUserId = async () => {
   } catch (error) {
     console.error("Error fetching events:", error);
     return { status: 500, message: "Error getting data" };
+  }
+};
+
+export const GetAllEventForWeb = async ({
+  // query,
+  page = 1,
+  limit = 10,
+}: {
+  // query?: string;
+  page?: number;
+  limit?: number;
+}) => {
+  try {
+    const skip = (page - 1) * limit;
+
+    // Build query object
+    // const filter: any = {};
+    // if (query) {
+    //   filter.title = { $regex: query, $options: "i" }; // Case-insensitive search
+    // }
+
+    // Fetch events using find()
+    const events = await Event.find({})
+      .populate({
+        path: "createdBy",
+        select: "firstName lastName email",
+        model: "User",
+        options: { strictPopulate: false }, // Ensures no error if createdBy is missing
+      })
+      .sort({ createdAt: -1 }) // Sorting by latest
+      .skip(skip)
+      .limit(limit)
+      .lean(); // Converts Mongoose documents to plain objects
+
+    const totalCount = await Event.countDocuments();
+
+    return {
+      status: 200,
+      data: events,
+      isPreviousPage: page > 1,
+      isNextPage: totalCount > skip + events.length,
+      totalCount,
+    };
+  } catch (error) {
+    return { status: 500, message: "Failed to get events" };
   }
 };

@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Attraction from "@/components/alpha/Attraction";
+import Stem from "@/components/alpha/Stem";
 
 const STEMLanding = () => {
   return (
@@ -40,7 +41,7 @@ const STEMLanding = () => {
       </div>
 
       <div className="pt-16 pb-16">
-        <Attraction />
+        <Stem />
       </div>
     </>
   );
