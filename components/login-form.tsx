@@ -66,7 +66,8 @@ const SignInForm = () => {
     //   showSocial
     // >
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="w-1/3 bg-white p-5 rounded-lg text-black">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="w-1/3 bg-white border border-yellow-400 shadow-2xl p-5 rounded-lg text-black">
+          <h1 className="font-extrabold text-center text-2xl">Login</h1>
           <div className="space-y-4">
             <>
               <FormField
@@ -77,6 +78,7 @@ const SignInForm = () => {
                     <FormLabel>Email</FormLabel>
                     <FormControl>
                       <Input
+                      className="border-black"
                         disabled={isPending}
                         placeholder="mail@example.com"
                         {...field}
@@ -94,6 +96,7 @@ const SignInForm = () => {
                     <FormLabel>Password</FormLabel>
                     <FormControl>
                       <Input
+                      className="border-black"
                         disabled={isPending}
                         type="password"
                         placeholder="your password"

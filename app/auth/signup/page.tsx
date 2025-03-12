@@ -100,7 +100,8 @@ const SignUpForm = () => {
   }
 
   return (
-    <div className="max-w-[550px] mx-auto my-5 rounded-lg shadow-lg bg-white p-5 text-black">
+    <div>
+ <div className="max-w-[550px] mx-auto my-5 rounded-2xl shadow-lg border-yellow-500 border bg-white p-5 text-black">
       <Tabs defaultValue="attendee" className="w-full">
         <TabsList className="grid w-full grid-cols-2 gap-2 bg-white">
           <TabsTrigger
@@ -124,7 +125,7 @@ const SignUpForm = () => {
               onSubmit={attendeeForm.handleSubmit(onSubmit)}
               className="w-full"
             >
-              <h1 className="font-extrabold text-start text-2xl border-b mb-4 pb-2">
+              <h1 className="font-extrabold text-start text-2xl border-b border-yellow-400 mb-4 pb-2">
                 Register As Attendee
               </h1>
 
@@ -134,10 +135,11 @@ const SignUpForm = () => {
                     control={attendeeForm.control}
                     name="firstName"
                     render={({ field }) => (
-                      <FormItem>
+                      <FormItem className="flex-1">
                         <FormLabel>First Name</FormLabel>
                         <FormControl>
                           <Input
+                          className='border-black'
                             disabled={isPending}
                             placeholder="Your first name"
                             {...field}
@@ -155,6 +157,7 @@ const SignUpForm = () => {
                         <FormLabel>Initial (Optional)</FormLabel>
                         <FormControl>
                           <Input
+                          className='border-black'
                             disabled={isPending}
                             placeholder="initial"
                             {...field}
@@ -168,10 +171,11 @@ const SignUpForm = () => {
                     control={attendeeForm.control}
                     name="lastName"
                     render={({ field }) => (
-                      <FormItem>
+                      <FormItem className="flex-1">
                         <FormLabel>Last Name</FormLabel>
                         <FormControl>
                           <Input
+                          className='border-black'
                             disabled={isPending}
                             placeholder="Your last name"
                             {...field}
@@ -190,6 +194,7 @@ const SignUpForm = () => {
                       <FormLabel>Email</FormLabel>
                       <FormControl>
                         <Input
+                        className='border-black'
                           disabled={isPending}
                           placeholder="mail@example.com"
                           {...field}
@@ -239,7 +244,7 @@ const SignUpForm = () => {
                         <FormLabel>Phone Number</FormLabel>
                         <FormControl>
                           <Input
-                            className="border border-gray-500"
+                          className='border-black border'
                             placeholder="Phone Number"
                             {...field}
                             onChange={(e) => {
@@ -263,6 +268,7 @@ const SignUpForm = () => {
                       <FormLabel>Password</FormLabel>
                       <FormControl>
                         <Input
+                        className='border-black'
                           disabled={isPending}
                           type="password"
                           placeholder="Your password"
@@ -281,6 +287,7 @@ const SignUpForm = () => {
                       <FormLabel>Confirm Password</FormLabel>
                       <FormControl>
                         <Input
+                        className='border-black'
                           disabled={isPending}
                           type="password"
                           placeholder="Confirm your password"
@@ -300,6 +307,7 @@ const SignUpForm = () => {
                         <FormLabel>Address</FormLabel>
                         <FormControl>
                           <Input
+                          className='border-black'
                             disabled={isPending}
                             placeholder="Address"
                             {...field}
@@ -317,6 +325,7 @@ const SignUpForm = () => {
                         <FormLabel>Profile Image</FormLabel>
                         <FormControl>
                           <Input
+                          className='border-black'
                             type="file"
                             disabled={isPending}
                             onChange={(e) => {
@@ -355,7 +364,7 @@ const SignUpForm = () => {
         <TabsContent value="host" className="mt-4">
           <Form {...hostForm}>
             <form onSubmit={hostForm.handleSubmit(onSubmit)} className="w-full">
-              <h1 className="font-extrabold text-cente text-2xl border-b mb-4 pb-2">
+              <h1 className="font-extrabold text-cente text-2xl border-b border-yellow-400 mb-4 pb-2">
                 Register As Host
               </h1>
               <div className="space-y-4">
@@ -364,10 +373,11 @@ const SignUpForm = () => {
                     control={hostForm.control}
                     name="firstName"
                     render={({ field }) => (
-                      <FormItem>
+                      <FormItem className="flex-1">
                         <FormLabel>First Name</FormLabel>
                         <FormControl>
                           <Input
+                          className='border-black'
                             disabled={isPending}
                             placeholder="Your first name"
                             {...field}
@@ -385,6 +395,7 @@ const SignUpForm = () => {
                         <FormLabel>Initial (Optional)</FormLabel>
                         <FormControl>
                           <Input
+                          className='border-black'
                             disabled={isPending}
                             placeholder="initial"
                             {...field}
@@ -398,10 +409,11 @@ const SignUpForm = () => {
                     control={hostForm.control}
                     name="lastName"
                     render={({ field }) => (
-                      <FormItem>
+                      <FormItem className="flex-1">
                         <FormLabel>Last Name</FormLabel>
                         <FormControl>
                           <Input
+                          className='border-black'
                             disabled={isPending}
                             placeholder="Your last name"
                             {...field}
@@ -420,6 +432,7 @@ const SignUpForm = () => {
                       <FormLabel>Email</FormLabel>
                       <FormControl>
                         <Input
+                        className='border-black'
                           disabled={isPending}
                           placeholder="mail@example.com"
                           {...field}
@@ -469,7 +482,7 @@ const SignUpForm = () => {
                         <FormLabel>Phone Number</FormLabel>
                         <FormControl>
                           <Input
-                            className="border border-gray-500"
+                          className='border-black'
                             placeholder="Phone Number"
                             {...field}
                             onChange={(e) => {
@@ -485,32 +498,6 @@ const SignUpForm = () => {
                     )}
                   />
                 </div>
-                {/* <FormField
-                  control={hostForm.control}
-                  name="accountType"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Account Type</FormLabel>
-                      <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                      >
-                        <FormControl>
-                          <SelectTrigger className="border border-gray-500">
-                            <SelectValue placeholder="Select your account type" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem value="organization">
-                            Organization
-                          </SelectItem>
-                          <SelectItem value="individual">Individual</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                /> */}
                 <FormField
                   control={hostForm.control}
                   name="password"
@@ -519,6 +506,7 @@ const SignUpForm = () => {
                       <FormLabel>Password</FormLabel>
                       <FormControl>
                         <Input
+                        className='border-black'
                           disabled={isPending}
                           type="password"
                           placeholder="Your password"
@@ -537,6 +525,7 @@ const SignUpForm = () => {
                       <FormLabel>Confirm Password</FormLabel>
                       <FormControl>
                         <Input
+                        className='border-black'
                           disabled={isPending}
                           type="password"
                           placeholder="Confirm your password"
@@ -556,6 +545,7 @@ const SignUpForm = () => {
                         <FormLabel>Address</FormLabel>
                         <FormControl>
                           <Input
+                          className='border-black'
                             disabled={isPending}
                             placeholder="Address"
                             {...field}
@@ -573,6 +563,7 @@ const SignUpForm = () => {
                         <FormLabel>Profile Image</FormLabel>
                         <FormControl>
                           <Input
+                          className='border-black'
                             type="file"
                             disabled={isPending}
                             onChange={(e) => {
@@ -607,6 +598,7 @@ const SignUpForm = () => {
           </Form>
         </TabsContent>
       </Tabs>
+    </div>
     </div>
   );
 };
