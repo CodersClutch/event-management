@@ -4,7 +4,8 @@ import { categories } from "@/constants";
 import Link from "next/link";
 import AllAges from "@/components/TopCategories/AllAges";
 
-const imageUrl ="https://img.freepik.com/premium-photo/happy-multiracial-multigeneration-family-spending-leisure-time-yard-sunny-day_13339-309501.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid";
+const imageUrl =
+  "https://img.freepik.com/premium-photo/happy-multiracial-multigeneration-family-spending-leisure-time-yard-sunny-day_13339-309501.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid";
 const Page = () => {
   return (
     <div className="bg-[#0D0029] space-y-50">
@@ -60,9 +61,7 @@ const Page = () => {
         </div>
       </div>
 
-      <div className="pt-16 pb-16">
-        <AllAges />
-      </div>
+      <div className="pt-16 pb-16">{/* <AllAges /> */}</div>
     </div>
   );
 };

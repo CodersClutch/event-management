@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Tutor from '@/components/alpha/Tutor';
 
 const TutoringLanding = () => {
   return (
@@ -38,6 +39,9 @@ const TutoringLanding = () => {
       </div>
     </div>
 
+    <div className="pt-16 pb-16">
+        <Tutor />
+      </div>
 
     </>
   );

@@ -760,26 +760,126 @@ export const events = [
 
 
 
-//   export const EVENT_CATEGORIES = [
-//     "all ages",
-//     "for babies",
-//     "main arena",
-//     "toddler",
-//     "teen",
-//     "education",
-//     "attraction",
-//     "classes and workshops",
-//     "birthday",
-//     "food and drink",
-//     "arts",
-//     "sports",
-//     "charity & causes",
-//     "hobbies",
-//     "holiday",
-//     "stem&coding",
-//     "academic",
-//     "homeschoolfriendly",
-//     "tutoring",
-//     "specialneeds",
-//      "special deals"
-//   ] as const;
+  import mongoose from "mongoose";
+
+  const EventSchema = new mongoose.Schema({
+    title: { type: String, required: true, trim: true },
+    description: { type: String, required: true },
+    location: { type: String, required: true },
+    eventId: { type: String, unique: true, required: true },
+    schedule: {
+      start: { type: Date, required: true },
+      end: { type: Date, required: true },
+    },
+    registrationDeadline: { type: Date, required: true },
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: false,
+    },
+    maxParticipants: { type: Number, default: 100 },
+    registeredUsers: [
+      {
+        userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+        registeredAt: { type: Date, default: Date.now },
+        checkInStatus: { type: Boolean, default: false },
+      },
+    ],
+    waitlist: [
+      {
+        userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+        joinedAt: { type: Date, default: Date.now },
+      },
+    ],
+    status: {
+      type: String,
+      enum: ["upcoming", "ongoing", "completed", "cancelled"],
+      default: "upcoming",
+    },
+    isPublished: { type: Boolean, default: false },
+    canceledReason: { type: String, default: null },
+    notifications: {
+      sendReminders: { type: Boolean, default: true },
+      reminderTimes: [{ type: Date }],
+    },
+    createdAt: { type: Date, default: Date.now },
+    // New fields added below
+    image: { type: String, required: true },
+    geolocation: {
+      address: { type: String, required: true },
+      city: { type: String, required: true },
+      state: { type: String, required: true },
+      country: { type: String, required: true },
+      coordinates: { type: String, required: true },
+    },
+    specialDeal: { type: Boolean, default: false },
+    capacity: { type: Number },
+    ageRange: {
+      min: { type: Number, min: 0 },
+      max: { type: Number, min: 0 },
+    },
+    price: { type: Number, required: true, min: 0 },
+    refundPolicy: { type: String },
+    duration: { type: String },
+    organizer: { type: String, required: true },
+    mode: {
+      type: String,
+      enum: ["online", "offline", "hybrid"],
+      required: true,
+    },
+    category: {
+      type: String,
+      enum: [
+        "all ages",
+        "for babies",
+        "main arena",
+        "toddler",
+        "teen",
+        "education",
+        "attraction",
+        "classes and workshops",
+        "birthday",
+        "food and drink",
+        "arts",
+        "sports",
+        "charity & causes",
+        "hobbies",
+        "holiday",
+        "stem&coding",
+        "academic",
+        "homeschoolfriendly",
+        "tutoring",
+        "specialneeds",
+        "special deals",
+      ],
+      required: true,
+    },
+  });
+  
+  EventSchema.pre("validate", async function (next) {
+    if (!this.eventId) {
+      try {
+        const lastEvent = await mongoose
+          .model("Event")
+          .findOne({ eventId: /^EV-\d+$/ })
+          .sort({ createdAt: -1 })
+          .exec();
+  
+        let nextEventId = "EV-001";
+        if (lastEvent && lastEvent.eventId) {
+          const lastNumber = parseInt(lastEvent.eventId.replace("EV-", ""), 10);
+          nextEventId = `EV-${(lastNumber + 1).toString().padStart(3, "0")}`;
+        }
+  
+        this.eventId = nextEventId;
+      } catch (error) {
+        return next(
+          new Error("Error generating event ID: " + (error as Error).message)
+        );
+      }
+    }
+    next();
+  });
+  
+  const Event = mongoose.models?.Event || mongoose.model("Event", EventSchema);
+  export default Event;
