@@ -99,7 +99,6 @@ type AgeRange = {
   max: number;
 };
 
-
 type MoreEvent = {
   title: string;
   date: string; // ISO 8601 format recommended
@@ -108,7 +107,6 @@ type MoreEvent = {
   imageUrl: string;
 };
 
-
 type Geolocation = {
   address: string;
   city: string;
@@ -116,11 +114,6 @@ type Geolocation = {
   country: string;
   coordinates: string; // Assuming [latitude, longitude]
 };
-
-
-
-
-
 
 type Categories =
   | "all ages"
@@ -147,7 +140,6 @@ type Categories =
 
 // ADDITIONAL TYPE DEF ==================================
 
-
 export interface EventInterfaceType {
   map(
     arg0: (item: IUser, index: number) => import("react").JSX.Element
@@ -167,9 +159,6 @@ export interface EventInterfaceType {
   createdAt: string; // ISO date string
   eventId: string;
   createdBy: string;
-  category: string;
-  price: string;
-  ageRange: string;
   images: string;
   image: string;
   geolocation: Geolocation;

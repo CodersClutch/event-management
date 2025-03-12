@@ -34,8 +34,9 @@ import { GetSingleEvent } from "@/lib/actions/event/GetAllEvent";
 import { formatReadableDate } from "@/lib/utils";
 import CountDown from "@/components/common/CountDown";
 import ProfileComponent from "@/components/common/ProfileComponent";
+type Params = Promise<{ slug: string }>;
 
-const EventPage = async ({ params }: { params: { slug: string } }) => {
+const EventPage = async ({ params }: { params: Params }) => {
   const { slug } = await params;
   const { data, status, message } = await GetSingleEvent(slug);
 
@@ -61,7 +62,6 @@ const EventPage = async ({ params }: { params: { slug: string } }) => {
             priority
           />
         </div>
-
         <div className="mx-auto font-sans">
           {/* Date */}
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-4">
