@@ -9,7 +9,7 @@ const FeaturedArticles = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {[
           { title: "Find your tickets", link: "/help-center/find-my-tickets" },
-          { title: "What is this charge from 4kiddos", link: "/articles/two" },
+          { title: "What is this charge from 4kiddos", link: "/help-center/4kiddo-charge" },
           { title: "Contact the event organizer", link: "/articles/three" },
         ].map((article, index) => (
           <Link 
