@@ -10,7 +10,7 @@ const tabsData = [
         content: (
             <div>
                 <h2 className="text-[1.4rem] text-[#13002D] font-semibold mb-4">Browse and find events</h2>
-                <div className="text-[0.9rem] text-blue-600 space-y-3">
+                <div className="text-[0.9rem] text-blue-600 space-y-2">
                     <p>Use the search bar to find events by name, category, or location.</p>
                     <p>Filter events based on date, type, or popularity to refine your search.</p>
                     <p>Check event details, including venue, time, and ticket availability.</p>
@@ -18,13 +18,22 @@ const tabsData = [
                 </div>
 
                 <h2 className="text-[1.4rem] text-[#13002D] font-semibold my-4">Select your ticket</h2>
-                <div className="text-[0.9rem] text-blue-600 space-y-3">
-                    <p>Use the search bar to find events by name, category, or location.</p>
-                    <p>Filter events based on date, type, or popularity to refine your search.</p>
-                    <p>Check event details, including venue, time, and ticket availability.</p>
-                    <p>Save events to your wishlist for easy access later.</p>
+                <div className="text-[0.9rem] text-blue-600 space-y-2">
+                    <p>Choose from different ticket types such as General, VIP, or Early Bird.</p>
+                    <p>Check ticket availability and pricing before proceeding.</p>
                 </div>
 
+                <h2 className="text-[1.4rem] text-[#13002D] font-semibold my-4">Secure Your Spot</h2>
+                <div className="text-[0.9rem] text-blue-600 space-y-2">
+                    <p>Click the "Register" or "Buy Ticket" button to proceed with your booking.</p>
+                    <p>Provide necessary details like name, email, and contact information.</p>
+                </div>
+
+                <h2 className="text-[1.4rem] text-[#13002D] font-semibold my-4"> Make Payment</h2>
+                <div className="text-[0.9rem] text-blue-600 space-y-2">
+                    <p>Select a payment method such as credit card, PayPal, or mobile wallet.</p>
+                    <p>Ensure payment details are accurate before confirming the transaction.</p>
+                </div>
             </div>
         ),
     },
