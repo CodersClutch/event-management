@@ -34,6 +34,12 @@ const tabsData = [
                     <p>Select a payment method such as credit card, PayPal, or mobile wallet.</p>
                     <p>Ensure payment details are accurate before confirming the transaction.</p>
                 </div>
+
+                <h2 className="text-[1.4rem] text-[#13002D] font-semibold my-4">Get Your Confirmation</h2>
+                <div className="text-[0.9rem] text-blue-600 space-y-2">
+                    <p>Receive an email confirmation with your ticket details and QR code.</p>
+                    <p>Save or print your ticket for event entry.</p>
+                </div>
             </div>
         ),
     },
@@ -42,8 +48,35 @@ const tabsData = [
         icon: <Ticket className="w-4 h-4 inline-block mr-2" />,
         content: (
             <div>
-                <h2 className="text-xl font-semibold mb-4">Your tickets</h2>
-                <p>Content for “Your tickets” goes here.</p>
+                <h2 className="text-[1.4rem] text-[#13002D] font-semibold mb-4">Access Your Tickets</h2>
+                <div className="text-[0.9rem] text-blue-600 space-y-2">
+                    <p>Go to your account dashboard to view purchased tickets.</p>
+                    <p>Find tickets under the "My Tickets" section for upcoming and past events.</p>
+                </div>
+    
+                <h2 className="text-[1.4rem] text-[#13002D] font-semibold my-4">Download or Print</h2>
+                <div className="text-[0.9rem] text-blue-600 space-y-2">
+                    <p>Download your ticket as a PDF or view it digitally.</p>
+                    <p>Print the ticket if required for event entry.</p>
+                </div>
+    
+                <h2 className="text-[1.4rem] text-[#13002D] font-semibold my-4">Ticket QR Code</h2>
+                <div className="text-[0.9rem] text-blue-600 space-y-2">
+                    <p>Each ticket has a unique QR code for verification at the venue.</p>
+                    <p>Ensure your QR code is visible on your phone for easy check-in.</p>
+                </div>
+    
+                <h2 className="text-[1.4rem] text-[#13002D] font-semibold my-4">Transfer or Resell</h2>
+                <div className="text-[0.9rem] text-blue-600 space-y-2">
+                    <p>If allowed, transfer your ticket to a friend by entering their details.</p>
+                    <p>Some events offer a resale option if you can no longer attend.</p>
+                </div>
+    
+                <h2 className="text-[1.4rem] text-[#13002D] font-semibold my-4">Event Reminders</h2>
+                <div className="text-[0.9rem] text-blue-600 space-y-2">
+                    <p>Receive email or app notifications before the event date.</p>
+                    <p>Get notified of any last-minute changes to the event schedule.</p>
+                </div>
             </div>
         ),
     },
@@ -52,8 +85,35 @@ const tabsData = [
         icon: <User className="w-4 h-4 inline-block mr-2" />,
         content: (
             <div>
-                <h2 className="text-xl font-semibold mb-4">Your account</h2>
-                <p>Content for “Your account” goes here.</p>
+                <h2 className="text-[1.4rem] text-[#13002D] font-semibold mb-4">Manage Your Profile</h2>
+                <div className="text-[0.9rem] text-blue-600 space-y-2">
+                    <p>Update your personal information, including name, email, and phone number.</p>
+                    <p>Upload or change your profile picture for a personalized experience.</p>
+                </div>
+    
+                <h2 className="text-[1.4rem] text-[#13002D] font-semibold my-4">Security and Privacy</h2>
+                <div className="text-[0.9rem] text-blue-600 space-y-2">
+                    <p>Change your password or enable two-factor authentication (2FA) for added security.</p>
+                    <p>Manage account privacy settings, including visibility and notification preferences.</p>
+                </div>
+    
+                <h2 className="text-[1.4rem] text-[#13002D] font-semibold my-4">Payment Methods</h2>
+                <div className="text-[0.9rem] text-blue-600 space-y-2">
+                    <p>Save and manage your preferred payment methods for faster checkouts.</p>
+                    <p>View transaction history and receipts for all your purchases.</p>
+                </div>
+    
+                <h2 className="text-[1.4rem] text-[#13002D] font-semibold my-4">Event Preferences</h2>
+                <div className="text-[0.9rem] text-blue-600 space-y-2">
+                    <p>Customize your event interests to receive personalized recommendations.</p>
+                    <p>Subscribe or unsubscribe from event notifications and newsletters.</p>
+                </div>
+    
+                <h2 className="text-[1.4rem] text-[#13002D] font-semibold my-4">Account Support</h2>
+                <div className="text-[0.9rem] text-blue-600 space-y-2">
+                    <p>Contact support for assistance with account-related issues.</p>
+                    <p>Request account deletion or data export if needed.</p>
+                </div>
             </div>
         ),
     },
@@ -62,28 +122,39 @@ const tabsData = [
         icon: <FileText className="w-4 h-4 inline-block mr-2" />,
         content: (
             <div>
-                <h2 className="text-xl font-semibold mb-4">Terms</h2>
-                <ul className="list-disc list-inside space-y-1">
-                    <li>Eventbrite Terms of Service</li>
-                    <li>Eventbrite Ads Terms and Conditions</li>
-                    <li>Argentine Consumer Amendments</li>
-                    <li>Eventbrite Australian Consumer Amendments</li>
-                    <li>Brazil Consumer Amendments</li>
-                    <li>EU Consumer Amendments</li>
-                    <li>Can Eventbrite sign an agreement outside the Terms of Service?</li>
-                    <li>API Terms of Use</li>
-                    <li>Solutions Addendum</li>
-                    <li>Amendment to Terms of Service that Apply to Federal Agencies</li>
-                    <li>Organizer Terms</li>
-                    <li>SMS Terms of Service</li>
-                </ul>
-                <h2 className="text-xl font-semibold mt-8 mb-4">Policies</h2>
-                <ul className="list-disc list-inside space-y-1">
-                    <li>Eventbrite Trademark &amp; Copyright Policy</li>
-                </ul>
+                <h2 className="text-[1.4rem] text-[#13002D] font-semibold mb-4">Terms of Service</h2>
+                <div className="text-[0.9rem] text-blue-600 space-y-2">
+                    <p>By using our platform, you agree to comply with our terms and conditions.</p>
+                    <p>Unauthorized use, fraud, or violation of our policies may result in account suspension.</p>
+                </div>
+    
+                <h2 className="text-[1.4rem] text-[#13002D] font-semibold my-4">Privacy Policy</h2>
+                <div className="text-[0.9rem] text-blue-600 space-y-2">
+                    <p>We collect and store user data to improve your experience while ensuring privacy.</p>
+                    <p>Review how we use, protect, and share your information.</p>
+                </div>
+    
+                <h2 className="text-[1.4rem] text-[#13002D] font-semibold my-4">Refund and Cancellation</h2>
+                <div className="text-[0.9rem] text-blue-600 space-y-2">
+                    <p>Understand our refund policies for ticket cancellations or event changes.</p>
+                    <p>Some events may have a no-refund policy, so check before purchasing.</p>
+                </div>
+    
+                <h2 className="text-[1.4rem] text-[#13002D] font-semibold my-4">User Responsibilities</h2>
+                <div className="text-[0.9rem] text-blue-600 space-y-2">
+                    <p>Users must provide accurate information and follow event guidelines.</p>
+                    <p>Any misuse of the platform or violation of event rules may lead to penalties.</p>
+                </div>
+    
+                <h2 className="text-[1.4rem] text-[#13002D] font-semibold my-4">Policy Updates</h2>
+                <div className="text-[0.9rem] text-blue-600 space-y-2">
+                    <p>We may update our terms and policies periodically to comply with legal requirements.</p>
+                    <p>Users will be notified of major updates that affect their rights and responsibilities.</p>
+                </div>
             </div>
         ),
     },
+    
 ];
 
 const BrowseMotherPage = () => {
