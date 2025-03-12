@@ -6,14 +6,6 @@ import Link from "next/link";
 import { EventInterfaceType } from "@/lib/types";
 import { formatDate } from "@/lib/utils";
 
-interface Event {
-  id: string;
-  image: string;
-  title: string;
-  date: string;
-  location: string;
-  price: number;
-}
 
 const Common = ({ events }: { events: EventInterfaceType[] }) => {
   return (

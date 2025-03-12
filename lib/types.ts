@@ -167,9 +167,6 @@ export interface EventInterfaceType {
   createdAt: string; // ISO date string
   eventId: string;
   createdBy: string;
-  category: string;
-  price: string;
-  ageRange: string;
   images: string;
   image: string;
   geolocation: Geolocation;
