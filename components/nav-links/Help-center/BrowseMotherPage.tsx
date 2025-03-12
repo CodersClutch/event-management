@@ -1,19 +1,25 @@
-"use client"
+"use client";
 
-import { useState } from 'react'
+import { useState } from "react";
+import { DollarSign, Ticket, User, FileText } from 'lucide-react';
 
 const tabsData = [
     {
         title: "Buy and register",
+        icon: <DollarSign className="w-4 h-4 inline-block mr-2" />,
         content: (
             <div>
                 <h2 className="text-[1.4rem] text-[#13002D] font-semibold mb-4">Browse and find events</h2>
-                <p>Content for “Buy and register” goes here.</p>
+                <div className="text-[0.9rem] text-blue-600">
+                    <p>Content for “Buy and register” goes here.</p>
+                    <p></p>
+                </div>
             </div>
         ),
     },
     {
         title: "Your tickets",
+        icon: <Ticket className="w-4 h-4 inline-block mr-2" />,
         content: (
             <div>
                 <h2 className="text-xl font-semibold mb-4">Your tickets</h2>
@@ -23,6 +29,7 @@ const tabsData = [
     },
     {
         title: "Your account",
+        icon: <User className="w-4 h-4 inline-block mr-2" />,
         content: (
             <div>
                 <h2 className="text-xl font-semibold mb-4">Your account</h2>
@@ -32,6 +39,7 @@ const tabsData = [
     },
     {
         title: "Terms and policies",
+        icon: <FileText className="w-4 h-4 inline-block mr-2" />,
         content: (
             <div>
                 <h2 className="text-xl font-semibold mb-4">Terms</h2>
@@ -49,7 +57,6 @@ const tabsData = [
                     <li>Organizer Terms</li>
                     <li>SMS Terms of Service</li>
                 </ul>
-
                 <h2 className="text-xl font-semibold mt-8 mb-4">Policies</h2>
                 <ul className="list-disc list-inside space-y-1">
                     <li>Eventbrite Trademark &amp; Copyright Policy</li>
@@ -67,27 +74,26 @@ const BrowseMotherPage = () => {
             <div className="flex gap-x-20">
                 {/* Left column (tabs) */}
                 <div className="w-1/4 pr-4 space-y-2">
-                    <h1 className="text-[#1E0A3C] text-[1.17rem] font-semibold mb-4">Attending an event topics</h1>
+                    <h1 className="text-[#1E0A3C] text-[1.17rem] font-semibold mb-4">
+                        Attending an event topics
+                    </h1>
                     {tabsData.map((tab, index) => (
                         <button
                             key={index}
                             onClick={() => setActiveTab(index)}
-                            className={`block w-full text-left py-2 px-2 text-[0.9rem] text-blue-600 ${activeTab === index ? "font-semibold" : ""
+                            className={`w-full text-left py-2 px-2 text-[0.9rem] text-blue-600 flex gap-1 items-center ${activeTab === index ? "font-semibold" : ""
                                 }`}
                         >
-                            {tab.title}
+                            {tab.icon} {tab.title}
                         </button>
                     ))}
                 </div>
 
                 {/* Right column (content) */}
-                <div className="w-3/4 pl-6">
-                    {tabsData[activeTab].content}
-                </div>
+                <div className="w-3/4 pl-6">{tabsData[activeTab].content}</div>
             </div>
         </div>
     );
+};
 
-}
-
-export default BrowseMotherPage
+export default BrowseMotherPage;
