@@ -7,7 +7,7 @@ const tabsData = [
         title: "Buy and register",
         content: (
             <div>
-                <h2 className="text-[1.3rem] text-[#13002D] font-semibold mb-4">Buy and register</h2>
+                <h2 className="text-[1.4rem] text-[#13002D] font-semibold mb-4">Browse and find events</h2>
                 <p>Content for “Buy and register” goes here.</p>
             </div>
         ),
