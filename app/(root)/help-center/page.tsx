@@ -5,11 +5,11 @@ import React from 'react'
 
 const page = () => {
   return (
+
     <div className='pt-[8%] px-[3.5%]'>
       <HelpSection />
       <FeaturedArticles />
       <BrowseByTopic />
-    </div>
   )
 }
 
