@@ -10,10 +10,21 @@ const tabsData = [
         content: (
             <div>
                 <h2 className="text-[1.4rem] text-[#13002D] font-semibold mb-4">Browse and find events</h2>
-                <div className="text-[0.9rem] text-blue-600">
-                    <p>Content for “Buy and register” goes here.</p>
-                    <p></p>
+                <div className="text-[0.9rem] text-blue-600 space-y-3">
+                    <p>Use the search bar to find events by name, category, or location.</p>
+                    <p>Filter events based on date, type, or popularity to refine your search.</p>
+                    <p>Check event details, including venue, time, and ticket availability.</p>
+                    <p>Save events to your wishlist for easy access later.</p>
                 </div>
+
+                <h2 className="text-[1.4rem] text-[#13002D] font-semibold my-4">Select your ticket</h2>
+                <div className="text-[0.9rem] text-blue-600 space-y-3">
+                    <p>Use the search bar to find events by name, category, or location.</p>
+                    <p>Filter events based on date, type, or popularity to refine your search.</p>
+                    <p>Check event details, including venue, time, and ticket availability.</p>
+                    <p>Save events to your wishlist for easy access later.</p>
+                </div>
+
             </div>
         ),
     },
