@@ -43,10 +43,10 @@ const EventSchema = new mongoose.Schema({
   },
   mode: { type: String, required: false, default: "" },
   price: { type: Number, required: true },
-  refundPolicy: { type: String, required: true },
-  category: [{ type: String }],
+  refundPolicy: { type: String, required: false, default: "" },
+  category: { type: String },
   specialDeal: { type: Boolean, default: false },
-  ageRange: { type: Number, required: true },
+  ageRange: { type: String, required: true },
   geolocation: {
     address: { type: String, required: false },
     city: { type: String, required: false },

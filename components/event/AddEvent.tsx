@@ -23,10 +23,14 @@ import { eventSchema } from "@/lib/validation/eventValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
@@ -35,6 +39,7 @@ import { Textarea } from "../ui/textarea";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { useSession } from "next-auth/react";
 import { EventHook } from "@/hooks/EventHook";
+import { categories, categories2 } from "@/constants";
 
 const AddEvent = () => {
   const { HandleAddEvent, isLoading } = EventHook();
@@ -53,14 +58,23 @@ const AddEvent = () => {
       maxParticipants: 0,
       description: "",
       location: "",
+      category: "",
+      price: "",
+      ageRange: "",
+      images: "",
     },
   });
 
   // 2. Define a submit handler.
   async function onSubmit() {
-    console.log("form values", form.getValues());
+    // form values
+    const formData = {
+      ...form.getValues(),
+      createdBy: session?.user?._id,
+      price: Number(form.getValues("price")),
+    };
 
-    const status = await HandleAddEvent(form.getValues());
+    const status = await HandleAddEvent(formData);
     console.log("sesso", session?.user?.id);
     // close the dialog when the status is 200
     if (status?.status === 200) {
@@ -117,37 +131,6 @@ const AddEvent = () => {
                           field.onChange(new Date(e.target.value))
                         }
                       />
-                      {/* <Popover>
-                        <PopoverTrigger asChild>
-                          <FormControl>
-                            <Button
-                              variant={"outline"}
-                              className={cn(
-                                "w-full pl-3 text-left font-normal",
-                                !field.value && "text-muted-foreground"
-                              )}
-                            >
-                              {field.value ? (
-                                format(field.value, "PPP")
-                              ) : (
-                                <span>Pick a date</span>
-                              )}
-                              <CalendarIcon className="ml-auto h-4 w-4 z-[9999]" />
-                            </Button>
-                          </FormControl>
-                        </PopoverTrigger>
-                        <PopoverContent>
-                          <Calendar
-                            mode="single"
-                            selected={field.value}
-                            onSelect={field.onChange}
-                            // disabled={(date) =>
-                            //   date > new Date() || date < new Date("1900-01-01")
-                            // }
-                            initialFocus
-                          />
-                        </PopoverContent>
-                      </Popover> */}
 
                       <FormMessage />
                     </FormItem>
@@ -169,37 +152,6 @@ const AddEvent = () => {
                           field.onChange(new Date(e.target.value))
                         }
                       />
-                      {/* <Popover>
-                        <PopoverTrigger asChild>
-                          <FormControl>
-                            <Button
-                              variant={"outline"}
-                              className={cn(
-                                "w-full pl-3 text-left font-normal",
-                                !field.value && "text-muted-foreground"
-                              )}
-                            >
-                              {field.value ? (
-                                format(field.value, "PPP")
-                              ) : (
-                                <span>Pick a date</span>
-                              )}
-                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                            </Button>
-                          </FormControl>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0" align="start">
-                          <Calendar
-                            mode="single"
-                            selected={field.value}
-                            onSelect={field.onChange}
-                            // disabled={(date) =>
-                            //   date > new Date() || date < new Date("1900-01-01")
-                            // }
-                            initialFocus
-                          />
-                        </PopoverContent>
-                      </Popover> */}
 
                       <FormMessage />
                     </FormItem>
@@ -279,6 +231,92 @@ const AddEvent = () => {
                   )}
                 />
               </div>
+
+              {/* price and category */}
+              <div className="grid grid-cols-2 gap-2 items-center">
+                <FormField
+                  control={form.control}
+                  name="category"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-col">
+                      <FormLabel>Category</FormLabel>
+
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder="Select a Category" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectGroup>
+                            <SelectLabel>Categorises</SelectLabel>
+
+                            {categories2.map((element) => (
+                              <SelectItem key={element} value={element}>
+                                {element}
+                              </SelectItem>
+                            ))}
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="price"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Price</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="number"
+                          placeholder="Enter price "
+                          {...field}
+                        />
+                      </FormControl>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+
+              {/* age range */}
+
+              {/* Age Range Field */}
+              <FormField
+                control={form.control}
+                name="ageRange"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col">
+                    <FormLabel>Age Range</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Select Age Range" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectLabel>Age Ranges</SelectLabel>
+                          <SelectItem value="All Ages">All Ages</SelectItem>
+                          <SelectItem value="5-10">5 - 10</SelectItem>
+                          <SelectItem value="18-25">18 - 25</SelectItem>
+                          <SelectItem value="26-35">26 - 35</SelectItem>
+                          <SelectItem value="36-50">36 - 50</SelectItem>
+                          <SelectItem value="50+">50+</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
               <FormField
                 control={form.control}
