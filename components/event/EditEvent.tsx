@@ -1,16 +1,16 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { CalendarIcon, Edit, Loader, Save } from "lucide-react";
+import { Edit, Loader, Save } from "lucide-react";
 import {
   Form,
   FormControl,
@@ -22,20 +22,24 @@ import {
 import { eventSchema } from "@/lib/validation/eventValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import { categories2 } from "@/constants";
+
 import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
-import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { Textarea } from "../ui/textarea";
-import { DialogClose } from "@radix-ui/react-dialog";
 import { EventHook } from "@/hooks/EventHook";
 import { useSession } from "next-auth/react";
 import { EventInterfaceType } from "@/lib/types";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 const EditEvent = ({ event }: { event: EventInterfaceType }) => {
   const { handleUpdateEvent, isLoading } = EventHook();
@@ -60,6 +64,10 @@ const EditEvent = ({ event }: { event: EventInterfaceType }) => {
       maxParticipants: event?.maxParticipants || 0,
       description: event?.description || "",
       location: event?.location || "",
+      category: event?.category || "",
+      price: event?.price || "",
+      ageRange: event?.ageRange || "",
+      // images: event?.images: ,
     },
   });
 
@@ -76,9 +84,13 @@ const EditEvent = ({ event }: { event: EventInterfaceType }) => {
       registrationDeadline: event?.registrationDeadline
         ? new Date(event.registrationDeadline)
         : new Date(),
-      maxParticipants: event?.maxParticipants || 0,
+      maxParticipants: event?.maxParticipants || ("0" as string),
       description: event?.description || "",
       location: event?.location || "",
+      category: event?.category || "",
+      price: event?.price || ("" as string),
+      ageRange: event?.ageRange || "",
+      // images: event?.images || [],
     });
   }, [event, form, session]);
 
@@ -86,6 +98,7 @@ const EditEvent = ({ event }: { event: EventInterfaceType }) => {
     const updatedEvent = {
       ...event,
       ...form.getValues(),
+      price: Number(form.getValues("price")),
     };
     const status = await handleUpdateEvent(
       event._id,
@@ -98,22 +111,22 @@ const EditEvent = ({ event }: { event: EventInterfaceType }) => {
   }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
+    <Sheet open={open} onOpenChange={setOpen}>
+      <SheetTrigger asChild>
         <Button className="w-full flex justify-between" variant="outline">
           Edit
           <Edit />
         </Button>
-      </DialogTrigger>
-      <DialogContent>
+      </SheetTrigger>
+      <SheetContent>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
-            <DialogHeader>
-              <DialogTitle>Edit Event</DialogTitle>
-              <DialogDescription>
+            <SheetHeader>
+              <SheetTitle>Edit Event</SheetTitle>
+              <SheetDescription>
                 Modify the event details and save changes.
-              </DialogDescription>
-            </DialogHeader>
+              </SheetDescription>
+            </SheetHeader>
             <div className="grid gap-4 py-4">
               <FormField
                 control={form.control}
@@ -136,37 +149,16 @@ const EditEvent = ({ event }: { event: EventInterfaceType }) => {
                   render={({ field }) => (
                     <FormItem className="flex flex-col">
                       <FormLabel> Start Date</FormLabel>
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <FormControl>
-                            <Button
-                              variant={"outline"}
-                              className={cn(
-                                "w-full pl-3 text-left font-normal",
-                                !field.value && "text-muted-foreground"
-                              )}
-                            >
-                              {field.value ? (
-                                format(field.value, "PPP")
-                              ) : (
-                                <span>Pick a date</span>
-                              )}
-                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                            </Button>
-                          </FormControl>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0" align="start">
-                          <Calendar
-                            mode="single"
-                            selected={field.value}
-                            onSelect={field.onChange}
-                            // disabled={(date) =>
-                            //   date > new Date() || date < new Date("1900-01-01")
-                            // }
-                            initialFocus
-                          />
-                        </PopoverContent>
-                      </Popover>
+                      <Input
+                        {...field}
+                        type="date"
+                        value={
+                          field.value ? format(field.value, "yyyy-MM-dd") : ""
+                        }
+                        onChange={(e) =>
+                          field.onChange(new Date(e.target.value))
+                        }
+                      />
 
                       <FormMessage />
                     </FormItem>
@@ -178,37 +170,16 @@ const EditEvent = ({ event }: { event: EventInterfaceType }) => {
                   render={({ field }) => (
                     <FormItem className="flex flex-col">
                       <FormLabel> End Date</FormLabel>
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <FormControl>
-                            <Button
-                              variant={"outline"}
-                              className={cn(
-                                "w-full pl-3 text-left font-normal",
-                                !field.value && "text-muted-foreground"
-                              )}
-                            >
-                              {field.value ? (
-                                format(field.value, "PPP")
-                              ) : (
-                                <span>Pick a date</span>
-                              )}
-                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                            </Button>
-                          </FormControl>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0" align="start">
-                          <Calendar
-                            mode="single"
-                            selected={field.value}
-                            onSelect={field.onChange}
-                            // disabled={(date) =>
-                            //   date > new Date() || date < new Date("1900-01-01")
-                            // }
-                            initialFocus
-                          />
-                        </PopoverContent>
-                      </Popover>
+                      <Input
+                        {...field}
+                        type="date"
+                        value={
+                          field.value ? format(field.value, "yyyy-MM-dd") : ""
+                        }
+                        onChange={(e) =>
+                          field.onChange(new Date(e.target.value))
+                        }
+                      />
 
                       <FormMessage />
                     </FormItem>
@@ -223,37 +194,13 @@ const EditEvent = ({ event }: { event: EventInterfaceType }) => {
                   render={({ field }) => (
                     <FormItem className="flex flex-col">
                       <FormLabel>Registration Deadline</FormLabel>
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <FormControl>
-                            <Button
-                              variant={"outline"}
-                              className={cn(
-                                "w-full pl-3 text-left font-normal",
-                                !field.value && "text-muted-foreground"
-                              )}
-                            >
-                              {field.value ? (
-                                format(field.value, "PPP")
-                              ) : (
-                                <span>Pick a deadline</span>
-                              )}
-                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                            </Button>
-                          </FormControl>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0" align="start">
-                          <Calendar
-                            mode="single"
-                            selected={field.value}
-                            onSelect={field.onChange}
-                            // disabled={(date) =>
-                            //   date > new Date() || date < new Date("1900-01-01")
-                            // }
-                            initialFocus
-                          />
-                        </PopoverContent>
-                      </Popover>
+                      <Input
+                        {...field}
+                        type="date"
+                        value={
+                          field.value ? format(field.value, "yyyy-MM-dd") : ""
+                        }
+                      />
 
                       <FormMessage />
                     </FormItem>
@@ -278,6 +225,91 @@ const EditEvent = ({ event }: { event: EventInterfaceType }) => {
                   )}
                 />
               </div>
+              {/* price and category */}
+              <div className="grid grid-cols-2 gap-2 items-center">
+                <FormField
+                  control={form.control}
+                  name="category"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-col">
+                      <FormLabel>Category</FormLabel>
+
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder="Select a Category" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectGroup>
+                            <SelectLabel>Categorises</SelectLabel>
+
+                            {categories2.map((element) => (
+                              <SelectItem key={element} value={element}>
+                                {element}
+                              </SelectItem>
+                            ))}
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="price"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Price</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="number"
+                          placeholder="Enter price "
+                          {...field}
+                        />
+                      </FormControl>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+
+              {/* age range */}
+
+              {/* Age Range Field */}
+              <FormField
+                control={form.control}
+                name="ageRange"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col">
+                    <FormLabel>Age Range</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Select Age Range" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectLabel>Age Ranges</SelectLabel>
+                          <SelectItem value="All Ages">All Ages</SelectItem>
+                          <SelectItem value="5-10">5 - 10</SelectItem>
+                          <SelectItem value="18-25">18 - 25</SelectItem>
+                          <SelectItem value="26-35">26 - 35</SelectItem>
+                          <SelectItem value="36-50">36 - 50</SelectItem>
+                          <SelectItem value="50+">50+</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
               <FormField
                 control={form.control}
@@ -313,10 +345,10 @@ const EditEvent = ({ event }: { event: EventInterfaceType }) => {
                 )}
               />
             </div>
-            <DialogFooter>
-              <DialogClose type="button">
+            <SheetFooter>
+              <SheetClose type="button">
                 <Button variant="outline">Cancel</Button>
-              </DialogClose>
+              </SheetClose>
               <Button disabled={isLoading} type="submit">
                 {isLoading ? "Saving changes..." : "Save changes"}
                 {isLoading ? (
@@ -325,11 +357,11 @@ const EditEvent = ({ event }: { event: EventInterfaceType }) => {
                   <Save className="ml-2" />
                 )}
               </Button>
-            </DialogFooter>
+            </SheetFooter>
           </form>
         </Form>
-      </DialogContent>
-    </Dialog>
+      </SheetContent>
+    </Sheet>
   );
 };
 

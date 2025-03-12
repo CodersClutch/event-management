@@ -41,6 +41,21 @@ const EventSchema = new mongoose.Schema({
     sendReminders: { type: Boolean, default: true },
     reminderTimes: [{ type: Date }],
   },
+  mode: { type: String, required: false, default: "" },
+  price: { type: Number, required: true },
+  refundPolicy: { type: String, required: false, default: "" },
+  category: { type: String },
+  specialDeal: { type: Boolean, default: false },
+  ageRange: { type: String, required: true },
+  image: { type: String, required: true },
+  geolocation: {
+    address: { type: String, required: false },
+    city: { type: String, required: false },
+    state: { type: String, required: false },
+    country: { type: String, required: false },
+    coordinates: { type: String, required: false },
+  },
+
   createdAt: { type: Date, default: Date.now },
 });
 
