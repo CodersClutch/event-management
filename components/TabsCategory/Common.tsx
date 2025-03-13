@@ -5,6 +5,7 @@ import { Bookmark } from "lucide-react";
 import Link from "next/link";
 import { EventInterfaceType } from "@/lib/types";
 import { formatDate } from "@/lib/utils";
+import TicketDrawer from "../event/TicketDrawer";
 
 interface Event {
   id: string;
@@ -21,19 +22,25 @@ const Common = ({ events }: { events: EventInterfaceType[] }) => {
       <div className="bg-transparent max-w-7xl mx-auto p-4 font-sans">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {events.map((event, idx) => (
-            <Link
-              href={`/events/${event._id}`}
+            <div
               key={event._id}
               className="relative w-72 hover:shadow-2xl rounded-2xl overflow-hidden shadow-lg border"
             >
-              <div className="relative w-full h-96">
+              <Link
+                href={`/events/${event._id}`}
+                className="relative w-full h-96 block"
+              >
                 <Image
-                  src={event?.image}
-                  alt={event.title}
+                  src={
+                    event?.image ||
+                    "https://img.freepik.com/free-psd/kitschy-colors-youtube-cover-template_23-2150544102.jpg?uid=R178129720&ga=GA1.1.1411535131.1738618804&semt=ais_hybrid"
+                  }
+                  alt={event?.title}
                   layout="fill"
                   objectFit="cover"
                 />
-              </div>
+              </Link>
+
               <button className="absolute top-3 right-3 bg-white p-2 rounded-full shadow-md">
                 <Bookmark className="h-5 w-5 text-gray-600" />
               </button>
@@ -49,12 +56,10 @@ const Common = ({ events }: { events: EventInterfaceType[] }) => {
                   <span className="text-[#D942D6] font-bold">
                     ${event.price}
                   </span>
-                  <button className="text-[#D942D6] font-bold border-l-2 pl-2 border-[#D942D6]">
-                    Buy Now
-                  </button>
+                  <TicketDrawer />
                 </div>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </div>
