@@ -29,7 +29,7 @@ const ParentingTipsPage = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section with new colors */}
       <header className="bg-gradient-to-r from-[#FEBE20]/20 to-[#E546E3]/20  pb-16 px-4">
-        <div className="max-w-6xl mx-auto mt-[10%] text-center">
+        <div className="max-w-6xl mx-auto pt-[35%] lg:pt-[15%] text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
             Parenting Wisdom,<br />
             <span className="text-[#E546E3]">Made Simple</span>
