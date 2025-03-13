@@ -10,7 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { Edit, Loader, Save } from "lucide-react";
+import { ChevronDown, Edit, Loader, Save } from "lucide-react";
 import {
   Form,
   FormControl,
@@ -39,11 +39,15 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuTrigger } from "../ui/dropdown-menu";
 
 const EditEvent = ({ event }: { event: EventInterfaceType }) => {
   const { handleUpdateEvent, isLoading } = EventHook();
   const [open, setOpen] = useState<boolean>(false);
   const { data: session } = useSession({ required: true });
+
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  
 
   const form = useForm({
     resolver: zodResolver(eventSchema),
@@ -226,6 +230,7 @@ const EditEvent = ({ event }: { event: EventInterfaceType }) => {
               </div>
               {/* price and category */}
               <div className="grid grid-cols-2 gap-2 items-center">
+
                 <FormField
                   control={form.control}
                   name="category"
