@@ -10,8 +10,8 @@ const TodayEvents = () => {
 
   return (
     <div className="max-w-7xl mx-auto p-6 text-center">
-      {filteredEvents.length > 0 ? (
-        <Common events={filteredEvents} />
+      {filteredEvents.length < 0 ? (
+        <Common events={[]} />
       ) : (
         <div className="flex flex-col items-center justify-center bg-gray-100 p-10 rounded-xl shadow-lg">
           <BiSad className="text-gray-400 text-6xl mb-4" />

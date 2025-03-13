@@ -16,7 +16,10 @@ const ProfileComponent = ({
     <div className="flex items-center gap-3">
       <Avatar className=" h-10 w-10 sm:flex">
         <AvatarImage src="/logo.png" alt="Avatar" />
-        <AvatarFallback>OM</AvatarFallback>
+        <AvatarFallback className="border-primary border">
+          {firstName?.charAt(0).toUpperCase()}
+          {lastName?.charAt(0).toUpperCase()}
+        </AvatarFallback>
       </Avatar>
       <div>
         <p className="font-medium">
@@ -28,7 +31,4 @@ const ProfileComponent = ({
   );
 };
 
-
 export default ProfileComponent;
-
-

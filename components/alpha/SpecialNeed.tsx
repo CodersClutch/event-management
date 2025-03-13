@@ -3,8 +3,8 @@ import { events } from "@/constants/events";
 import { BiSad } from "react-icons/bi";
 import Common from "../TabsCategory/Common";
 
-const Charity = () => {
-  const allowedCategories = ["charity & causes"];
+const SpecialNeed = () => {
+  const allowedCategories = ["specialneeds"];
 
   const filteredEvents = events.filter((event) =>
     event.category.some((cat) => allowedCategories.includes(cat))
@@ -13,7 +13,7 @@ const Charity = () => {
   return (
     <div className="max-w-7xl mx-auto p-6 text-center">
       <p className="uppercase text-3xl font-bold text-start text-black ml-3 pb-4">
-        charity & causes
+        Special needs
       </p>
       {filteredEvents.length < 0 ? (
         <Common events={[]} />
@@ -33,4 +33,4 @@ const Charity = () => {
   );
 };
 
-export default Charity;
+export default SpecialNeed;

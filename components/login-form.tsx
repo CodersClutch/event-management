@@ -59,14 +59,15 @@ const SignInForm = () => {
   }
 
   return (
-    <FormWrapper
-      headerLabel="Welcome back"
-      backButtonLabel="Don't have an account?"
-      backButtonHref="/signup"
-      showSocial
-    >
+    // <FormWrapper
+    //   headerLabel="Welcome back"
+    //   backButtonLabel="Don't have an account?"
+    //   backButtonHref="/signup"
+    //   showSocial
+    // >
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="w-1/3 bg-white border border-yellow-400 shadow-2xl p-5 rounded-lg text-black">
+          <h1 className="font-extrabold text-center text-2xl">Login</h1>
           <div className="space-y-4">
             <>
               <FormField
@@ -77,6 +78,7 @@ const SignInForm = () => {
                     <FormLabel>Email</FormLabel>
                     <FormControl>
                       <Input
+                      className="border-black"
                         disabled={isPending}
                         placeholder="mail@example.com"
                         {...field}
@@ -94,6 +96,7 @@ const SignInForm = () => {
                     <FormLabel>Password</FormLabel>
                     <FormControl>
                       <Input
+                      className="border-black"
                         disabled={isPending}
                         type="password"
                         placeholder="your password"
@@ -104,7 +107,7 @@ const SignInForm = () => {
                       size="sm"
                       variant="link"
                       asChild
-                      className="px-0 font-normal"
+                      className="px-0 font-normal text-back"
                     >
                       <Link href="/auth/reset">Forgot password?</Link>
                     </Button>
@@ -124,9 +127,13 @@ const SignInForm = () => {
           >
             {isPending ? "Submitting..." : "Sign In"}
           </Button>
+          <div className="text-center mt-4">
+            Don&apos;t have an account?{" "}
+          <Link href="/auth/signup" className="underline text-blue-800">Create an account</Link>
+          </div>
         </form>
       </Form>
-    </FormWrapper>
+    // </FormWrapper>
   );
 };
 

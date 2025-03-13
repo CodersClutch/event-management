@@ -1,16 +1,17 @@
 "use client";
 import React, { useState } from "react";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+  SheetClose,
+} from "@/components/ui/sheet";
 import { Input } from "@/components/ui/input";
-import { CalendarIcon, Loader, Plus } from "lucide-react";
+import { Loader, Plus } from "lucide-react";
 import {
   Form,
   FormControl,
@@ -23,28 +24,35 @@ import { eventSchema } from "@/lib/validation/eventValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
-import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { Textarea } from "../ui/textarea";
-import { DialogClose } from "@radix-ui/react-dialog";
 import { useSession } from "next-auth/react";
 import { EventHook } from "@/hooks/EventHook";
+import { categories2 } from "@/constants";
+import { useEdgeStore } from "../provider/edgestore";
+import { toast } from "sonner";
+import { SingleImageDropzone } from "@/components/SingleImageDropzone";
 
 const AddEvent = () => {
-  const { HandleAddEvent, isLoading } = EventHook();
+  const { HandleAddEvent, setIsLoading, isLoading } = EventHook();
   const [open, setOpen] = useState<boolean>();
+  const [file, setFile] = React.useState<File>();
+  const { edgestore } = useEdgeStore();
   const { data: session } = useSession({ required: true });
   const form = useForm({
     resolver: zodResolver(eventSchema),
     defaultValues: {
       title: "",
-      createdBy: session?.user?.id,
+      createdBy: session?.user?._id,
       schedule: {
         start: new Date(),
         end: new Date(),
@@ -53,38 +61,79 @@ const AddEvent = () => {
       maxParticipants: 0,
       description: "",
       location: "",
+      category: "",
+      price: "",
+      ageRange: "",
+      image: "",
     },
   });
 
-  // 2. Define a submit handler.
-  async function onSubmit() {
-    console.log("form values", form.getValues());
+  // Upload image only if form is valid
+  const UploadImage = async () => {
+    if (!file) return null;
 
-    const status = await HandleAddEvent(form.getValues());
-    console.log("sesso", session?.user?.id);
-    // close the dialog when the status is 200
+    try {
+      setIsLoading(true);
+      const res = await edgestore.publicFiles.upload({ file });
+      return res.url; // Return the uploaded image URL
+    } catch (error) {
+      toast.error("Image upload failed:");
+      setIsLoading(false);
+      return null;
+    }
+  };
+
+  // 2. Define a submit handler.
+  const onSubmit = async (data: any) => {
+    if (!file) {
+      toast.error("Please upload an image for the event");
+      return;
+    }
+    const imageUrl = await UploadImage(); // Upload only if form is valid
+    if (!imageUrl) {
+      toast.error(
+        "We could not find the image url. Please try again or refresh your browser."
+      );
+      return;
+    }
+
+    toast.info("Event Image Uploaded Successfully");
+
+    const formData = {
+      ...data,
+      createdBy: session?.user?._id,
+      price: Number(data.price),
+      image: imageUrl, // Add uploaded image URL to form data
+    };
+
+    const status = await HandleAddEvent(formData);
     if (status?.status === 200) {
       setOpen(false);
       form.reset();
+      // setFile(null);
+      // setPreview(null);
     }
-  }
+  };
+
+  // upload the file and return the url
+
   // ousainou trying to piss me of
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
+    <Sheet open={open} onOpenChange={setOpen}>
+      <SheetTrigger asChild>
         <Button variant="outline" className="w-full">
           Add Event <Plus className="h-3.5 w-3.5" />
         </Button>
-      </DialogTrigger>
-      <DialogContent className="overflow-visible">
+      </SheetTrigger>
+      <SheetContent className=" overflow-scroll">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="">
-            <DialogHeader>
-              <DialogTitle>Add Event</DialogTitle>
-              <DialogDescription>
+            <SheetHeader>
+              <SheetTitle>Add Event</SheetTitle>
+              <SheetDescription>
                 Make changes to your profile here. Click save when youre done.
-              </DialogDescription>
-            </DialogHeader>
+              </SheetDescription>
+            </SheetHeader>
             <div className="grid gap-4 py-4">
               <FormField
                 control={form.control}
@@ -107,37 +156,16 @@ const AddEvent = () => {
                   render={({ field }) => (
                     <FormItem className="flex flex-col">
                       <FormLabel> Start Date</FormLabel>
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <FormControl>
-                            <Button
-                              variant={"outline"}
-                              className={cn(
-                                "w-full pl-3 text-left font-normal",
-                                !field.value && "text-muted-foreground"
-                              )}
-                            >
-                              {field.value ? (
-                                format(field.value, "PPP")
-                              ) : (
-                                <span>Pick a date</span>
-                              )}
-                              <CalendarIcon className="ml-auto h-4 w-4 z-[9999]" />
-                            </Button>
-                          </FormControl>
-                        </PopoverTrigger>
-                        <PopoverContent>
-                          <Calendar
-                            mode="single"
-                            selected={field.value}
-                            onSelect={field.onChange}
-                            // disabled={(date) =>
-                            //   date > new Date() || date < new Date("1900-01-01")
-                            // }
-                            initialFocus
-                          />
-                        </PopoverContent>
-                      </Popover>
+                      <Input
+                        {...field}
+                        type="date"
+                        value={
+                          field.value ? format(field.value, "yyyy-MM-dd") : ""
+                        }
+                        onChange={(e) =>
+                          field.onChange(new Date(e.target.value))
+                        }
+                      />
 
                       <FormMessage />
                     </FormItem>
@@ -149,37 +177,16 @@ const AddEvent = () => {
                   render={({ field }) => (
                     <FormItem className="flex flex-col">
                       <FormLabel> End Date</FormLabel>
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <FormControl>
-                            <Button
-                              variant={"outline"}
-                              className={cn(
-                                "w-full pl-3 text-left font-normal",
-                                !field.value && "text-muted-foreground"
-                              )}
-                            >
-                              {field.value ? (
-                                format(field.value, "PPP")
-                              ) : (
-                                <span>Pick a date</span>
-                              )}
-                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                            </Button>
-                          </FormControl>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0" align="start">
-                          <Calendar
-                            mode="single"
-                            selected={field.value}
-                            onSelect={field.onChange}
-                            // disabled={(date) =>
-                            //   date > new Date() || date < new Date("1900-01-01")
-                            // }
-                            initialFocus
-                          />
-                        </PopoverContent>
-                      </Popover>
+                      <Input
+                        {...field}
+                        type="date"
+                        value={
+                          field.value ? format(field.value, "yyyy-MM-dd") : ""
+                        }
+                        onChange={(e) =>
+                          field.onChange(new Date(e.target.value))
+                        }
+                      />
 
                       <FormMessage />
                     </FormItem>
@@ -194,37 +201,16 @@ const AddEvent = () => {
                   render={({ field }) => (
                     <FormItem className="flex flex-col">
                       <FormLabel>Registration Deadline</FormLabel>
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <FormControl>
-                            <Button
-                              variant={"outline"}
-                              className={cn(
-                                "w-full pl-3 text-left font-normal",
-                                !field.value && "text-muted-foreground"
-                              )}
-                            >
-                              {field.value ? (
-                                format(field.value, "PPP")
-                              ) : (
-                                <span>Pick a deadline</span>
-                              )}
-                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                            </Button>
-                          </FormControl>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0" align="start">
-                          <Calendar
-                            mode="single"
-                            selected={field.value}
-                            onSelect={field.onChange}
-                            // disabled={(date) =>
-                            //   date > new Date() || date < new Date("1900-01-01")
-                            // }
-                            initialFocus
-                          />
-                        </PopoverContent>
-                      </Popover>
+                      <Input
+                        {...field}
+                        type="date"
+                        value={
+                          field.value ? format(field.value, "yyyy-MM-dd") : ""
+                        }
+                        onChange={(e) =>
+                          field.onChange(new Date(e.target.value))
+                        }
+                      />
 
                       <FormMessage />
                     </FormItem>
@@ -249,6 +235,92 @@ const AddEvent = () => {
                   )}
                 />
               </div>
+
+              {/* price and category */}
+              <div className="grid grid-cols-2 gap-2 items-center">
+                <FormField
+                  control={form.control}
+                  name="category"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-col">
+                      <FormLabel>Category</FormLabel>
+
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder="Select a Category" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectGroup>
+                            <SelectLabel>Categorises</SelectLabel>
+
+                            {categories2.map((element) => (
+                              <SelectItem key={element} value={element}>
+                                {element}
+                              </SelectItem>
+                            ))}
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="price"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Price</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="number"
+                          placeholder="Enter price "
+                          {...field}
+                        />
+                      </FormControl>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+
+              {/* age range */}
+
+              {/* Age Range Field */}
+              <FormField
+                control={form.control}
+                name="ageRange"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col">
+                    <FormLabel>Age Range</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Select Age Range" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectLabel>Age Ranges</SelectLabel>
+                          <SelectItem value="All Ages">All Ages</SelectItem>
+                          <SelectItem value="5-10">5 - 10</SelectItem>
+                          <SelectItem value="18-25">18 - 25</SelectItem>
+                          <SelectItem value="26-35">26 - 35</SelectItem>
+                          <SelectItem value="36-50">36 - 50</SelectItem>
+                          <SelectItem value="50+">50+</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
               <FormField
                 control={form.control}
@@ -283,14 +355,35 @@ const AddEvent = () => {
                   </FormItem>
                 )}
               />
+              <FormField
+                control={form.control}
+                name="image"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Upload event Image</FormLabel>
+                    <FormControl>
+                      <SingleImageDropzone
+                        width={200}
+                        height={200}
+                        value={file}
+                        onChange={(file) => {
+                          setFile(file);
+                        }}
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </div>
-            <DialogFooter>
-              <DialogClose type="button">
+            <SheetFooter>
+              <SheetClose type="button">
                 <Button variant={"outline"} type="button">
                   {" "}
                   cancel
                 </Button>
-              </DialogClose>
+              </SheetClose>
 
               <Button disabled={isLoading} type="submit">
                 {isLoading ? "Saving  events" : "Save event"}
@@ -300,11 +393,11 @@ const AddEvent = () => {
                   <Plus className="h-3.5 w-3.5 ml-2 " />
                 )}
               </Button>
-            </DialogFooter>
+            </SheetFooter>
           </form>
         </Form>
-      </DialogContent>
-    </Dialog>
+      </SheetContent>
+    </Sheet>
   );
 };
 

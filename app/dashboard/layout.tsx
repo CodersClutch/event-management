@@ -16,6 +16,7 @@ import {
 import { Settings } from "lucide-react";
 import { auth } from "@/auth";
 import { Toaster } from "sonner";
+import { EdgeStoreProvider } from "@/components/provider/edgestore";
 
 const nunito = Nunito({ subsets: ["latin"] });
 
@@ -41,31 +42,34 @@ export default async function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <SidebarProvider>
-              <AppSidebar />
-              <SidebarInset>
-                <header className="flex h-16 shrink-0 items-center gap-2 justify-between overflow-hidden bg-[#21BCE6]">
-                  <div className="flex items-center gap-2 px-4">
-                    <SidebarTrigger className="-ml-1" />
-                    <Separator orientation="vertical" className="mr-2 h-4" />
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Settings />
-                    <ThemeToggle />
-                    <NavUser
-                      user={{
-                        name: "Kebba Waiga",
-                        email: "kebbawaiga@gmail.com",
-                        avatar: "https://example.com/john-doe.jpg",
-                      }}
-                    />
-                  </div>
-                </header>
-                <Separator />
-                <div className="p-5 overflow-hidden">{children}</div>
-              </SidebarInset>
-            </SidebarProvider>
-            <Toaster richColors />
+            <EdgeStoreProvider>
+              {" "}
+              <SidebarProvider>
+                <AppSidebar />
+                <SidebarInset>
+                  <header className="flex h-16 shrink-0 items-center gap-2 justify-between overflow-hidden bg-[#21BCE6]">
+                    <div className="flex items-center gap-2 px-4">
+                      <SidebarTrigger className="-ml-1" />
+                      <Separator orientation="vertical" className="mr-2 h-4" />
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Settings />
+                      <ThemeToggle />
+                      <NavUser
+                        user={{
+                          name: "Kebba Waiga",
+                          email: "kebbawaiga@gmail.com",
+                          avatar: "https://example.com/john-doe.jpg",
+                        }}
+                      />
+                    </div>
+                  </header>
+                  <Separator />
+                  <div className="p-5 overflow-hidden">{children}</div>
+                </SidebarInset>
+              </SidebarProvider>
+              <Toaster richColors />
+            </EdgeStoreProvider>
           </ThemeProvider>
         </body>
       </html>
