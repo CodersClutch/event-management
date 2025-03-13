@@ -10,7 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { Edit, Loader, Save } from "lucide-react";
+import { ChevronDown, Edit, Loader, Save } from "lucide-react";
 import {
   Form,
   FormControl,
@@ -22,14 +22,13 @@ import {
 import { eventSchema } from "@/lib/validation/eventValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { categories2 } from "@/constants";
 
 import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
 import { Textarea } from "../ui/textarea";
 import { EventHook } from "@/hooks/EventHook";
 import { useSession } from "next-auth/react";
-import { EventInterfaceType } from "@/lib/types";
+import { CATEGORIES, EventInterfaceType } from "@/lib/types";
 import {
   Sheet,
   SheetClose,
@@ -40,11 +39,15 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuTrigger } from "../ui/dropdown-menu";
 
 const EditEvent = ({ event }: { event: EventInterfaceType }) => {
   const { handleUpdateEvent, isLoading } = EventHook();
   const [open, setOpen] = useState<boolean>(false);
   const { data: session } = useSession({ required: true });
+
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  
 
   const form = useForm({
     resolver: zodResolver(eventSchema),
@@ -227,37 +230,51 @@ const EditEvent = ({ event }: { event: EventInterfaceType }) => {
               </div>
               {/* price and category */}
               <div className="grid grid-cols-2 gap-2 items-center">
-                <FormField
-                  control={form.control}
-                  name="category"
-                  render={({ field }) => (
-                    <FormItem className="flex flex-col">
-                      <FormLabel>Category</FormLabel>
-
-                      <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value as string}
-                      >
-                        <SelectTrigger className="w-full">
-                          <SelectValue placeholder="Select a Category" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectGroup>
-                            <SelectLabel>Categorises</SelectLabel>
-
-                            {categories2.map((element) => (
-                              <SelectItem key={element} value={element}>
-                                {element}
-                              </SelectItem>
-                            ))}
-                          </SelectGroup>
-                        </SelectContent>
-                      </Select>
-
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+              <FormField
+  control={form.control}
+  name="category"
+  render={({ field }) => {
+    return (
+      <FormItem>
+        <FormLabel>Category</FormLabel>
+        <DropdownMenu
+          open={isDropdownOpen}
+          onOpenChange={setIsDropdownOpen}
+        >
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" className="w-full justify-between">
+              {field.value.length > 0 ? field.value.join(", ") : "Select Category"}
+              <ChevronDown className="ml-2 h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent
+            className="w-[var(--radix-dropdown-menu-trigger-width)] max-h-60 overflow-y-auto"
+            onCloseAutoFocus={(e) => e.preventDefault()}
+          >
+            {CATEGORIES.map((category) => (
+              <DropdownMenuCheckboxItem
+                key={category}
+                checked={field.value.includes(category)}
+                onSelect={(e) => e.preventDefault()} 
+                onCheckedChange={(checked) => {
+                  const newValues = checked
+                    ? [...field.value, category]
+                    : field.value.filter((c: string) => c !== category);
+                  
+                  field.onChange(newValues);
+                  setIsDropdownOpen(true);
+                }}
+              >
+                {category}
+              </DropdownMenuCheckboxItem>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
+        <FormMessage />
+      </FormItem>
+    );
+  }}
+/>
                 <FormField
                   control={form.control}
                   name="price"

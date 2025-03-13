@@ -141,7 +141,7 @@ type Categories =
 // ADDITIONAL TYPE DEF ==================================
 
 
-export const CATEGORIES: Categories[] = [
+export const CATEGORIES = [
   "all ages",
   "for babies",
   "main arena",
@@ -163,7 +163,7 @@ export const CATEGORIES: Categories[] = [
   "tutoring",
   "specialneeds",
   "special deals",
-];
+] as const; // This makes it a tuple
 
 
 export interface EventInterfaceType {

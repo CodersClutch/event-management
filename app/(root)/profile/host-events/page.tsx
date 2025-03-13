@@ -1,5 +1,4 @@
 import EventCards from "@/components/HostEvents/EventCards";
-import { categories2 } from "@/constants";
 import React from "react";
 
 const page = () => {
