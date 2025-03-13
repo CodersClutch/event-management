@@ -6,7 +6,7 @@ export const eventSchema = z
     title: z.string().trim().min(3, "Title must be at least 3 characters long"),
 
     image: z.string().trim().optional(),
-(1, "At least one category must be selected"),
+    category: z
       .array(z.enum(CATEGORIES as [string, ...string[]])) // Validates an array of categories
       .min(1, "At least one category must be selected"), // Optional: Ensures that at least one category is selected
     price: z.string().min(0, "Price must be at least 0 characters long"),
@@ -40,19 +40,6 @@ export const eventSchema = z
           });
         }
       }),
-    mode: z.string().optional().default(""), // Can be empty but should be a string
-
-    refundPolicy: z.string().optional().default(""), // Ensures it is a string
-
-    specialDeal: z.boolean().default(false), // Ensures it is a boolean
-
-    geolocation: z.object({
-      address: z.string().optional(),
-      city: z.string().optional(),
-      state: z.string().optional(),
-      country: z.string().optional(),
-      coordinates: z.string().optional(),
-    }),
 
     registrationDeadline: z.date(),
 
