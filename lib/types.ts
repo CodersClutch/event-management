@@ -140,7 +140,6 @@ type Categories =
 
 // ADDITIONAL TYPE DEF ==================================
 
-
 export const CATEGORIES: Categories[] = [
   "all ages",
   "for babies",
@@ -165,7 +164,6 @@ export const CATEGORIES: Categories[] = [
   "special deals",
 ];
 
-
 export interface EventInterfaceType {
   map(
     arg0: (item: IUser, index: number) => import("react").JSX.Element
@@ -184,7 +182,7 @@ export interface EventInterfaceType {
   waitlist: IUser[]; // Array of IUser references
   createdAt: string; // ISO date string
   eventId: string;
-  createdBy: string;
+  createdBy: IUser;
   images: string;
   image: string;
   geolocation: Geolocation;

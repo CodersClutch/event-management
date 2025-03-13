@@ -346,7 +346,7 @@ export const GetAllEventForWeb = async ({
 
     return {
       status: 200,
-      data: events,
+      data: deepConvertToPlainObject(events),
       isPreviousPage: page > 1,
       isNextPage: totalCount > skip + events.length,
       totalCount,
@@ -355,5 +355,3 @@ export const GetAllEventForWeb = async ({
     return { status: 500, message: "Failed to get events" };
   }
 };
-
-

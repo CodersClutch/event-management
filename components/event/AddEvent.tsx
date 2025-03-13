@@ -48,11 +48,6 @@ import { toast } from "sonner";
 import { SingleImageDropzone } from "@/components/SingleImageDropzone";
 import { Checkbox } from "@/components/ui/checkbox";
 
-import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-} from "@/components/ui/popover";
 import { ChevronDown } from "lucide-react";
 import { CATEGORIES } from "@/lib/types";
 const AddEvent = () => {
@@ -74,7 +69,7 @@ const AddEvent = () => {
       maxParticipants: 0,
       description: "",
       location: "",
-      category: "",
+      category: [] as string[],
       price: "",
       ageRange: "",
       image: "",

@@ -1,116 +1,154 @@
 "use client";
 
 import * as React from "react";
-import { Minus, Plus, Trash2 } from "lucide-react";
+import { Loader, Minus, Plus, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Drawer,
   DrawerClose,
   DrawerContent,
+  DrawerDescription,
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import { EventInterfaceType } from "@/lib/types";
 
-const TicketDrawer = () => {
+const TicketDrawer = ({
+  event,
+  ProceedToCheckout,
+  // setShowTicketDrawer,
+  isLoading,
+}: // showTicketDrawer,
+{
+  event: EventInterfaceType;
+  ProceedToCheckout: (
+    eventId: string,
+    selectedEvent: EventInterfaceType
+  ) => void;
+  setShowTicketDrawer: (value: boolean) => void;
+  isLoading: boolean;
+  // showTicketDrawer: boolean;
+}) => {
   const [quantity, setQuantity] = React.useState(1);
-  const price = 500.0;
-  const tax = 76.86;
+  const price = event?.price || 0;
+  const tax = price * 0.12; // 12% tax
   const total = (price + tax) * quantity;
 
+  // handle procees to checkout
+
   return (
-    <Drawer>
+    <Drawer
+    // open={showTicketDrawer}
+    // onOpenChange={() => setShowTicketDrawer(!showTicketDrawer)}
+    >
       <DrawerTrigger asChild>
-        <button className="text-[#D942D6] font-bold border-l-2 pl-2 border-[#D942D6]">
-          Buy Now
+        <button className="text-[#D942D6] font-semibold text-xl border-l-4 pl-3 border-[#D942D6] transition-all hover:text-[#b832a4]">
+          🎟 Buy Now
         </button>
       </DrawerTrigger>
-      <DrawerContent>
-        <div className="mx-auto w-full max-w-md p-4">
-          {/* Shopping Cart Header */}
-          <DrawerHeader className="border-b pb-2">
-            <h2 className="text-lg font-semibold flex items-center">
-              🛒 Shopping Ticket
-            </h2>
+      <DrawerContent className="bg-white rounded-t-3xl shadow-2xl border border-gray-200">
+        <div className="mx-auto w-full max-w-lg p-8">
+          {/* Drawer Header */}
+          <DrawerHeader className="text-center">
+            <DrawerTitle className="text-4xl font-extrabold text-gray-900">
+              🎫 Your Ticket
+            </DrawerTitle>
+            <DrawerDescription className="text-lg text-gray-600">
+              Secure your spot for an unforgettable experience!
+            </DrawerDescription>
           </DrawerHeader>
 
-          {/* Ticket Details */}
-          <div className="p-4 bg-white shadow-lg rounded-lg mt-3">
-            <div className="flex justify-between items-start">
-              <div>
-                <h3 className="text-lg font-semibold">
-                  4-Day General Admission
-                </h3>
-                <p className="text-sm text-gray-500">All Ages</p>
-              </div>
-              <button className="text-red-500 flex items-center text-sm">
-                <Trash2 className="w-5 h-5 mr-1" /> Remove
-              </button>
+          <div className="bg-white bg-opacity-80 backdrop-blur-xl rounded-lg p-6 shadow-xl border border-gray-200">
+            <div className="flex justify-between items-center mb-5">
+              <h2 className="text-2xl font-semibold text-gray-900">
+                {event?.title}
+              </h2>
             </div>
 
-            {/* Event Details */}
-            <div className="text-sm text-gray-600 mt-2 space-y-1">
-              <p>📍 At Grant Park, Chicago, IL</p>
-              <p>📅 July 29 - August 1, 2025</p>
-              <p>⏰ Doors Open at 11:00 AM</p>
+            <div className="text-md text-gray-700 space-y-3 leading-relaxed">
+              <p>
+                📍 <strong>Location:</strong> {event?.location}
+              </p>
+              <p>
+                📅 <strong>Date:</strong>{" "}
+                {new Date(event?.schedule.start).toDateString()} -{" "}
+                {new Date(event?.schedule.end).toDateString()}
+              </p>
+              <p>
+                👤 <strong>Organizer:</strong> {event?.createdBy?.firstName}{" "}
+                {event?.createdBy?.lastName}
+              </p>
+              <p>
+                ⏳ <strong>Registration Deadline:</strong>{" "}
+                {new Date(event?.registrationDeadline).toDateString()}
+              </p>
+              <p>
+                👥 <strong>Max Participants:</strong> {event?.maxParticipants}
+              </p>
+              {event?.refundPolicy && (
+                <p>
+                  🔄 <strong>Refund Policy:</strong> {event?.refundPolicy}
+                </p>
+              )}
             </div>
 
-            {/* Pricing Breakdown */}
-            <div className="mt-4 border-t pt-3">
-              <div className="flex justify-between text-sm">
-                <span>Price</span>
-                <span className="text-black font-medium">
+            <div className="mt-6 border-t pt-5 space-y-3 text-xl font-medium">
+              <div className="flex justify-between text-gray-800">
+                <span>Ticket Price</span>
+                <span className="text-[#D942D6] font-semibold">
                   ${price.toFixed(2)}
                 </span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span>Tax & Fees</span>
-                <span className="text-black font-medium">
-                  ${tax.toFixed(2)}
-                </span>
-              </div>
-            </div>
 
-            {/* Quantity Selector */}
-            <div className="mt-4 flex justify-between items-center">
-              <span className="text-sm font-medium">Quantity</span>
-              <div className="flex items-center space-x-3">
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="h-8 w-8 rounded-full border-gray-300"
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  disabled={quantity <= 1}
-                >
-                  <Minus />
-                </Button>
-                <span className="text-lg font-medium">{quantity}</span>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="h-8 w-8 rounded-full border-gray-300"
-                  onClick={() => setQuantity(quantity + 1)}
-                >
-                  <Plus />
-                </Button>
+              <div className="flex justify-between items-center mt-6">
+                <span className=" font-semibold">Quantity</span>
+                <div className="flex items-center">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="h-8 w-8 rounded-full border-gray-500 text-gray-900 hover:bg-gray-300 transition-all"
+                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    disabled={quantity <= 1}
+                  >
+                    <Minus className="h-6 w-6" />
+                  </Button>
+                  <span className="px-6 text-2xl font-bold text-gray-900">
+                    {quantity}
+                  </span>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="h-8 w-8 rounded-full border-gray-500 text-gray-900 hover:bg-gray-300 transition-all"
+                    onClick={() => setQuantity(quantity + 1)}
+                  >
+                    <Plus className="h-6 w-6" />
+                  </Button>
+                </div>
               </div>
-            </div>
 
-            {/* Total Price */}
-            <div className="mt-4 flex justify-between items-center text-lg font-semibold">
-              <span>Total</span>
-              <span className="text-red-500">${total.toFixed(2)}</span>
+              <div className="flex justify-between items-center mt-6 text-3xl font-bold text-gray-900">
+                <span>Total</span>
+                <span className="text-[#D942D6]">${total.toFixed(2)}</span>
+              </div>
             </div>
           </div>
 
-          {/* Checkout Button */}
-          <DrawerFooter className="mt-4">
-            <Button className="w-full bg-black text-white py-3 text-lg">
-              CHECKOUT
+          <DrawerFooter>
+            <Button
+              onClick={() => ProceedToCheckout(event._id, event)}
+              disabled={isLoading}
+              className="w-full rounded-md shadow-lg transition-all"
+            >
+              {isLoading ? "loading ...." : "Continue"}
+              {isLoading && <Loader className="h-8 w-8 animate-spin" />}
             </Button>
             <DrawerClose asChild>
-              <Button variant="outline" className="w-full mt-2">
+              <Button
+                variant="outline"
+                className="w-full text-lg py-3 border-gray-400 shadow-sm transition-all"
+              >
                 Cancel
               </Button>
             </DrawerClose>

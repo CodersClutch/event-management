@@ -21,10 +21,8 @@ const School = () => {
       try {
         const response = await GetAllEventForWeb({ page, limit: 10 });
 
-        console.log(response);
-
         if (response.status === 200) {
-          setEvents(response.data || []);
+          setEvents(Array.isArray(response?.data) ? response.data : []);
           setHasNextPage(response.isNextPage || false);
           setHasPreviousPage(response.isPreviousPage || false);
         } else {
@@ -47,7 +45,7 @@ const School = () => {
   return (
     <div className="max-w-7xl mx-auto p-6 text-center">
       <p className="uppercase text-4xl font-bold text-start text-black ml-3 pb-4">
-       HomeSchool-friendly
+        HomeSchool-friendly
       </p>
       {loading && <Loader />}
 

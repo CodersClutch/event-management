@@ -59,10 +59,10 @@ const SignUpForm = () => {
       email: "",
       password: "",
       confirmPassword: "",
-      countryCode: "",
+      // countryCode: "",
       phoneNumber: "",
-      address: "",
-      avatar: undefined,
+      // address: "",
+      // avatar: undefined,
     },
   });
 
@@ -75,10 +75,10 @@ const SignUpForm = () => {
       email: "",
       password: "",
       confirmPassword: "",
-      countryCode: "",
+      // countryCode: "",
       phoneNumber: "",
-      address: "",
-      avatar: undefined,
+      // address: "",
+      // avatar: undefined,
     },
   });
 
@@ -201,7 +201,7 @@ const SignUpForm = () => {
                 />
                 {/* Phone Number and Country Code */}
                 <div className="flex flex-row gap-4 w-full">
-                  <FormField
+                  {/* <FormField
                     control={attendeeForm.control}
                     name="countryCode"
                     render={({ field }) => (
@@ -230,7 +230,7 @@ const SignUpForm = () => {
                         <FormMessage />
                       </FormItem>
                     )}
-                  />
+                  /> */}
                   <FormField
                     control={attendeeForm.control}
                     name="phoneNumber"
@@ -291,7 +291,7 @@ const SignUpForm = () => {
                     </FormItem>
                   )}
                 />
-                <div className="flex flex-row gap-4 w-full">
+                {/* <div className="flex flex-row gap-4 w-full">
                   <FormField
                     control={attendeeForm.control}
                     name="address"
@@ -329,7 +329,7 @@ const SignUpForm = () => {
                       </FormItem>
                     )}
                   />
-                </div>
+                </div> */}
               </div>
               <FormError message={error} />
               <FormSuccess message={success} />
@@ -430,8 +430,8 @@ const SignUpForm = () => {
                   )}
                 />
                 {/* Phone Number and Country Code */}
-                <div className="flex flex-row gap-4 w-full">
-                  <FormField
+                <div className="flex flex-row gap-4 w-full flex-col">
+                  {/* <FormField
                     control={hostForm.control}
                     name="countryCode"
                     render={({ field }) => (
@@ -460,7 +460,7 @@ const SignUpForm = () => {
                         <FormMessage />
                       </FormItem>
                     )}
-                  />
+                  /> */}
                   <FormField
                     control={hostForm.control}
                     name="phoneNumber"
@@ -547,7 +547,7 @@ const SignUpForm = () => {
                     </FormItem>
                   )}
                 />
-                <div className="flex flex-row gap-4 w-full">
+                {/* <div className="flex flex-row gap-4 w-full">
                   <FormField
                     control={hostForm.control}
                     name="address"
@@ -585,7 +585,7 @@ const SignUpForm = () => {
                       </FormItem>
                     )}
                   />
-                </div>
+                </div> */}
               </div>
               <FormError message={error} />
               <FormSuccess message={success} />

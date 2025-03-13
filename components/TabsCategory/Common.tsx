@@ -6,9 +6,34 @@ import Link from "next/link";
 import { EventInterfaceType } from "@/lib/types";
 import { formatDate } from "@/lib/utils";
 import TicketDrawer from "../event/TicketDrawer";
-
+import { useState } from "react";
+import CheckoutDrawer from "../event/CheckoutDrawer";
+import { EventHook } from "@/hooks/EventHook";
+import { useSession } from "next-auth/react";
 
 const Common = ({ events }: { events: EventInterfaceType[] }) => {
+  const [showCheckoutDrawer, setShowCheckoutDrawer] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState<EventInterfaceType | null>(
+    null
+  );
+  const [showTicketDrawer, setShowTicketDrawer] = useState(false);
+  const { data: session } = useSession();
+  const { handleRegisterEvent, isLoading } = EventHook();
+  const ProceedToCheckout = async (
+    eventsId: string,
+    event: EventInterfaceType
+  ) => {
+    const status = await handleRegisterEvent(
+      eventsId,
+      session?.user._id as string
+    );
+    if (status?.status === 200) {
+      setShowTicketDrawer(!showCheckoutDrawer);
+      setShowCheckoutDrawer(true);
+      setSelectedEvent(event);
+    }
+  };
+
   return (
     <>
       <div className="bg-transparent max-w-7xl mx-auto p-4 font-sans">
@@ -48,13 +73,27 @@ const Common = ({ events }: { events: EventInterfaceType[] }) => {
                   <span className="text-[#D942D6] font-bold">
                     ${event.price}
                   </span>
-                  <TicketDrawer />
+
+                  <TicketDrawer
+                    event={event}
+                    ProceedToCheckout={ProceedToCheckout}
+                    isLoading={isLoading}
+                    // showTicketDrawer={showTicketDrawer}
+                    setShowTicketDrawer={setShowTicketDrawer}
+                  />
                 </div>
               </div>
             </div>
           ))}
         </div>
       </div>
+      {selectedEvent && (
+        <CheckoutDrawer
+          open={showCheckoutDrawer}
+          onClose={() => setShowCheckoutDrawer(false)}
+          event={selectedEvent}
+        />
+      )}
     </>
   );
 };
