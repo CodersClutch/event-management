@@ -5,7 +5,7 @@ const page = () => {
   return (
     <div className="xl:border-r">
       {/* image listing */}
-      <EventCards />
+      {/* <EventCards /> */}
     </div>
   );
 };

@@ -1,8 +1,8 @@
-'use client'
+"use client";
 import React, { useEffect, useState } from "react";
 import { BiSad } from "react-icons/bi";
 import Common from "../TabsCategory/Common";
-import {  EventInterfaceType } from "@/lib/types";
+import { EventInterfaceType } from "@/lib/types";
 import { GetAllEventForWeb } from "@/lib/actions/event/GetAllEvent";
 import Loader from "../Layout/Loader";
 
@@ -22,10 +22,8 @@ const Babies = () => {
       try {
         const response = await GetAllEventForWeb({ page, limit: 10 });
 
-        console.log(response);
-
         if (response.status === 200) {
-          setEvents(response.data || []);
+          setEvents(Array.isArray(response?.data) ? response.data : []);
           setHasNextPage(response.isNextPage || false);
           setHasPreviousPage(response.isPreviousPage || false);
         } else {
@@ -41,35 +39,37 @@ const Babies = () => {
     fetchEvents();
   }, [page]);
 
+  const filteredEvent = events.filter((event) =>
+    event.category.includes("for babies")
+  );
 
-const filteredEvent = events.filter(event => event.category.includes('for babies'))
+  return (
+    <div className="max-w-7xl mx-auto p-6 text-center">
+      <p className="uppercase text-6xl font-bold text-start text-white ml-3 pb-4">
+        All Ages
+      </p>
+      {loading && <Loader />}
 
-return (
-  <div className="max-w-7xl mx-auto p-6 text-center">
-    <p className="uppercase text-6xl font-bold text-start text-white ml-3 pb-4">
-      All Ages
-    </p>
-    {loading && (
-      <Loader/>
-    )}
-
-    {filteredEvent.length > 0 ? (
-      <Common events={filteredEvent} />
-    ) : (
-      !loading && !error && events.length === 0 && (
-        <div className="flex flex-col items-center justify-center bg-gray-100 p-10 rounded-xl shadow-lg">
-          <BiSad className="text-gray-400 text-6xl mb-4" />
-          <h2 className="text-2xl font-semibold text-gray-700">
-            No events found in this category
-          </h2>
-          <p className="text-gray-500 mt-2">
-            We&apos;re always updating our event list. Check back later for more!
-          </p>
-        </div>
-      )
-    )}
-  </div>
-);
+      {filteredEvent.length > 0 ? (
+        <Common events={filteredEvent} />
+      ) : (
+        !loading &&
+        !error &&
+        events.length === 0 && (
+          <div className="flex flex-col items-center justify-center bg-gray-100 p-10 rounded-xl shadow-lg">
+            <BiSad className="text-gray-400 text-6xl mb-4" />
+            <h2 className="text-2xl font-semibold text-gray-700">
+              No events found in this category
+            </h2>
+            <p className="text-gray-500 mt-2">
+              We&apos;re always updating our event list. Check back later for
+              more!
+            </p>
+          </div>
+        )
+      )}
+    </div>
+  );
 };
 
 export default Babies;

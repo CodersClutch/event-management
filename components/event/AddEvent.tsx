@@ -93,7 +93,7 @@ const AddEvent = () => {
       maxParticipants: 0,
       description: "",
       location: "",
-      category: [],
+      category: [] as string[],
       price: "",
       ageRange: "",
       image: "",
