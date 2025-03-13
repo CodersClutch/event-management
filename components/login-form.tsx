@@ -59,14 +59,14 @@ const SignInForm = () => {
   }
 
   return (
-    <FormWrapper
-      headerLabel="Welcome back"
-      backButtonLabel="Don't have an account?"
-      backButtonHref="/signup"
-      showSocial
-    >
+    // <FormWrapper
+    //   headerLabel="Welcome back"
+    //   backButtonLabel="Don't have an account?"
+    //   backButtonHref="/signup"
+    //   showSocial
+    // >
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="w-1/3 bg-white p-5 rounded-lg text-black">
           <div className="space-y-4">
             <>
               <FormField
@@ -104,7 +104,7 @@ const SignInForm = () => {
                       size="sm"
                       variant="link"
                       asChild
-                      className="px-0 font-normal"
+                      className="px-0 font-normal text-back"
                     >
                       <Link href="/auth/reset">Forgot password?</Link>
                     </Button>
@@ -124,9 +124,13 @@ const SignInForm = () => {
           >
             {isPending ? "Submitting..." : "Sign In"}
           </Button>
+          <div className="text-center mt-4">
+            Don&apos;t have an account?{" "}
+          <Link href="/auth/signup" className="underline text-blue-800">Create an account</Link>
+          </div>
         </form>
       </Form>
-    </FormWrapper>
+    // </FormWrapper>
   );
 };
 

@@ -22,14 +22,13 @@ import {
 import { eventSchema } from "@/lib/validation/eventValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { categories2 } from "@/constants";
 
 import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
 import { Textarea } from "../ui/textarea";
 import { EventHook } from "@/hooks/EventHook";
 import { useSession } from "next-auth/react";
-import { EventInterfaceType } from "@/lib/types";
+import { CATEGORIES, EventInterfaceType } from "@/lib/types";
 import {
   Sheet,
   SheetClose,
@@ -236,7 +235,7 @@ const EditEvent = ({ event }: { event: EventInterfaceType }) => {
 
                       <Select
                         onValueChange={field.onChange}
-                        defaultValue={field.value as string}
+                        defaultValue={field.value as unknown as string}
                       >
                         <SelectTrigger className="w-full">
                           <SelectValue placeholder="Select a Category" />
@@ -245,7 +244,7 @@ const EditEvent = ({ event }: { event: EventInterfaceType }) => {
                           <SelectGroup>
                             <SelectLabel>Categorises</SelectLabel>
 
-                            {categories2.map((element) => (
+                            {CATEGORIES.map((element) => (
                               <SelectItem key={element} value={element}>
                                 {element}
                               </SelectItem>

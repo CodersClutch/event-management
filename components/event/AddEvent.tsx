@@ -32,16 +32,24 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuCheckboxItem,
+} from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
 import { Textarea } from "../ui/textarea";
 import { useSession } from "next-auth/react";
 import { EventHook } from "@/hooks/EventHook";
-import { categories2 } from "@/constants";
 import { useEdgeStore } from "../provider/edgestore";
 import { toast } from "sonner";
 import { SingleImageDropzone } from "@/components/SingleImageDropzone";
+import { Checkbox } from "@/components/ui/checkbox";
 
+import { ChevronDown } from "lucide-react";
+import { CATEGORIES } from "@/lib/types";
 const AddEvent = () => {
   const { HandleAddEvent, setIsLoading, isLoading } = EventHook();
   const [open, setOpen] = useState<boolean>();
@@ -61,7 +69,7 @@ const AddEvent = () => {
       maxParticipants: 0,
       description: "",
       location: "",
-      category: "",
+      category: [] as string[],
       price: "",
       ageRange: "",
       image: "",
@@ -117,7 +125,6 @@ const AddEvent = () => {
 
   // upload the file and return the url
 
-  // ousainou trying to piss me of
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
@@ -244,31 +251,39 @@ const AddEvent = () => {
                   render={({ field }) => (
                     <FormItem className="flex flex-col">
                       <FormLabel>Category</FormLabel>
-
-                      <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                      >
-                        <SelectTrigger className="w-full">
-                          <SelectValue placeholder="Select a Category" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectGroup>
-                            <SelectLabel>Categorises</SelectLabel>
-
-                            {categories2.map((element) => (
-                              <SelectItem key={element} value={element}>
-                                {element}
-                              </SelectItem>
-                            ))}
-                          </SelectGroup>
-                        </SelectContent>
-                      </Select>
-
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button
+                            variant="outline"
+                            className="w-full justify-between"
+                          >
+                            Select Categories
+                            <ChevronDown className="h-4 w-4" />
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent className="w-64 max-h-60 overflow-y-auto">
+                          {CATEGORIES.map((category) => (
+                            <DropdownMenuCheckboxItem
+                              key={category}
+                              checked={field.value.includes(category)}
+                              onCheckedChange={(checked) => {
+                                const newValues = checked
+                                  ? [...field.value, category]
+                                  : field.value.filter(
+                                      (c: string) => c !== category
+                                    );
+                                field.onChange(newValues);
+                              }}
+                            >
+                              {category}
+                            </DropdownMenuCheckboxItem>
+                          ))}
+                        </DropdownMenuContent>
+                      </DropdownMenu>
                       <FormMessage />
                     </FormItem>
                   )}
-                />
+                />{" "}
                 <FormField
                   control={form.control}
                   name="price"
