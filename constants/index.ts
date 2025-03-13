@@ -595,23 +595,29 @@ export const sponsors = [
   "https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/tp-spncr4.png",
 ];
 
-export const categories2 = [
-  "All Categories",
-  "Art",
-  "Books",
-  "Food",
-  "Sports",
-  "Films",
-  "Awards",
-  "Men",
-  "Parties",
-  "Technology",
-  "Science",
-  "Women",
-  "Music",
-  "Comedy",
-  "Show",
-];
+export const Categories =  [
+  "all ages",
+  "for babies",
+  "main arena",
+  "toddler",
+  "teen",
+  "education",
+  "attraction",
+  "classes and workshops",
+  "birthday",
+  "food and drink",
+  "arts",
+  "sports",
+  "charity & causes",
+  "hobbies",
+  "holiday",
+  "stem&coding",
+  "academic",
+  "homeschoolfriendly",
+  "tutoring",
+  "specialneeds",
+  "special deals"
+]
 
 export const eventList = [
   {

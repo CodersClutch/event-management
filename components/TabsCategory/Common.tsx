@@ -7,14 +7,6 @@ import { EventInterfaceType } from "@/lib/types";
 import { formatDate } from "@/lib/utils";
 import TicketDrawer from "../event/TicketDrawer";
 
-interface Event {
-  id: string;
-  image: string;
-  title: string;
-  date: string;
-  location: string;
-  price: number;
-}
 
 const Common = ({ events }: { events: EventInterfaceType[] }) => {
   return (

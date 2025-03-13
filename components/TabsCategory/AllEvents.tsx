@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Common from "./Common";
 import { GetAllEventForWeb } from "@/lib/actions/event/GetAllEvent";
+import Loader from "../Layout/Loader";
 
 const EventCard = () => {
   const [events, setEvents] = useState<any[]>([]);
@@ -42,7 +43,7 @@ const EventCard = () => {
   return (
     <div className="min-h-screen py-8">
       {loading && (
-        <p className="text-center py-5 text-gray-500">Loading events...</p>
+        <Loader/>
       )}
 
       {error && <p className="text-center py-5 text-red-500">Error: {error}</p>}

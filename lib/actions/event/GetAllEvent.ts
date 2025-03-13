@@ -355,3 +355,5 @@ export const GetAllEventForWeb = async ({
     return { status: 500, message: "Failed to get events" };
   }
 };
+
+
