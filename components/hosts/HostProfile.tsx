@@ -3,8 +3,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { MapPin, Globe, Edit, Activity, Star } from "lucide-react";
+import { IUser } from "@/lib/types";
 
-const HostProfileComponent = () => {
+const HostProfileComponent = ({userData}: {userData: IUser}) => {
   return (
     <div className="max-w-4xl mx-auto p-6">
       <Card className="rounded-2xl shadow-xl border-0 overflow-hidden bg-gradient-to-br from-white to-gray-50">
@@ -102,7 +103,7 @@ const HostProfileComponent = () => {
           <section className="space-y-4">
             <h3 className="text-xl font-semibold text-gray-800 flex items-center gap-2">
               <Activity size={20} className="text-yellow-500" />
-              Recent Activity
+              Recent Events
             </h3>
             <div className="space-y-4">
               {[
