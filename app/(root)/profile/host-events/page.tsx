@@ -113,10 +113,10 @@ const ProfileEvents = () => {
                       {event?.location}
                     </p>
 
+                    <span className="text-[#D942D6] font-bold">
+                      ${event.price}
+                    </span>
                     <div className="flex justify-between items-center bg-blue-200 rounded-lg p-4 mt-4">
-                      <span className="text-[#D942D6] font-bold">
-                        ${event.price}
-                      </span>
                       <EditEvent event={event} />
                       <DeleteEvent event={event} />
                     </div>
