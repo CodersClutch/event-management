@@ -35,8 +35,8 @@ export default function ProfileLayout({ children }: { children: ReactNode }) {
     },
     {
       label: "Info",
-      href: `/profile/${session?.user._id}`,
-      icon: <User2 className="w-5 h" />,
+      href: `/profile/user-info`,
+      icon: <User2 className="w-5 h-5" />,
     },
     // my-tickets
     session?.user.role.name === "Hosts"
