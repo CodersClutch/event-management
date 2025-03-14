@@ -40,7 +40,7 @@ const HostProfileComponent = ({ userData }: { userData: IUser }) => {
       initial: userData.initial || "",
       lastName: userData.lastName,
       phoneNumber: userData.phoneNumber || "",
-      avatar: userData.avatar,
+      avatar: userData.avatar || "",
       address: {
         street: userData.address?.street || "",
         city: userData.address?.city || "",
