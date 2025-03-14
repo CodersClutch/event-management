@@ -75,6 +75,7 @@ const Common = ({ events }: { events: EventInterfaceType[] }) => {
                   <TicketDrawer
                     event={event}
                     ProceedToCheckout={() => ProceedToCheckout(event)} // Pass event object
+                    setShowTicketDrawer={setShowCheckoutDrawer}
                     isLoading={isLoading}
                   />
                 </div>
