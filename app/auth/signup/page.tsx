@@ -6,16 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { SignUpValidation } from "@/lib/validation/auth";
 import { signUpWithCredentials } from "@/lib/actions/auth/signup-with-credentials";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -25,25 +17,9 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { FormWrapper } from "@/components/common/form-wrapper";
 import { FormError } from "@/components/common/form-error";
 import { FormSuccess } from "@/components/common/form-success";
 import Link from "next/link";
-
-// Country codes with names
-const countryCodes = [
-  { code: "+1", name: "United States" },
-  { code: "+220", name: "Gambia" },
-  { code: "+44", name: "United Kingdom" },
-  { code: "+91", name: "India" },
-  // Add more country codes as needed
-];
-
-const formatPhoneNumber = (value: string) => {
-  const cleaned = value.replace(/\D/g, "");
-  const formatted = cleaned.replace(/(\d{3})(?=\d)/g, "$1 ");
-  return formatted;
-};
 
 const SignUpForm = () => {
   const [error, setError] = useState<string | undefined>("");

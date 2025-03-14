@@ -10,7 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { Edit, Loader, Save } from "lucide-react";
+import { ChevronDown, Edit, Loader, Save } from "lucide-react";
 import {
   Form,
   FormControl,
@@ -22,14 +22,13 @@ import {
 import { eventSchema } from "@/lib/validation/eventValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { categories2 } from "@/constants";
 
 import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
 import { Textarea } from "../ui/textarea";
 import { EventHook } from "@/hooks/EventHook";
 import { useSession } from "next-auth/react";
-import { EventInterfaceType } from "@/lib/types";
+import { CATEGORIES, EventInterfaceType } from "@/lib/types";
 import {
   Sheet,
   SheetClose,
@@ -40,11 +39,15 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuTrigger } from "../ui/dropdown-menu";
 
 const EditEvent = ({ event }: { event: EventInterfaceType }) => {
   const { handleUpdateEvent, isLoading } = EventHook();
   const [open, setOpen] = useState<boolean>(false);
   const { data: session } = useSession({ required: true });
+
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  
 
   const form = useForm({
     resolver: zodResolver(eventSchema),
@@ -227,6 +230,7 @@ const EditEvent = ({ event }: { event: EventInterfaceType }) => {
               </div>
               {/* price and category */}
               <div className="grid grid-cols-2 gap-2 items-center">
+
                 <FormField
                   control={form.control}
                   name="category"
@@ -236,7 +240,7 @@ const EditEvent = ({ event }: { event: EventInterfaceType }) => {
 
                       <Select
                         onValueChange={field.onChange}
-                        defaultValue={field.value as string}
+                        defaultValue={field.value as unknown as string}
                       >
                         <SelectTrigger className="w-full">
                           <SelectValue placeholder="Select a Category" />
@@ -245,7 +249,7 @@ const EditEvent = ({ event }: { event: EventInterfaceType }) => {
                           <SelectGroup>
                             <SelectLabel>Categorises</SelectLabel>
 
-                            {categories2.map((element) => (
+                            {CATEGORIES.map((element) => (
                               <SelectItem key={element} value={element}>
                                 {element}
                               </SelectItem>

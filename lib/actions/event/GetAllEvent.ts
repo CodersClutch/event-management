@@ -110,6 +110,7 @@ export const GetSingleEvent = async (eventId: string) => {
     const event = await Event.findById(eventId).populate({
       path: "createdBy",
       select: "firstName lastName email initial",
+      options: { strictPopulate: false },
     });
     if (!event) {
       return { status: 404, message: "Event not found" };
@@ -119,7 +120,6 @@ export const GetSingleEvent = async (eventId: string) => {
     return { status: 500, message: "Error getting event" };
   }
 };
-
 // know the total number of upcomming event
 export const GetTotalUpcomingEvent = async () => {
   try {
@@ -129,7 +129,6 @@ export const GetTotalUpcomingEvent = async () => {
     return { status: 500, message: "Error getting total upcoming event" };
   }
 };
-
 // get 5 lates upcomming event
 export const GetLatestUpcomingEvent = async (
   status: string,
@@ -144,7 +143,6 @@ export const GetLatestUpcomingEvent = async (
     return { status: 500, message: "Error getting latest upcoming event" };
   }
 };
-
 // fetch the total number of ongoingEvent, upcominEvent and compleatedEvent
 export const Eventstatus = async () => {
   try {
@@ -156,7 +154,6 @@ export const Eventstatus = async () => {
     return { status: 500, message: "Error getting data" };
   }
 };
-
 // get the total number of ongoingEvent,
 export const ongoingEventLength = async () => {
   try {
@@ -169,7 +166,6 @@ export const ongoingEventLength = async () => {
     return { status: 500, message: "Error getting data" };
   }
 };
-
 // get the total number of completed event
 export const completedEventLength = async () => {
   try {
@@ -179,7 +175,6 @@ export const completedEventLength = async () => {
     return { status: 500, message: "Error getting data" };
   }
 };
-
 // get the total number of canceled event
 export const canceledEventLength = async () => {
   try {
@@ -189,7 +184,6 @@ export const canceledEventLength = async () => {
     return { status: 500, message: "Error getting data" };
   }
 };
-
 // get the total number of upcoming event
 export const upcomingEventLength = async () => {
   try {
@@ -244,7 +238,6 @@ export const completedEventByUser = async (status: string, limit: number) => {
     return { status: 500, message: "Error getting data" };
   }
 };
-
 export const StatiEventByUser = async (status: string, limit: number) => {
   const session = await auth();
 
@@ -285,9 +278,7 @@ export const StatiEventByUser = async (status: string, limit: number) => {
     return { status: 500, message: "Error getting data" };
   }
 };
-
 // if i am login in as hosts fetch event i created else if am login as an Attendies fetch event i am register to
-
 export const getEventsByUserId = async (organizer?: string) => {
   const session = await auth();
 
@@ -304,13 +295,54 @@ export const getEventsByUserId = async (organizer?: string) => {
 
     // console.log(events.length);
 
-    return { status: 200, data: events };
+    return { status: 200, data: deepConvertToPlainObject(events) };
   } catch (error) {
     console.error("Error fetching events:", error);
     return { status: 500, message: "Error getting data" };
   }
 };
+export const getEventsForProfileDashboard = async ({
+  page = 1,
+  limit = 10,
+  organizer,
+}: {
+  page?: number;
+  limit?: number;
+  organizer?: string;
+}) => {
+  const session = await auth();
 
+  try {
+    const skip = (page - 1) * limit;
+
+    const events = await Event.find({
+      createdBy: session?.user._id || organizer,
+    })
+      .sort({ createdAt: -1 }) // Sorting by latest
+      .skip(skip)
+      .limit(limit)
+      .lean(); // Converts Mongoose documents to plain objects
+
+    const totalCount = await Event.countDocuments();
+
+    if (!events) {
+      return { status: 404, message: "No events found" };
+    }
+
+    // console.log(events.length);
+
+    return {
+      status: 200,
+      data: deepConvertToPlainObject(events),
+      isPreviousPage: page > 1,
+      isNextPage: totalCount > skip + events.length,
+      totalCount,
+    };
+  } catch (error) {
+    console.error("Error fetching events:", error);
+    return { status: 500, message: "Error getting data" };
+  }
+};
 export const GetAllEventForWeb = async ({
   // query,
   page = 1,
@@ -346,7 +378,7 @@ export const GetAllEventForWeb = async ({
 
     return {
       status: 200,
-      data: events,
+      data: deepConvertToPlainObject(events),
       isPreviousPage: page > 1,
       isNextPage: totalCount > skip + events.length,
       totalCount,

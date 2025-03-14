@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { CATEGORIES } from "../types";
 
 export const eventSchema = z
   .object({
@@ -6,9 +7,8 @@ export const eventSchema = z
 
     image: z.string().trim().optional(),
     category: z
-      .string()
-      .trim()
-      .min(3, "Category must be at least 3 characters long"),
+      .array(z.enum(CATEGORIES as [string, ...string[]])) // Validates an array of categories
+      .min(1, "At least one category must be selected"), // Optional: Ensures that at least one category is selected
     price: z.string().min(0, "Price must be at least 0 characters long"),
     ageRange: z
       .string()
