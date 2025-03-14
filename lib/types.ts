@@ -140,7 +140,6 @@ type Categories =
 
 // ADDITIONAL TYPE DEF ==================================
 
-
 export const CATEGORIES: Categories[] = [
   "all ages",
   "for babies",
@@ -189,7 +188,7 @@ export interface EventInterfaceType {
   geolocation: Geolocation;
   specialDeal?: boolean;
   capacity?: number;
-  ageRange?: AgeRange;
+  ageRange?: string;
   price: number;
   refundPolicy?: string;
   duration?: string; // e.g., "2 hours", "3 days"

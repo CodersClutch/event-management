@@ -77,21 +77,24 @@ export const registerEvents = async ({
     const event = await Event.findById(eventId);
     if (!event) return { status: 404, message: "Event not found" };
 
-    // Ensure event is upcoming
-    // if (event.status !== "upcoming") {
-    //   return {
-    //     status: 400,
-    //     message: `Registration failed: Event is ${event.status}`,
-    //   };
-    // }
+    // you cannot register to your own event
+    if (event.createdBy.toString() === userId) {
+      return {
+        status: 403,
+        message:
+          "Seriously? You’re trying to register for your own event? Nice hustle, but no. 😂",
+      };
+    }
 
-    // Ensure registration deadline hasn't passed
-    // if (new Date(event.registrationDeadline) < new Date()) {
-    //   return {
-    //     status: 403,
-    //     message: "Registration failed: Deadline has passed.",
-    //   };
-    // }
+    // Ensure user has not registered to this event before
+
+    //Ensure registration deadline hasn't passed
+    if (new Date(event.registrationDeadline) < new Date()) {
+      return {
+        status: 403,
+        message: "Registration failed: Deadline has passed.",
+      };
+    }
 
     // Ensure user is not already registered
     interface RegisteredUser {
