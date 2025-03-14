@@ -116,17 +116,26 @@ export const getAllUsers = async ({
   }
 };
 
+import mongoose from "mongoose";
+
 export const GetSingleUser = async (userId: string) => {
-  console.log(userId);
+  console.log("Fetching user with ID:", userId);
+
   try {
-    const user = await User.findById(userId).populate({
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      return { status: 400, message: "Invalid user ID format" };
+    }
+
+    const user = await User.findById(new mongoose.Types.ObjectId(userId)).populate({
       path: "role",
       select: "name",
     });
+
     if (!user) {
       return { status: 404, message: "User not found" };
     }
-    console.log(user);
+
+    console.log("User found:", user);
 
     return {
       status: 200,
@@ -265,5 +274,32 @@ export const GetSingleUserData = async (userId: string) => {
   } catch (error) {
     console.error("Error fetching user:", error);
     return { status: 500, message: "Error getting user", error };
+  }
+};
+
+
+
+
+
+
+
+
+
+
+export const getUserById = async (userId: string) => {
+  try {
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      return { status: 400, message: "Invalid user ID format" };
+    }
+
+    const user = await User.findById(userId).lean(); 
+    if (!user) {
+      return { status: 404, message: "User not found" };
+    }
+
+    return { status: 200, data: user };
+  } catch (error) {
+    console.error("Error fetching user:", error);
+    return { status: 500, message: "Error fetching user", error };
   }
 };
