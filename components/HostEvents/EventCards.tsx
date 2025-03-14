@@ -17,6 +17,8 @@ const Common = ({ events }: { events: EventInterfaceType[] }) => {
     null
   ); // Store selected event
 
+  console.log(events);
+
   const { data: session } = useSession();
   const { handleRegisterEvent, isLoading } = EventHook();
 
