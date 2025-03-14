@@ -120,7 +120,6 @@ export const GetSingleEvent = async (eventId: string) => {
     return { status: 500, message: "Error getting event" };
   }
 };
-
 // know the total number of upcomming event
 export const GetTotalUpcomingEvent = async () => {
   try {
@@ -130,7 +129,6 @@ export const GetTotalUpcomingEvent = async () => {
     return { status: 500, message: "Error getting total upcoming event" };
   }
 };
-
 // get 5 lates upcomming event
 export const GetLatestUpcomingEvent = async (
   status: string,
@@ -145,7 +143,6 @@ export const GetLatestUpcomingEvent = async (
     return { status: 500, message: "Error getting latest upcoming event" };
   }
 };
-
 // fetch the total number of ongoingEvent, upcominEvent and compleatedEvent
 export const Eventstatus = async () => {
   try {
@@ -157,7 +154,6 @@ export const Eventstatus = async () => {
     return { status: 500, message: "Error getting data" };
   }
 };
-
 // get the total number of ongoingEvent,
 export const ongoingEventLength = async () => {
   try {
@@ -170,7 +166,6 @@ export const ongoingEventLength = async () => {
     return { status: 500, message: "Error getting data" };
   }
 };
-
 // get the total number of completed event
 export const completedEventLength = async () => {
   try {
@@ -180,7 +175,6 @@ export const completedEventLength = async () => {
     return { status: 500, message: "Error getting data" };
   }
 };
-
 // get the total number of canceled event
 export const canceledEventLength = async () => {
   try {
@@ -190,7 +184,6 @@ export const canceledEventLength = async () => {
     return { status: 500, message: "Error getting data" };
   }
 };
-
 // get the total number of upcoming event
 export const upcomingEventLength = async () => {
   try {
@@ -245,7 +238,6 @@ export const completedEventByUser = async (status: string, limit: number) => {
     return { status: 500, message: "Error getting data" };
   }
 };
-
 export const StatiEventByUser = async (status: string, limit: number) => {
   const session = await auth();
 
@@ -286,9 +278,7 @@ export const StatiEventByUser = async (status: string, limit: number) => {
     return { status: 500, message: "Error getting data" };
   }
 };
-
 // if i am login in as hosts fetch event i created else if am login as an Attendies fetch event i am register to
-
 export const getEventsByUserId = async (organizer?: string) => {
   const session = await auth();
 
@@ -311,7 +301,6 @@ export const getEventsByUserId = async (organizer?: string) => {
     return { status: 500, message: "Error getting data" };
   }
 };
-
 export const getEventsForProfileDashboard = async ({
   page = 1,
   limit = 10,
@@ -354,7 +343,6 @@ export const getEventsForProfileDashboard = async ({
     return { status: 500, message: "Error getting data" };
   }
 };
-
 export const GetAllEventForWeb = async ({
   // query,
   page = 1,
