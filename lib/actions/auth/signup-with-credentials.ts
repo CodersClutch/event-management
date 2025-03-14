@@ -74,12 +74,10 @@ export const signUpWithCredentials = async (
   // return { success: "Confirmation email sent!" };
 };
 
-// Sign-up for Attendees
 export const signUpAttendee = async (values: SignUpWithCredentialsInput) => {
   return await signUpWithCredentials(values, "Attendee");
 };
 
-// Sign-up for Hosts
 export const signUpHost = async (values: SignUpWithCredentialsInput) => {
   return await signUpWithCredentials(values, "Host");
 };
