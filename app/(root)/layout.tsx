@@ -24,6 +24,7 @@ import { auth } from "@/auth";
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from "sonner";
 import { EdgeStoreProvider } from "@/components/provider/edgestore";
+import { fetchRolesServerAction } from "@/lib/actions/role/roleServerAction";
 
 export default async function RootLayout({
   children,
@@ -31,7 +32,7 @@ export default async function RootLayout({
   children: ReactNode;
 }) {
   const session = await auth();
-
+  await fetchRolesServerAction();
   return (
     <SessionProvider session={session}>
       <html lang="en">
