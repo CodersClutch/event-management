@@ -8,7 +8,9 @@ import { Button } from "../ui/button";
 import { Check } from "lucide-react";
 
 const MyTickets = () => {
+
   const [scanResult, setScanResult] = useState(""); // State to store the scanned result
+
   const ticketRef = useRef<HTMLDivElement>(null); // Ref for the ticket element
 
   const handleDownloadTicket = () => {
@@ -51,7 +53,10 @@ const MyTickets = () => {
           printWindow.print();
         }
       }
+
       printWindow?.print();
+
+
     }
   };
 
