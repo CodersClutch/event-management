@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-// import { Bookmark } from "lucide-react";
+import { Bookmark } from "lucide-react";
 import Link from "next/link";
 import { EventInterfaceType } from "@/lib/types";
 import { formatDate } from "@/lib/utils";
@@ -56,7 +56,7 @@ const Common = ({ events }: { events: EventInterfaceType[] }) => {
               </Link>
 
               <button className="absolute top-3 right-3 bg-white p-2 rounded-full shadow-md">
-                {event?.status}
+                Ev
               </button>
 
               <div className="absolute bottom-0 left-0 right-0 bg-white m-2 p-4 rounded-lg shadow-md">

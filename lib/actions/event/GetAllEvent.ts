@@ -110,6 +110,7 @@ export const GetSingleEvent = async (eventId: string) => {
     const event = await Event.findById(eventId).populate({
       path: "createdBy",
       select: "firstName lastName email initial",
+      options: { strictPopulate: false },
     });
     if (!event) {
       return { status: 404, message: "Event not found" };
@@ -304,7 +305,50 @@ export const getEventsByUserId = async (organizer?: string) => {
 
     // console.log(events.length);
 
-    return { status: 200, data: events };
+    return { status: 200, data: deepConvertToPlainObject(events) };
+  } catch (error) {
+    console.error("Error fetching events:", error);
+    return { status: 500, message: "Error getting data" };
+  }
+};
+
+export const getEventsForProfileDashboard = async ({
+  page = 1,
+  limit = 10,
+  organizer,
+}: {
+  page?: number;
+  limit?: number;
+  organizer?: string;
+}) => {
+  const session = await auth();
+
+  try {
+    const skip = (page - 1) * limit;
+
+    const events = await Event.find({
+      createdBy: session?.user._id || organizer,
+    })
+      .sort({ createdAt: -1 }) // Sorting by latest
+      .skip(skip)
+      .limit(limit)
+      .lean(); // Converts Mongoose documents to plain objects
+
+    const totalCount = await Event.countDocuments();
+
+    if (!events) {
+      return { status: 404, message: "No events found" };
+    }
+
+    // console.log(events.length);
+
+    return {
+      status: 200,
+      data: deepConvertToPlainObject(events),
+      isPreviousPage: page > 1,
+      isNextPage: totalCount > skip + events.length,
+      totalCount,
+    };
   } catch (error) {
     console.error("Error fetching events:", error);
     return { status: 500, message: "Error getting data" };
