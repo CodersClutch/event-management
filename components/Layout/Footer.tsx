@@ -1,65 +1,258 @@
+import React from "react";
+import Image from "next/image";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { FaWhatsapp } from "react-icons/fa";
+import { BiLink } from "react-icons/bi";
+
 export default function Footer() {
-    return (
-      <footer className="bg-[#1E0A3C] text-white text-sm py-10">
-        <div className="container mx-auto px-6 lg:px-20 grid grid-cols-1 md:grid-cols-4 gap-6">
-          {/* Use 4Kiddos */}
-          <div>
-            <h3 className="font-bold mb-3">Use 4Kiddos</h3>
-            <ul className="space-y-2">
+  return (
+    <footer className="bg-gradient-to-b from-[#A52EA1] to-[#E848E5] text-white  md:rounded-md py-12">
+      <div className="container flex mx-auto max-md:hidden justify-between items-center max-w-[85rem] gap-16 text-center ">
+        {/* QR Code and App Download Section */}
+        <div className="bg-gradient-to-b from-[#E848E5] to-[#A52EA1] flex flex-col items-center p-6 rounded-lg text-white">
+          <div className="bg-white bg-opacity-30 rounded-2xl p-4 w-full max-w-lg md:max-w-xl lg:max-w-[25rem]">
+            <div className="flex flex-col md:flex-row items-center justify-center">
+              {/* QR Code */}
+              <div className="mb-4 md:mb-0 md:mr-4">
+                <img
+                  src="https://oneworldfinancials.com/h1_img8.jpg"
+                  alt="Scan QR code to download OneWorld Wallet"
+                  className="w-80 h-40"
+                />
+              </div>
+
+              {/* App Download Links */}
+              <div className="flex flex-col items-center justify-center">
+                <p className="text-sm text-center mb-4">
+                  Scan QR code to download (Coming Soon)
+                </p>
+                <div className="flex space-x-4">
+                  <a href="#" className="flex items-center">
+                    <Image
+                      src="https://oneworldfinancials.com/_next/static/media/Remit16.b0e7c27a.svg"
+                      alt="Available on the App Store"
+                      width={120}
+                      height={40}
+                    />
+                  </a>
+                  <a href="#" className="flex items-center">
+                    <Image
+                      src="https://oneworldfinancials.com/_next/static/media/Remit17.29e75541.svg"
+                      alt="Get it on Google Play"
+                      width={120}
+                      height={40}
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className=" grid grid-cols-3 gap-24">
+          {/* Company Section */}
+          <div className="flex flex-col items-center sm:items-start">
+            <h3 className="text-xl font-bold whitespace-nowrap">Our popular Categories</h3>
+            <ul className="mt-4 space-y-2 text-sm">
               {[
-                "Create Events", "Pricing", "Event Marketing Platform", "4Kiddos Mobile Ticket App",
-                "4Kiddos Check-In App", "4Kiddos App Marketplace", "Event Registration Software",
-                "Community Guidelines", "FAQs", "Sitemap"
-              ].map(item => (<li key={item}><a href="#" className="hover:underline">{item}</a></li>))}
+                { title: "Education", link: "/vibrant/educational" },
+                { title: "Charity and Causes", link: "/vibrant/charity-causes" },
+                { title: "Special Deals", link: "/events/deals" },
+                { title: "All ages", link: "/all-ages" },
+              ].map(
+                (item) => (
+                  <li key={item.title}>
+                    <a
+                      href={item.link}
+                      className="hover:text-[#00A8E8] flex items-center"
+                    >
+                       <BiLink className="mr-2"/> {item.title}
+                    </a>
+                  </li>
+                )
+              )}
             </ul>
           </div>
-  
-          {/* Plan Events */}
-          <div>
-            <h3 className="font-bold mb-3">Plan Events</h3>
-            <ul className="space-y-2">
+          {/* Our Services Section */}
+          <div className="flex flex-col items-center sm:items-start -ml-4">
+            <h3 className="text-xl font-bold">Our Services</h3>
+            <ul className="mt-4 space-y-2 text-sm">
               {[
-                "Sell Tickets Online", "Event Planning", "Sell Concert Tickets Online", "Event Payment System",
-                "Solutions for Professional Services", "Event Management Software", "Halloween Party Planning",
-                "Virtual Events Platform", "QR Codes for Event Check-In", "Post your event online"
-              ].map(item => (<li key={item}><a href="#" className="hover:underline">{item}</a></li>))}
-            </ul>
-          </div>
-  
-          {/* Find Events */}
-          <div>
-            <h3 className="font-bold mb-3">Find Events</h3>
-            <ul className="space-y-2">
-              {[
-                "New Orleans Food & Drink Events", "San Francisco Holiday Events", "Tulum Music Events",
-                "Denver Hobby Events", "Atlanta Pop Music Events", "New York Events", "Chicago Events",
-                "Events in Dallas Today", "Los Angeles Events", "Washington Events"
-              ].map(item => (<li key={item}><a href="#" className="hover:underline">{item}</a></li>))}
-            </ul>
-          </div>
-  
-          {/* Connect With Us */}
-          <div>
-            <h3 className="font-bold mb-3">Connect With Us</h3>
-            <ul className="space-y-2">
-              {["Contact Support", "Contact Sales", "X", "Facebook", "LinkedIn", "Instagram", "TikTok"].map(item => (
-                <li key={item}><a href="#" className="hover:underline">{item}</a></li>
+                { title: "Contact Sales", link: "/contact-sales" },
+                { title: "Add Events", link: "/create-events" },
+                { title: "Help Center", link: "/help-center" },
+                { title: "Parenting tips", link: "/parenting-tips" },
+              ].map((service) => (
+                <li key={service.title}>
+                  <a
+                    href={service.link}
+                    className="hover:text-[#00A8E8] flex items-center"
+                  >
+                    <BiLink className="mr-2"/> {service.title}
+                  </a>
+                </li>
               ))}
             </ul>
           </div>
-        </div>
-  
-        {/* Bottom Section */}
-        <div className="container mx-auto px-6 lg:px-20 mt-10 border-t border-gray-600 pt-6 text-center md:text-left">
-          <p className="text-gray-400">&copy; 2025 4Kiddos</p>
-          <div className="mt-3 flex flex-wrap justify-center md:justify-start space-x-4 text-gray-400">
-            {["About", "Blog", "Help", "Careers", "Press", "Impact", "Investors", "Security", "Developers",
-              "Status", "Terms", "Privacy", "Accessibility", "Cookies", "Manage Cookie Preferences"].map(item => (
-              <a key={item} href="#" className="hover:underline">{item}</a>
-            ))}
+          {/* Follow Us Section */}
+          <div className="flex flex-col items-center sm:items-start">
+            <h3 className="text-xl font-bold">Socials</h3>
+            <ul className="mt-4 space-y-2 text-sm">
+              {["LinkedIn", "Facebook", "Instagram", "Tik Tok"].map(
+                (social) => (
+                  <li key={social}>
+                    <a
+                      href="#"
+                      className="hover:text-[#00A8E8] flex items-center"
+                    >
+                       <BiLink className="mr-2"/> {social}
+                    </a>
+                  </li>
+                )
+              )}
+            </ul>
           </div>
         </div>
-      </footer>
-    );
-  }
-  
+      </div>
+      {/* ACCORDION FOR MOBILE VIEW */}
+      <div className="bg-gradient-to-b mb-3 mx-5 md:hidden from-[#E848E5] to-[#A52EA1] flex flex-col items-center p-6 rounded-lg text-white">
+        <div className="bg-white bg-opacity-30 rounded-2xl p-4 w-full max-w-lg md:max-w-xl lg:max-w-3xl">
+          <div className="flex flex-col  md:flex-row items-center justify-center">
+            {/* QR Code */}
+            <div className="mb-4 md:mb-0 md:mr-4">
+              <img
+                src="https://oneworldfinancials.com/h1_img8.jpg"
+                alt="Scan QR code to download OneWorld Wallet"
+                className="w-48 h-48"
+              />
+            </div>
+
+            {/* App Download Links */}
+            <div className="flex flex-col items-center justify-center">
+              <p className="text-sm text-center mb-4">
+                Scan QR code to download My Bonfo.
+              </p>
+              <div className="flex space-x-4">
+                <a href="#" className="flex items-center">
+                  <Image
+                    src="https://oneworldfinancials.com/_next/static/media/Remit16.b0e7c27a.svg"
+                    alt="Available on the App Store"
+                    width={120}
+                    height={40}
+                  />
+                </a>
+                <a href="#" className="flex items-center">
+                  <Image
+                    src="https://oneworldfinancials.com/_next/static/media/Remit17.29e75541.svg"
+                    alt="Get it on Google Play"
+                    width={120}
+                    height={40}
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <Accordion type="single" collapsible className="space-y-3 mx-6 md:hidden">
+        <AccordionItem
+          value="item-1"
+          className="p-2 border border-gray-50 rounded-md "
+        >
+          <AccordionTrigger className="text-xl font-bold">
+            About Us
+          </AccordionTrigger>
+          <AccordionContent>
+          <ul className="mt-4 space-y-2 text-sm">
+              {[
+                { title: "Education", link: "/vibrant/educational" },
+                { title: "Charity and Causes", link: "/vibrant/charity-causes" },
+                { title: "Special Deals", link: "/events/deals" },
+                { title: "All ages", link: "/all-ages" },
+              ].map(
+                (item) => (
+                  <li key={item.title}>
+                    <a
+                      href={item.link}
+                      className="hover:text-[#00A8E8] flex items-center"
+                    >
+                       <BiLink className="mr-2"/> {item.title}
+                    </a>
+                  </li>
+                )
+              )}
+            </ul>
+          </AccordionContent>
+        </AccordionItem>
+
+        <AccordionItem
+          value="item-2"
+          className="p-2 border border-gray-50 rounded-md "
+        >
+          <AccordionTrigger className="text-xl font-bold">
+            Our Services
+          </AccordionTrigger>
+          <AccordionContent>
+            <ul className="mt-4 space-y-2 text-sm">
+              {[
+                { title: "Contact Sales", link: "/contact-sales" },
+                { title: "Add Events", link: "/create-events" },
+                { title: "Help Center", link: "/help-center" },
+                { title: "Parenting tips", link: "/parenting-tips" },
+              ].map((service) => (
+                <li key={service.title}>
+                  <a
+                    href={service.link}
+                    className="hover:text-[#00A8E8] flex items-center"
+                  >
+                     <BiLink className="mr-2"/> {service.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </AccordionContent>
+        </AccordionItem>
+
+        <AccordionItem
+          value="item-3"
+          className="p-2 border border-gray-50 rounded-md "
+        >
+          <AccordionTrigger className="text-xl font-bold">
+            Socials
+          </AccordionTrigger>
+          <AccordionContent>
+            <ul className="mt-4 space-y-2 text-sm">
+              {["LinkedIn", "Facebook", "Instagram", "Tik Tok"].map(
+                (social) => (
+                  <li key={social}>
+                    <a
+                      href="#"
+                      className="hover:text-[#00A8E8] flex items-center"
+                    >
+                       <BiLink className="mr-2"/> {social}
+                    </a>
+                  </li>
+                )
+              )}
+            </ul>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>{" "}
+      <a
+        href="https://wa.me/233501408803"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-20 animate-bounce right-4 z-50 flex items-center space-x-2 rounded-full bg-green-500 px-4 py-2 text-white shadow-lg transition-colors hover:bg-green-600"
+      >
+        <FaWhatsapp size={20} className="" />
+        <span className="font-semibold">Message us</span>
+      </a>
+
+    </footer>
+  );
+}
