@@ -21,10 +21,8 @@ const EventCard = () => {
       try {
         const response = await GetAllEventForWeb({ page, limit: 10 });
 
-        console.log(response);
-
         if (response.status === 200) {
-          setEvents(response.data || []);
+          setEvents(Array.isArray(response?.data) ? response.data : []);
           setHasNextPage(response.isNextPage || false);
           setHasPreviousPage(response.isPreviousPage || false);
         } else {
@@ -42,9 +40,7 @@ const EventCard = () => {
 
   return (
     <div className="min-h-screen py-8">
-      {loading && (
-        <Loader/>
-      )}
+      {loading && <Loader />}
 
       {error && <p className="text-center py-5 text-red-500">Error: {error}</p>}
 

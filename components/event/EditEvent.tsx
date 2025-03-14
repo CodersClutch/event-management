@@ -230,51 +230,38 @@ const EditEvent = ({ event }: { event: EventInterfaceType }) => {
               </div>
               {/* price and category */}
               <div className="grid grid-cols-2 gap-2 items-center">
-              <FormField
-  control={form.control}
-  name="category"
-  render={({ field }) => {
-    return (
-      <FormItem>
-        <FormLabel>Category</FormLabel>
-        <DropdownMenu
-          open={isDropdownOpen}
-          onOpenChange={setIsDropdownOpen}
-        >
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="w-full justify-between">
-              {field.value.length > 0 ? field.value.join(", ") : "Select Category"}
-              <ChevronDown className="ml-2 h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent
-            className="w-[var(--radix-dropdown-menu-trigger-width)] max-h-60 overflow-y-auto"
-            onCloseAutoFocus={(e) => e.preventDefault()}
-          >
-            {CATEGORIES.map((category) => (
-              <DropdownMenuCheckboxItem
-                key={category}
-                checked={field.value.includes(category)}
-                onSelect={(e) => e.preventDefault()} 
-                onCheckedChange={(checked) => {
-                  const newValues = checked
-                    ? [...field.value, category]
-                    : field.value.filter((c: string) => c !== category);
-                  
-                  field.onChange(newValues);
-                  setIsDropdownOpen(true);
-                }}
-              >
-                {category}
-              </DropdownMenuCheckboxItem>
-            ))}
-          </DropdownMenuContent>
-        </DropdownMenu>
-        <FormMessage />
-      </FormItem>
-    );
-  }}
-/>
+
+                <FormField
+                  control={form.control}
+                  name="category"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-col">
+                      <FormLabel>Category</FormLabel>
+
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value as unknown as string}
+                      >
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder="Select a Category" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectGroup>
+                            <SelectLabel>Categorises</SelectLabel>
+
+                            {CATEGORIES.map((element) => (
+                              <SelectItem key={element} value={element}>
+                                {element}
+                              </SelectItem>
+                            ))}
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
                 <FormField
                   control={form.control}
                   name="price"

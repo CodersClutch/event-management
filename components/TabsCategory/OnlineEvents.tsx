@@ -21,10 +21,8 @@ const OnlineEvents = () => {
       try {
         const response = await GetAllEventForWeb({ page, limit: 10 });
 
-        console.log(response);
-
         if (response.status === 200) {
-          setEvents(response.data || []);
+          setEvents(Array.isArray(response?.data) ? response.data : []);
           setHasNextPage(response.isNextPage || false);
           setHasPreviousPage(response.isPreviousPage || false);
         } else {

@@ -5,7 +5,6 @@ import Common from "../TabsCategory/Common";
 import { GetAllEventForWeb } from "@/lib/actions/event/GetAllEvent";
 import Loader from "../Layout/Loader";
 const Hobbies = () => {
-
   const [events, setEvents] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -21,10 +20,8 @@ const Hobbies = () => {
       try {
         const response = await GetAllEventForWeb({ page, limit: 10 });
 
-        console.log(response);
-
         if (response.status === 200) {
-          setEvents(response.data || []);
+          setEvents(Array.isArray(response?.data) ? response.data : []);
           setHasNextPage(response.isNextPage || false);
           setHasPreviousPage(response.isPreviousPage || false);
         } else {
@@ -47,7 +44,7 @@ const Hobbies = () => {
   return (
     <div className="max-w-7xl mx-auto p-6 text-center">
       <p className="uppercase text-4xl font-bold text-start text-black ml-3 pb-4">
-Hobbies and interests
+        Hobbies and interests
       </p>
       {loading && <Loader />}
 
