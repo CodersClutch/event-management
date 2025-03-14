@@ -110,6 +110,7 @@ export const GetSingleEvent = async (eventId: string) => {
     const event = await Event.findById(eventId).populate({
       path: "createdBy",
       select: "firstName lastName email initial",
+      options: { strictPopulate: false },
     });
     if (!event) {
       return { status: 404, message: "Event not found" };
