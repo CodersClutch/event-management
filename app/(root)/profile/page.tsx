@@ -46,20 +46,20 @@ const Home = async () => {
 
             {session?.user.role.name === "Attendees" ? null : (
               <>
-                <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-2">
-                  {[1, 2].map((_, index) => (
+                <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-1">
+                  {[1].map((_, index) => (
                     <Suspense key={index} fallback={<SkeletonLoader />}>
                       <HostNetSale />
                     </Suspense>
                   ))}
                 </div>
 
-                <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-2">
+                <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-1">
                   <Suspense fallback={<SkeletonLoader />}>
                     <TicketsCard />
                   </Suspense>
                   <Suspense fallback={<SkeletonLoader />}>
-                    <TotalSeat />
+                    {/* <TotalSeat /> */}
                   </Suspense>
                 </div>
               </>
