@@ -22,6 +22,7 @@ import { Input } from "@/components/ui/input";
 import { FormError } from "./common/form-error";
 import { FormSuccess } from "./common/form-success";
 import { FormWrapper } from "./common/form-wrapper";
+
 const SignInForm = () => {
   // const searchParams = useSearchParams();
   // const callbackUrl = searchParams.get("callbackUrl");
@@ -39,7 +40,6 @@ const SignInForm = () => {
   });
 
   async function onSubmit(values: z.infer<typeof SignInValidation>) {
-    // console.log(values)
     setError("");
     setSuccess("");
     startTransition(() => {
@@ -66,7 +66,11 @@ const SignInForm = () => {
     //   showSocial
     // >
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="w-1/3 bg-white p-5 rounded-lg text-black">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="w-[500px] bg-white border border-yellow-400 shadow-2xl p-5 mx-5 rounded-lg text-black my-5"
+        >
+          <h1 className="font-extrabold text-center text-2xl">Login</h1>
           <div className="space-y-4">
             <>
               <FormField
@@ -77,6 +81,7 @@ const SignInForm = () => {
                     <FormLabel>Email</FormLabel>
                     <FormControl>
                       <Input
+                        className="border-black"
                         disabled={isPending}
                         placeholder="mail@example.com"
                         {...field}
@@ -94,6 +99,7 @@ const SignInForm = () => {
                     <FormLabel>Password</FormLabel>
                     <FormControl>
                       <Input
+                        className="border-black"
                         disabled={isPending}
                         type="password"
                         placeholder="your password"
@@ -118,7 +124,7 @@ const SignInForm = () => {
           <FormSuccess message={success ?? undefined} />
           <Button
             size="lg"
-            className="w-full mt-6"
+            className="w-full mt-6 font-extrabold text-white bg-yellow-500 text-md"
             type="submit"
             disabled={isPending}
           >
@@ -126,7 +132,9 @@ const SignInForm = () => {
           </Button>
           <div className="text-center mt-4">
             Don&apos;t have an account?{" "}
-          <Link href="/auth/signup" className="underline text-blue-800">Create an account</Link>
+            <Link href="/auth/signup" className="underline text-blue-800">
+              Create an account
+            </Link>
           </div>
         </form>
       </Form>
