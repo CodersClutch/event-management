@@ -54,15 +54,10 @@ const SignUpForm = () => {
     resolver: zodResolver(SignUpValidation),
     defaultValues: {
       firstName: "",
-      initial: "",
       lastName: "",
       email: "",
       password: "",
       confirmPassword: "",
-      countryCode: "",
-      phoneNumber: "",
-      address: "",
-      avatar: undefined,
     },
   });
 
@@ -70,15 +65,10 @@ const SignUpForm = () => {
     resolver: zodResolver(SignUpValidation),
     defaultValues: {
       firstName: "",
-      initial: "",
       lastName: "",
       email: "",
       password: "",
       confirmPassword: "",
-      countryCode: "",
-      phoneNumber: "",
-      address: "",
-      avatar: undefined,
     },
   });
 
@@ -100,8 +90,8 @@ const SignUpForm = () => {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-4">
-      <div className="w-full max-w-[550px] mx-auto my-5 rounded-2xl shadow-lg border-yellow-500 border bg-white p-5 text-black">
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="w-full max-w-[500px] mx-auto my-5 rounded-2xl shadow-lg border-yellow-500 border bg-white p-5 text-black">
         <Tabs defaultValue="attendee" className="w-full">
           <TabsList className="grid w-full grid-cols-2 gap-2 bg-white">
             <TabsTrigger
@@ -128,64 +118,43 @@ const SignUpForm = () => {
                 <h1 className="font-extrabold text-start text-2xl border-b border-yellow-400 mb-4 pb-2">
                   Register As Attendee
                 </h1>
-
-                <div className="space-y-4">
-                  <div className="flex flex-col lg:flex-row gap-2 w-full">
-                    <FormField
-                      control={attendeeForm.control}
-                      name="firstName"
-                      render={({ field }) => (
-                        <FormItem className="flex-1">
-                          <FormLabel>First Name</FormLabel>
-                          <FormControl>
-                            <Input
-                              className="border-black"
-                              disabled={isPending}
-                              placeholder="Your first name"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={attendeeForm.control}
-                      name="initial"
-                      render={({ field }) => (
-                        <FormItem className="flex-1">
-                          <FormLabel>Initial (Optional)</FormLabel>
-                          <FormControl>
-                            <Input
-                              className="border-black"
-                              disabled={isPending}
-                              placeholder="initial"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={attendeeForm.control}
-                      name="lastName"
-                      render={({ field }) => (
-                        <FormItem className="flex-1">
-                          <FormLabel>Last Name</FormLabel>
-                          <FormControl>
-                            <Input
-                              className="border-black"
-                              disabled={isPending}
-                              placeholder="Your last name"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
+                <div className="space-y-3">
+                  <FormField
+                    control={attendeeForm.control}
+                    name="firstName"
+                    render={({ field }) => (
+                      <FormItem className="flex-1">
+                        <FormLabel>First Name</FormLabel>
+                        <FormControl>
+                          <Input
+                            className="border-black"
+                            disabled={isPending}
+                            placeholder="Your first name"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={attendeeForm.control}
+                    name="lastName"
+                    render={({ field }) => (
+                      <FormItem className="flex-1">
+                        <FormLabel>Last Name</FormLabel>
+                        <FormControl>
+                          <Input
+                            className="border-black"
+                            disabled={isPending}
+                            placeholder="Your last name"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
                   <FormField
                     control={attendeeForm.control}
                     name="email"
@@ -204,62 +173,6 @@ const SignUpForm = () => {
                       </FormItem>
                     )}
                   />
-                  {/* Phone Number and Country Code */}
-                  <div className="flex flex-col lg:flex-row gap-4 w-full">
-                    <FormField
-                      control={attendeeForm.control}
-                      name="countryCode"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Country Code</FormLabel>
-                          <Select
-                            onValueChange={field.onChange}
-                            defaultValue={field.value}
-                          >
-                            <FormControl>
-                              <SelectTrigger className="border border-gray-500">
-                                <SelectValue placeholder="Select country code" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                              {countryCodes.map((country) => (
-                                <SelectItem
-                                  key={country.code}
-                                  value={country.code}
-                                >
-                                  {`${country.name} (${country.code})`}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={attendeeForm.control}
-                      name="phoneNumber"
-                      render={({ field }) => (
-                        <FormItem className="flex-1">
-                          <FormLabel>Phone Number</FormLabel>
-                          <FormControl>
-                            <Input
-                              className="border-black border"
-                              placeholder="Phone Number"
-                              {...field}
-                              onChange={(e) => {
-                                const formatted = formatPhoneNumber(
-                                  e.target.value
-                                );
-                                field.onChange(formatted);
-                              }}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
                   <FormField
                     control={attendeeForm.control}
                     name="password"
@@ -298,47 +211,6 @@ const SignUpForm = () => {
                       </FormItem>
                     )}
                   />
-                  <div className="flex flex-col lg:flex-row gap-4 w-full">
-                    <FormField
-                      control={attendeeForm.control}
-                      name="address"
-                      render={({ field }) => (
-                        <FormItem className="flex-1">
-                          <FormLabel>Address</FormLabel>
-                          <FormControl>
-                            <Input
-                              className="border-black"
-                              disabled={isPending}
-                              placeholder="Address"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={attendeeForm.control}
-                      name="avatar"
-                      render={({ field }) => (
-                        <FormItem className="flex-1">
-                          <FormLabel>Profile Image</FormLabel>
-                          <FormControl>
-                            <Input
-                              className="border-black"
-                              type="file"
-                              disabled={isPending}
-                              onChange={(e) => {
-                                const file = e.target.files?.[0];
-                                field.onChange(file);
-                              }}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
                 </div>
                 <FormError message={error} />
                 <FormSuccess message={success} />
@@ -363,67 +235,50 @@ const SignUpForm = () => {
           {/* Host Form */}
           <TabsContent value="host" className="mt-4">
             <Form {...hostForm}>
-              <form onSubmit={hostForm.handleSubmit(onSubmit)} className="w-full">
+              <form
+                onSubmit={hostForm.handleSubmit(onSubmit)}
+                className="w-full"
+              >
                 <h1 className="font-extrabold text-cente text-2xl border-b border-yellow-400 mb-4 pb-2">
                   Register As Host
                 </h1>
-                <div className="space-y-4">
-                  <div className="flex flex-col lg:flex-row gap-2 w-full">
-                    <FormField
-                      control={hostForm.control}
-                      name="firstName"
-                      render={({ field }) => (
-                        <FormItem className="flex-1">
-                          <FormLabel>First Name</FormLabel>
-                          <FormControl>
-                            <Input
-                              className="border-black"
-                              disabled={isPending}
-                              placeholder="Your first name"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={hostForm.control}
-                      name="initial"
-                      render={({ field }) => (
-                        <FormItem className="flex-1">
-                          <FormLabel>Initial (Optional)</FormLabel>
-                          <FormControl>
-                            <Input
-                              className="border-black"
-                              disabled={isPending}
-                              placeholder="initial"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={hostForm.control}
-                      name="lastName"
-                      render={({ field }) => (
-                        <FormItem className="flex-1">
-                          <FormLabel>Last Name</FormLabel>
-                          <FormControl>
-                            <Input
-                              className="border-black"
-                              disabled={isPending}
-                              placeholder="Your last name"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
+                <div className="space-y-3">
+                  <FormField
+                    control={hostForm.control}
+                    name="firstName"
+                    render={({ field }) => (
+                      <FormItem className="flex-1">
+                        <FormLabel>First Name</FormLabel>
+                        <FormControl>
+                          <Input
+                            className="border-black"
+                            disabled={isPending}
+                            placeholder="Your first name"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={hostForm.control}
+                    name="lastName"
+                    render={({ field }) => (
+                      <FormItem className="flex-1">
+                        <FormLabel>Last Name</FormLabel>
+                        <FormControl>
+                          <Input
+                            className="border-black"
+                            disabled={isPending}
+                            placeholder="Your last name"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
                   <FormField
                     control={hostForm.control}
                     name="email"
@@ -442,62 +297,6 @@ const SignUpForm = () => {
                       </FormItem>
                     )}
                   />
-                  {/* Phone Number and Country Code */}
-                  <div className="flex flex-col lg:flex-row gap-4 w-full">
-                    <FormField
-                      control={hostForm.control}
-                      name="countryCode"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Country Code</FormLabel>
-                          <Select
-                            onValueChange={field.onChange}
-                            defaultValue={field.value}
-                          >
-                            <FormControl>
-                              <SelectTrigger className="border border-gray-500">
-                                <SelectValue placeholder="Select country code" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                              {countryCodes.map((country) => (
-                                <SelectItem
-                                  key={country.code}
-                                  value={country.code}
-                                >
-                                  {`${country.name} (${country.code})`}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={hostForm.control}
-                      name="phoneNumber"
-                      render={({ field }) => (
-                        <FormItem className="flex-1">
-                          <FormLabel>Phone Number</FormLabel>
-                          <FormControl>
-                            <Input
-                              className="border-black"
-                              placeholder="Phone Number"
-                              {...field}
-                              onChange={(e) => {
-                                const formatted = formatPhoneNumber(
-                                  e.target.value
-                                );
-                                field.onChange(formatted);
-                              }}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
                   <FormField
                     control={hostForm.control}
                     name="password"
@@ -536,47 +335,6 @@ const SignUpForm = () => {
                       </FormItem>
                     )}
                   />
-                  <div className="flex flex-col lg:flex-row gap-4 w-full">
-                    <FormField
-                      control={hostForm.control}
-                      name="address"
-                      render={({ field }) => (
-                        <FormItem className="flex-1">
-                          <FormLabel>Address</FormLabel>
-                          <FormControl>
-                            <Input
-                              className="border-black"
-                              disabled={isPending}
-                              placeholder="Address"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={hostForm.control}
-                      name="avatar"
-                      render={({ field }) => (
-                        <FormItem className="flex-1">
-                          <FormLabel>Profile Image</FormLabel>
-                          <FormControl>
-                            <Input
-                              className="border-black"
-                              type="file"
-                              disabled={isPending}
-                              onChange={(e) => {
-                                const file = e.target.files?.[0];
-                                field.onChange(file);
-                              }}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
                 </div>
                 <FormError message={error} />
                 <FormSuccess message={success} />
