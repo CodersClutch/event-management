@@ -19,9 +19,11 @@ export default function Footer() {
             <div className="flex flex-col md:flex-row items-center justify-center">
               {/* QR Code */}
               <div className="mb-4 md:mb-0 md:mr-4">
-                <img
+                <Image
                   src="https://oneworldfinancials.com/h1_img8.jpg"
                   alt="Scan QR code to download OneWorld Wallet"
+                  width={320}
+                  height={160}
                   className="w-80 h-40"
                 />
               </div>
@@ -125,9 +127,11 @@ export default function Footer() {
           <div className="flex flex-col  md:flex-row items-center justify-center">
             {/* QR Code */}
             <div className="mb-4 md:mb-0 md:mr-4">
-              <img
+              <Image
                 src="https://oneworldfinancials.com/h1_img8.jpg"
                 alt="Scan QR code to download OneWorld Wallet"
+                width={192}
+                height={192}
                 className="w-48 h-48"
               />
             </div>
