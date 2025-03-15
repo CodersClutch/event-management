@@ -40,7 +40,7 @@ const Deals = () => {
   }, [page]);
 
   const filteredEvent = events.filter((event) =>
-    event.category.includes("attraction")
+    event.category.includes("special deals")
   );
 
   return (
