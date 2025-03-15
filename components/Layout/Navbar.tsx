@@ -25,7 +25,7 @@ const navLink = [
     title: "Parenting Tips",
     href: "/parenting-tips",
   },
-]
+];
 
 const Navbar = () => {
   const { data: session } = useSession();
@@ -105,7 +105,10 @@ const Navbar = () => {
                   <div className="flex items-center gap-5">
                     {/* <AddEvent /> */}
                     {/* <WebUserNavBar /> */}
-                    <AddEvent />
+                    {session?.user.role.name === "Attendees" ? null : (
+                      <AddEvent />
+                    )}
+
                     <div>
                       <WebUserNavBar />
                     </div>

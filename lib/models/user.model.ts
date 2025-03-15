@@ -10,6 +10,7 @@ const UserSchema = new mongoose.Schema(
     password: { type: String, required: true, minlength: 6 },
     phoneNumber: { type: String, unique: true, sparse: true },
     avatar: { type: String, default: "default-avatar.png" }, // URL to profile picture
+
     address: {
       street: { type: String },
       city: { type: String },
