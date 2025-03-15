@@ -23,7 +23,7 @@ const MoreEventsFromOrganizer = async ({
     <>
       <p className="text-2xl font-bold">More events from this organizer</p>
       <div className="grid grid-cols-1 max-w-2xl gap-10">
-        {events?.map((event) => (
+        {events?.map((event: EventInterfaceType) => (
           <Link
             href="#"
             className="flex flex-row p-4 hover:border hover:shadow-md shadow-sm rounded-xl transition-all duration-500  justify-between"

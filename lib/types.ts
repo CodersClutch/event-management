@@ -140,8 +140,7 @@ type Categories =
 
 // ADDITIONAL TYPE DEF ==================================
 
-
-export const CATEGORIES = [
+export const CATEGORIES: Categories[] = [
   "all ages",
   "for babies",
   "main arena",
@@ -165,7 +164,6 @@ export const CATEGORIES = [
   "special deals",
 ] as const; // This makes it a tuple
 
-
 export interface EventInterfaceType {
   map(
     arg0: (item: IUser, index: number) => import("react").JSX.Element
@@ -184,13 +182,13 @@ export interface EventInterfaceType {
   waitlist: IUser[]; // Array of IUser references
   createdAt: string; // ISO date string
   eventId: string;
-  createdBy: string;
+  createdBy: IUser;
   images: string;
   image: string;
   geolocation: Geolocation;
   specialDeal?: boolean;
   capacity?: number;
-  ageRange?: AgeRange;
+  ageRange?: string;
   price: number;
   refundPolicy?: string;
   duration?: string; // e.g., "2 hours", "3 days"

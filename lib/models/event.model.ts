@@ -43,7 +43,7 @@ const EventSchema = new mongoose.Schema({
   },
   mode: { type: String, required: false, default: "" },
   price: { type: Number, required: true },
-  refundPolicy: { type: String, required: false, default: "" },
+  refundPolicy: { type: String, required: true, default: "" },
   category: {
     type: [String],
     enum: [
@@ -75,11 +75,11 @@ const EventSchema = new mongoose.Schema({
   ageRange: { type: String, required: true },
   image: { type: String, required: true },
   geolocation: {
-    address: { type: String, required: false },
-    city: { type: String, required: false },
-    state: { type: String, required: false },
-    country: { type: String, required: false },
-    coordinates: { type: String, required: false },
+    address: { type: String, required: true, default: "" },
+    city: { type: String, required: true, default: "" },
+    state: { type: String, required: true, default: "" },
+    country: { type: String, required: true, default: "" },
+    coordinates: { type: String, required: true, default: "" },
   },
 
   createdAt: { type: Date, default: Date.now },

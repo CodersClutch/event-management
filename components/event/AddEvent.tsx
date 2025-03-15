@@ -82,7 +82,7 @@ const AddEvent = () => {
       coordinates: string;
     };
   };
-  
+
   const form = useForm<FormValues>({
     resolver: zodResolver(eventSchema),
     defaultValues: {
@@ -93,7 +93,7 @@ const AddEvent = () => {
       maxParticipants: 0,
       description: "",
       location: "",
-      category: [],
+      category: [] as string[],
       price: "",
       ageRange: "",
       image: "",
@@ -198,7 +198,6 @@ const AddEvent = () => {
                                 variant="outline"
                                 className="w-full justify-between"
                               >
-
                                 Select Category
                                 <ChevronDown className="ml-2 h-4 w-4" />
                               </Button>
@@ -213,7 +212,7 @@ const AddEvent = () => {
                                 <DropdownMenuCheckboxItem
                                   key={category}
                                   checked={field.value.includes(category)}
-                                  onSelect={(e) => e.preventDefault()} 
+                                  onSelect={(e) => e.preventDefault()}
                                   onCheckedChange={(checked) => {
                                     const newValues = checked
                                       ? [...field.value, category]

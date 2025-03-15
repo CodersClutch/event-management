@@ -1,7 +1,10 @@
 "use client";
 import { addEventServerAction } from "@/lib/actions/event/addEventServerAction";
 import { deleteEventServerAction } from "@/lib/actions/event/deleteEvent";
-import { updateEventServerAction } from "@/lib/actions/event/updateEventServerAction";
+import {
+  updateEventServerAction,
+  registerEvents,
+} from "@/lib/actions/event/updateEventServerAction";
 import { EventInterfaceType } from "@/lib/types";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -95,11 +98,40 @@ export const EventHook = () => {
     }
   };
 
+  // handle event registration
+  const handleRegisterEvent = async (eventId: string, userId: string) => {
+    setIsLoading(true);
+    // const loadingToastId = toast.loading("��������������� Registering for event...");
+
+    try {
+      const { status, message } = await registerEvents({ eventId, userId });
+      if (status !== 200) {
+        toast.error(message);
+        return { status };
+      }
+      setIsLoading(false);
+      // toast.dismiss(loadingToastId);
+
+      toast.success(message);
+      return { status };
+    } catch {
+      // toast.dismiss(loadingToastId);
+      toast.error("An error occurred while registering for the event.");
+      setIsLoading(false);
+    } finally {
+      setIsLoading(false);
+      // toast.dismiss(loadingToastId);
+    }
+  };
+
+  // handle event unregistration
+
   return {
     handleUpdateEvent,
     handleDeleteEvent,
     HandleAddEvent,
     isLoading,
     setIsLoading,
+    handleRegisterEvent,
   };
 };

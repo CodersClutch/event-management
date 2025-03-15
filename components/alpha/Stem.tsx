@@ -6,7 +6,6 @@ import { GetAllEventForWeb } from "@/lib/actions/event/GetAllEvent";
 import Loader from "../Layout/Loader";
 
 const Stem = () => {
-
   const [events, setEvents] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -22,10 +21,8 @@ const Stem = () => {
       try {
         const response = await GetAllEventForWeb({ page, limit: 10 });
 
-        console.log(response);
-
         if (response.status === 200) {
-          setEvents(response.data || []);
+          setEvents(Array.isArray(response?.data) ? response.data : []);
           setHasNextPage(response.isNextPage || false);
           setHasPreviousPage(response.isPreviousPage || false);
         } else {
@@ -48,7 +45,7 @@ const Stem = () => {
   return (
     <div className="max-w-7xl mx-auto p-6 text-center">
       <p className="uppercase text-4xl font-bold text-start text-black ml-3 pb-4">
-        stem & coding 
+        stem & coding
       </p>
       {loading && <Loader />}
 

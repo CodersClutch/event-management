@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
@@ -7,10 +8,10 @@ const ProfileComponent = ({
   lastName,
   middleName,
 }: {
-  email: string | undefined;
-  firstName: string | undefined;
-  lastName: string | undefined;
-  middleName: string | undefined;
+  email?: string | undefined;
+  firstName?: string | undefined;
+  lastName?: string | undefined;
+  middleName?: string | undefined;
 }) => {
   return (
     <div className="flex items-center gap-3">

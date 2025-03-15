@@ -7,9 +7,8 @@ export const eventSchema = z
 
     image: z.string().trim().optional(),
     category: z
-
-      .array(z.enum(CATEGORIES))
-      .min(1, "At least one category must be selected"),
+      .array(z.enum(CATEGORIES as [string, ...string[]])) // Validates an array of categories
+      .min(1, "At least one category must be selected"), // Optional: Ensures that at least one category is selected
     price: z.string().min(0, "Price must be at least 0 characters long"),
     ageRange: z
       .string()
@@ -41,19 +40,6 @@ export const eventSchema = z
           });
         }
       }),
-    mode: z.string().optional().default(""), // Can be empty but should be a string
-
-    refundPolicy: z.string().optional().default(""), // Ensures it is a string
-
-    specialDeal: z.boolean().default(false), // Ensures it is a boolean
-
-    geolocation: z.object({
-      address: z.string().optional(),
-      city: z.string().optional(),
-      state: z.string().optional(),
-      country: z.string().optional(),
-      coordinates: z.string().optional(),
-    }),
 
     registrationDeadline: z.date(),
 
