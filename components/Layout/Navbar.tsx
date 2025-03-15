@@ -14,7 +14,7 @@ const navLink = [
     href: "/contact-sales",
   },
   {
-    title: "Create Events",
+    title: "Home",
     href: "/create-events",
   },
   {
@@ -172,7 +172,7 @@ const Navbar = () => {
           <div className="md:hidden mt-4 space-y-4 py-4 border-t border-gray-200">
             {[
               "Contact Sales",
-              "Create Events",
+              "Home",
               "Help Center",
               "Log In",
               "Parenting Tips",
