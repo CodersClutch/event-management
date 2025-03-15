@@ -12,7 +12,7 @@ const UserSchema = new mongoose.Schema(
     avatar: { type: String, default: "default-avatar.png" }, // URL to profile picture
     address: {
       street: { type: String },
-      city: { type: String },
+      city: { type: String }, 
       country: { type: String },
     },
 
