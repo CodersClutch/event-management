@@ -15,7 +15,7 @@ const navLink = [
   },
   {
     title: "Home",
-    href: "/create-events",
+    href: "/",
   },
   {
     title: "Help Center",
@@ -170,19 +170,13 @@ const Navbar = () => {
         {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="md:hidden mt-4 space-y-4 py-4 border-t border-gray-200">
-            {[
-              "Contact Sales",
-              "Home",
-              "Help Center",
-              "Log In",
-              "Parenting Tips",
-            ].map((item) => (
+            {navLink.map((item) => (
               <Link
-                key={item}
-                href="#"
+                key={item.title}
+                href={item.href}
                 className="block text-black font-medium text-sm hover:text-[#D942D6]"
               >
-                {item}
+                {item.title}
               </Link>
             ))}
             <Link
