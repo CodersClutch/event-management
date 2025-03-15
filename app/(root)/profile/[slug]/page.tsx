@@ -4,10 +4,8 @@ import { IUser } from "@/lib/types";
 import React from "react";
 
 const Page = async ({ params }: { params: { slug: string } }) => {
-  const { slug } = await params; 
+  const { slug } = await params;
   const response = await getUserById(slug);
-  
-  console.log(response)
 
   if (response.status !== 200) {
     return (
