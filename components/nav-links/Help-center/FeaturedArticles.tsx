@@ -10,7 +10,7 @@ const FeaturedArticles = () => {
         {[
           { title: "Find your tickets", link: "/help-center/find-my-tickets" },
           { title: "What is this charge from 4kiddos", link: "/help-center/4kiddo-charge" },
-          { title: "Contact the event organizer", link: "/articles/three" },
+          { title: "Contact the event organizer", link: "/help-center/contact-the-event-organizer" },
         ].map((article, index) => (
           <Link 
             key={index} 

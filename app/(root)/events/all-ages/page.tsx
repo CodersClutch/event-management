@@ -61,7 +61,7 @@ const Page = () => {
         </div>
       </div>
 
-      <div className="pt-16 pb-16">{/* <AllAges /> */}</div>
+      <div className="pt-16 pb-16"><AllAges /></div>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Image from "next/image";
 import { eventList } from "@/constants";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
@@ -8,18 +8,9 @@ import { Button } from "../ui/button";
 import { Check } from "lucide-react";
 
 const MyTickets = () => {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-  const [scanResult, setScanResult] = useState(""); // State to store the scanned result
->>>>>>> 2c29599d8db071746508d10f751349f722538c75
-=======
->>>>>>> 59ecac578d87c71160a7d26361b29a1639b1565b
-=======
 
   const [scanResult, setScanResult] = useState(""); // State to store the scanned result
->>>>>>> b3b3fabd124e949a574337a44140827398a4ff31
+
   const ticketRef = useRef<HTMLDivElement>(null); // Ref for the ticket element
 
   const handleDownloadTicket = () => {
@@ -62,20 +53,10 @@ const MyTickets = () => {
           printWindow.print();
         }
       }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-      printWindow.print();
-=======
->>>>>>> 2c29599d8db071746508d10f751349f722538c75
-=======
-      printWindow?.print();
->>>>>>> 59ecac578d87c71160a7d26361b29a1639b1565b
-=======
+
       printWindow?.print();
 
 
->>>>>>> b3b3fabd124e949a574337a44140827398a4ff31
     }
   };
 

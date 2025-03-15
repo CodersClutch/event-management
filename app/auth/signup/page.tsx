@@ -53,7 +53,7 @@ const SignUpForm = () => {
     setSuccess("");
 
     startTransition(() => {
-      signUpWithCredentials(values)
+      signUpWithCredentials(values, "Attendee")
         .then((data) => {
           if (data?.error) {
             setError(data.error);

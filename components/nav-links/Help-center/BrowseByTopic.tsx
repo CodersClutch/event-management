@@ -4,10 +4,10 @@ import Link from 'next/link';
 import Questions from './Questions';
 
 const topics = [
-  { title: "Buy and register", icon: <DollarSign className="w-6 h-6 text-blue-600" />, link: "/buy-register" },
-  { title: "Your tickets", icon: <Ticket className="w-6 h-6 text-blue-600" />, link: "/tickets" },
-  { title: "Your account", icon: <User className="w-6 h-6 text-blue-600" />, link: "/account" },
-  { title: "Terms and policies", icon: <FileText className="w-6 h-6 text-blue-600" />, link: "/terms-policies" }
+  { title: "Buy and register", icon: <DollarSign className="w-6 h-6 text-blue-600" />, link: "/help-center/your-tickets" },
+  { title: "Your tickets", icon: <Ticket className="w-6 h-6 text-blue-600" />, link: "/help-center/your-tickets" },
+  { title: "Your account", icon: <User className="w-6 h-6 text-blue-600" />, link: "/help-center/your-tickets" },
+  { title: "Terms and policies", icon: <FileText className="w-6 h-6 text-blue-600" />, link: "/help-center/your-tickets" }
 ];
 
 const BrowseByTopic = () => {
