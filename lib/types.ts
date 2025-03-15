@@ -182,7 +182,7 @@ export interface EventInterfaceType {
   waitlist: IUser[]; // Array of IUser references
   createdAt: string; // ISO date string
   eventId: string;
-  createdBy: IUser;
+  createdBy: IUser | undefined;
   images: string;
   image: string;
   geolocation: Geolocation;
