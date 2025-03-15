@@ -31,7 +31,7 @@ const Navbar = () => {
   const { data: session } = useSession();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [location, setLocation] = useState("North Bank");
+  const [location, setLocation] = useState("");
 
   return (
     <nav className="fixed mt-4 z-20 w-full">

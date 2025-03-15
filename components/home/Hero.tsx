@@ -1,8 +1,9 @@
-'use client';
+import { auth } from "@/auth";
+import Link from "next/link";
+import { Button } from "../ui/button";
 
-import Link from 'next/link';
-
-export default function Hero() {
+export default async function Hero() {
+  const session = await auth();
 
   return (
     <section className="relative w-full h-[80vh] overflow-hidden flex items-center justify-center text-white">
@@ -21,12 +22,34 @@ export default function Hero() {
 
       {/* Hero Content */}
       <div className="relative z-10 text-center px-6">
-        <h1 className="text-6xl font-bold mb-4">Connecting Families with <br /> Engaging Activities</h1>
-        <Link href="/get-started">
-        <button className="px-6 py-3 text-lg bg-gradient-to-b hover:bg-gradient-to-t from-[#A22D9E] hover:from-[#A22D9E] hover:to-[#F34CF1] to-[#F34CF1] rounded-full shadow-md transition">
-        Find my tickets
-</button>
-        </Link>
+        <h1 className="text-6xl font-bold mb-4">
+          Connecting Families with <br /> Engaging Activities
+        </h1>
+        {session?.user.role.name === "Hosts" ? (
+          <>
+            <Link
+              href="/profile/host-events"
+              className="px-6 py-3 text-lg bg-gradient-to-b hover:bg-gradient-to-t from-[#A22D9E] hover:from-[#A22D9E] mt-6 hover:to-[#F34CF1] to-[#F34CF1] rounded-full shadow-md transition"
+            >
+              My Events
+            </Link>
+          </>
+        ) : session?.user.role.name === "Attendees" ? (
+          <>
+            <Link
+              href="/profile/host-events"
+              className="px-6 py-3 text-lg bg-gradient-to-b hover:bg-gradient-to-t from-[#A22D9E] hover:from-[#A22D9E] mt-6 hover:to-[#F34CF1] to-[#F34CF1] rounded-full shadow-md transition"
+            >
+              Find my tickets
+            </Link>
+          </>
+        ) : (
+          <>
+            <Button className="px-6 py-3 mt-6 text-lg bg-gradient-to-b hover:bg-gradient-to-t from-[#A22D9E] hover:from-[#A22D9E] hover:to-[#F34CF1] to-[#F34CF1] rounded-full shadow-md transition">
+              Welcome
+            </Button>
+          </>
+        )}
       </div>
     </section>
   );

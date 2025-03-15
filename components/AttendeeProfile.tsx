@@ -57,7 +57,7 @@ const AttendeeProfile: React.FC<AttendeeProfileProps> = ({ userId }) => {
       {error && <p className="text-center py-5 text-red-500">Error: {error}</p>}
 
       {!loading && !error && events.length === 0 && (
-        <p className="text-center py-5 text-gray-500">No events available.</p>
+        <p className="text-center py-5 text-gray-500">No registered events here.</p>
       )}
 
       {!loading && !error && events.length > 0 && (

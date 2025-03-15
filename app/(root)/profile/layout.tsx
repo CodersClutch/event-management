@@ -37,13 +37,13 @@ export default function ProfileLayout({ children }: { children: ReactNode }) {
       icon: <User2 className="w-5 h-5" />,
     },
         // my-tickets
-    session?.user.role.name === "Hosts"
-      ? null
-      : {
-          label: "My Tickets",
-          href: "/profile/my-tickets",
-          icon: <TicketIcon className="w-5 h-5" />,
-        },
+    // session?.user.role.name === "Hosts"
+    //   ? null
+    //   : {
+    //       label: "My Tickets",
+    //       href: "/profile/my-tickets",
+    //       icon: <TicketIcon className="w-5 h-5" />,
+    //     },
   ].filter(Boolean);
 
   return (
