@@ -36,7 +36,7 @@ const Common = ({ events }: { events: EventInterfaceType[] }) => {
 
   return (
     <>
-      <div className="bg-transparent max-w-7xl mx-auto p-4 font-sans">
+      <div className="bg-transparent max-w-7xl m-auto  flex items-center justify-center p-4 font-sans">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {events.map((event, idx) => (
             <div
