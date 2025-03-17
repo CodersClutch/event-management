@@ -72,7 +72,6 @@ export const registerEvents = async ({
   try {
     // Convert userId to ObjectId
     const userObjectId = new mongoose.Types.ObjectId(userId);
-
     // Fetch the event
     const event = await Event.findById(eventId);
     if (!event) return { status: 404, message: "Event not found" };
