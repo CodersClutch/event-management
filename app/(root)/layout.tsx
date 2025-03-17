@@ -1,84 +1,63 @@
 import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
-import { ThemeProvider } from "@/components/provider/theme-provider";
-import { AppSidebar } from "@/components/app-sidebar";
-import { NavUser } from "@/components/nav-user";
-import ThemeToggle from "@/components/sidebar/ThemeToggle";
-import { Nunito } from "next/font/google";
-import { SessionProvider } from "next-auth/react";
-import { Separator } from "@/components/ui/separator";
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
-import { Settings } from "lucide-react";
-import { auth } from "@/auth";
-import { Toaster } from "sonner";
-import { EdgeStoreProvider } from "@/components/provider/edgestore";
-import { redirect } from "next/navigation"; // Import the redirect function
-import { getUserRole } from "@/lib/database"; // Function to fetch the role
+import Navbar from "@/components/Layout/Navbar";
+import Footer from "@/components/Layout/Footer";
 
-const nunito = Nunito({ subsets: ["latin"] });
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
-  title: "Event Management",
-  description: "Event Management Dashboard",
+  title: "4kiddos",
+  description: "An event management webapp",
 };
+
+import { ReactNode } from "react";
+import { auth } from "@/auth";
+import { SessionProvider } from "next-auth/react";
+import { Toaster } from "sonner";
+import { EdgeStoreProvider } from "@/components/provider/edgestore";
+import { fetchRolesServerAction } from "@/lib/actions/role/roleServerAction";
 
 export default async function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: ReactNode;
+}) {
   const session = await auth();
-
-  // Fetch the user's role from the database
-  const userRole = session?.user?.email ? await getUserRole(session.user.email) : null;
-
-  // Check if the user is a host and trying to access the dashboard
-  if (userRole === "Hosts" && typeof window !== "undefined" && window.location.pathname === "/dashboard") {
-    redirect("/"); // Redirect to the home page
-  }
-
+  await fetchRolesServerAction();
   return (
     <SessionProvider session={session}>
       <html lang="en">
-        <body className={`${nunito.className} antialiased`}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <EdgeStoreProvider>
-              <SidebarProvider>
-                <AppSidebar />
-                <SidebarInset>
-                  <header className="flex h-16 shrink-0 items-center gap-2 justify-between overflow-hidden bg-[#21BCE6]">
-                    <div className="flex items-center gap-2 px-4">
-                      <SidebarTrigger className="-ml-1" />
-                      <Separator orientation="vertical" className="mr-2 h-4" />
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <Settings />
-                      <ThemeToggle />
-                      <NavUser
-                        user={{
-                          name: session?.user?.name || "Guest",
-                          email: session?.user?.email || "",
-                          avatar: session?.user?.image || "https://example.com/john-doe.jpg",
-                        }}
-                      />
-                    </div>
-                  </header>
-                  <Separator />
-                  <div className="p-5 overflow-hidden">{children}</div>
-                </SidebarInset>
-              </SidebarProvider>
-              <Toaster richColors />
-            </EdgeStoreProvider>
-          </ThemeProvider>
+        <head>
+          {/* ✅ Ensures responsive scaling */}
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+        </head>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased `}
+        >
+          <EdgeStoreProvider>
+            {/* ✅ Navbar with a responsive container */}
+            <Navbar />
+
+            {/* ✅ Main content container with proper padding */}
+            {/* <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">{children}</main> */}
+            <main>{children}</main>
+
+            {/* ✅ Footer is always visible & responsive */}
+            <Footer />
+            <Toaster richColors />
+          </EdgeStoreProvider>
         </body>
       </html>
     </SessionProvider>
