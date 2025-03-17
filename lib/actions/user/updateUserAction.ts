@@ -33,3 +33,36 @@ export async function updateUserServerAction(
     return { status: 500, message: "Error updating user", error };
   }
 }
+
+
+
+
+export async function updateUser(userId: string, data: any) {
+  try {
+    // Update the user based on userId and provided data
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      {
+        $set: data,
+        $currentDate: { updatedAt: true }, // Automatically update 'updatedAt'
+      },
+      { new: true } // Return the updated user
+    ).lean();
+
+    if (!updatedUser) {
+      throw new Error("User not found");
+    }
+
+    return {
+      status: 200,
+      message: "User profile updated successfully",
+      data: updatedUser,
+    };
+  } catch (error) {
+    console.error("Error updating user:", error);
+    return {
+      status: 500,
+      message: "An error occurred while updating the user",
+    };
+  }
+}

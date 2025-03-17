@@ -18,6 +18,8 @@ import { useEffect } from "react";
 
 const WebUserNavBar = () => {
   const { data: session } = useSession();
+  // console.log(session);
+
   const handleClick = async () => {
     await logout();
     window.location.assign("/");
@@ -104,7 +106,7 @@ const WebUserNavBar = () => {
             </DropdownMenuItem>
           </Link>
 
-          <AddEvent />
+          {session?.user.role.name === "Attendees" ? null : <AddEvent />}
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
 

@@ -14,8 +14,8 @@ const navLink = [
     href: "/contact-sales",
   },
   {
-    title: "Create Events",
-    href: "/create-events",
+    title: "Home",
+    href: "/",
   },
   {
     title: "Help Center",
@@ -25,7 +25,7 @@ const navLink = [
     title: "Parenting Tips",
     href: "/parenting-tips",
   },
-]
+];
 
 const Navbar = () => {
   const { data: session } = useSession();
@@ -105,7 +105,10 @@ const Navbar = () => {
                   <div className="flex items-center gap-5">
                     {/* <AddEvent /> */}
                     {/* <WebUserNavBar /> */}
-                    <AddEvent />
+                    {session?.user.role.name === "Attendees" ? null : (
+                      <AddEvent />
+                    )}
+
                     <div>
                       <WebUserNavBar />
                     </div>
@@ -170,19 +173,13 @@ const Navbar = () => {
         {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="md:hidden mt-4 space-y-4 py-4 border-t border-gray-200">
-            {[
-              "Contact Sales",
-              "Create Events",
-              "Help Center",
-              "Log In",
-              "Parenting Tips",
-            ].map((item) => (
+            {navLink.map((item) => (
               <Link
-                key={item}
-                href="#"
+                key={item.title}
+                href={item.href}
                 className="block text-black font-medium text-sm hover:text-[#D942D6]"
               >
-                {item}
+                {item.title}
               </Link>
             ))}
             <Link

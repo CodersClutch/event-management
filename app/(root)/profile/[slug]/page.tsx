@@ -1,22 +1,24 @@
-import HostProfileComponent from '@/components/hosts/HostProfile'
-import { GetSingleUser } from '@/lib/actions/user/getAllUser';
-import { IUser } from '@/lib/types';
-import React from 'react'
-
+import HostProfileComponent from "@/components/hosts/HostProfile";
+import { getUserById } from "@/lib/actions/user/getAllUser";
+import { IUser } from "@/lib/types";
+import React from "react";
 type Params = Promise<{ slug: string }>;
-const Page = async ({params}: {params: Params}) => {
 
+const Page = async ({ params }: { params: Params }) => {
   const { slug } = await params;
+  const response = await getUserById(slug);
 
+  if (response.status !== 200) {
+    return (
+      <div className="text-center text-red-500">
+        {response.message || "User not found"}
+      </div>
+    );
+  }
 
-  const response = await GetSingleUser(slug);
-  const data = response.data as IUser | undefined;
+  const userData = response.data as unknown as IUser;
 
-  return (
-    <div>
-      {data ? <HostProfileComponent userData={data} /> : <div>User not found</div>}
-    </div>
-  )
-}
+  return <HostProfileComponent userData={userData} />;
+};
 
-export default Page
+export default Page;
