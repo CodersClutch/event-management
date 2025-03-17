@@ -2,6 +2,7 @@
 
 import { User } from "@/lib/models/user.model";
 import { IUser } from "@/lib/types";
+import mongoose from "mongoose";
 
 import { deepConvertToPlainObject } from "@/lib/utils";
 import { PipelineStage } from "mongoose";
@@ -116,8 +117,6 @@ export const getAllUsers = async ({
   }
 };
 
-import mongoose from "mongoose";
-
 export const GetSingleUser = async (userId: string) => {
   console.log("Fetching user with ID:", userId);
 
@@ -126,7 +125,9 @@ export const GetSingleUser = async (userId: string) => {
       return { status: 400, message: "Invalid user ID format" };
     }
 
-    const user = await User.findById(new mongoose.Types.ObjectId(userId)).populate({
+    const user = await User.findById(
+      new mongoose.Types.ObjectId(userId)
+    ).populate({
       path: "role",
       select: "name",
     });
@@ -277,22 +278,13 @@ export const GetSingleUserData = async (userId: string) => {
   }
 };
 
-
-
-
-
-
-
-
-
-
 export const getUserById = async (userId: string) => {
   try {
     if (!mongoose.Types.ObjectId.isValid(userId)) {
       return { status: 400, message: "Invalid user ID format" };
     }
 
-    const user = await User.findById(userId).lean(); 
+    const user = await User.findById(userId).lean();
     if (!user) {
       return { status: 404, message: "User not found" };
     }

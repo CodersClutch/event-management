@@ -1,18 +1,24 @@
 "use client";
 import { ReactNode } from "react";
-import { usePathname } from "next/navigation";
-import {
-  HomeIcon,
-  CalendarIcon,
-  User2,
-  Bell,
-  TicketIcon,
-} from "lucide-react"; // Import icons from Heroicons
+import { redirect, usePathname } from "next/navigation";
+import { HomeIcon, CalendarIcon, User2, Bell, TicketIcon } from "lucide-react"; // Import icons from Heroicons
 import { useSession } from "next-auth/react";
 
 export default function ProfileLayout({ children }: { children: ReactNode }) {
   const { data: session } = useSession();
   const pathname = usePathname();
+
+  // if no session rediredt to home
+  if (!session) {
+    return redirect("/");
+  }
+  if (session.user.role.name === "Administrator") {
+    return redirect("/dashboard");
+  }
+
+  // if the user is not a Host redirect to the home page
+
+  // if the user is a Host and the page is not his notifications redirect to the home page
 
   // Navigation links with icons
   const navigationLinks = [
@@ -36,7 +42,7 @@ export default function ProfileLayout({ children }: { children: ReactNode }) {
       href: `/profile/${session?.user?._id || "default-id"}`,
       icon: <User2 className="w-5 h-5" />,
     },
-        // my-tickets
+    // my-tickets
     // session?.user.role.name === "Hosts"
     //   ? null
     //   : {

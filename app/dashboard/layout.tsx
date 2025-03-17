@@ -32,6 +32,15 @@ export default async function RootLayout({
 }>) {
   const session = await auth();
 
+  // if no session redirect to home page
+  if (!session) {
+    redirect("/"); // Redirect to home if no session
+  }
+
+  // Redirect logic for Admin
+
+  // Redirect logic for Moderator
+
   // Redirect logic for User
   if (session?.user?.role?.name === "Attendees") {
     redirect("/"); // Redirect to home if the user is an Attendees
@@ -66,7 +75,9 @@ export default async function RootLayout({
                         user={{
                           name: session?.user?.name || "Guest", // Use session data
                           email: session?.user?.email || "guest@example.com", // Use session data
-                          avatar: session?.user?.image || "https://example.com/default-avatar.jpg", // Use session data
+                          avatar:
+                            session?.user?.image ||
+                            "https://example.com/default-avatar.jpg", // Use session data
                         }}
                       />
                     </div>
