@@ -4,8 +4,6 @@ import { usePathname } from "next/navigation";
 import {
   HomeIcon,
   CalendarIcon,
-  CogIcon,
-  ChartBarIcon,
   User2,
   Bell,
   TicketIcon,
@@ -35,17 +33,17 @@ export default function ProfileLayout({ children }: { children: ReactNode }) {
     },
     {
       label: "Info",
-      href: `/profile/user-info`,
+      href: `/profile/${session?.user?._id || "default-id"}`,
       icon: <User2 className="w-5 h-5" />,
     },
-    // my-tickets
-    session?.user.role.name === "Hosts"
-      ? null
-      : {
-          label: "My Tickets",
-          href: "/profile/my-tickets",
-          icon: <TicketIcon className="w-5 h-5" />,
-        },
+        // my-tickets
+    // session?.user.role.name === "Hosts"
+    //   ? null
+    //   : {
+    //       label: "My Tickets",
+    //       href: "/profile/my-tickets",
+    //       icon: <TicketIcon className="w-5 h-5" />,
+    //     },
   ].filter(Boolean);
 
   return (

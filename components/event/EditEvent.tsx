@@ -172,21 +172,19 @@ const EditEvent = ({ event }: { event: EventInterfaceType }) => {
         return toast.error("Image upload failed. Please try again");
     }
 
-    const formData: EventInterfaceType = {
+    const formData = {
       ...event,
-      ...data,
+
+      price: Number(data.price),
+      image: imageUrl,
       schedule: {
         start: data.schedule.start.toISOString(),
         end: data.schedule.end.toISOString(),
       },
       registrationDeadline: data.registrationDeadline.toISOString(),
-      price: Number(data.price),
-      image: imageUrl,
-      _id: event._id,
-      map: event.map,
-      status: event.status,
-      isPublished: event.isPublished,
-      createdAt: event.createdAt,
+      geolocation: {
+        ...data.geolocation,
+      },
     };
 
     const status = await handleUpdateEvent(event._id, formData);
