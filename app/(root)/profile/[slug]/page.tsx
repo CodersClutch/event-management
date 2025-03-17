@@ -2,12 +2,11 @@ import HostProfileComponent from "@/components/hosts/HostProfile";
 import { getUserById } from "@/lib/actions/user/getAllUser";
 import { IUser } from "@/lib/types";
 import React from "react";
+type Params = Promise<{ slug: string }>;
 
-const Page = async ({ params }: { params: { slug: string } }) => {
-  const { slug } = await params; 
+const Page = async ({ params }: { params: Params }) => {
+  const { slug } = await params;
   const response = await getUserById(slug);
-  
-  console.log(response)
 
   if (response.status !== 200) {
     return (

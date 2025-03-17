@@ -45,7 +45,7 @@ const EditStaff = () => {
       email: "",
       password: "",
       phoneNumber: "",
-      role: "",
+      // role: "",
       address: {
         street: "",
         city: "",
@@ -174,7 +174,7 @@ const EditStaff = () => {
             />
 
             {/* Role Field */}
-            <FormField
+            {/* <FormField
               control={form.control}
               name="role"
               render={({ field }) => (
@@ -198,7 +198,7 @@ const EditStaff = () => {
                   <FormMessage />
                 </FormItem>
               )}
-            />
+            /> */}
 
             <DialogFooter>
               <Button type="submit">Update</Button>
