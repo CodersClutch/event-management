@@ -21,7 +21,6 @@ const CheckoutDrawer: React.FC<CheckoutDrawerProps> = ({
 }) => {
   const [scanResult, setScanResult] = useState(""); // State to store the scanned result
   const ticketRef = useRef<HTMLDivElement>(null); // Ref for the ticket element
-
   const handleDownloadTicket = () => {
     if (ticketRef.current) {
       html2canvas(ticketRef.current).then((canvas) => {

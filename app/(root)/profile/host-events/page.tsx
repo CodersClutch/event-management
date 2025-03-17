@@ -1,7 +1,6 @@
 import { auth } from "@/auth";
 import AttendeeProfile from "@/components/AttendeeProfile";
 import HostProfile from "@/components/HostProfile";
-import { IUser } from "@/lib/types";
 import React from "react";
 
 const page = async () => {

@@ -1,6 +1,5 @@
 "use client";
-
-import { useState, useTransition } from "react";
+import { useState, useTransition, useEffect } from "react"; // Add useEffect
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -20,11 +19,17 @@ import {
 import { FormError } from "@/components/common/form-error";
 import { FormSuccess } from "@/components/common/form-success";
 import Link from "next/link";
+import { Eye, EyeOff } from "lucide-react"; // Import eye icons
+import { useRouter } from "next/navigation"; // Import useRouter
 
 const SignUpForm = () => {
-  const [error, setError] = useState<string | undefined>("");
-  const [success, setSuccess] = useState<string | undefined>("");
+  const [attendeeError, setAttendeeError] = useState<string | undefined>("");
+  const [attendeeSuccess, setAttendeeSuccess] = useState<string | undefined>("");
+  const [hostError, setHostError] = useState<string | undefined>("");
+  const [hostSuccess, setHostSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
+  const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter(); // Initialize useRouter
 
   const attendeeForm = useForm<z.infer<typeof SignUpValidation>>({
     resolver: zodResolver(SignUpValidation),
@@ -48,20 +53,52 @@ const SignUpForm = () => {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof SignUpValidation>) {
-    setError("");
-    setSuccess("");
+  // Redirect to login page after successful registration
+  useEffect(() => {
+    if (attendeeSuccess || hostSuccess) {
+      const timer = setTimeout(() => {
+        router.push("/auth"); // Redirect to login page
+      }, 2000); // Redirect after 2 seconds
+      return () => clearTimeout(timer);
+    }
+  }, [attendeeSuccess, hostSuccess, router]);
+
+  async function onSubmit(
+    values: z.infer<typeof SignUpValidation>,
+    role: "Attendees" | "Hosts"
+  ) {
+    if (role === "Attendees") {
+      setAttendeeError("");
+      setAttendeeSuccess("");
+    } else {
+      setHostError("");
+      setHostSuccess("");
+    }
 
     startTransition(() => {
-      signUpWithCredentials(values, "Attendee")
+      signUpWithCredentials(values, role)
         .then((data) => {
           if (data?.error) {
-            setError(data.error);
+            if (role === "Attendees") {
+              setAttendeeError(data.error);
+            } else {
+              setHostError(data.error);
+            }
           } else if (data?.success) {
-            setSuccess(data.success);
+            if (role === "Attendees") {
+              setAttendeeSuccess(data.success);
+            } else {
+              setHostSuccess(data.success);
+            }
           }
         })
-        .catch(() => setError("Something went wrong"));
+        .catch(() => {
+          if (role === "Attendees") {
+            setAttendeeError("Something went wrong");
+          } else {
+            setHostError("Something went wrong");
+          }
+        });
     });
   }
 
@@ -88,13 +125,16 @@ const SignUpForm = () => {
           <TabsContent value="attendee" className="mt-4">
             <Form {...attendeeForm}>
               <form
-                onSubmit={attendeeForm.handleSubmit(onSubmit)}
+                onSubmit={attendeeForm.handleSubmit((values) =>
+                  onSubmit(values, "Attendees")
+                )}
                 className="w-full"
               >
                 <h1 className="font-extrabold text-start text-2xl border-b border-yellow-400 mb-4 pb-2">
                   Register As Attendee
                 </h1>
                 <div className="space-y-3">
+                  {/* First Name */}
                   <FormField
                     control={attendeeForm.control}
                     name="firstName"
@@ -113,6 +153,7 @@ const SignUpForm = () => {
                       </FormItem>
                     )}
                   />
+                  {/* Last Name */}
                   <FormField
                     control={attendeeForm.control}
                     name="lastName"
@@ -131,6 +172,7 @@ const SignUpForm = () => {
                       </FormItem>
                     )}
                   />
+                  {/* Email */}
                   <FormField
                     control={attendeeForm.control}
                     name="email"
@@ -149,6 +191,7 @@ const SignUpForm = () => {
                       </FormItem>
                     )}
                   />
+                  {/* Password */}
                   <FormField
                     control={attendeeForm.control}
                     name="password"
@@ -156,18 +199,28 @@ const SignUpForm = () => {
                       <FormItem>
                         <FormLabel>Password</FormLabel>
                         <FormControl>
-                          <Input
-                            className="border-black"
-                            disabled={isPending}
-                            type="password"
-                            placeholder="Your password"
-                            {...field}
-                          />
+                          <div className="relative">
+                            <Input
+                              className="border-black"
+                              disabled={isPending}
+                              type={showPassword ? "text" : "password"}
+                              placeholder="Your password"
+                              {...field}
+                            />
+                            <button
+                              type="button"
+                              className="absolute right-2 top-2.5"
+                              onClick={() => setShowPassword(!showPassword)}
+                            >
+                              {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                            </button>
+                          </div>
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
+                  {/* Confirm Password */}
                   <FormField
                     control={attendeeForm.control}
                     name="confirmPassword"
@@ -175,21 +228,30 @@ const SignUpForm = () => {
                       <FormItem>
                         <FormLabel>Confirm Password</FormLabel>
                         <FormControl>
-                          <Input
-                            className="border-black"
-                            disabled={isPending}
-                            type="password"
-                            placeholder="Confirm your password"
-                            {...field}
-                          />
+                          <div className="relative">
+                            <Input
+                              className="border-black"
+                              disabled={isPending}
+                              type={showPassword ? "text" : "password"}
+                              placeholder="Confirm your password"
+                              {...field}
+                            />
+                            <button
+                              type="button"
+                              className="absolute right-2 top-2.5"
+                              onClick={() => setShowPassword(!showPassword)}
+                            >
+                              {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                            </button>
+                          </div>
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
                 </div>
-                <FormError message={error} />
-                <FormSuccess message={success} />
+                <FormError message={attendeeError} />
+                <FormSuccess message={attendeeSuccess} />
                 <Button
                   size="lg"
                   className="w-full mt-6 font-extrabold text-white bg-yellow-500 text-md"
@@ -212,13 +274,16 @@ const SignUpForm = () => {
           <TabsContent value="host" className="mt-4">
             <Form {...hostForm}>
               <form
-                onSubmit={hostForm.handleSubmit(onSubmit)}
+                onSubmit={hostForm.handleSubmit((values) =>
+                  onSubmit(values, "Hosts")
+                )}
                 className="w-full"
               >
                 <h1 className="font-extrabold text-cente text-2xl border-b border-yellow-400 mb-4 pb-2">
                   Register As Host
                 </h1>
                 <div className="space-y-3">
+                  {/* First Name */}
                   <FormField
                     control={hostForm.control}
                     name="firstName"
@@ -237,6 +302,7 @@ const SignUpForm = () => {
                       </FormItem>
                     )}
                   />
+                  {/* Last Name */}
                   <FormField
                     control={hostForm.control}
                     name="lastName"
@@ -255,6 +321,7 @@ const SignUpForm = () => {
                       </FormItem>
                     )}
                   />
+                  {/* Email */}
                   <FormField
                     control={hostForm.control}
                     name="email"
@@ -273,6 +340,7 @@ const SignUpForm = () => {
                       </FormItem>
                     )}
                   />
+                  {/* Password */}
                   <FormField
                     control={hostForm.control}
                     name="password"
@@ -280,18 +348,28 @@ const SignUpForm = () => {
                       <FormItem>
                         <FormLabel>Password</FormLabel>
                         <FormControl>
-                          <Input
-                            className="border-black"
-                            disabled={isPending}
-                            type="password"
-                            placeholder="Your password"
-                            {...field}
-                          />
+                          <div className="relative">
+                            <Input
+                              className="border-black"
+                              disabled={isPending}
+                              type={showPassword ? "text" : "password"}
+                              placeholder="Your password"
+                              {...field}
+                            />
+                            <button
+                              type="button"
+                              className="absolute right-2 top-2.5"
+                              onClick={() => setShowPassword(!showPassword)}
+                            >
+                              {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                            </button>
+                          </div>
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
+                  {/* Confirm Password */}
                   <FormField
                     control={hostForm.control}
                     name="confirmPassword"
@@ -299,21 +377,30 @@ const SignUpForm = () => {
                       <FormItem>
                         <FormLabel>Confirm Password</FormLabel>
                         <FormControl>
-                          <Input
-                            className="border-black"
-                            disabled={isPending}
-                            type="password"
-                            placeholder="Confirm your password"
-                            {...field}
-                          />
+                          <div className="relative">
+                            <Input
+                              className="border-black"
+                              disabled={isPending}
+                              type={showPassword ? "text" : "password"}
+                              placeholder="Confirm your password"
+                              {...field}
+                            />
+                            <button
+                              type="button"
+                              className="absolute right-2 top-2.5"
+                              onClick={() => setShowPassword(!showPassword)}
+                            >
+                              {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                            </button>
+                          </div>
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
                 </div>
-                <FormError message={error} />
-                <FormSuccess message={success} />
+                <FormError message={hostError} />
+                <FormSuccess message={hostSuccess} />
                 <Button
                   size="lg"
                   className="w-full mt-6 font-extrabold text-white bg-yellow-500 text-md"
