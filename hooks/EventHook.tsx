@@ -8,9 +8,11 @@ import {
 import { EventInterfaceType } from "@/lib/types";
 import { useState } from "react";
 import { toast } from "sonner";
+import { useCurrentUser } from "./use-session";
 // updateEventServerAction
 export const EventHook = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const session = useCurrentUser();
 
   // handle add event
   //   addingnew account
@@ -102,6 +104,12 @@ export const EventHook = () => {
   const handleRegisterEvent = async (eventId: string, userId: string) => {
     setIsLoading(true);
     // const loadingToastId = toast.loading("��������������� Registering for event...");
+    // if not login return a message
+    if (!session) {
+      toast.error("You must be logged in to register for an event.");
+      setIsLoading(false);
+      return { status: 401, message: "Not authenticated" };
+    }
 
     try {
       const { status, message } = await registerEvents({ eventId, userId });
