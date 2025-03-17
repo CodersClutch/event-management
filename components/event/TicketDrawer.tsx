@@ -35,7 +35,6 @@ const TicketDrawer = ({
   const price = event?.price || 0;
   const tax = price * 0.12; // 12% tax
   const total = (price + tax) * quantity;
-
   // handle procees to checkout
 
   return (

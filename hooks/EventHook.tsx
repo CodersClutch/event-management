@@ -110,7 +110,6 @@ export const EventHook = () => {
       setIsLoading(false);
       return { status: 401, message: "Not authenticated" };
     }
-
     try {
       const { status, message } = await registerEvents({ eventId, userId });
       if (status !== 200) {
