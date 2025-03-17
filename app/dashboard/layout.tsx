@@ -6,7 +6,6 @@ import { NavUser } from "@/components/nav-user";
 import ThemeToggle from "@/components/sidebar/ThemeToggle";
 import { Nunito } from "next/font/google";
 import { SessionProvider } from "next-auth/react";
-
 import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
@@ -17,6 +16,7 @@ import { Settings } from "lucide-react";
 import { auth } from "@/auth";
 import { Toaster } from "sonner";
 import { EdgeStoreProvider } from "@/components/provider/edgestore";
+import { redirect } from "next/navigation"; // Import redirect for server-side redirection
 
 const nunito = Nunito({ subsets: ["latin"] });
 
@@ -32,6 +32,14 @@ export default async function RootLayout({
 }>) {
   const session = await auth();
 
+  // Redirect logic for User
+  if (session?.user?.role?.name === "Attendees") {
+    redirect("/"); // Redirect to home if the user is an Attendees
+  }
+  if (session?.user?.role?.name === "Hosts") {
+    redirect("/"); // Redirect to home if the user is an Hosts
+  }
+
   return (
     <SessionProvider session={session}>
       <html lang="en">
@@ -43,7 +51,6 @@ export default async function RootLayout({
             disableTransitionOnChange
           >
             <EdgeStoreProvider>
-              {" "}
               <SidebarProvider>
                 <AppSidebar />
                 <SidebarInset>
@@ -57,9 +64,9 @@ export default async function RootLayout({
                       <ThemeToggle />
                       <NavUser
                         user={{
-                          name: "Kebba Waiga",
-                          email: "kebbawaiga@gmail.com",
-                          avatar: "https://example.com/john-doe.jpg",
+                          name: session?.user?.name || "Guest", // Use session data
+                          email: session?.user?.email || "guest@example.com", // Use session data
+                          avatar: session?.user?.image || "https://example.com/default-avatar.jpg", // Use session data
                         }}
                       />
                     </div>

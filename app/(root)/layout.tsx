@@ -25,6 +25,7 @@ import { SessionProvider } from "next-auth/react";
 import { Toaster } from "sonner";
 import { EdgeStoreProvider } from "@/components/provider/edgestore";
 import { fetchRolesServerAction } from "@/lib/actions/role/roleServerAction";
+import { redirect } from "next/navigation";
 
 export default async function RootLayout({
   children,
@@ -32,6 +33,12 @@ export default async function RootLayout({
   children: ReactNode;
 }) {
   const session = await auth();
+  if (session?.user?.role?.name === "Administrator") {
+    redirect("/dashboard"); // Redirect to home if the user is an Administrator
+  }
+  if (session?.user?.role?.name === "Staff") {
+    redirect("/dashboard"); // Redirect to home if the user is an Staff
+  }
   await fetchRolesServerAction();
   return (
     <SessionProvider session={session}>

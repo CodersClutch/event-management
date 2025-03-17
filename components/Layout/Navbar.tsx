@@ -10,12 +10,12 @@ import AddEvent from "../event/AddEvent";
 
 const navLink = [
   {
-    title: "Contact Sales",
-    href: "/contact-sales",
-  },
-  {
     title: "Home",
     href: "/",
+  },
+  {
+    title: "Contact Sales",
+    href: "/contact-sales",
   },
   {
     title: "Help Center",
@@ -183,10 +183,10 @@ const Navbar = () => {
               </Link>
             ))}
             <Link
-              href="#"
+              href="/auth"
               className="block px-4 py-2 bg-gradient-to-b hover:bg-gradient-to-t from-[#A22D9E] hover:from-[#A22D9E] hover:to-[#F34CF1] to-[#F34CF1]  shadow-md transition text-white rounded-full hover:bg-[#D942D6] text-center"
             >
-              Sign Up
+              Sign In
             </Link>
           </div>
         )}
