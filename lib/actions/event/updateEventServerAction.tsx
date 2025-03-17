@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache"; // For revalidating the cache
 import Event from "@/lib/models/event.model";
+import { User } from "@/lib/models/user.model"; // Import the User model
 import { SendEmailWhenEventDateUpdate } from "@/lib/mail"; // Resend email service
 import { EventInterfaceType } from "@/lib/types";
 import mongoose from "mongoose";
@@ -60,23 +61,20 @@ interface RegisterEventParams {
   userId: string;
 }
 
-interface RegisterEventParams {
-  eventId: string;
-  userId: string;
-}
-
 export const registerEvents = async ({
   eventId,
   userId,
 }: RegisterEventParams) => {
   try {
-    // Convert userId to ObjectId
+    // Convert userId and eventId to ObjectId
     const userObjectId = new mongoose.Types.ObjectId(userId);
+    const eventObjectId = new mongoose.Types.ObjectId(eventId);
+
     // Fetch the event
     const event = await Event.findById(eventId);
     if (!event) return { status: 404, message: "Event not found" };
 
-    // you cannot register to your own event
+    // You cannot register for your own event
     if (event.createdBy.toString() === userId) {
       return {
         status: 403,
@@ -85,9 +83,7 @@ export const registerEvents = async ({
       };
     }
 
-    // Ensure user has not registered to this event before
-
-    //Ensure registration deadline hasn't passed
+    // Ensure registration deadline hasn't passed
     if (new Date(event.registrationDeadline) < new Date()) {
       return {
         status: 403,
@@ -121,13 +117,23 @@ export const registerEvents = async ({
       };
     }
 
-    // Register the user with full structure
+    // Register the user in the event
     await Event.findByIdAndUpdate(eventId, {
       $push: {
         registeredUsers: {
           userId: userObjectId,
           registeredAt: new Date(),
           checkInStatus: false,
+        },
+      },
+    });
+
+    // Add the event ID to the user's registeredEvents array
+    await User.findByIdAndUpdate(userId, {
+      $push: {
+        registeredEvents: {
+          eventId: eventObjectId,
+          registeredAt: new Date(),
         },
       },
     });

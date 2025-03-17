@@ -29,6 +29,8 @@ const AttendeeProfile: React.FC<AttendeeProfileProps> = ({ userId }) => {
 
       try {
         const response = await GetUserRegisteredEvents(userId);
+        console.log("API Response:", response); // Debugging
+        console.log("User ID:", userId);
 
         if (response.status === 200 && response.data) {
           setEvents(Array.isArray(response?.data) ? response.data : []);
