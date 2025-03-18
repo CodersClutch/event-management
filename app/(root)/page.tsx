@@ -19,7 +19,7 @@ const page = () => {
       <Advertisement />
 
       {/* categories */}
-      <div className="grid  md:grid-cols-6 sm:grid-cols-3 grid-cols-2 mx-auto max-w-7xl">
+      <div className="grid  md:grid-cols-6 sm:grid-cols-3 grid-cols-2 max-w-7xl mx-auto">
         {categories.map((item, idx) => (
           <Link
             key={idx}
@@ -43,7 +43,7 @@ const page = () => {
       {/* tabs */}
       <Filtering />
 
-      <div className="bg-[#F8F7FA]">
+      <div className="bg-[#F8F7FA] max-w-7xl mx-auto">
         <TopDestine />
 
         <PopularEvents />

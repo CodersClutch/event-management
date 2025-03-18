@@ -39,12 +39,12 @@ export default function Tabs() {
   const ActiveComponent = tabComponents[activeTab];
 
   return (
-    <div className="w-full border-b mt-[70px]">
+    <div className="w-full border-b mt-[70px] max-w-7xl mx-auto">
       <h2 className="text-4xl max-w-7xl md:mx-[130px]  font-semibold mb-4">
         Browse Activities
       </h2>
 
-      <div className="flex space-x-4 overflow-x-auto p-2 max-w-7xl mx-auto">
+      <div className="flex space-x-4 overflow-x-auto  max-w-7xl mx-auto">
         {tabNames.map((tab) => (
           <button
             key={tab}
@@ -59,7 +59,7 @@ export default function Tabs() {
           </button>
         ))}
       </div>
-      <div className="p-4 text-gray-700">
+      <div className=" text-gray-700 max-w-7xl mx-auto">
         <ActiveComponent />
       </div>
     </div>
