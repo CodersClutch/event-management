@@ -26,7 +26,7 @@ const page = () => {
             href={item.link}
             className="flex hover:text-[#D942D6] group  items-center justify-center flex-col space-y-2"
           >
-            <div className="flex group items-center bg-gradient-to-b hover:bg-gradient-to-t from-[#A22D9E] hover:from-[#A22D9E] hover:to-[#F34CF1] to-[#F34CF1]  shadow-md transition-all duration-1000 ease-in-out border  border-purple-400-100 rounded-full p-10 justify-center">
+            <div className="flex group items-center bg-gradient-to-b hover:bg-gradient-to-t from-[#ffff] hover:from-[#A22D9E] hover:to-[#F34CF1] to-[#ffff]  shadow-md transition-all duration-1000 ease-in-out   border-purple-400-100 rounded-full p-10 justify-center border">
               <Image
                 src={item.icon}
                 alt={item.Label}
