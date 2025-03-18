@@ -75,7 +75,7 @@ const WebUserNavBar = () => {
             <DropdownMenuItem>
               {session?.user.role.name === "Administrator"
                 ? "Dashboard"
-                : "Profile"}
+                : "Dashboard"}
             </DropdownMenuItem>
           </Link>
           <Link
@@ -96,7 +96,7 @@ const WebUserNavBar = () => {
             href={
               session?.user.role.name === "Administrator"
                 ? "/dashboard/settings"
-                : `/profile/${session?.user.id}`
+                : `/profile/${session?.user._id}`
             }
           >
             <DropdownMenuItem>

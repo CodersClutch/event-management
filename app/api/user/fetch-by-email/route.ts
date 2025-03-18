@@ -2,11 +2,15 @@ import { NextResponse } from "next/server";
 import { User } from "@/lib/models/auth.model";
 import { connectDB } from "@/lib/db";
 import { IUser } from "@/lib/types";
+import Role from "@/lib/models/role.model";
 
 export async function POST(req: Request) {
   await connectDB();
 
   const { email } = await req.json();
+
+  // find role
+  const role = await Role.findOne({ name: "Administrator" });
 
   const pipeline = [
     // match the user by email

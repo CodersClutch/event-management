@@ -21,15 +21,31 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import Link from "next/link";
 
 // Define the form schema using Zod
 const formSchema = z.object({
-  firstName: z.string().min(3, "First name must be at least 3 characters").max(50),
-  lastName: z.string().min(2, "Last name must be at least 2 characters").max(50),
+  firstName: z
+    .string()
+    .min(3, "First name must be at least 3 characters")
+    .max(50),
+  lastName: z
+    .string()
+    .min(2, "Last name must be at least 2 characters")
+    .max(50),
   workEmail: z.string().email("Invalid email address").min(2).max(50),
-  companyName: z.string().min(2, "Company name must be at least 2 characters").max(50),
-  organizationType: z.string().min(2, "Organization type must be at least 2 characters").max(50),
-  phoneNumber: z.string().min(10, "Phone number must be at least 10 digits").max(15),
+  companyName: z
+    .string()
+    .min(2, "Company name must be at least 2 characters")
+    .max(50),
+  organizationType: z
+    .string()
+    .min(2, "Organization type must be at least 2 characters")
+    .max(50),
+  phoneNumber: z
+    .string()
+    .min(10, "Phone number must be at least 10 digits")
+    .max(15),
   countryCode: z.string().min(1, "Country code is required"),
   country: z.string().min(2, "Country must be at least 2 characters").max(50),
   ticketAmount: z.string().min(1, "Ticket amount is required").max(50),
@@ -84,7 +100,9 @@ const ContactTicketsSales = () => {
       stars.push(
         <Star
           key={i}
-          className={`w-6 h-6 ${i <= rating ? "text-yellow-400 fill-yellow-400" : "text-yellow-400"}`}
+          className={`w-6 h-6 ${
+            i <= rating ? "text-yellow-400 fill-yellow-400" : "text-yellow-400"
+          }`}
         />
       );
     }
@@ -92,11 +110,12 @@ const ContactTicketsSales = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row items-start justify-center gap-16 pt-32 pb-16">
+    <div className="flex flex-col lg:flex-row items-start justify-center gap-16 pt-32 pb-16 max-w-7xl mx-auto">
       {/* Left Section */}
       <div className="flex-1 text-justify">
-        <h1 className="text-4xl lg:text-5xl font-extrabold text-left">
-          Reach 90 million unique ticket-buyers on Eventbrite
+        <h1 className="text-3xl lg:text-4xl font-extrabold text-left">
+          Expand your event’s reach by connecting with millions of enthusiastic
+          ticket-buyers on 4kiddos.{" "}
         </h1>
         <p className="pt-5 text-lg">
           Tap into the world&apos;s largest events marketplace and reach more
@@ -105,11 +124,13 @@ const ContactTicketsSales = () => {
         </p>
         <p className="pt-5 text-lg">
           Our dedicated{" "}
-          <span className="font-bold text-lg underline">Sales Team</span> is
-          here to show you how Eventbrite can amplify your events and help you
-          achieve your event goals. Reach out to us directly at +1 628-600-1786
-          to get started, or if you prefer, complete the Contact Us form and
-          someone from our Sales team will be in touch shortly.
+          <Link href={"/help-center"} className="font-bold text-lg underline">
+            Sales Team
+          </Link>{" "}
+          is here to show you how Eventbrite can amplify your events and help
+          you achieve your event goals. Reach out to us directly at +1
+          628-600-1786 to get started, or if you prefer, complete the Contact Us
+          form and someone from our Sales team will be in touch shortly.
         </p>
         <p className="p-5 mt-5 text-lg border-2 rounded-lg border-yellow-500">
           Current Eventbrite customers can contact customer support. Your
@@ -122,7 +143,7 @@ const ContactTicketsSales = () => {
       </div>
 
       {/* Right Section - Form */}
-      <div className="flex-1 w-full max-w-lg">
+      <div className="flex-1 w-full max-w-lg ">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
@@ -137,7 +158,11 @@ const ContactTicketsSales = () => {
                   <FormItem className="flex-1">
                     <FormLabel>First Name</FormLabel>
                     <FormControl>
-                      <Input className='border border-gray-500' placeholder="First Name" {...field} />
+                      <Input
+                        className="border border-gray-500"
+                        placeholder="First Name"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -150,7 +175,11 @@ const ContactTicketsSales = () => {
                   <FormItem className="flex-1">
                     <FormLabel>Last Name</FormLabel>
                     <FormControl>
-                      <Input className='border border-gray-500' placeholder="Last Name" {...field} />
+                      <Input
+                        className="border border-gray-500"
+                        placeholder="Last Name"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -166,7 +195,11 @@ const ContactTicketsSales = () => {
                 <FormItem>
                   <FormLabel>Work Email</FormLabel>
                   <FormControl>
-                    <Input className='border border-gray-500' placeholder="Work Email" {...field} />
+                    <Input
+                      className="border border-gray-500"
+                      placeholder="Work Email"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -182,7 +215,11 @@ const ContactTicketsSales = () => {
                   <FormItem className="flex-1">
                     <FormLabel>Company Name</FormLabel>
                     <FormControl>
-                      <Input className='border border-gray-500' placeholder="Company Name" {...field} />
+                      <Input
+                        className="border border-gray-500"
+                        placeholder="Company Name"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -195,7 +232,11 @@ const ContactTicketsSales = () => {
                   <FormItem className="flex-1">
                     <FormLabel>Organization Type</FormLabel>
                     <FormControl>
-                      <Input className='border border-gray-500' placeholder="Organization Type" {...field} />
+                      <Input
+                        className="border border-gray-500"
+                        placeholder="Organization Type"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -211,7 +252,11 @@ const ContactTicketsSales = () => {
                 <FormItem>
                   <FormLabel>Country</FormLabel>
                   <FormControl>
-                    <Input className='border border-gray-500' placeholder="Country" {...field} />
+                    <Input
+                      className="border border-gray-500"
+                      placeholder="Country"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -226,9 +271,12 @@ const ContactTicketsSales = () => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Country Code</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
                       <FormControl>
-                        <SelectTrigger className='border border-gray-500'>
+                        <SelectTrigger className="border border-gray-500">
                           <SelectValue placeholder="Select country code" />
                         </SelectTrigger>
                       </FormControl>
@@ -251,7 +299,8 @@ const ContactTicketsSales = () => {
                   <FormItem className="flex-1">
                     <FormLabel>Phone Number</FormLabel>
                     <FormControl>
-                      <Input className='border border-gray-500'
+                      <Input
+                        className="border border-gray-500"
                         placeholder="Phone Number"
                         {...field}
                         onChange={(e) => {
@@ -274,7 +323,8 @@ const ContactTicketsSales = () => {
                 <FormItem>
                   <FormLabel>Amount of Tickets to Sell</FormLabel>
                   <FormControl>
-                    <Input className='border border-gray-500'
+                    <Input
+                      className="border border-gray-500"
                       placeholder="How many paid tickets do you plan to sell in the next year?"
                       {...field}
                     />
@@ -290,7 +340,11 @@ const ContactTicketsSales = () => {
                 <FormItem>
                   <FormLabel>Cost Per Ticket</FormLabel>
                   <FormControl>
-                    <Input className='border border-gray-500' placeholder="Cost Per Ticket" {...field} />
+                    <Input
+                      className="border border-gray-500"
+                      placeholder="Cost Per Ticket"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

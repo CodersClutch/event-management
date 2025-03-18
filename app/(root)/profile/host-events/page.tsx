@@ -5,7 +5,6 @@ import React from "react";
 
 const page = async () => {
   const session = await auth();
-  console.log(`USERROLE IS  ==================>  ${session?.user.role.name}`);
 
   return (
     <div>

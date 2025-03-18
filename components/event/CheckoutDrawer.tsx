@@ -1,7 +1,7 @@
 "use client";
 import { Calendar, MapPin } from "lucide-react";
 import { Button } from "../ui/button";
-import { Drawer, DrawerContent } from "../ui/drawer";
+import { Drawer, DrawerContent, DrawerTrigger } from "../ui/drawer";
 import { EventInterfaceType } from "@/lib/types";
 import Barcode from "react-barcode";
 import { formatDate } from "@/lib/utils";
@@ -12,12 +12,14 @@ interface CheckoutDrawerProps {
   open: boolean;
   onClose: () => void;
   event: EventInterfaceType; // Pass event details
+  title?: boolean;
 }
 
 const CheckoutDrawer: React.FC<CheckoutDrawerProps> = ({
   open,
   onClose,
   event,
+  title = false,
 }) => {
   const [scanResult, setScanResult] = useState(""); // State to store the scanned result
   const ticketRef = useRef<HTMLDivElement>(null); // Ref for the ticket element
@@ -33,6 +35,8 @@ const CheckoutDrawer: React.FC<CheckoutDrawerProps> = ({
   };
   return (
     <Drawer open={open} onOpenChange={onClose}>
+      {title && <DrawerTrigger>Download Ticket</DrawerTrigger>}
+
       <DrawerContent>
         <div className="w-full max-w-md mx-auto bg-[#F4F9FC] rounded-t-2xl p-6">
           {/* Header */}
