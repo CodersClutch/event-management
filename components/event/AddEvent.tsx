@@ -249,7 +249,7 @@ const AddEvent = () => {
                           </SelectTrigger>
                           <SelectContent>
                             <SelectItem value="All Ages">All Ages</SelectItem>
-                            <SelectItem value="5-10">5-10 years</SelectItem>
+                            <SelectItem value="Kids">Kids</SelectItem>
                             <SelectItem value="18-25">18-25 years</SelectItem>
                             <SelectItem value="26-35">26-35 years</SelectItem>
                             <SelectItem value="36-50">36-50 years</SelectItem>

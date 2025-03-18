@@ -1,5 +1,6 @@
 import EventContainer from "@/components/event/EventContainer";
 import { GetAllEvent } from "@/lib/actions/event/GetAllEvent";
+import { fetchRolesServerAction } from "@/lib/actions/role/roleServerAction";
 import { EventInterfaceType } from "@/lib/types";
 import React from "react";
 const Event = async ({
@@ -8,8 +9,7 @@ const Event = async ({
   searchParams: Promise<{ page: string; limit: string; search: string }>;
 }) => {
   const searchParamsData = await searchParams;
-  console.log(searchParamsData);
-
+  await fetchRolesServerAction();
   const page =
     typeof searchParamsData.page === "string"
       ? Number(searchParamsData.page)
