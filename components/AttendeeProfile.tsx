@@ -9,6 +9,7 @@ import { formatDate } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import CheckoutDrawer from "./event/CheckoutDrawer";
 
 interface AttendeeProfileProps {
   userId: string;
@@ -21,6 +22,7 @@ const AttendeeProfile: React.FC<AttendeeProfileProps> = ({ userId }) => {
   const [page, setPage] = useState<number>(1);
   const [hasNextPage, setHasNextPage] = useState<boolean>(false);
   const [hasPreviousPage, setHasPreviousPage] = useState<boolean>(false);
+  const [showCheckoutDrawer, setShowCheckoutDrawer] = useState(false);
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -59,7 +61,9 @@ const AttendeeProfile: React.FC<AttendeeProfileProps> = ({ userId }) => {
       {error && <p className="text-center py-5 text-red-500">Error: {error}</p>}
 
       {!loading && !error && events.length === 0 && (
-        <p className="text-center py-5 text-gray-500">No registered events here.</p>
+        <p className="text-center py-5 text-gray-500">
+          No registered events here.
+        </p>
       )}
 
       {!loading && !error && events.length > 0 && (
@@ -116,7 +120,14 @@ const AttendeeProfile: React.FC<AttendeeProfileProps> = ({ userId }) => {
                   <div className="flex justify-between items-center bg-blue-200 rounded-lg p-4 mt-4">
                     <div className="flex justify-between items-center bg-blue-200 rounded-lg p-4 mt-4 cursor-pointer hover:bg-blue-300 transition duration-300 shadow-md">
                       <span className="font-semibold text-blue-800">
-                        Download Ticket
+                        <CheckoutDrawer
+                          title={true}
+                          open={showCheckoutDrawer} // Replace with appropriate state or value
+                          onClose={() =>
+                            setShowCheckoutDrawer(!showCheckoutDrawer)
+                          } // Replace with actual handler
+                          event={event} // Pass the current event object
+                        />
                       </span>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

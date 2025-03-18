@@ -21,6 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import Link from "next/link";
 
 // Define the form schema using Zod
 const formSchema = z.object({
@@ -112,8 +113,9 @@ const ContactTicketsSales = () => {
     <div className="flex flex-col lg:flex-row items-start justify-center gap-16 pt-32 pb-16 max-w-7xl mx-auto">
       {/* Left Section */}
       <div className="flex-1 text-justify">
-        <h1 className="text-4xl lg:text-5xl font-extrabold text-left">
-          Reach 90 million unique ticket-buyers on Eventbrite
+        <h1 className="text-3xl lg:text-4xl font-extrabold text-left">
+          Expand your event’s reach by connecting with millions of enthusiastic
+          ticket-buyers on 4kiddos.{" "}
         </h1>
         <p className="pt-5 text-lg">
           Tap into the world&apos;s largest events marketplace and reach more
@@ -122,11 +124,13 @@ const ContactTicketsSales = () => {
         </p>
         <p className="pt-5 text-lg">
           Our dedicated{" "}
-          <span className="font-bold text-lg underline">Sales Team</span> is
-          here to show you how Eventbrite can amplify your events and help you
-          achieve your event goals. Reach out to us directly at +1 628-600-1786
-          to get started, or if you prefer, complete the Contact Us form and
-          someone from our Sales team will be in touch shortly.
+          <Link href={"/help-center"} className="font-bold text-lg underline">
+            Sales Team
+          </Link>{" "}
+          is here to show you how Eventbrite can amplify your events and help
+          you achieve your event goals. Reach out to us directly at +1
+          628-600-1786 to get started, or if you prefer, complete the Contact Us
+          form and someone from our Sales team will be in touch shortly.
         </p>
         <p className="p-5 mt-5 text-lg border-2 rounded-lg border-yellow-500">
           Current Eventbrite customers can contact customer support. Your
