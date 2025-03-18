@@ -1,10 +1,7 @@
 "use client";
-import DeleteEvent from "@/components/event/DeleteEvent";
-import EditEvent from "@/components/event/EditEvent";
 import Loader from "@/components/Layout/Loader";
 import { Badge } from "@/components/ui/badge";
 import { GetUserRegisteredEvents } from "@/lib/actions/user/getAllUser";
-import { EventInterfaceType } from "@/lib/types";
 import { formatDate } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
