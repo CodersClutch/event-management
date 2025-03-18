@@ -19,6 +19,8 @@ export const GetAllEvent = async ({
   try {
     const skip = (page - 1) * limit;
 
+    //
+
     const pipeline: PipelineStage[] = [
       //   {
       //     $match: {
