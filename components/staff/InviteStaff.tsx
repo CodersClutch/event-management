@@ -42,55 +42,66 @@ const formSchema = z.object({
   role: z
     .string()
     .min(24, { message: "role selected must be at least 24 characters" }),
+  firstName: z
+    .string()
+    .min(2, { message: "First name must be at least 2 characters" }),
+  lastName: z
+    .string()
+    .min(2, { message: "Last name must be at least 2 characters" }),
+  password: z
+    .string()
+    .min(6, { message: "Password must be at least 6 characters" }),
 });
 const InviteStaff = () => {
   const [roles, setRoles] = useState<RoleTypes | any>();
   const [loading, setLoading] = useState(false);
-  const [open, setOpen] = useState<boolean>()
-    const [error, setError] = useState<string | null>(null);
-    const {isLoading, sendStaffInviteEmail} =UserHook()
+  const [open, setOpen] = useState<boolean>();
+  const [error, setError] = useState<string | null>(null);
+  const { isLoading, sendStaffInviteEmail } = UserHook();
 
   const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),  
+    resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
       role: "",
+      firstName: "",
+      lastName: "",
+      password: "12345678",
     },
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const FormValues = form.getValues();
+    // console.log(FormValues);
 
-   const response = await sendStaffInviteEmail(FormValues)
-   if(response?.status !== 200) {
-    setOpen(true)
-    return
-   }
-   setOpen(false)
-
+    const response = await sendStaffInviteEmail(FormValues);
+    if (response?.status !== 200) {
+      setOpen(true);
+      return;
+    }
+    setOpen(false);
   }
 
   useEffect(() => {
-    const fetchRoles = async  () => {
+    const fetchRoles = async () => {
       setLoading(true);
       try {
-        const response = await fetchRolesServerAction()
+        const response = await fetchRolesServerAction();
         if (response.status !== 200) {
-          setError(response.message)
+          setError(response.message);
           setLoading(false);
         }
-const data  = response.data as unknown as RoleTypes
+        const data = response.data as unknown as RoleTypes;
         setRoles(data);
-      } catch  {
+      } catch {
         setError("Failed to fetch roles");
       } finally {
         setLoading(false);
         setError(null);
       }
-    }
+    };
     fetchRoles();
-
-  } , [])
+  }, []);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -106,7 +117,7 @@ const data  = response.data as unknown as RoleTypes
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="">
             <FormField
               control={form.control}
               name="email"
@@ -117,6 +128,32 @@ const data  = response.data as unknown as RoleTypes
                     <Input placeholder="shadcn" {...field} />
                   </FormControl>
 
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="firstName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>First Name</FormLabel>
+                  <FormControl>
+                    <Input placeholder="John" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="lastName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Last Name</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Doe" {...field} />
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
@@ -135,13 +172,15 @@ const data  = response.data as unknown as RoleTypes
                       <SelectContent>
                         <SelectGroup>
                           <SelectLabel>Fruits</SelectLabel>
-                            {
-                            roles?.map((role: any) => (
-                              <SelectItem key={role._id} value={role._id}>
+                          {roles?.map((role: any) => (
+                            <SelectItem key={role._id} value={role._id}>
                               {role.name}
-                              </SelectItem>
-                            )) || <SelectItem value="loading" disabled>Loading...</SelectItem>
-                            }
+                            </SelectItem>
+                          )) || (
+                            <SelectItem value="loading" disabled>
+                              Loading...
+                            </SelectItem>
+                          )}
                         </SelectGroup>
                       </SelectContent>
                     </Select>
@@ -154,15 +193,8 @@ const data  = response.data as unknown as RoleTypes
               )}
             />
             <Button disabled={isLoading} type="submit">
-              {
-                isLoading
-                 ? "Sending Invitation..."
-                  : "Send Invitation"
-
-              }
-              {
-                isLoading && <Loader className="animate-spin"/> 
-              }
+              {isLoading ? "Sending Invitation..." : "Send Invitation"}
+              {isLoading && <Loader className="animate-spin" />}
             </Button>
           </form>
         </Form>
@@ -170,6 +202,5 @@ const data  = response.data as unknown as RoleTypes
     </Dialog>
   );
 };
-
 
 export default InviteStaff;
