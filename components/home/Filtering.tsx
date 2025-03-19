@@ -39,27 +39,27 @@ export default function Tabs() {
   const ActiveComponent = tabComponents[activeTab];
 
   return (
-    <div className="w-full border-b mt-[70px] max-w-7xl mx-auto">
-      <h2 className="text-4xl max-w-7xl md:mx-[130px]  font-semibold mb-4">
+    <div className="w-full border-b mt-[70px] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 className="text-3xl sm:text-4xl font-semibold mb-4">
         Browse Activities
       </h2>
 
-      <div className="flex space-x-4 overflow-x-auto  max-w-7xl mx-auto">
+      <div className="flex space-x-4 overflow-x-auto pb-2">
         {tabNames.map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`text-[16px] font-medium whitespace-nowrap pb-2 ${
+            className={`text-sm sm:text-base font-medium whitespace-nowrap pb-2 px-2 ${
               activeTab === tab
                 ? "text-[#D942D6] border-b-2 border-[#D942D6] font-semibold"
-                : "text-gray-600 hover:border-b-2 hover:border-black "
+                : "text-gray-600 hover:border-b-2 hover:border-black"
             }`}
           >
             {tab}
           </button>
         ))}
       </div>
-      <div className=" text-gray-700 max-w-7xl mx-auto">
+      <div className="text-gray-700 mt-4">
         <ActiveComponent />
       </div>
     </div>

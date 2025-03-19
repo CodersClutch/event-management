@@ -19,7 +19,7 @@ const page = () => {
       <Advertisement />
 
       {/* categories */}
-      <div className="grid  md:grid-cols-6 sm:grid-cols-3 grid-cols-2 max-w-7xl mx-auto">
+      <div className="grid  md:grid-cols-6 sm:grid-cols-3 grid-cols-3 max-w-7xl mx-auto">
         {categories.map((item, idx) => (
           <Link
             key={idx}

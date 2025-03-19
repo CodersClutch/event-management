@@ -28,7 +28,7 @@ export default function ProfileLayout({ children }: { children: ReactNode }) {
       icon: <HomeIcon className="w-5 h-5" />,
     },
     {
-      label: "Events",
+      label: session.user.role.name === "Hosts" ? "My Events" : "Host Events",
       href: "/profile/host-events",
       icon: <CalendarIcon className="w-5 h-5" />,
     },
