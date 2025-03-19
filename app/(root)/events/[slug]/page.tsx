@@ -1,7 +1,5 @@
 import { CiHeart } from "react-icons/ci";
 import Image from "next/image";
-// <<<<<<< feature/web-event
-// import { allEvents } from "@/lib/events";
 import { MdShare, MdTimerOff } from "react-icons/md";
 import { BsBookmarksFill, BsPeople } from "react-icons/bs";
 import { FaCalendarCheck } from "react-icons/fa6";
@@ -40,16 +38,11 @@ const EventPage = async ({ params }: { params: Params }) => {
   const { slug } = await params;
   const { data, status, message } = await GetSingleEvent(slug);
 
-  // const event = events.find((e) => e.id === "AAE-001");
-
-  // if (!event) {
-  //   notFound();
-  // }
-
   return (
     <>
       <div className="max-w-[1200px] mx-auto pt-20 md:pt-[150px] pb-16 px-4 md:px-6">
-        <div className="relative h-[300px] md:h-[400px] mb-8">
+        {/* Event Image */}
+        <div className="relative h-[200px] sm:h-[300px] md:h-[400px] mb-8">
           <Image
             src={
               data?.image ||
@@ -62,8 +55,9 @@ const EventPage = async ({ params }: { params: Params }) => {
             priority
           />
         </div>
+
         <div className="mx-auto font-sans">
-          {/* Date */}
+          {/* Share and Like Buttons */}
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-4">
             <div className="flex space-x-3">
               <CiHeart className="text-2xl" />
@@ -71,35 +65,39 @@ const EventPage = async ({ params }: { params: Params }) => {
             </div>
           </div>
 
+          {/* Main Content */}
           <div className="flex flex-col lg:flex-row items-start justify-between">
+            {/* Left Section */}
             <div className="space-y-8 md:space-y-14 w-full lg:w-auto">
-              {/* Title */}
-              <h1 className="text-3xl md:text-[40px] font-extrabold text-gray-900 leading-tight">
+              {/* Event Title */}
+              <h1 className="text-2xl sm:text-3xl md:text-[40px] font-extrabold text-gray-900 leading-tight">
                 {data?.title}
               </h1>
+
+              {/* Event Details */}
               <div>
-                <div className="flex items-center justify-between gap-10">
-                  <div className="flex  md:flex-row md:items-center gap-2 mt-3 text-xl">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-10">
+                  <div className="flex items-center gap-2 text-lg sm:text-xl">
                     <ListStart className="w-4 h-4 text-gray-500" />
                     <span className="font-medium">Start Date:</span>
                     {formatReadableDate(data?.schedule?.start)}
                   </div>
-                  <div className="flex  md:flex-row md:items-center gap-2 mt-3 text-xl mr-10">
+                  <div className="flex items-center gap-2 text-lg sm:text-xl">
                     <ListStart className="w-4 h-4 text-gray-500" />
                     <span className="font-medium">End Date:</span>
                     {formatReadableDate(data?.schedule?.end)}
                   </div>
                 </div>
 
-                {/* Maximum Participants */}
-                <div className="flex  md:flex-row md:items-center gap-2 mt-3 text-xl">
+                {/* Max Participants */}
+                <div className="flex items-center gap-2 mt-3 text-lg sm:text-xl">
                   <Underline className="w-4 h-4 text-gray-500" />
                   <span className="font-medium">Max Participants:</span>
                   {data?.maxParticipants}
                 </div>
 
                 {/* Registration Deadline */}
-                <div className="flex  md:flex-row md:items-center gap-2 mt-3 text-xl">
+                <div className="flex items-center gap-2 mt-3 text-lg sm:text-xl">
                   <Timer className="w-4 h-4 text-gray-500" />
                   <span className="font-medium">Registration Deadline:</span>
                   {formatReadableDate(data?.registrationDeadline)}
@@ -114,17 +112,17 @@ const EventPage = async ({ params }: { params: Params }) => {
                   />
                 </div>
               </div>
-              {/* Description */}
+
+              {/* Event Description */}
               <p className="text-gray-600 text-base md:text-lg mt-2 md:mt-4 max-w-3xl">
                 {data?.description}
               </p>
 
               {/* Organizer Section */}
-              <div className=" bg-gray-100 p-4 rounded-lg mt-4 md:mt-6 w-full md:w-96 border-primary">
+              <div className="bg-gray-100 p-4 rounded-lg mt-4 md:mt-6 w-full md:w-96 border-primary">
                 <div className="flex items-center gap-3">
                   <IoGlobeSharp className="text-2xl" />
-
-                  <h1> Organizer By </h1>
+                  <h1>Organizer By</h1>
                 </div>
                 <ProfileComponent
                   firstName={data?.createdBy.firstName}
@@ -134,7 +132,8 @@ const EventPage = async ({ params }: { params: Params }) => {
                 />
               </div>
             </div>
-            {/* Ticket and Pricing */}
+
+            {/* Right Section - Ticket and Pricing */}
             <div className="lg:sticky lg:top-[150px] mt-8 lg:mt-0 w-full lg:w-64 self-start">
               <div className="flex flex-col items-end w-full transition-transform duration-300">
                 <div className="bg-[#d942d678] p-1 rounded-t-xl font-medium w-full text-center">
@@ -151,34 +150,35 @@ const EventPage = async ({ params }: { params: Params }) => {
                   </button>
                 </div>
               </div>
-            </div>{" "}
+            </div>
           </div>
 
-          {/* Date and Time */}
+          {/* Date and Time Section */}
           <div className="border-t pt-6 mt-6 flex flex-col space-y-8 md:space-y-10">
             <div>
               <h3 className="text-xl md:text-2xl font-semibold">
-                Date and time
+                Date and Time
               </h3>
               <div className="flex items-center text-black font-medium mt-2 text-sm">
                 <FaCalendarCheck className="mr-2" />
-                <p> {formatReadableDate(data?.schedule?.start)}</p>
+                <p>{formatReadableDate(data?.schedule?.start)}</p>
               </div>
             </div>
 
+            {/* Location Section */}
             <div>
               <h3 className="text-xl md:text-2xl font-semibold">Location</h3>
               <div className="flex items-center text-black font-medium mt-2 text-sm">
                 <MapPinCheck className="mr-2" />
                 <p>{data?.location}</p>
               </div>
-
               <div className="flex items-center text-black font-medium mt-2 text-sm">
                 <BsCollectionPlayFill className="mr-2" />
                 <p>{data?.mode}</p>
               </div>
             </div>
 
+            {/* Good to Know Section */}
             <div className="max-w-3xl w-full">
               <div className="flex flex-row items-center justify-between">
                 <p className="text-xl md:text-2xl font-semibold">
@@ -222,7 +222,7 @@ const EventPage = async ({ params }: { params: Params }) => {
                           {data?.refundPolicy}
                         </p>
                       </div>
-                      <div className=" p-4 md:p-6">
+                      <div className="p-4 md:p-6">
                         <span className="text-sm md:text-base font-bold">
                           Location
                         </span>
@@ -253,6 +253,7 @@ const EventPage = async ({ params }: { params: Params }) => {
                 </AlertDialog>
               </div>
 
+              {/* Highlights, Refund Policy, and Location Cards */}
               <div className="mt-8 md:mt-10 flex flex-col md:flex-row gap-4 md:gap-10">
                 <div className="h-auto md:h-[250px] w-full md:w-[250px] shadow-xl rounded-xl p-4 md:p-6">
                   <span className="text-sm md:text-base font-bold">
@@ -268,7 +269,7 @@ const EventPage = async ({ params }: { params: Params }) => {
                       {data?.mode}
                     </p>
                     <p className="flex text-gray-500 whitespace-nowrap items-center justify-start">
-                      <MdTimerOff className="mr-3 text-black" /> Deadline{"  "}
+                      <MdTimerOff className="mr-3 text-black" /> Deadline{" "}
                       {formatReadableDate(data?.registrationDeadline)}
                     </p>
                     <p className="flex text-gray-500 items-center justify-start">
@@ -286,8 +287,6 @@ const EventPage = async ({ params }: { params: Params }) => {
                     {data?.refundPolicy}
                   </p>
                 </div>
-
-                {/* Geolocation */}
                 <div className="h-auto md:h-[250px] w-full md:w-[250px] shadow-xl rounded-xl p-4 md:p-6">
                   <span className="text-sm md:text-base font-bold">
                     Location
@@ -316,7 +315,7 @@ const EventPage = async ({ params }: { params: Params }) => {
               </div>
             </div>
 
-            {/* description section */}
+            {/* About This Event Section */}
             <div className="space-y-6 md:space-y-8">
               <p className="font-bold text-xl md:text-2xl">About this event</p>
               <p className="text-base md:text-lg font-medium">{data?.title}</p>
@@ -325,12 +324,11 @@ const EventPage = async ({ params }: { params: Params }) => {
               </p>
             </div>
 
-            {/* <OrganizerCard organizer={data?.organizer} /> */}
+            {/* More Events from Organizer */}
             <MoreEventsFromOrganizer organizer={data?.createdBy.firstName} />
           </div>
         </div>
       </div>
-      {/* <OtherEvents /> */}
     </>
   );
 };

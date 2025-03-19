@@ -19,19 +19,19 @@ const page = () => {
       <Advertisement />
 
       {/* categories */}
-      <div className="grid  md:grid-cols-6 sm:grid-cols-3 grid-cols-2 max-w-7xl mx-auto">
+      <div className="grid  md:grid-cols-7 sm:grid-cols-3 grid-cols-3 max-w-7xl mx-auto">
         {categories.map((item, idx) => (
           <Link
             key={idx}
             href={item.link}
             className="flex hover:text-[#D942D6] group  items-center justify-center flex-col space-y-2"
           >
-            <div className="flex group items-center bg-gradient-to-b hover:bg-gradient-to-t from-[#ffff] hover:from-[#A22D9E] hover:to-[#F34CF1] to-[#ffff]  shadow-md transition-all duration-1000 ease-in-out   border-purple-400-100 rounded-full p-10 justify-center border">
+            <div className="flex group items-center bg-gradient-to-b hover:bg-gradient-to-t from-[#ffff] hover:from-[#A22D9E] hover:to-[#F34CF1] to-[#ffff]  shadow-md transition-all duration-1000 ease-in-out   border-purple-400-100 rounded-md p-5 justify-center border">
               <Image
                 src={item.icon}
                 alt={item.Label}
-                width={40}
-                height={40}
+                width={30}
+                height={30}
                 className="group-hover:invert group-hover:brightness-0 transition-all duration-500 ease-in-out group-hover:filter"
               />
             </div>

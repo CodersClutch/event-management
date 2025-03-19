@@ -25,53 +25,55 @@ const page = () => {
       logo: "https://eventbrite-s3.s3.us-east-1.amazonaws.com/marketing/landingpages/assets/2025/rebrand/l/contact-eventbrite-sales/trusted-by/a--logo-us-005.png",
     },
   ];
+
   return (
-    <div className=" lg:px-16 max-w-7xl mx-auto">
+    <div className="px-4 sm:px-8 lg:px-16 max-w-7xl mx-auto">
       {/* Contact Ticket Sales */}
       <ContactTicketsSales />
 
       {/* Adverties */}
-      <div className="flex justify-center items-center flex-row pb-16 gap-10">
-        <div className="flex bg-yellow-500 rounded-lg shadow-lg p-5 text-center flex-col justify-center items-center flex-1">
-          <h1 className="font font-extrabold text-5xl">200M+</h1>
-          <p className="text-lg mt-2">
-            searches from people looking for things to do on Eventbrite in 2022
+      <div className="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-10 py-8 md:py-16">
+        <div className="bg-yellow-500 rounded-lg shadow-lg p-5 text-center w-full md:w-1/3">
+          <h1 className="font-extrabold text-4xl sm:text-5xl">200M+</h1>
+          <p className="text-base sm:text-lg mt-2">
+            searches from people looking for things to do on 4kiddo in 2022
           </p>
         </div>
-        <div className="flex bg-yellow-500 rounded-lg shadow-lg p-5 text-center flex-col items-center flex-1">
-          <h1 className="font font-extrabold text-5xl">30%</h1>
-          <p className="text-lg mt-2">
-            of total tickets sold are driven by Eventbrite discovery
+        <div className="bg-yellow-500 rounded-lg shadow-lg p-5 text-center w-full md:w-1/3">
+          <h1 className="font-extrabold text-4xl sm:text-5xl">30%</h1>
+          <p className="text-base sm:text-lg mt-2">
+            of total tickets sold are driven by 4kiddo discovery
           </p>
         </div>
-        <div className="flex bg-yellow-500 rounded-lg shadow-lg p-5 text-center flex-col items-center flex-1">
-          <h1 className="font font-extrabold text-5xl">2X</h1>
-          <p className="text-lg mt-2">
+        <div className="bg-yellow-500 rounded-lg shadow-lg p-5 text-center w-full md:w-1/3">
+          <h1 className="font-extrabold text-4xl sm:text-5xl">2X</h1>
+          <p className="text-base sm:text-lg mt-2">
             more the consumer reach of our closest competitor
           </p>
         </div>
       </div>
 
       {/* Sponsor */}
-      <div>
-        <div className="flex justify-center items-center flex-col py-24 gap-5">
-          <div>
-            <h1 className="font-bold text-6xl">Trusted by</h1>
-          </div>
-          <div className="flex flex-wrap justify-center items-center gap-5">
+      {/* <div className="py-12 md:py-24">
+        <div className="flex flex-col justify-center items-center gap-5">
+          <h1 className="font-bold text-4xl sm:text-5xl lg:text-6xl text-center">
+            Trusted by
+          </h1>
+          <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8">
             {sponsors.map((sponsor, index) => (
-              <div key={index} className="py-5 flex-1">
+              <div key={index} className="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 p-2">
                 <Image
                   src={sponsor.logo}
                   alt={sponsor.name}
                   width={200}
                   height={100}
+                  className="w-full h-auto"
                 />
               </div>
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

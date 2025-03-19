@@ -182,12 +182,40 @@ const Navbar = () => {
                 {item.title}
               </Link>
             ))}
-            <Link
-              href="/auth"
-              className="block px-4 py-2 bg-gradient-to-b hover:bg-gradient-to-t from-[#A22D9E] hover:from-[#A22D9E] hover:to-[#F34CF1] to-[#F34CF1]  shadow-md transition text-white rounded-full hover:bg-[#D942D6] text-center"
-            >
-              Sign In
-            </Link>
+            <>
+              {
+                // if session is available show the user profile
+                session?.user ? (
+                  <div className="flex items-center gap-5">
+                    {/* <AddEvent /> */}
+                    {/* <WebUserNavBar /> */}
+                    {session?.user.role.name === "Attendees" ? null : (
+                      <AddEvent />
+                    )}
+
+                    <div>
+                      <WebUserNavBar />
+                    </div>
+                  </div>
+                ) : (
+                  // if not session available show the login and signup links
+                  <div className="flex items-center space-x-5 flex-col gap-5">
+                    <Link
+                      href="/auth"
+                      className="text-black font-medium px-4 py-3 border-2 border-[#a927a7] w-full rounded-full text-sm hover:text-[#D942D6]"
+                    >
+                      Log In
+                    </Link>
+                    <Link
+                      href="/auth/signup"
+                      className="px-2 py-2 text-lg w-full bg-gradient-to-b hover:bg-gradient-to-t from-[#A22D9E] hover:from-[#A22D9E] hover:to-[#F34CF1] to-[#F34CF1] rounded-full shadow-md transition"
+                    >
+                      Sign Up
+                    </Link>
+                  </div>
+                )
+              }
+            </>
           </div>
         )}
       </div>
