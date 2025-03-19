@@ -127,14 +127,14 @@ const ContactTicketsSales = () => {
           <Link href={"/help-center"} className="font-bold text-lg underline">
             Sales Team
           </Link>{" "}
-          is here to show you how Eventbrite can amplify your events and help
-          you achieve your event goals. Reach out to us directly at +1
-          628-600-1786 to get started, or if you prefer, complete the Contact Us
-          form and someone from our Sales team will be in touch shortly.
+          is here to show you how 4kiddo can amplify your events and help you
+          achieve your event goals. Reach out to us directly at +1 628-600-1786
+          to get started, or if you prefer, complete the Contact Us form and
+          someone from our Sales team will be in touch shortly.
         </p>
         <p className="p-5 mt-5 text-lg border-2 rounded-lg border-yellow-500">
-          Current Eventbrite customers can contact customer support. Your
-          support options are based on your plan or package.
+          Current 4kiddo customers can contact customer support. Your support
+          options are based on your plan or package.
         </p>
         <div className="flex items-center pt-5 space-x-2">
           {renderStars(4)}

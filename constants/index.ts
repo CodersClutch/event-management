@@ -28,7 +28,7 @@ export const categories = [
   },
   {
     icon: "https://cdn-icons-png.flaticon.com/128/919/919482.png",
-    Label: "Main Arena",
+    Label: "Elementary age",
     link: "/events/arena",
   },
   {
@@ -40,6 +40,11 @@ export const categories = [
     icon: "https://cdn-icons-png.flaticon.com/128/756/756648.png",
     Label: "Teen Hangouts",
     link: "/events/teen-hangouts",
+  },
+  {
+    icon: "https://cdn-icons-png.flaticon.com/128/919/919482.png",
+    Label: "Preteen",
+    link: "/events/arena",
   },
   {
     icon: "https://cdn-icons-png.flaticon.com/128/12650/12650217.png",
@@ -595,7 +600,7 @@ export const sponsors = [
   "https://tyovent-html.tortoizthemes.com/tyovent/assets/images/events/tp-spncr4.png",
 ];
 
-export const Categories =  [
+export const Categories = [
   "all ages",
   "for babies",
   "main arena",
@@ -616,8 +621,8 @@ export const Categories =  [
   "homeschoolfriendly",
   "tutoring",
   "specialneeds",
-  "special deals"
-]
+  "special deals",
+];
 
 export const eventList = [
   {

@@ -36,13 +36,13 @@ const page = () => {
         <div className="bg-yellow-500 rounded-lg shadow-lg p-5 text-center w-full md:w-1/3">
           <h1 className="font-extrabold text-4xl sm:text-5xl">200M+</h1>
           <p className="text-base sm:text-lg mt-2">
-            searches from people looking for things to do on Eventbrite in 2022
+            searches from people looking for things to do on 4kiddo in 2022
           </p>
         </div>
         <div className="bg-yellow-500 rounded-lg shadow-lg p-5 text-center w-full md:w-1/3">
           <h1 className="font-extrabold text-4xl sm:text-5xl">30%</h1>
           <p className="text-base sm:text-lg mt-2">
-            of total tickets sold are driven by Eventbrite discovery
+            of total tickets sold are driven by 4kiddo discovery
           </p>
         </div>
         <div className="bg-yellow-500 rounded-lg shadow-lg p-5 text-center w-full md:w-1/3">
@@ -54,7 +54,7 @@ const page = () => {
       </div>
 
       {/* Sponsor */}
-      <div className="py-12 md:py-24">
+      {/* <div className="py-12 md:py-24">
         <div className="flex flex-col justify-center items-center gap-5">
           <h1 className="font-bold text-4xl sm:text-5xl lg:text-6xl text-center">
             Trusted by
@@ -73,7 +73,7 @@ const page = () => {
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
