@@ -54,7 +54,7 @@ export default function TestimonialCarousel() {
   });
 
   return (
-    <div className="bg-[#D8F5FD] flex justify-center items-center">
+    <div className=" flex justify-center items-center">
       <div className="relative w-full my-8 p-4 md:p-6 lg:p-8 max-w-7xl">
         <p className="text-center text-2xl md:text-3xl lg:text-4xl font-bold mb-6">
           What Our Clients Say
@@ -97,7 +97,11 @@ export default function TestimonialCarousel() {
                     {testimonial.author}
                   </p>
                   <p className="flex flex-row text-base md:text-lg items-center justify-center pt-1 md:pt-2 space-x-1 text-[#fadd00]">
-                    <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
                   </p>
                 </div>
               </div>
